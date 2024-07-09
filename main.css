@@ -238,6 +238,7 @@ p.subtitle {
 .gm-style .gm-style-iw-c {
   background: none;
   box-shadow: none;
+  /* pointer-events: none; */
 }
 
 .gm-style-iw-tc {

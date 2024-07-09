@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { TeapotGeometry } from 'three/addons/geometries/TeapotGeometry.js';
 
 import { TextDisplay } from "./text.js";
 import {
@@ -131,23 +132,22 @@ const initialize = async event => {
 
   const pc = document.getElementById('poop-canvas');
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera( 75,pc.width / pc.height, 0.1, 1000 );
+  const camera = new THREE.PerspectiveCamera( 45,pc.width / pc.height, 0.1, 1000 );
 
   const renderer = new THREE.WebGLRenderer({ canvas: pc, alpha: true });
   renderer.setClearColor( 0x000000, 0 );
   renderer.setSize(pc.width, pc.height );
+  renderer.setPixelRatio( window.devicePixelRatio );
 
-  const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-  const material = new THREE.MeshLambertMaterial( { color: 0x00ff00 } );
+  const geometry = new TeapotGeometry(1, 6);
+  const material = new THREE.MeshPhongMaterial( { side: THREE.DoubleSide } );
   const cube = new THREE.Mesh( geometry, material );
-
-
-  cube.rotation.z = 0.3;
-  cube.rotation.x = 0.1;
   scene.add( cube );
 
-  const light = new THREE.PointLight( 0xff0000, 1, 100 );
-  light.position.set( 50, 50, 50 );
+  const ambientLight = new THREE.AmbientLight( 0x7c7c7c, 3.0 );
+  const light = new THREE.DirectionalLight( 0xFFFFFF, 3.0 );
+  light.position.set( 0.32, 0.39, 0.7 );
+  scene.add( ambientLight );
   scene.add( light );
 
   camera.position.z = 5;
