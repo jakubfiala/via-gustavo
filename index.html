@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Via Gustavo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyA1VOiLnJEwz3HzcDxEExa_tCTu5KKOoqQ&v=3.exp"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@latest/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@latest/examples/jsm/"
+        }
+      }
+    </script>
+    <script defer type="module" src="src/main.js"></script>
+  </head>
+  <body>
+    <audio id="bg-audio" src="assets/audio/crickets.mp3" loop></audio>
+    <main id="container"></main>
+    <div id="text-display" class="text-overlay"></div>
+    <div id="status-display" class="text-overlay"></div>
+    <div id="intro" class="overlay">
+      <h1>Via Gustavo</h1>
+      <p class="subtitle">
+        A dérive with a long, lonely road.
+      </p>
+      <p>Click to begin</p>
+    </div>
+    <form class="fake-captcha" hidden>
+      <input type="checkbox" name="fake-captcha-cb" id="fake-captcha-cb" />
+      <div class="fake-captcha__checkbox"><div class="icon"></div></div>
+      <label class="fake-captcha__label" for="fake-captcha-cb"
+        >I'm not a robot</label
+      >
+      <div class="fake-captcha__logo">
+        <span class="fake-captcha__icon">🔮</span>hermeCAPTCHA<br />No Privacy -
+        No Terms
+      </div>
+    </form>
+    <div id="canvas-marker">
+      <canvas id="poop-canvas" width="300" height="300"></canvas>
+    </div>
+  </body>
+</html>
