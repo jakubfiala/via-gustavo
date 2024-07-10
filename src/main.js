@@ -143,6 +143,7 @@ const initialize = async event => {
   const material = new THREE.MeshPhongMaterial( { side: THREE.DoubleSide } );
   const cube = new THREE.Mesh( geometry, material );
   scene.add( cube );
+  cube.position.z = -1;
 
   const ambientLight = new THREE.AmbientLight( 0x7c7c7c, 3.0 );
   const light = new THREE.DirectionalLight( 0xFFFFFF, 3.0 );
@@ -150,8 +151,31 @@ const initialize = async event => {
   scene.add( ambientLight );
   scene.add( light );
 
-  camera.position.z = 5;
+  camera.position.z = 1;
+  camera.position.y = 4;
+  camera.lookAt(cube.position);
   renderer.render( scene, camera );
+
+  google.maps.event.addListener(
+    map,
+    "position_changed",
+    () => {
+      const userPosition = map.getPosition();
+      const objectPosition = info.getPosition();
+      const dx = userPosition.lat() - objectPosition.lat();
+      const dy = userPosition.lng() - objectPosition.lng();
+
+      cube.rotation.y = Math.atan2(dy, dx);
+      camera.position.z = 2 + Math.abs(dy * 1e4 * 6);
+      const cameraTarget = new THREE.Vector3();
+      cameraTarget.copy(cube.position);
+      cameraTarget.y += Math.abs(dx * 1e4 * 3.5);
+      camera.lookAt(cameraTarget);
+      console.log(dx, dy, camera.position);
+
+      renderer.render( scene, camera );
+    },
+  );
 };
 
 intro.addEventListener("click", initialize);
