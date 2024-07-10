@@ -11,6 +11,7 @@ import { latLngDist } from "./utils.js";
 import { fakeCaptcha } from "./fakeCaptcha.js";
 import createTeapotMesh from './3d-objects/teapot.js';
 import { THREEObjectMaker } from './3d-objects/index.js';
+import { embedMaker } from './embeds/index.js';
 
 const INIT_RAMP = 4;
 
@@ -123,15 +124,20 @@ const initialize = async event => {
     compressor: true
   });
 
-  const makeThreeObject = THREEObjectMaker(StreetViewLibrary, map);
-  const teapot = makeThreeObject(createTeapotMesh(), map.getPosition());
-  teapot.insert(map);
+  const makeThreeObject = THREEObjectMaker(StreetViewLibrary);
+  const teapot = makeThreeObject(createTeapotMesh());
+  teapot.insert(map, map.getPosition());
+
+  const makeEmbed = embedMaker(StreetViewLibrary);
+  const mars96 = makeEmbed('https://en.wikipedia.org/wiki/Mars_96');
+  mars96.insert(map, new google.maps.LatLng({ lat: -20.506417885036914, lng: -69.37627137940446 }));
 
   google.maps.event.addListener(
     map,
     "position_changed",
     () => {
       teapot.update();
+      mars96.update();
     },
   );
 };

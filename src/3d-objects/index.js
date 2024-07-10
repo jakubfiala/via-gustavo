@@ -21,7 +21,7 @@ const createLights = () => {
   return [ambientLight, light];
 };
 
-export const THREEObjectMaker = (StreetView) => (mesh, position) => {
+export const THREEObjectMaker = (StreetView) => (mesh) => {
   const canvas = document.createElement('canvas');
   canvas.height = CANVAS_SIZE;
   canvas.width = CANVAS_SIZE;
@@ -42,7 +42,7 @@ export const THREEObjectMaker = (StreetView) => (mesh, position) => {
 
   return {
     scene, camera, renderer, mesh,
-    insert(map) {
+    insert(map, position) {
       this.map = map;
 
       this.info = new StreetView.InfoWindow({
