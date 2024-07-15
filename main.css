@@ -31,6 +31,10 @@ a:visited {
   text-decoration: none;
 }
 
+button {
+  font: inherit;
+}
+
 #container {
   /* animation: dreamz 240s infinite; */
   height: 100vh;
@@ -248,4 +252,66 @@ p.subtitle {
 
 .gm-style-iw-d {
   overflow: hidden !important;
+}
+
+.hud {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.hud__dialog {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border: solid 1px white;
+  color: white;
+  margin: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: 2;
+  padding: 0;
+}
+
+.hud__dialog-header {
+  border-bottom: solid 1px white;
+  padding: 0.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hud__dialog-content {
+  padding: 0.5rem;
+}
+
+.inventory {
+  --cell-size: 150px;
+  display: grid;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: repeat(3, var(--cell-size));
+  min-height: var(--cell-size);
+}
+
+.inventory__cell {
+  height: var(--cell-size);
+  width: var(--cell-size);
+}
+
+.inventory__cell figure {
+  margin: 0;
+}
+
+.inventory__cell img {
+  display: block;
+  width: calc(100% - 2rem);
+  margin: 0 auto;
+}
+
+.inventory__cell figcaption {
+  text-align: center;
 }

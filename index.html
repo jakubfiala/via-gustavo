@@ -21,6 +21,44 @@
     <main id="container"></main>
     <div id="text-display" class="text-overlay"></div>
     <div id="status-display" class="text-overlay"></div>
+    <div class="hud">
+      <button id="inventory-button" class="hud__button">Inventory</button>
+      <dialog id="inventory-dialog" class="hud__dialog">
+        <header class="hud__dialog-header">
+          Inventory
+          <button id="inventory-close" class="hud__dialog-close">Close</button>
+        </header>
+        <ul id="inventory" class="inventory">
+          <template id="inventory-cell-template">
+            <li class="inventory__cell">
+              <figure>
+                <img src="">
+                <figcaption></figcaption>
+              </figure>
+            </li>
+          </template>
+        </ul>
+      </dialog>
+
+      <button class="hud__button">Settings</button>
+
+      <button id="about-button" class="hud__button">About</button>
+      <dialog id="about-dialog" class="hud__dialog">
+        <header class="hud__dialog-header">
+          About
+          <button id="about-close" class="hud__dialog-close">Close</button>
+        </header>
+        <section class="hud__dialog-content">
+          <p>
+            Via Gustavo is a walking simulator game in Google Street View.
+          </p>
+          <p>
+            Built by <a href="https://fiala.space" rel="noopener" target="_blank">Jakub Fiala</a>
+            during the <a href="https://heyhuman.art/" rel="noopener" target="_blank">HeyHuman</a> residency in 2024.
+          </p>
+        </section>
+      </dialog>
+    </div>
     <div id="intro" class="overlay">
       <h1>Via Gustavo</h1>
       <p class="subtitle">

@@ -12,6 +12,8 @@ import { fakeCaptcha } from "./fakeCaptcha.js";
 import createTeapotMesh from './3d-objects/teapot.js';
 import { THREEObjectMaker } from './3d-objects/index.js';
 import { embedMaker } from './embeds/index.js';
+import initHUD from './hud/index.js';
+import Inventory from './inventory/index.js';
 
 const INIT_RAMP = 4;
 
@@ -140,6 +142,17 @@ const initialize = async event => {
       mars96.update();
     },
   );
+
+  initHUD();
+
+  teapot.info.content.addEventListener('click', () => {
+    Inventory.addItem({
+      thumbnailURL: '/assets/items/teapot/thumb.webp',
+      name: 'Teapot',
+    });
+
+    teapot.info.close();
+  })
 };
 
 intro.addEventListener("click", initialize);
