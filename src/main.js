@@ -45,7 +45,7 @@ const sounds = [
     lat: -20.503758,
     lng: -69.3805445,
     timestamp: 551459942721,
-    src: "assets/audio/lj.mp3",
+    src: "assets/audio/lobotomy-loop.mp3",
     db: 80,
     loop: true
   }
@@ -107,9 +107,8 @@ const initialize = async event => {
 
   audioContext = new AudioContext();
   masterGain = new GainNode(audioContext, { gain: 0 });
-  const bgNode = new MediaElementAudioSourceNode(audioContext, {
-    mediaElement: bgAudio
-  });
+
+  const bgNode = new MediaElementAudioSourceNode(audioContext, { mediaElement: bgAudio });
   bgNode.connect(masterGain).connect(audioContext.destination);
   bgAudio.play();
 
@@ -126,8 +125,8 @@ const initialize = async event => {
     compressor: true
   });
 
-  const objects = await loadItems(StreetViewLibrary, map);
-  objects.forEach((o) => o.update());
+  const items = await loadItems(StreetViewLibrary, map);
+  items.forEach((o) => o.update());
 
   google.maps.event.addListener(
     map,
@@ -136,7 +135,7 @@ const initialize = async event => {
       const position = { lat: map.getPosition().lat(), lng: map.getPosition().lng() };
       console.log('position_changed', position);
       localStorage.setItem(LOCALSTORAGE_POSITION_KEY, JSON.stringify(position));
-      objects.forEach((o) => o.update());
+      items.forEach((o) => o.update());
     },
   );
 

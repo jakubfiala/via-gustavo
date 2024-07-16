@@ -1,7 +1,7 @@
 import { latLngDist } from './utils.js';
 
 const MIX_TRANS_TIME = 2;
-const PLAY_DISTANCE_THRESHOLD = 70;
+const PLAY_DISTANCE_THRESHOLD = 90;
 const LOAD_DISTANCE_THRESHOLD = 100;
 
 class Sound {

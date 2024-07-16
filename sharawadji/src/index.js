@@ -41,9 +41,9 @@ class Sharawadji {
 
 		this.updateMix = this.updateMix.bind(this);
 
-		google.maps.event.addListener(panorama, 'pano_changed', throttle(this.updateMix, 500));
-    google.maps.event.addListener(panorama, 'position_changed', throttle(this.updateMix, 500));
-    google.maps.event.addListener(panorama, 'pov_changed', throttle(this.updateMix, 500));
+		google.maps.event.addListener(panorama, 'pano_changed', throttle(this.updateMix, 100));
+    google.maps.event.addListener(panorama, 'position_changed', throttle(this.updateMix, 100));
+    google.maps.event.addListener(panorama, 'pov_changed', throttle(this.updateMix, 100));
 	}
 
 	updateMix() {
