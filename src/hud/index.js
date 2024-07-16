@@ -24,5 +24,10 @@ export default () => {
       toggle: document.getElementById('about-button'),
       close: document.getElementById('about-close'),
     },
+    {
+      dialog: document.getElementById('settings-dialog'),
+      toggle: document.getElementById('settings-button'),
+      close: document.getElementById('settings-close'),
+    },
   ].forEach((dialogSettings) => setupDialog(dialogSettings));
 };

@@ -9,11 +9,10 @@ import {
 import { Sharawadji } from "../sharawadji/src/index.js";
 import { latLngDist } from "./utils.js";
 import { fakeCaptcha } from "./fakeCaptcha.js";
-import createTeapotMesh from './3d-objects/teapot.js';
-import { THREEObjectMaker } from './3d-objects/index.js';
-import { embedMaker } from './embeds/index.js';
 import initHUD from './hud/index.js';
-import Inventory from './inventory/index.js';
+import initSettings from './settings.js';
+import { LOCALSTORAGE_POSITION_KEY, START_POSITION } from './constants.js';
+import loadItems from './items.js';
 
 const INIT_RAMP = 4;
 
@@ -26,6 +25,7 @@ const fakeCaptchas = Array.from(
   document.getElementsByClassName("fake-captcha")
 ).map(c => fakeCaptcha(c));
 
+
 const textDisplay = new TextDisplay(textContainer);
 let currentScript = null;
 let audioContext, masterGain = null;
@@ -33,7 +33,7 @@ let audioContext, masterGain = null;
 const debug = location.search.includes("debug=true");
 
 const mapOptions = {
-  position: new google.maps.LatLng(-20.5069053, -69.3754891),
+  position: JSON.parse(localStorage.getItem(LOCALSTORAGE_POSITION_KEY)) || START_POSITION,
   pov: { heading: 308.77, pitch: 3 },
   clickToGo: debug ? true : false,
   disableDefaultUI: true
@@ -126,33 +126,22 @@ const initialize = async event => {
     compressor: true
   });
 
-  const makeThreeObject = THREEObjectMaker(StreetViewLibrary);
-  const teapot = makeThreeObject(createTeapotMesh());
-  teapot.insert(map, map.getPosition());
-
-  const makeEmbed = embedMaker(StreetViewLibrary);
-  const mars96 = makeEmbed('https://en.wikipedia.org/wiki/Mars_96');
-  mars96.insert(map, new google.maps.LatLng({ lat: -20.506417885036914, lng: -69.37627137940446 }));
+  const objects = await loadItems(StreetViewLibrary, map);
+  objects.forEach((o) => o.update());
 
   google.maps.event.addListener(
     map,
     "position_changed",
     () => {
-      teapot.update();
-      mars96.update();
+      const position = { lat: map.getPosition().lat(), lng: map.getPosition().lng() };
+      console.log('position_changed', position);
+      localStorage.setItem(LOCALSTORAGE_POSITION_KEY, JSON.stringify(position));
+      objects.forEach((o) => o.update());
     },
   );
 
   initHUD();
-
-  teapot.info.content.addEventListener('click', () => {
-    Inventory.addItem({
-      thumbnailURL: '/assets/items/teapot/thumb.webp',
-      name: 'Teapot',
-    });
-
-    teapot.info.close();
-  })
+  initSettings();
 };
 
 intro.addEventListener("click", initialize);

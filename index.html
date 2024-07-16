@@ -40,7 +40,16 @@
         </ul>
       </dialog>
 
-      <button class="hud__button">Settings</button>
+      <button id="settings-button" class="hud__button">Settings</button>
+      <dialog id="settings-dialog" class="hud__dialog">
+        <header class="hud__dialog-header">
+          Settings
+          <button id="settings-close" class="hud__dialog-close">Close</button>
+        </header>
+        <section class="hud__dialog-content">
+          <button id="reset-button" class="hud__button">Reset game</button>
+        </section>
+      </dialog>
 
       <button id="about-button" class="hud__button">About</button>
       <dialog id="about-dialog" class="hud__dialog">
@@ -56,6 +65,10 @@
             Built by <a href="https://fiala.space" rel="noopener" target="_blank">Jakub Fiala</a>
             during the <a href="https://heyhuman.art/" rel="noopener" target="_blank">HeyHuman</a> residency in 2024.
           </p>
+          <h3>Credits</h3>
+          <ul>
+            <li>Coca Cola Can by Ziperi (https://sketchfab.com/ziperistudio)</li>
+          </ul>
         </section>
       </dialog>
     </div>
