@@ -1,3 +1,5 @@
+import { loadGLTF } from './3d-objects/gltf.js';
+
 export const takeTheBus = (map, { locationName, latLng, pov }) => {
   const agree = confirm(`Are you ready to take the bus to ${locationName}?`)
   if (agree) {
@@ -17,3 +19,19 @@ export const takeTheBus = (map, { locationName, latLng, pov }) => {
     }, { once: true });
   }
 };
+
+export const createBusStopItem = ({ position, destination: { locationName, latLng, pov } }) => ({
+  name: `Bus Stop to ${locationName}`,
+  collectible: false,
+  position,
+  async create(makers) {
+    return makers.threeObject(await loadGLTF('/assets/items/bus-stop/'));
+  },
+  onClick: (map, item) => {
+    takeTheBus(map, {
+      locationName,
+      latLng,
+      pov,
+    });
+  },
+});

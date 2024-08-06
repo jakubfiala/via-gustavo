@@ -4,7 +4,7 @@ import { embedMaker } from './embeds/index.js';
 import Inventory from './inventory/index.js';
 import { loadGLTF } from './3d-objects/gltf.js';
 import { START_POSITION } from './constants.js';
-import { takeTheBus } from './bus.js';
+import { createBusStopItem } from './bus.js';
 
 const itemDescs = [
   {
@@ -33,21 +33,14 @@ const itemDescs = [
       return makers.threeObject(await loadGLTF('/assets/items/coke/'));
     },
   },
-  {
-    name: 'Bus Stop',
-    collectible: false,
+  createBusStopItem({
     position: { lat: -20.506711923930550, lng: -69.37579679565727 },
-    async create(makers) {
-      return makers.threeObject(await loadGLTF('/assets/items/bus-stop/'));
+    destination: {
+      locationName: 'Geoglifos de Pintados',
+      latLng: { lat: -20.6214391, lng: -69.662639 },
+      pov: { heading: 23.53, pitch: 3 },
     },
-    onClick: (map, item) => {
-      takeTheBus(map, {
-        locationName: 'Geoglifos de Pintados',
-        latLng: { lat: -20.6214391, lng: -69.662639 },
-        pov: { heading: 23.53, pitch: 3 },
-      });
-    },
-  },
+  }),
 ];
 
 const initItem = (makers) => async (map, desc) => {
