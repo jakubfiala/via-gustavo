@@ -34,7 +34,7 @@ const itemDescs = [
     },
   },
   createBusStopItem({
-    position: { lat: -20.506711923930550, lng: -69.37579679565727 },
+    position: { lat: -20.50669, lng: -69.37579679565727 },
     destination: {
       locationName: 'Geoglifos de Pintados',
       latLng: { lat: -20.6214391, lng: -69.662639 },
