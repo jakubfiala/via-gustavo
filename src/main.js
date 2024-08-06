@@ -102,7 +102,7 @@ const initialize = async event => {
   const StreetViewLibrary = await google.maps.importLibrary("streetView");
 
   intro.removeEventListener("click", initialize);
-  intro.classList.add("hidden");
+  intro.hidden = true;
   bgAudio.volume = 0.6;
 
   audioContext = new AudioContext();

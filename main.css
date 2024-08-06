@@ -50,6 +50,17 @@ a:visited {
   top: 0;
   width: 100vw;
   z-index: 5;
+  opacity: 1;
+}
+
+.overlay[hidden] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.overlay--full {
+  background: black;
+  transition: opacity 2s linear;
 }
 
 .overlay p {
@@ -66,10 +77,6 @@ a:visited {
 
 p.subtitle {
   margin-top: 0;
-}
-
-.hidden {
-  display: none;
 }
 
 .text-overlay {
