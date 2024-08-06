@@ -6,6 +6,7 @@
 html,
 body {
   font-family: monospace;
+  font-size: 16px;
   margin: 0;
   padding: 0;
 }
@@ -29,10 +30,6 @@ a,
 a:visited {
   color: #ffb5bd;
   text-decoration: none;
-}
-
-button {
-  font: inherit;
 }
 
 #container {
@@ -256,8 +253,8 @@ p.subtitle {
 
 .hud {
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 1rem;
+  right: 1rem;
   z-index: 1;
 }
 
@@ -286,6 +283,12 @@ p.subtitle {
 }
 
 .hud__dialog-content {
+  padding: 0.5rem;
+}
+
+.hud__button, .hud__dialog-close {
+  cursor: pointer;
+  font: inherit;
   padding: 0.5rem;
 }
 
