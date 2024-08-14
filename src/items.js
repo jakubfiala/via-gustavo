@@ -41,6 +41,14 @@ const itemDescs = [
       pov: { heading: 23.53, pitch: 3 },
     },
   }),
+  {
+    name: 'RR',
+    collectible: false,
+    position: { lat: -20.506171507511695, lng: -69.37666966949742 },
+    create(makers) {
+      return makers.embed('https://www.youtube.com/embed/dQw4w9WgXcQ?si=OcFZaAlJ66kC5-T7');
+    },
+  },
 ];
 
 const initItem = (makers) => async (map, desc) => {
