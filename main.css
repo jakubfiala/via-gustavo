@@ -332,3 +332,7 @@ p.subtitle {
 .inventory__cell figcaption {
   text-align: center;
 }
+
+.chapters__chapter--complete::after {
+  content: '[COMPLETE]';
+}

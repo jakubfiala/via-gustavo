@@ -24,6 +24,19 @@
     <div class="hud">
       <output id="latlng-display" class="hud__display"></output>
       <output id="pov-display" class="hud__display"></output>
+
+      <button id="chapters-button" class="hud__button">Chapters</button>
+      <dialog id="chapters-dialog" class="hud__dialog">
+        <header class="hud__dialog-header">
+          Chapters
+          <button id="chapters-close" class="hud__dialog-close">Close</button>
+        </header>
+        <section class="hud__dialog-content">
+          <ol id="chapters-list">
+          </ol>
+        </section>
+      </dialog>
+
       <button id="inventory-button" class="hud__button">Inventory</button>
       <dialog id="inventory-dialog" class="hud__dialog">
         <header class="hud__dialog-header">

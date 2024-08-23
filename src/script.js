@@ -102,7 +102,7 @@ export const Checkpoint1IntroScript = [
     text: "",
     duration: 5,
     callback: (context) => {
-      flashStatus("Phase One: The Dharma Wrapper")(context);
+      flashStatus(`Chapter ${context.chapter.id} - ${context.chapter.title}`)(context);
       fadeOutSoundTrack(context);
     }
   },

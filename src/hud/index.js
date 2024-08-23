@@ -21,6 +21,11 @@ export const setPovDisplay = ({ heading, pitch }) => povDisplay.innerText = `h: 
 export default () => {
   [
     {
+      dialog: document.getElementById('chapters-dialog'),
+      toggle: document.getElementById('chapters-button'),
+      close: document.getElementById('chapters-close'),
+    },
+    {
       dialog: document.getElementById('inventory-dialog'),
       toggle: document.getElementById('inventory-button'),
       close: document.getElementById('inventory-close'),

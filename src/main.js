@@ -13,6 +13,7 @@ import initHUD, { setLatLngDisplay, setPovDisplay } from './hud/index.js';
 import initSettings from './settings.js';
 import { LOCALSTORAGE_POSITION_KEY, START_POSITION } from './constants.js';
 import loadItems from './items.js';
+import { initChapters, introduceChapter, chapters } from './chapters.js';
 
 const INIT_RAMP = 4;
 
@@ -40,6 +41,8 @@ const mapOptions = {
   disableDefaultUI: true
 };
 
+initChapters();
+
 const sounds = [
   {
     name: "checkpoint1-music",
@@ -56,12 +59,14 @@ const Checkpoints = [
   {
     lat: -20.503758,
     lng: -69.3805445,
-    callback: () => {
-      currentScript.stop();
+    chapter: chapters[0],
+    callback() {
+      currentScript?.stop();
       currentScript = scheduleScript(Checkpoint1IntroScript, {
         map,
         bgAudio,
-        statusContainer, fakeCaptchas, textDisplay, masterGain, audioContext
+        statusContainer, fakeCaptchas, textDisplay, masterGain, audioContext,
+        chapter: this.chapter,
       });
     }
   }
@@ -85,6 +90,10 @@ const checkForCheckpoints = map => () => {
     if (distanceFromCheckpoint < CHECKPOINT_DISTANCE_THRESHOLD) {
       checkpoint.passed = true;
       checkpoint.callback();
+
+      if (checkpoint.chapter) {
+        introduceChapter(checkpoint.chapter);
+      }
     }
   }
 };
