@@ -33,7 +33,7 @@ a:visited {
 }
 
 #container {
-  /* animation: dreamz 240s infinite; */
+  animation: dreamz 240s infinite;
   height: 100vh;
 }
 
@@ -297,6 +297,11 @@ p.subtitle {
   cursor: pointer;
   font: inherit;
   padding: 0.5rem;
+}
+
+.hud__display {
+  color: white;
+  font-size: 0.5rem;
 }
 
 .inventory {

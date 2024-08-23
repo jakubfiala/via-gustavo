@@ -9,7 +9,7 @@ import {
 
 const CANVAS_SIZE = 300;
 const CAMERA_INIT_Z = 1;
-const CAMERA_INIT_Y = 4;
+const CAMERA_INIT_Y = 5.2;
 const CAMERA_MOVEMENT_INCREMENT_Z = 1e4 * 6;
 const CAMERA_TARGET_INCREMENT_Z = 1e4 * 3.5;
 

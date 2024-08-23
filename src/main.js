@@ -9,7 +9,7 @@ import {
 import { Sharawadji } from "../sharawadji/src/index.js";
 import { latLngDist } from "./utils.js";
 import { fakeCaptcha } from "./fakeCaptcha.js";
-import initHUD from './hud/index.js';
+import initHUD, { setLatLngDisplay, setPovDisplay } from './hud/index.js';
 import initSettings from './settings.js';
 import { LOCALSTORAGE_POSITION_KEY, START_POSITION } from './constants.js';
 import loadItems from './items.js';
@@ -32,8 +32,9 @@ let audioContext, masterGain = null;
 
 const debug = location.search.includes("debug=true");
 
+const initialPosition = JSON.parse(localStorage.getItem(LOCALSTORAGE_POSITION_KEY)) || START_POSITION;
 const mapOptions = {
-  position: JSON.parse(localStorage.getItem(LOCALSTORAGE_POSITION_KEY)) || START_POSITION,
+  position: initialPosition,
   pov: { heading: 308.77, pitch: 3 },
   clickToGo: debug ? true : false,
   disableDefaultUI: true
@@ -133,14 +134,26 @@ const initialize = async event => {
     "position_changed",
     () => {
       const position = { lat: map.getPosition().lat(), lng: map.getPosition().lng() };
-      console.log('position_changed', position);
+      setLatLngDisplay(position);
+
       localStorage.setItem(LOCALSTORAGE_POSITION_KEY, JSON.stringify(position));
       items.forEach((o) => o.update());
     },
   );
 
+  google.maps.event.addListener(
+    map,
+    "pov_changed",
+    () => {
+      setPovDisplay(map.getPov());
+    },
+  );
+
   initHUD();
   initSettings();
+
+  setLatLngDisplay(initialPosition);
+  setPovDisplay(map.getPov());
 };
 
 intro.addEventListener("click", initialize);
