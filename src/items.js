@@ -49,6 +49,14 @@ const itemDescs = [
       return makers.embed('https://www.youtube.com/embed/dQw4w9WgXcQ?si=OcFZaAlJ66kC5-T7');
     },
   },
+  {
+    name: 'Mapsception',
+    collectible: false,
+    position: { lat: -20.50669, lng: -69.375954656838076 },
+    create(makers) {
+      return makers.embed('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d372.91442031695556!2d-69.81590167423839!3d-20.187049561492504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915237000d0aa3d3%3A0xbb3391a4b788961!2sGeoglifo%20Humberstone!5e1!3m2!1sen!2sbe!4v1724752820012!5m2!1sen!2sbe');
+    },
+  },
 ];
 
 const initItem = (makers) => async (map, desc) => {

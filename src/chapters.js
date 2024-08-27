@@ -39,7 +39,7 @@ export const introduceChapter = (chapter) => {
   localStorage.setItem(LOCALSTORAGE_CHAPTERS_KEY, JSON.stringify(Array.from(completed)));
 };
 
-export const initChapters = () => {
+export const initChapters = (map) => {
   chapters.forEach((chapter) => {
     const item = document.createElement('li');
     item.dataset.id = chapter.id;
