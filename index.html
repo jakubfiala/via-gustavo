@@ -15,10 +15,13 @@
       }
     </script>
     <script defer type="module" src="src/main.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap" rel="stylesheet">
   </head>
   <body>
     <audio id="bg-audio" src="assets/audio/crickets.mp3" loop></audio>
-    <main id="container"></main>
+    <main id="container" class="map-container"></main>
     <div id="text-display" class="text-overlay"></div>
     <div id="status-display" class="text-overlay"></div>
     <div class="hud">
@@ -88,12 +91,18 @@
         </section>
       </dialog>
     </div>
-    <div id="intro" class="overlay">
+    <div id="intro" class="overlay intro">
       <h1>Via Gustavo</h1>
-      <p class="subtitle">
-        A dérive with a long, lonely road.
-      </p>
-      <p>Click to begin</p>
+      <img src="assets/img/landscape.webp" class="intro__landscape" aria-hidden="true">
+      <div class="intro__content">
+        <p class="subtitle">
+          A dérive with a long, lonely road.
+        </p>
+        <button id="intro-cta" class="intro__cta"><strong>Click to begin</strong></button>
+        <p class="intro__disclaimer">
+          Disclaimer: This game uses an embedded instance of Google Street View. By using the game, you are subject to data collection and processing of the same kind you'd experience visiting maps.google.com.
+        </p>
+      </div>
     </div>
     <form class="fake-captcha" hidden>
       <input type="checkbox" name="fake-captcha-cb" id="fake-captcha-cb" />
@@ -110,5 +119,6 @@
       &hellip; bussing it &hellip;
       <audio id="bus-audio" src="assets/audio/bus.mp3"></audio>
     </div>
+    <div id="handheld-item" class="handheld-item"></div>
   </body>
 </html>

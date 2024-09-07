@@ -19,6 +19,7 @@ const INIT_RAMP = 4;
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
+const introCTA = document.getElementById("intro-cta");
 const bgAudio = document.getElementById("bg-audio");
 const textContainer = document.getElementById("text-display");
 const statusContainer = document.getElementById("status-display");
@@ -32,6 +33,7 @@ let currentScript = null;
 let audioContext, masterGain = null;
 
 const debug = location.search.includes("debug=true");
+document.body.classList.toggle('debug', debug);
 
 const initialPosition = JSON.parse(localStorage.getItem(LOCALSTORAGE_POSITION_KEY)) || START_POSITION;
 const mapOptions = {
@@ -60,7 +62,7 @@ const Checkpoints = [
     lat: -20.503758,
     lng: -69.3805445,
     chapter: chapters[0],
-    callback() {
+    callback(map) {
       currentScript?.stop();
       currentScript = scheduleScript(Checkpoint1IntroScript, {
         map,
@@ -89,7 +91,7 @@ const checkForCheckpoints = map => () => {
 
     if (distanceFromCheckpoint < CHECKPOINT_DISTANCE_THRESHOLD) {
       checkpoint.passed = true;
-      checkpoint.callback();
+      checkpoint.callback(map);
 
       if (checkpoint.chapter) {
         introduceChapter(checkpoint.chapter);
@@ -98,17 +100,13 @@ const checkForCheckpoints = map => () => {
   }
 };
 
-const map = new google.maps.StreetViewPanorama(container, mapOptions);
-google.maps.event.addListener(
-  map,
-  "position_changed",
-  checkForCheckpoints(map)
-);
-
-const initialize = async event => {
-  if (event.currentTarget !== intro) {
-    return;
-  }
+const initialize = async () => {
+  const map = new google.maps.StreetViewPanorama(container, mapOptions);
+  google.maps.event.addListener(
+    map,
+    "position_changed",
+    checkForCheckpoints(map)
+  );
   const StreetViewLibrary = await google.maps.importLibrary("streetView");
 
   intro.removeEventListener("click", initialize);
@@ -165,4 +163,8 @@ const initialize = async event => {
   setPovDisplay(map.getPov());
 };
 
-intro.addEventListener("click", initialize);
+if (debug) {
+  initialize();
+} else {
+  introCTA.addEventListener("click", initialize);
+}

@@ -57,7 +57,32 @@ const itemDescs = [
       return makers.embed('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d372.91442031695556!2d-69.81590167423839!3d-20.187049561492504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915237000d0aa3d3%3A0xbb3391a4b788961!2sGeoglifo%20Humberstone!5e1!3m2!1sen!2sbe!4v1724752820012!5m2!1sen!2sbe');
     },
   },
+  {
+    name: 'Geiger Counter',
+    thumbnailURL: '/assets/items/geiger-counter/thumb.webp',
+    collectible: true,
+    handheld: true,
+    position: { lat: -20.50685, lng: -69.37564029846219 },
+    async create(makers) {
+      const item = makers.threeObject(await loadGLTF('/assets/items/geiger-counter/'));
+      item.activate = async (map) => {
+        console.log('geiger counter activated', !!map);
+      };
+
+      return item;
+    },
+  },
 ];
+
+const handheldContainer = document.getElementById('handheld-item');
+
+const setHandheldItem = (item, map) => {
+  if (item.canvas) {
+    handheldContainer.appendChild(item.canvas);
+    item.reset();
+    item.activate?.(map);
+  }
+};
 
 const initItem = (makers) => async (map, desc) => {
   const item = await desc.create(makers);
@@ -68,9 +93,13 @@ const initItem = (makers) => async (map, desc) => {
   }
 
   if (desc.collectible) {
-    const { name, thumbnailURL } = desc;
     item.info.content.addEventListener('click', () => {
-      Inventory.addItem({ name, thumbnailURL });
+      Inventory.addItem(desc);
+
+      if (desc.handheld) {
+        setHandheldItem(item, map);
+      }
+
       item.info.close();
     });
   }
@@ -88,6 +117,11 @@ export default async (StreetViewLibrary, map) => {
 
   for (const desc of itemDescs) {
     if (Inventory.hasItem(desc.name)) {
+      if (desc.handheld) {
+        const item = await desc.create(makers);
+        setHandheldItem(item, map);
+      }
+
       continue;
     }
 

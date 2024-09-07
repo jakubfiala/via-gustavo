@@ -23,6 +23,7 @@ const createLights = () => {
 
 export const THREEObjectMaker = (StreetView) => (mesh) => {
   const canvas = document.createElement('canvas');
+  canvas.classList.add('vg-item');
   canvas.height = CANVAS_SIZE;
   canvas.width = CANVAS_SIZE;
 
@@ -37,11 +38,9 @@ export const THREEObjectMaker = (StreetView) => (mesh) => {
 
   const renderer = new WebGLRenderer({ canvas, alpha: true });
   renderer.setClearColor(0x000000, 0);
-  renderer.setSize(CANVAS_SIZE, CANVAS_SIZE);
-  renderer.setPixelRatio(window.devicePixelRatio);
 
   return {
-    scene, camera, renderer, mesh,
+    scene, camera, renderer, mesh, canvas,
     insert(map, position) {
       this.map = map;
 
@@ -51,8 +50,19 @@ export const THREEObjectMaker = (StreetView) => (mesh) => {
         content: canvas,
       });
 
-      renderer.render(scene, camera);
+      this.render();
       this.info.open({ map });
+    },
+    render() {
+      renderer.render(scene, camera);
+    },
+    reset() {
+      mesh.rotation.y = 0;
+      camera.position.x = 0;
+      camera.position.y = 0;
+      camera.position.z = 5;
+      camera.lookAt(mesh.position);
+      this.render();
     },
     update() {
       const userPosition = this.map.getPosition();
@@ -68,8 +78,7 @@ export const THREEObjectMaker = (StreetView) => (mesh) => {
       cameraTarget.copy(mesh.position);
       cameraTarget.y += Math.abs(dx * CAMERA_TARGET_INCREMENT_Z);
       camera.lookAt(cameraTarget);
-
-      renderer.render( scene, camera );
+      this.render();
     },
   };
 };
