@@ -9,7 +9,7 @@ import {
 
 const CANVAS_SIZE = 300;
 const CAMERA_INIT_Z = 1;
-const CAMERA_INIT_Y = 5.2;
+const CAMERA_INIT_Y = 2;
 const CAMERA_MOVEMENT_INCREMENT_Z = 1e4 * 6;
 const CAMERA_TARGET_INCREMENT_Z = 1e4 * 3.5;
 
@@ -35,9 +35,11 @@ export const THREEObjectMaker = (StreetView) => (mesh) => {
   camera.position.z = CAMERA_INIT_Z;
   camera.position.y = CAMERA_INIT_Y;
   camera.lookAt(mesh.position);
+  console.log(camera);
 
   const renderer = new WebGLRenderer({ canvas, alpha: true });
   renderer.setClearColor(0x000000, 0);
+  console.log(function r () { renderer.render(scene, camera); });
 
   return {
     scene, camera, renderer, mesh, canvas,
@@ -80,8 +82,8 @@ export const THREEObjectMaker = (StreetView) => (mesh) => {
       // this ensures the object doesn't follow the InfoWindow as it rises within the panorama.
       const cameraTarget = new Vector3();
       cameraTarget.copy(mesh.position);
-      cameraTarget.y += Math.abs(dx * CAMERA_TARGET_INCREMENT_Z);
       camera.lookAt(cameraTarget);
+      cameraTarget.y += Math.abs(dx * CAMERA_TARGET_INCREMENT_Z);
       this.render();
     },
   };

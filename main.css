@@ -25,6 +25,7 @@ body {
   font-size: 16px;
   margin: 0;
   padding: 0;
+  color: #12548e;
 }
 
 body {
@@ -310,6 +311,9 @@ p.subtitle {
 
 .hud__button, .hud__dialog-close {
   cursor: pointer;
+  color: inherit;
+  background: #6ffb6f;
+  border-color: #12548e;
   font: inherit;
   padding: 0.5rem;
 }
@@ -416,6 +420,8 @@ p.subtitle {
   animation: none;
   width: 300px;
   height: 300px;
+  position: relative;
+  top: 3rem;
 }
 
 .debug .vg-item {
