@@ -5,6 +5,7 @@ import Inventory from './inventory/index.js';
 import { loadGLTF } from './3d-objects/gltf.js';
 import { START_POSITION } from './constants.js';
 import { createBusStopItem } from './bus.js';
+import { initGeigerCounterDetection } from '../assets/items/geiger-counter/detection.js';
 
 const itemDescs = [
   {
@@ -65,8 +66,9 @@ const itemDescs = [
     position: { lat: -20.50685, lng: -69.37564029846219 },
     async create(makers) {
       const item = makers.threeObject(await loadGLTF('/assets/items/geiger-counter/'));
-      item.activate = async (map) => {
+      item.activate = async (map, audioContext) => {
         console.log('geiger counter activated', !!map);
+        initGeigerCounterDetection(map, audioContext, new google.maps.LatLng({ lat: -20.506171507511695, lng: -69.37666966949742 }));
       };
 
       return item;
@@ -76,15 +78,16 @@ const itemDescs = [
 
 const handheldContainer = document.getElementById('handheld-item');
 
-const setHandheldItem = (item, map) => {
+const setHandheldItem = (item, map, audioContext) => {
   if (item.canvas) {
     handheldContainer.appendChild(item.canvas);
     item.reset();
-    item.activate?.(map);
+    item.activate?.(map, audioContext);
+    item.isBeingHeld = true;
   }
 };
 
-const initItem = (makers) => async (map, desc) => {
+const initItem = (makers) => async (map, desc, audioContext) => {
   const item = await desc.create(makers);
   item.insert(map, desc.position);
 
@@ -97,7 +100,7 @@ const initItem = (makers) => async (map, desc) => {
       Inventory.addItem(desc);
 
       if (desc.handheld) {
-        setHandheldItem(item, map);
+        setHandheldItem(item, map, audioContext);
       }
 
       item.info.close();
@@ -107,7 +110,7 @@ const initItem = (makers) => async (map, desc) => {
   return item;
 };
 
-export default async (StreetViewLibrary, map) => {
+export default async (StreetViewLibrary, map, audioContext) => {
   const makers = {
     threeObject: THREEObjectMaker(StreetViewLibrary),
     embed: embedMaker(StreetViewLibrary),
@@ -119,14 +122,14 @@ export default async (StreetViewLibrary, map) => {
     if (Inventory.hasItem(desc.name)) {
       if (desc.handheld) {
         const item = await desc.create(makers);
-        setHandheldItem(item, map);
+        setHandheldItem(item, map, audioContext);
       }
 
       continue;
     }
 
     const init = initItem(makers);
-    items.push(await init(map, desc));
+    items.push(await init(map, desc, audioContext));
   }
 
   return items;

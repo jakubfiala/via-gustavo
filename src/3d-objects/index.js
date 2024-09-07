@@ -65,6 +65,10 @@ export const THREEObjectMaker = (StreetView) => (mesh) => {
       this.render();
     },
     update() {
+      if (this.isBeingHeld) {
+        return;
+      }
+
       const userPosition = this.map.getPosition();
       const objectPosition = this.info.getPosition();
       const dx = userPosition.lat() - objectPosition.lat();

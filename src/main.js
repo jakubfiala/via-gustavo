@@ -133,7 +133,7 @@ const initialize = async () => {
     compressor: true
   });
 
-  const items = await loadItems(StreetViewLibrary, map);
+  const items = await loadItems(StreetViewLibrary, map, audioContext);
   items.forEach((o) => o.update());
 
   google.maps.event.addListener(
