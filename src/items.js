@@ -14,7 +14,7 @@ const itemDescs = [
     thumbnailURL: '/assets/items/teapot/thumb.webp',
     position: START_POSITION,
     create(makers) {
-      return makers.threeObject(createTeapotMesh());
+      return makers.threeObject(createTeapotMesh(), { name: 'Teapot' });
     },
   },
   {
@@ -31,7 +31,7 @@ const itemDescs = [
     collectible: true,
     position: { lat: -20.506808759909188, lng: -69.37564029846219 },
     async create(makers) {
-      return makers.threeObject(await loadGLTF('/assets/items/coke/'));
+      return makers.threeObject(await loadGLTF('/assets/items/coke/'), { name: 'Coke' });
     },
   },
   createBusStopItem({
@@ -41,6 +41,8 @@ const itemDescs = [
       latLng: { lat: -20.6214391, lng: -69.662639 },
       pov: { heading: 23.53, pitch: 3 },
     },
+    cameraPosition: { y: 6 },
+    scale: 0.8,
   }),
   {
     name: 'RR',
@@ -65,7 +67,7 @@ const itemDescs = [
     handheld: true,
     position: { lat: -20.50685, lng: -69.37564029846219 },
     async create(makers) {
-      const item = makers.threeObject(await loadGLTF('/assets/items/geiger-counter/'));
+      const item = makers.threeObject(await loadGLTF('/assets/items/geiger-counter/'), { name: 'Geiger Counter', cameraPosition: { x: 6, y: 2, z: 4 } });
       item.activate = async (map, audioContext) => {
         console.log('geiger counter activated', !!map);
         initGeigerCounterDetection(map, audioContext, new google.maps.LatLng({ lat: -20.506171507511695, lng: -69.37666966949742 }));

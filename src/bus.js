@@ -20,12 +20,12 @@ export const takeTheBus = (map, { locationName, latLng, pov }) => {
   }
 };
 
-export const createBusStopItem = ({ position, destination: { locationName, latLng, pov } }) => ({
+export const createBusStopItem = ({ position, destination: { locationName, latLng, pov }, cameraPosition, scale }) => ({
   name: `Bus Stop to ${locationName}`,
   collectible: false,
   position,
   async create(makers) {
-    return makers.threeObject(await loadGLTF('/assets/items/bus-stop/'));
+    return makers.threeObject(await loadGLTF('/assets/items/bus-stop/'), { name: this.name, cameraPosition, scale });
   },
   onClick: (map, item) => {
     takeTheBus(map, {

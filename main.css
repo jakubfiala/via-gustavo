@@ -21,7 +21,7 @@
 
 html,
 body {
-  font-family: serif;
+  font-family: monospace;
   font-size: 16px;
   margin: 0;
   padding: 0;
@@ -45,7 +45,7 @@ body {
 
 a,
 a:visited {
-  color: #ffb5bd;
+  color: #8e1279;
   text-decoration: none;
 }
 
@@ -282,10 +282,10 @@ p.subtitle {
 }
 
 .hud__dialog {
-  background: rgba(0, 0, 0, 0.7);
+  background: #6ffb6fab;
   backdrop-filter: blur(10px);
-  border: solid 1px white;
-  color: white;
+  border: solid 1px #12548e;
+  color: #12548e;
   margin: 0;
   position: fixed;
   top: 50%;
@@ -298,7 +298,7 @@ p.subtitle {
 }
 
 .hud__dialog-header {
-  border-bottom: solid 1px white;
+  border-bottom: solid 1px #12548e;
   padding: 0.25rem;
   display: flex;
   justify-content: space-between;
@@ -319,7 +319,7 @@ p.subtitle {
 }
 
 .hud__display {
-  color: white;
+  color: #12548e;
   font-size: 0.5rem;
 }
 
@@ -328,7 +328,7 @@ p.subtitle {
   display: grid;
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 0.5rem;
   grid-template-columns: repeat(3, var(--cell-size));
   min-height: var(--cell-size);
 }
@@ -362,6 +362,10 @@ p.subtitle {
   transition: opacity 5s;
 }
 
+.debug .intro {
+  transition: none;
+}
+
 .intro__landscape {
   animation: fade-in 500ms both, slide-in 1s both;
   object-fit: cover;
@@ -387,7 +391,7 @@ p.subtitle {
   width: 100%;
   text-align: center;
   scale: 1 2.5;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.01em;
 }
 
 .intro__content {

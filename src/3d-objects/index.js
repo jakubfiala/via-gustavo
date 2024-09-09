@@ -7,9 +7,7 @@ import {
   WebGLRenderer,
 } from 'three';
 
-const CANVAS_SIZE = 300;
-const CAMERA_INIT_Z = 1;
-const CAMERA_INIT_Y = 2;
+const CANVAS_SIZE = 300;;
 const CAMERA_MOVEMENT_INCREMENT_Z = 1e4 * 6;
 const CAMERA_TARGET_INCREMENT_Z = 1e4 * 3.5;
 
@@ -21,25 +19,43 @@ const createLights = () => {
   return [ambientLight, light];
 };
 
-export const THREEObjectMaker = (StreetView) => (mesh) => {
+export const THREEObjectMaker = (StreetView) => (mesh, { name, cameraPosition, scale } = {}) => {
+  const CAMERA_INIT_X = cameraPosition?.x ?? 0;
+  const CAMERA_INIT_Y = cameraPosition?.y ?? 2;
+  const CAMERA_INIT_Z = cameraPosition?.z ?? 1;
+
+  console.group(name);
   const canvas = document.createElement('canvas');
   canvas.classList.add('vg-item');
   canvas.height = CANVAS_SIZE;
   canvas.width = CANVAS_SIZE;
+  canvas.title = name;
 
   const scene = new Scene();
   createLights().forEach((l) => scene.add(l));
   scene.add(mesh);
 
   const camera = new PerspectiveCamera(45, 1, 0.1, 1000);
-  camera.position.z = CAMERA_INIT_Z;
+  camera.position.x = CAMERA_INIT_X;
   camera.position.y = CAMERA_INIT_Y;
+  camera.position.z = CAMERA_INIT_Z;
   camera.lookAt(mesh.position);
-  console.log(camera);
+
+  mesh.scale.x = scale ?? 1;
+  mesh.scale.y = scale ?? 1;
+  mesh.scale.z = scale ?? 1;
 
   const renderer = new WebGLRenderer({ canvas, alpha: true });
   renderer.setClearColor(0x000000, 0);
-  console.log(function r () { renderer.render(scene, camera); });
+
+  console.log({ camera, moveCam: (x, y, z) => {
+    camera.position.x = x;
+    camera.position.y = y;
+    camera.position.z = z;
+    camera.lookAt(mesh.position);
+    renderer.render(scene, camera);
+  } });
+  console.groupEnd();
 
   return {
     scene, camera, renderer, mesh, canvas,

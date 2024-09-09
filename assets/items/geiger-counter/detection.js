@@ -1,11 +1,12 @@
 import { latLngDist } from '../../../src/utils.js';
 
 const FREQ_DEFAULT = 300;
-const FREQ_MIN = 100;
+const FREQ_MIN = 80;
 const FREQ_MAX = 5000;
+const RANGE_M = 120;
 
 const startSound = (audioContext) => {
-  const osc = new OscillatorNode(audioContext, { type: 'square', frequency: 800 });
+  const osc = new OscillatorNode(audioContext, { type: 'square', frequency: 2000 });
   const env = new GainNode(audioContext, { gain: 0 });
 
   let frequency = FREQ_DEFAULT;
@@ -32,7 +33,7 @@ const startSound = (audioContext) => {
   return {
     setRadioactivity: (radioactivity) => {
       console.log('setting radioactivity to', radioactivity);
-      frequency = FREQ_MIN + radioactivity * FREQ_MAX;
+      frequency = FREQ_MIN + (1 / radioactivity) * FREQ_MAX;
     }
   }
 }
@@ -43,14 +44,14 @@ export const initGeigerCounterDetection = (map, audioContext, targetLatLng) => {
   const { setRadioactivity } = startSound(audioContext);
 
   const distance = latLngDist(targetLatLng, map.getPosition());
-  setRadioactivity(distance / 150);
+  setRadioactivity(1 / (distance / RANGE_M));
 
   google.maps.event.addListener(
     map,
     "position_changed",
     () => {
       const distance = latLngDist(targetLatLng, map.getPosition());
-      setRadioactivity(distance / 150);
+      setRadioactivity(1 / (distance / RANGE_M));
     },
   );
 };
