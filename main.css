@@ -98,20 +98,19 @@ p.subtitle {
 .text-overlay {
   font-family: monospace;
   font-size: 1.618rem;
-  color: white;
+  color: #12548e;
   position: absolute;
   text-align: center;
-  text-shadow: 0 0 10px black;
   width: 100%;
-  z-index: 4;
+  z-index: 1;
 }
 
 #text-display {
-  top: 2rem;
+  top: 4rem;
 }
 
 .text-display-inline {
-  background-image: linear-gradient(45deg, #0e0e9caa 0%, #7b192aaa 100%);
+  background: pink;
   line-height: 1.618;
 }
 
@@ -276,8 +275,8 @@ p.subtitle {
 
 .hud {
   position: fixed;
-  top: 1rem;
-  left: 1rem;
+  bottom: 1.5rem;
+  left: 1.5rem;
   z-index: 1;
   display: flex;
   justify-content: end;
@@ -324,11 +323,16 @@ p.subtitle {
 }
 
 .hud__display {
-  color: #12548e;
+  color: white;
   font-size: 0.75rem;
-  opacity: 0.4;
+  opacity: 0.2;
   margin-left: 0;
   margin-right: auto;
+  transition: opacity 500ms;
+}
+
+.hud__display:hover {
+  opacity: 0.8;
 }
 
 .inventory {

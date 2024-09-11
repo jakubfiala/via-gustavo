@@ -4,7 +4,7 @@ const COMPLETED_CLASS = 'chapters__chapter--complete';
 
 const list = document.getElementById('chapters-list');
 
-const completed = new Set(JSON.parse(localStorage.getItem(LOCALSTORAGE_CHAPTERS_KEY)) || []);
+export const completed = new Set(JSON.parse(localStorage.getItem(LOCALSTORAGE_CHAPTERS_KEY)) || []);
 
 export const chapters = [
   {
@@ -33,7 +33,7 @@ export const clear = () => {
   localStorage.removeItem(LOCALSTORAGE_CHAPTERS_KEY);
 };
 
-export const introduceChapter = (chapter) => {
+export const completeChapter = (chapter) => {
   chapter.indicator.classList.add(COMPLETED_CLASS);
   completed.add(chapter.id);
   localStorage.setItem(LOCALSTORAGE_CHAPTERS_KEY, JSON.stringify(Array.from(completed)));

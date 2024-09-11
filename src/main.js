@@ -13,7 +13,7 @@ import initHUD, { setLatLngDisplay, setPovDisplay } from './hud/index.js';
 import initSettings from './settings.js';
 import { LOCALSTORAGE_POSITION_KEY, START_POSITION, START_POV } from './constants.js';
 import loadItems from './items.js';
-import { initChapters, introduceChapter, chapters } from './chapters.js';
+import { initChapters, completeChapter, chapters } from './chapters.js';
 
 const INIT_RAMP = 4;
 
@@ -40,7 +40,8 @@ const mapOptions = {
   position: initialPosition,
   pov: START_POV,
   clickToGo: debug ? true : false,
-  disableDefaultUI: true
+  disableDefaultUI: true,
+  showRoadLabels: false,
 };
 
 initChapters();
@@ -94,7 +95,7 @@ const checkForCheckpoints = map => () => {
       checkpoint.callback(map);
 
       if (checkpoint.chapter) {
-        introduceChapter(checkpoint.chapter);
+        completeChapter(checkpoint.chapter);
       }
     }
   }

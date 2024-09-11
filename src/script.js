@@ -1,7 +1,9 @@
+import { documentVisible, sleep } from './utils.js';
+
 const DEFAULT_DURATION = 4;
 
 const enableClickToGoCB = context => {
-  context.map.setOptions({ clickToGo: true });
+  context.map.setOptions({ clickToGo: true, showRoadLabels: true });
 };
 
 const flashStatus = (text, duration = 5) => context => {
@@ -60,7 +62,7 @@ export const IntroScript = [
   { text: "Many don't." },
   { text: "Anyways, here we are, and I suppose I should explain briefly.", time: 3, duration: 3 },
   { text: "I'm going to be your guide today." },
-  { text: "Not that you really need one - what with all the tags, coordinates, entries and hyperlinks.", time: 3, duration: 3 },
+  { text: "Not that you really need one - what with all the tags, coordinates, entries and hyperlinks.", time: 3, duration: 5 },
   { text: "Look around, perhaps you'll notice them already." },
   { text: "Tiles delineated by glitches, smeared presences, the sky glimmering with copyright.", time: 3, duration: 3 },
   { duration: 2 },
@@ -136,34 +138,53 @@ export const Checkpoint1EndScript = [
   { text: "brings you closer to the truth.", callback: fadeInSoundTrack }
 ];
 
-export const scheduleScript = (script, context) => {
+const createPlayState = () => ({
+  playing: true,
+  queue: [],
+  set(state) {
+    this.playing = state;
+    if (playing) {
+      this.queue.forEach((resolve) => resolve());
+    }
+  },
+  isPlaying() {
+    return new Promise((resolve) => {
+      if (this.playing) {
+        resolve();
+      } else {
+        this.queue.push(resolve);
+      }
+    });
+  },
+});
+
+export const scheduleScript = async (script, context) => {
   const { textDisplay } = context;
-  let currentTime = 0;
-  let timeouts = [];
+  const playState = createPlayState();
 
   for (let line of script) {
+    await playState.isPlaying();
     const duration = line.duration || DEFAULT_DURATION;
     const time = line.time || duration;
 
-    const timeout = setTimeout(() => {
-      if (line.text) {
-        textDisplay.addLine(line.text, duration * 1000);
-      }
+    await documentVisible();
 
-      if (line.callback) {
-        line.callback(context);
-      }
-    }, currentTime * 1000);
+    if (line.text) {
+      textDisplay.addLine(line.text, duration * 1000);
+    }
 
-    currentTime += time;
-    timeouts.push(timeout);
+    line.callback?.(context);
+
+    await sleep(time * 1000);
   }
 
   return {
     stop: () => {
-      timeouts.forEach(clearTimeout);
-      timeouts = [];
+      playState.set(false);
       textDisplay.clear();
-    }
+    },
+    start: () => {
+      playState.set(true);
+    },
   };
 };

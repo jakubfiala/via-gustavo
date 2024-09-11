@@ -39,3 +39,20 @@ function* enumerate(iterable) {
 export const clamp = (x, min, max) => Math.min(Math.max(x, min), max);
 
 export { latLngDist, rad, deg, enumerate };
+
+export const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+export const documentVisible = () => new Promise((resolve) => {
+  if (document.visibilityState === 'visible') {
+    resolve();
+    console.log('document visible, continuing');
+  } else {
+    console.log('document not visible, setting event listener');
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        console.log('document became visible, continuing');
+        resolve();
+      }
+    });
+  }
+});
