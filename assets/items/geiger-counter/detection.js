@@ -18,12 +18,10 @@ const startSound = (audioContext) => {
       return;
     }
 
-    console.log('click');
     env.gain.setValueAtTime(Math.random() * 0.2 + 0.2, audioContext.currentTime);
     env.gain.linearRampToValueAtTime(0, audioContext.currentTime + Math.random() * 0.01);
   };
 
-  console.log('playing clicks');
   setTimeout(playClick, 10);
 
   osc.connect(env);
@@ -38,20 +36,21 @@ const startSound = (audioContext) => {
   }
 }
 
+const radioactivityFromDistance = (p1, p2) => {
+  const distance = latLngDist(p1, p2);
+  return 1 / (distance / RANGE_M);
+};
+
 export const initGeigerCounterDetection = (map, audioContext, targetLatLng) => {
   console.info('detecting radioactivity...');
 
   const { setRadioactivity } = startSound(audioContext);
 
-  const distance = latLngDist(targetLatLng, map.getPosition());
-  setRadioactivity(1 / (distance / RANGE_M));
+  setRadioactivity(radioactivityFromDistance(targetLatLng, map.getPosition()));
 
   google.maps.event.addListener(
     map,
     "position_changed",
-    () => {
-      const distance = latLngDist(targetLatLng, map.getPosition());
-      setRadioactivity(1 / (distance / RANGE_M));
-    },
+    () => setRadioactivity(radioactivityFromDistance(targetLatLng, map.getPosition())),
   );
 };

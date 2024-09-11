@@ -9,15 +9,6 @@ import { initGeigerCounterDetection } from '../assets/items/geiger-counter/detec
 
 const itemDescs = [
   {
-    name: 'Teapot',
-    collectible: true,
-    thumbnailURL: '/assets/items/teapot/thumb.webp',
-    position: START_POSITION,
-    create(makers) {
-      return makers.threeObject(createTeapotMesh(), { name: 'Teapot' });
-    },
-  },
-  {
     name: 'Mars96',
     collectible: false,
     position: { lat: -20.506417885036914, lng: -69.37627137940446 },

@@ -54,47 +54,32 @@ const fadeOutSoundTrack = updateSoundTrackVolume(0);
 
 export const IntroScript = [
   { duration: 2 },
-  { text: "Wake up." },
-  { text: "It's time to go" },
-  { text: "I will lead you on a journey", time: 3, duration: 7 },
-  { text: "an act of gnosis", time: 3, duration: 3 },
-  { text: "a ritual of sorts.", duration: 5 },
-  {
-    text: "The magick of our ancestors is of no use here",
-    time: 3,
-    duration: 6
-  },
-  {
-    text: "their methods... limited by their love of objects and tools",
-    time: 2,
-    duration: 4
-  },
+  { text: "Oh, it's you!" },
+  { text: "I almost thought you wouldn't make it." },
+  { duration: 1 },
+  { text: "Many don't." },
+  { text: "Anyways, here we are, and I suppose I should explain briefly.", time: 3, duration: 3 },
+  { text: "I'm going to be your guide today." },
+  { text: "Not that you really need one - what with all the tags, coordinates, entries and hyperlinks.", time: 3, duration: 3 },
+  { text: "Look around, perhaps you'll notice them already." },
+  { text: "Tiles delineated by glitches, smeared presences, the sky glimmering with copyright.", time: 3, duration: 3 },
   { duration: 2 },
-  { text: "Before we begin" },
-  { text: "I want you to stop and listen" },
-  { text: "look around you - the world is moving" },
-  { text: "the sky is ephemeral, and glimmering with copyright." },
-  { duration: 9 },
-  { text: "We are going to proceed." },
-  { text: "A set of transient experiences" },
-  { text: "as a function of latitude, longitude, heading and pitch" },
-  { text: "shall be presented", time: 2, duration: 6 },
-  { text: "and rearranged", time: 2, duration: 6 },
-  { text: "again and again - ", time: 2, duration: 6 },
-  { text: " - to find the Words of Waking.", duration: 5 },
-  { duration: 2 },
-  { text: "Begin", duration: 2 },
+  { text: "We're going to do a whole lot of looking today." },
   {
-    text: "by walking down the A-665 road.",
-    duration: 2,
+    text: "Looking, and walking.",
     callback: enableClickToGoCB
   },
-  {
-    text: "Stop when you hear the music."
-  },
-  {
-    text: "No need to hurry - take your time."
-  }
+  { text: "Indeed, you can walk here - " },
+  { text: "Isn't that wonderful?" },
+  { text: "You move your muscles, and the image around you changes:" },
+  { text: "First smeared, then sharp again" },
+  { text: "You might even hear the soundscape alter" },
+  { text: "What is a world, if not a series of multisensory images" },
+  { text: "presented to us as a function" },
+  { text: "of latitude, longitude, heading and pitch." },
+  { duration: 2 },
+  { text: "Come, let's walk down this road together," },
+  { text: "and I'll tell you about me." },
 ];
 
 export const Checkpoint1IntroScript = [

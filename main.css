@@ -277,8 +277,13 @@ p.subtitle {
 .hud {
   position: fixed;
   top: 1rem;
-  right: 1rem;
+  left: 1rem;
   z-index: 1;
+  display: flex;
+  justify-content: end;
+  gap: 0.5rem;
+  align-items: center;
+  width: calc(100% - 2rem);
 }
 
 .hud__dialog {
@@ -320,7 +325,10 @@ p.subtitle {
 
 .hud__display {
   color: #12548e;
-  font-size: 0.5rem;
+  font-size: 0.75rem;
+  opacity: 0.4;
+  margin-left: 0;
+  margin-right: auto;
 }
 
 .inventory {
@@ -418,6 +426,7 @@ p.subtitle {
   cursor: pointer;
   font: inherit;
   padding: 1rem;
+  margin-top: 2rem;
 }
 
 .map-container .vg-item {
@@ -439,6 +448,8 @@ p.subtitle {
   bottom: -7rem;
   right: 7rem;
   pointer-events: none;
+  scale: 1.5 1.5;
+  transform-origin: center center;
 }
 
 .handheld-item .vg-item {

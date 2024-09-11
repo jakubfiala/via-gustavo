@@ -11,7 +11,7 @@ import { latLngDist } from "./utils.js";
 import { fakeCaptcha } from "./fakeCaptcha.js";
 import initHUD, { setLatLngDisplay, setPovDisplay } from './hud/index.js';
 import initSettings from './settings.js';
-import { LOCALSTORAGE_POSITION_KEY, START_POSITION } from './constants.js';
+import { LOCALSTORAGE_POSITION_KEY, START_POSITION, START_POV } from './constants.js';
 import loadItems from './items.js';
 import { initChapters, introduceChapter, chapters } from './chapters.js';
 
@@ -38,7 +38,7 @@ document.body.classList.toggle('debug', debug);
 const initialPosition = JSON.parse(localStorage.getItem(LOCALSTORAGE_POSITION_KEY)) || START_POSITION;
 const mapOptions = {
   position: initialPosition,
-  pov: { heading: 308.77, pitch: 3 },
+  pov: START_POV,
   clickToGo: debug ? true : false,
   disableDefaultUI: true
 };
@@ -120,7 +120,7 @@ const initialize = async () => {
   bgNode.connect(masterGain).connect(audioContext.destination);
   bgAudio.play();
 
-  // currentScript = scheduleScript(IntroScript, { textDisplay, map, bgAudio, statusContainer, fakeCaptchas, masterGain, audioContext });
+  currentScript = scheduleScript(IntroScript, { textDisplay, map, bgAudio, statusContainer, fakeCaptchas, masterGain, audioContext });
 
   masterGain.gain.setValueAtTime(0, audioContext.currentTime);
   masterGain.gain.linearRampToValueAtTime(
