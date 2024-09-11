@@ -1,5 +1,6 @@
 const latLngDisplay = document.getElementById('latlng-display');
 const povDisplay = document.getElementById('pov-display');
+const hud = document.getElementById('hud');
 
 const setupDialog = ({ toggle, close, dialog }) => {
   toggle.addEventListener('click', () => {
@@ -19,6 +20,8 @@ export const setLatLngDisplay = ({ lat, lng }) => latLngDisplay.innerText = `lat
 export const setPovDisplay = ({ heading, pitch }) => povDisplay.innerText = `h: ${heading.toFixed(15)} p: ${pitch.toFixed(15)}`;
 
 export default () => {
+  hud.hidden = false;
+
   [
     {
       dialog: document.getElementById('chapters-dialog'),

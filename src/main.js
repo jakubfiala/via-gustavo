@@ -60,7 +60,7 @@ const sounds = [
     name: "desert-storm-atmos",
     lat: -20.468511343004337,
     lng: -69.458340041388709,
-    src: "assets/audio/desert-storm-atmos.wav",
+    src: "assets/audio/desert-storm-atmos.mp3",
     db: 80,
     loop: true
   },
@@ -68,7 +68,7 @@ const sounds = [
     name: "desert-winds-quiet",
     lat: -20.467191495806950,
     lng: -69.460925633319292,
-    src: "assets/audio/desert-winds-quiet.wav",
+    src: "assets/audio/desert-winds-quiet.mp3",
     db: 80,
     loop: true
   }
@@ -119,6 +119,8 @@ const checkForCheckpoints = map => () => {
 };
 
 const initialize = async () => {
+  container.hidden = false;
+
   const map = new google.maps.StreetViewPanorama(container, mapOptions);
   google.maps.event.addListener(
     map,
@@ -138,7 +140,6 @@ const initialize = async () => {
   bgNode.connect(masterGain).connect(audioContext.destination);
   bgAudio.play();
 
-  console.log(completedChapters.length);
   if (completedChapters.size === 0) {
     scheduleScript(IntroScript, { textDisplay, map, bgAudio, statusContainer, fakeCaptchas, masterGain, audioContext });
   }

@@ -55,7 +55,7 @@ const fadeInSoundTrack = updateSoundTrackVolume(1);
 const fadeOutSoundTrack = updateSoundTrackVolume(0);
 
 export const IntroScript = [
-  { duration: 6 },
+  { duration: 10 },
   { text: "Oh, it's you!" },
   { text: "I almost thought you wouldn't make it." },
   { duration: 1 },

@@ -21,6 +21,7 @@
 
 html,
 body {
+  background-color: black;
   font-family: monospace;
   font-size: 16px;
   margin: 0;
@@ -32,6 +33,13 @@ body {
   min-width: 100vw;
   min-height: 100vh;
   overflow: hidden;
+}
+
+.debug * {
+  animation-delay: 0 !important;
+  animation-duration: 0 !important;
+  transition-delay: 0 !important;
+  transition-duration: 0 !important;
 }
 
 @keyframes dreamz {
@@ -50,7 +58,14 @@ a:visited {
 }
 
 .map-container {
-  height: 100vh;
+  border: solid 0.5rem pink;
+  height: calc(100vh - 1rem);
+  animation: fade-in 3s 5s both;
+}
+
+.map-container[hidden] {
+  animation: none;
+  opacity: 0;
 }
 
 .map-container canvas {
@@ -274,15 +289,21 @@ p.subtitle {
 }
 
 .hud {
+  animation: fade-in 3s both;
   position: fixed;
-  bottom: 1.5rem;
-  left: 1.5rem;
+  bottom: 2rem;
+  left: 2rem;
   z-index: 1;
   display: flex;
   justify-content: end;
   gap: 0.5rem;
   align-items: center;
-  width: calc(100% - 2rem);
+  width: calc(100% - 4rem);
+}
+
+.hud[hidden] {
+  animation: none;
+  opacity: 0;
 }
 
 .hud__dialog {
@@ -374,10 +395,6 @@ p.subtitle {
   transition: opacity 5s;
 }
 
-.debug .intro {
-  transition: none;
-}
-
 .intro__landscape {
   animation: fade-in 500ms both, slide-in 1s both;
   object-fit: cover;
@@ -450,7 +467,7 @@ p.subtitle {
   position: fixed;
   z-index: 2;
   bottom: -7rem;
-  right: 7rem;
+  right: 50%;
   pointer-events: none;
   scale: 1.5 1.5;
   transform-origin: center center;

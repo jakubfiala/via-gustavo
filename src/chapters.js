@@ -9,7 +9,7 @@ export const completed = new Set(JSON.parse(localStorage.getItem(LOCALSTORAGE_CH
 export const chapters = [
   {
     id: 1,
-    title: "Matilla",
+    title: "La Huayca",
   },
   {
     id: 2,
