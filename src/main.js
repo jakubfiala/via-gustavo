@@ -13,7 +13,7 @@ import initHUD, { setLatLngDisplay, setPovDisplay } from './hud/index.js';
 import initSettings from './settings.js';
 import { LOCALSTORAGE_POSITION_KEY, START_POSITION, START_POV } from './constants.js';
 import loadItems from './items.js';
-import { initChapters, completeChapter, chapters } from './chapters.js';
+import { initChapters, completeChapter, chapters, completed as completedChapters } from './chapters.js';
 
 const INIT_RAMP = 4;
 
@@ -55,6 +55,22 @@ const sounds = [
     src: "assets/audio/lobotomy-loop.mp3",
     db: 80,
     loop: true
+  },
+  {
+    name: "desert-storm-atmos",
+    lat: -20.468511343004337,
+    lng: -69.458340041388709,
+    src: "assets/audio/desert-storm-atmos.wav",
+    db: 80,
+    loop: true
+  },
+  {
+    name: "desert-winds-quiet",
+    lat: -20.467191495806950,
+    lng: -69.460925633319292,
+    src: "assets/audio/desert-winds-quiet.wav",
+    db: 80,
+    loop: true
   }
 ];
 
@@ -63,9 +79,8 @@ const Checkpoints = [
     lat: -20.503758,
     lng: -69.3805445,
     chapter: chapters[0],
-    callback(map) {
-      currentScript?.stop();
-      currentScript = scheduleScript(Checkpoint1IntroScript, {
+    async callback(map) {
+      await scheduleScript(Checkpoint1IntroScript, {
         map,
         bgAudio,
         statusContainer, fakeCaptchas, textDisplay, masterGain, audioContext,
@@ -92,11 +107,13 @@ const checkForCheckpoints = map => () => {
 
     if (distanceFromCheckpoint < CHECKPOINT_DISTANCE_THRESHOLD) {
       checkpoint.passed = true;
-      checkpoint.callback(map);
-
-      if (checkpoint.chapter) {
-        completeChapter(checkpoint.chapter);
-      }
+      checkpoint
+        .callback(map)
+        .then(() => {
+          if (checkpoint.chapter) {
+            completeChapter(checkpoint.chapter);
+          }
+        });
     }
   }
 };
@@ -112,7 +129,7 @@ const initialize = async () => {
 
   intro.removeEventListener("click", initialize);
   intro.hidden = true;
-  bgAudio.volume = 0.6;
+  bgAudio.volume = 0.15;
 
   audioContext = new AudioContext();
   masterGain = new GainNode(audioContext, { gain: 0 });
@@ -121,7 +138,10 @@ const initialize = async () => {
   bgNode.connect(masterGain).connect(audioContext.destination);
   bgAudio.play();
 
-  currentScript = scheduleScript(IntroScript, { textDisplay, map, bgAudio, statusContainer, fakeCaptchas, masterGain, audioContext });
+  console.log(completedChapters.length);
+  if (completedChapters.size === 0) {
+    scheduleScript(IntroScript, { textDisplay, map, bgAudio, statusContainer, fakeCaptchas, masterGain, audioContext });
+  }
 
   masterGain.gain.setValueAtTime(0, audioContext.currentTime);
   masterGain.gain.linearRampToValueAtTime(
@@ -130,7 +150,7 @@ const initialize = async () => {
   );
 
   new Sharawadji(sounds, map, {
-    debug: true,
+    debug,
     compressor: true
   });
 

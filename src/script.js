@@ -55,7 +55,7 @@ const fadeInSoundTrack = updateSoundTrackVolume(1);
 const fadeOutSoundTrack = updateSoundTrackVolume(0);
 
 export const IntroScript = [
-  { duration: 2 },
+  { duration: 6 },
   { text: "Oh, it's you!" },
   { text: "I almost thought you wouldn't make it." },
   { duration: 1 },
@@ -164,8 +164,8 @@ export const scheduleScript = async (script, context) => {
 
   for (let line of script) {
     await playState.isPlaying();
-    const duration = line.duration || DEFAULT_DURATION;
-    const time = line.time || duration;
+    const duration = line.duration ?? DEFAULT_DURATION;
+    const time = line.time ?? duration;
 
     await documentVisible();
 
@@ -177,14 +177,4 @@ export const scheduleScript = async (script, context) => {
 
     await sleep(time * 1000);
   }
-
-  return {
-    stop: () => {
-      playState.set(false);
-      textDisplay.clear();
-    },
-    start: () => {
-      playState.set(true);
-    },
-  };
 };

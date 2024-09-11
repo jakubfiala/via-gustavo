@@ -45,12 +45,12 @@ export const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 export const documentVisible = () => new Promise((resolve) => {
   if (document.visibilityState === 'visible') {
     resolve();
-    console.log('document visible, continuing');
+    console.debug('document visible, continuing');
   } else {
-    console.log('document not visible, setting event listener');
+    console.debug('document not visible, setting event listener');
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') {
-        console.log('document became visible, continuing');
+        console.debug('document became visible, continuing');
         resolve();
       }
     });
