@@ -1,9 +1,7 @@
-import createTeapotMesh from '/assets/items/teapot/mesh.js';
 import { THREEObjectMaker } from './3d-objects/index.js';
 import { embedMaker } from './embeds/index.js';
 import Inventory from './inventory/index.js';
 import { loadGLTF } from './3d-objects/gltf.js';
-import { START_POSITION } from './constants.js';
 import { createBusStopItem } from './bus.js';
 import { initGeigerCounterDetection } from '../assets/items/geiger-counter/detection.js';
 
@@ -103,10 +101,10 @@ const initItem = (makers) => async (map, desc, audioContext) => {
   return item;
 };
 
-export default async (StreetViewLibrary, map, audioContext) => {
+export default async (InfoWindow, map, audioContext) => {
   const makers = {
-    threeObject: THREEObjectMaker(StreetViewLibrary),
-    embed: embedMaker(StreetViewLibrary),
+    threeObject: THREEObjectMaker(InfoWindow),
+    embed: embedMaker(InfoWindow),
   };
 
   const items = [];

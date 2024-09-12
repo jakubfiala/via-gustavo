@@ -2,7 +2,7 @@ import { latLngDist } from '../utils.js';
 
 const DISTANCE_FACTOR = 1e-1;
 
-export const embedMaker = (StreetView) => (url) => {
+export const embedMaker = (InfoWindow) => (url) => {
   const iframe = document.createElement('iframe');
   iframe.src = url;
   iframe.width = window.innerWidth/2;
@@ -12,7 +12,7 @@ export const embedMaker = (StreetView) => (url) => {
     insert(map, position) {
       this.map = map;
 
-      this.info = new StreetView.InfoWindow({
+      this.info = new InfoWindow({
         headerDisabled: true,
         position,
         content: iframe,

@@ -1,0 +1,27 @@
+{
+  "name": "via-gustavo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakubfiala/via-gustavo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakubfiala/via-gustavo/issues"
+  },
+  "homepage": "https://github.com/jakubfiala/via-gustavo#readme",
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.8",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.21.3",
+    "three": "^0.168.0"
+  }
+}

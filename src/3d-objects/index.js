@@ -19,7 +19,7 @@ const createLights = () => {
   return [ambientLight, light];
 };
 
-export const THREEObjectMaker = (StreetView) => (mesh, { name, cameraPosition, scale } = {}) => {
+export const THREEObjectMaker = (InfoWindow) => (mesh, { name, cameraPosition, scale } = {}) => {
   const CAMERA_INIT_X = cameraPosition?.x ?? 0;
   const CAMERA_INIT_Y = cameraPosition?.y ?? 2;
   const CAMERA_INIT_Z = cameraPosition?.z ?? 1;
@@ -62,7 +62,7 @@ export const THREEObjectMaker = (StreetView) => (mesh, { name, cameraPosition, s
     insert(map, position) {
       this.map = map;
 
-      this.info = new StreetView.InfoWindow({
+      this.info = new InfoWindow({
         headerDisabled: true,
         position,
         content: canvas,

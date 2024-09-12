@@ -1,5 +1,4 @@
-
-
+import { Loader as MapsAPILoader } from "@googlemaps/js-api-loader";
 import { TextDisplay } from "./text.js";
 import {
   scheduleScript,
@@ -11,7 +10,7 @@ import { latLngDist } from "./utils.js";
 import { fakeCaptcha } from "./fakeCaptcha.js";
 import initHUD, { setLatLngDisplay, setPovDisplay } from './hud/index.js';
 import initSettings from './settings.js';
-import { LOCALSTORAGE_POSITION_KEY, START_POSITION, START_POV } from './constants.js';
+import { LOCALSTORAGE_POSITION_KEY, START_POSITION, START_POV, MAPS_API_KEY } from './constants.js';
 import loadItems from './items.js';
 import { initChapters, completeChapter, chapters, completed as completedChapters } from './chapters.js';
 
@@ -29,7 +28,6 @@ const fakeCaptchas = Array.from(
 
 
 const textDisplay = new TextDisplay(textContainer);
-let currentScript = null;
 let audioContext, masterGain = null;
 
 const debug = location.search.includes("debug=true");
@@ -119,15 +117,22 @@ const checkForCheckpoints = map => () => {
 };
 
 const initialize = async () => {
+  const mapsLoader = new MapsAPILoader({
+    apiKey: MAPS_API_KEY,
+    version: '3.exp',
+    libraries: ['streetView'],
+  });
+
+  const { StreetViewPanorama, InfoWindow } = await mapsLoader.importLibrary('streetView');
+  const { event } = await mapsLoader.importLibrary('core');
   container.hidden = false;
 
-  const map = new google.maps.StreetViewPanorama(container, mapOptions);
-  google.maps.event.addListener(
+  const map = new StreetViewPanorama(container, mapOptions);
+  event.addListener(
     map,
     "position_changed",
     checkForCheckpoints(map)
   );
-  const StreetViewLibrary = await google.maps.importLibrary("streetView");
 
   intro.removeEventListener("click", initialize);
   intro.hidden = true;
@@ -155,10 +160,10 @@ const initialize = async () => {
     compressor: true
   });
 
-  const items = await loadItems(StreetViewLibrary, map, audioContext);
+  const items = await loadItems(InfoWindow, map, audioContext);
   items.forEach((o) => o.update());
 
-  google.maps.event.addListener(
+  event.addListener(
     map,
     "position_changed",
     () => {
@@ -170,7 +175,7 @@ const initialize = async () => {
     },
   );
 
-  google.maps.event.addListener(
+  event.addListener(
     map,
     "pov_changed",
     () => {

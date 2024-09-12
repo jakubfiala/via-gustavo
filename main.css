@@ -35,6 +35,10 @@ body {
   overflow: hidden;
 }
 
+*::selection {
+  background: #fffc3c;
+}
+
 .debug * {
   animation-delay: 0 !important;
   animation-duration: 0 !important;
