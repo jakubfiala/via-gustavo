@@ -38,6 +38,8 @@ export default {
     localStorage.setItem(LOCALSTORAGE_INVENTORY_KEY, JSON.stringify(this.items));
   },
   clear() {
+    inventory.innerHTML = '';
+    this.items = [];
     localStorage.removeItem(LOCALSTORAGE_INVENTORY_KEY);
   },
 }

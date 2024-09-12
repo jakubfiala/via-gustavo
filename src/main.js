@@ -3,13 +3,13 @@ import { TextDisplay } from "./text.js";
 import {
   scheduleScript,
   IntroScript,
-  Checkpoint1IntroScript
+  Chapter1Intro
 } from "./script.js";
 import { Sharawadji } from "../sharawadji/src/index.js";
 import { latLngDist } from "./utils.js";
 import { fakeCaptcha } from "./fakeCaptcha.js";
 import initHUD, { setLatLngDisplay, setPovDisplay } from './hud/index.js';
-import initSettings from './settings.js';
+import initSettings, { resetGame } from './settings.js';
 import { LOCALSTORAGE_POSITION_KEY, START_POSITION, START_POV, MAPS_API_KEY } from './constants.js';
 import loadItems from './items.js';
 import { initChapters, completeChapter, chapters, completed as completedChapters } from './chapters.js';
@@ -18,7 +18,8 @@ const INIT_RAMP = 4;
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
-const introCTA = document.getElementById("intro-cta");
+const introCTAFromScratch = document.getElementById("intro-cta-from-scratch");
+const introCTAContinue = document.getElementById("intro-cta-continue");
 const bgAudio = document.getElementById("bg-audio");
 const textContainer = document.getElementById("text-display");
 const statusContainer = document.getElementById("status-display");
@@ -43,6 +44,10 @@ const mapOptions = {
 };
 
 initChapters();
+
+if (completedChapters.size > 0) {
+  introCTAContinue.hidden = false;
+}
 
 const sounds = [
   {
@@ -73,12 +78,25 @@ const sounds = [
 ];
 
 const Checkpoints = [
+  // {
+  //   lat: -20.503758,
+  //   lng: -69.3805445,
+  //   chapter: chapters[0],
+  //   async callback(map) {
+  //     await scheduleScript(Checkpoint1IntroScript, {
+  //       map,
+  //       bgAudio,
+  //       statusContainer, fakeCaptchas, textDisplay, masterGain, audioContext,
+  //       chapter: this.chapter,
+  //     });
+  //   }
+  // }
   {
-    lat: -20.503758,
-    lng: -69.3805445,
+    lat: -20.467491495806950,
+    lng: -69.460925633319292,
     chapter: chapters[0],
     async callback(map) {
-      await scheduleScript(Checkpoint1IntroScript, {
+      await scheduleScript(Chapter1Intro, {
         map,
         bgAudio,
         statusContainer, fakeCaptchas, textDisplay, masterGain, audioContext,
@@ -190,8 +208,10 @@ const initialize = async () => {
   setPovDisplay(map.getPov());
 };
 
-if (debug) {
+introCTAFromScratch.addEventListener('click', () => {
+  mapOptions.position = START_POSITION;
+  mapOptions.pov = START_POV;
+  resetGame();
   initialize();
-} else {
-  introCTA.addEventListener("click", initialize);
-}
+});
+introCTAContinue.addEventListener('click', initialize);

@@ -10,27 +10,49 @@ export const chapters = [
   {
     id: 1,
     title: "La Huayca",
+    position: {
+      lat: -20.467491495806950,
+      lng: -69.460925633319292,
+    },
   },
   {
     id: 2,
     title: "At the rancho",
+    position: {
+      lat: -20.467491495806950,
+      lng: -69.460925633319292,
+    },
   },
   {
     id: 3,
     title: "Paint the mountainside",
+    position: {
+      lat: -20.467491495806950,
+      lng: -69.460925633319292,
+    },
   },
   {
     id: 4,
     title: "дары небес",
+    position: {
+      lat: -20.467491495806950,
+      lng: -69.460925633319292,
+    },
   },
   {
     id: 5,
     title: "The Wake",
+    position: {
+      lat: -20.467491495806950,
+      lng: -69.460925633319292,
+    },
   },
 ];
 
 export const clear = () => {
   localStorage.removeItem(LOCALSTORAGE_CHAPTERS_KEY);
+  Array.from(list.children).forEach((item) => item.classList.remove(COMPLETED_CLASS));
+  completed.clear();
 };
 
 export const completeChapter = (chapter) => {

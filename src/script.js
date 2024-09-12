@@ -67,11 +67,11 @@ export const IntroScript = [
   { text: "Tiles delineated by glitches, smeared presences, the sky glimmering with copyright.", time: 3, duration: 6 },
   { duration: 2 },
   { text: "We're going to do a whole lot of looking today." },
+  { text: "Looking, and walking." },
   {
-    text: "Looking, and walking.",
-    callback: enableClickToGoCB
+    text: "Indeed, you can walk here - ",
+    callback: enableClickToGoCB,
   },
-  { text: "Indeed, you can walk here - " },
   { text: "Isn't that wonderful?" },
   { text: "You move your muscles, and the image around you changes:" },
   { text: "First smeared, then sharp again" },
@@ -84,7 +84,7 @@ export const IntroScript = [
   { text: "and I'll tell you about me.", callback: () => document.body.classList.add('dreamz') },
 ];
 
-export const Checkpoint1IntroScript = [
+export const Chapter1Intro = [
   {
     text: "",
     duration: 5,
@@ -93,37 +93,38 @@ export const Checkpoint1IntroScript = [
       fadeOutSoundTrack(context);
     }
   },
-  {
-    text: "In this ephemeral world",
-    time: 3,
-    duration: 6
-  },
-  { text: "time is constrained", duration: 3 },
-  { text: "by the two guardian sigils", time: 3, duration: 6 },
-  { text: " - extrema of power;", duration: 3 },
-  { text: "The Request", time: 5, duration: 10, callback: showSigil("request") },
-  { text: "and The Response.", duration: 5, callback: showSigil("response") },
-  { text: "The third sigil is a secret" },
-  { text: "where true power lies." },
-  {
-    text: "We complete the triad by placing it in the middle,",
-    time: 5,
-    duration: 3
-  },
-  { text: "like a bridge:", duration: 2, callback: showSigil("interface") },
-  { text: "The Interface.", duration: 5 },
-  { text: "The first step in a journey is to ask for help - ", duration: 2 },
-  { text: "recognize the state of your being,", duration: 2 },
-  { text: "take Refuge in who you are", duration: 3 },
-  { text: "and who you are not.", duration: 2 },
-  { text: "",
-    duration: 2,
-    callback: showFakeCaptcha((e, context) => {
-      setTimeout(() => {
-        hideFakeCaptcha(context);
-        scheduleScript(Checkpoint1EndScript, context);
-      }, 3000);
-    }) },
+  { text: "TBD yo", time: 3 },
+  // {
+  //   text: "In this ephemeral world",
+  //   time: 3,
+  //   duration: 6
+  // },
+  // { text: "time is constrained", duration: 3 },
+  // { text: "by the two guardian sigils", time: 3, duration: 6 },
+  // { text: " - extrema of power;", duration: 3 },
+  // { text: "The Request", time: 5, duration: 10, callback: showSigil("request") },
+  // { text: "and The Response.", duration: 5, callback: showSigil("response") },
+  // { text: "The third sigil is a secret" },
+  // { text: "where true power lies." },
+  // {
+  //   text: "We complete the triad by placing it in the middle,",
+  //   time: 5,
+  //   duration: 3
+  // },
+  // { text: "like a bridge:", duration: 2, callback: showSigil("interface") },
+  // { text: "The Interface.", duration: 5 },
+  // { text: "The first step in a journey is to ask for help - ", duration: 2 },
+  // { text: "recognize the state of your being,", duration: 2 },
+  // { text: "take Refuge in who you are", duration: 3 },
+  // { text: "and who you are not.", duration: 2 },
+  // { text: "",
+  //   duration: 2,
+  //   callback: showFakeCaptcha((e, context) => {
+  //     setTimeout(() => {
+  //       hideFakeCaptcha(context);
+  //       scheduleScript(Checkpoint1EndScript, context);
+  //     }, 3000);
+  //   }) },
 ];
 
 export const Checkpoint1EndScript = [

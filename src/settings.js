@@ -4,13 +4,12 @@ import * as chapters from './chapters.js';
 
 const resetButton = document.getElementById('reset-button');
 
-const resetGame = () => {
+export const resetGame = () => {
   Inventory.clear();
   chapters.clear();
   localStorage.removeItem(LOCALSTORAGE_POSITION_KEY);
-  location.reload();
 };
 
 export default () => {
-  resetButton.addEventListener('click', resetGame);
+  resetButton.addEventListener('click', () => { resetGame(); location.reload(); });
 };
