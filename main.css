@@ -22,7 +22,7 @@
 html,
 body {
   background-color: black;
-  font-family: monospace;
+  font-family: serif;
   font-size: 16px;
   margin: 0;
   padding: 0;
@@ -68,7 +68,7 @@ a:visited {
   opacity: 0;
 }
 
-.map-container canvas {
+.dreamz .map-container canvas {
   animation: dreamz 240s infinite;
 }
 
@@ -111,7 +111,7 @@ p.subtitle {
 }
 
 .text-overlay {
-  font-family: monospace;
+  font-family: serif;
   font-size: 1.618rem;
   color: #12548e;
   position: absolute;
@@ -307,7 +307,7 @@ p.subtitle {
 }
 
 .hud__dialog {
-  background: #6ffb6fab;
+  background: pink;
   backdrop-filter: blur(10px);
   border: solid 1px #12548e;
   color: #12548e;
@@ -337,10 +337,22 @@ p.subtitle {
 .hud__button, .hud__dialog-close {
   cursor: pointer;
   color: inherit;
-  background: #6ffb6f;
-  border-color: #12548e;
+  background: #ffc0cb;
+  border: solid 1px #12548e;
   font: inherit;
   padding: 0.5rem;
+}
+
+.hud__button:hover, .hud__dialog-close:hover, .intro__cta:hover {
+  background: #f8cbd3;
+}
+
+.hud__title {
+  font-weight: normal;
+  color: #ffc0cb;
+  text-shadow: 1px 1px #12548e;
+  margin-right: 0.5rem;
+  font-size: 1.5em;
 }
 
 .hud__display {
@@ -425,8 +437,8 @@ p.subtitle {
 
 .intro__content {
   animation: fade-in 500ms 1.5s both;
-  background: #6ffb6f;
-  border: solid 1rem pink;
+  background: pink;
+  border: solid 1px #12548e;
   color: #12548e;
   padding: 2rem;
   position: relative;
@@ -448,6 +460,30 @@ p.subtitle {
   font: inherit;
   padding: 1rem;
   margin-top: 2rem;
+}
+
+.intro__tips {
+  list-style-type: none;
+  margin: 2rem auto;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8em;
+  justify-content: center;
+}
+
+.intro__tips li {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 0;
+  max-width: 200px;
+}
+
+.intro__tips li + li {
+  border-left: solid 1px #12548e;
+  padding-left: 1rem;
 }
 
 .map-container .vg-item {

@@ -62,9 +62,9 @@ export const IntroScript = [
   { text: "Many don't." },
   { text: "Anyways, here we are, and I suppose I should explain briefly.", time: 3, duration: 3 },
   { text: "I'm going to be your guide today." },
-  { text: "Not that you really need one - what with all the tags, coordinates, entries and hyperlinks.", time: 3, duration: 5 },
+  { text: "Not that you really need one - what with all the tags, coordinates, entries and hyperlinks.", time: 3, duration: 6 },
   { text: "Look around, perhaps you'll notice them already." },
-  { text: "Tiles delineated by glitches, smeared presences, the sky glimmering with copyright.", time: 3, duration: 3 },
+  { text: "Tiles delineated by glitches, smeared presences, the sky glimmering with copyright.", time: 3, duration: 6 },
   { duration: 2 },
   { text: "We're going to do a whole lot of looking today." },
   {
@@ -81,7 +81,7 @@ export const IntroScript = [
   { text: "of latitude, longitude, heading and pitch." },
   { duration: 2 },
   { text: "Come, let's walk down this road together," },
-  { text: "and I'll tell you about me." },
+  { text: "and I'll tell you about me.", callback: () => document.body.classList.add('dreamz') },
 ];
 
 export const Checkpoint1IntroScript = [
