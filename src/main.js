@@ -13,6 +13,7 @@ import initSettings, { resetGame } from './settings.js';
 import { LOCALSTORAGE_POSITION_KEY, START_POSITION, START_POV, MAPS_API_KEY } from './constants.js';
 import loadItems from './items.js';
 import { initChapters, completeChapter, chapters, completed as completedChapters } from './chapters.js';
+import initGamepad from './gamepad.js';
 
 const INIT_RAMP = 4;
 
@@ -206,6 +207,7 @@ const initialize = async () => {
 
   setLatLngDisplay(initialPosition);
   setPovDisplay(map.getPov());
+  initGamepad();
 };
 
 introCTAFromScratch.addEventListener('click', () => {
