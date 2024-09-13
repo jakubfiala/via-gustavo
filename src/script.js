@@ -93,7 +93,7 @@ export const Chapter1Intro = [
       fadeOutSoundTrack(context);
     }
   },
-  { text: "TBD yo", time: 3 },
+  { text: "TBD yo!", time: 3 },
   // {
   //   text: "In this ephemeral world",
   //   time: 3,
