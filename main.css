@@ -428,12 +428,12 @@ p.subtitle {
   animation: fade-in 500ms 500ms both;
   font-family: "Spicy Rice", serif;
   color: #fffc3c;
-  font-size: 30vh;
+  font-size: 25vh;
   text-transform: uppercase;
   line-height: 1;
   justify-self: start;
   position: absolute;
-  top: 0;
+  top: 6rem;
   margin-top: 0;
   white-space: nowrap;
   width: 100%;

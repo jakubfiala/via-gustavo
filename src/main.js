@@ -147,6 +147,7 @@ const initialize = async () => {
   container.hidden = false;
 
   const map = new StreetViewPanorama(container, mapOptions);
+  window.map = map;
   event.addListener(
     map,
     "position_changed",
