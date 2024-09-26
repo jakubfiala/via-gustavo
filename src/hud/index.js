@@ -17,7 +17,7 @@ const setupDialog = ({ toggle, close, dialog }) => {
 };
 
 export const setLatLngDisplay = ({ lat, lng }) => latLngDisplay.innerText = `lat: ${lat.toFixed(15)} lng: ${lng.toFixed(15)}`;
-export const setPovDisplay = ({ heading, pitch }) => povDisplay.innerText = `h: ${heading.toFixed(15)} p: ${pitch.toFixed(15)}`;
+export const setPovDisplay = ({ heading, pitch }) => povDisplay.innerText = `heading: ${heading.toFixed(15)} pitch: ${pitch.toFixed(15)}`;
 
 export default () => {
   hud.hidden = false;

@@ -18,7 +18,10 @@ const itemDescs = [
     name: 'Coke',
     thumbnailURL: '/assets/items/coke/thumb.webp',
     collectible: true,
-    position: { lat: -20.506808759909188, lng: -69.37564029846219 },
+    position: {
+      lat: -20.467868891278783,
+      lng: -69.459964265975231,
+    },
     async create(makers) {
       return makers.threeObject(await loadGLTF('/assets/items/coke/'), { name: 'Coke' });
     },
@@ -54,12 +57,18 @@ const itemDescs = [
     thumbnailURL: '/assets/items/geiger-counter/thumb.webp',
     collectible: true,
     handheld: true,
-    position: { lat: -20.50685, lng: -69.37564029846219 },
+    position: {
+      lat: -20.468511343004337,
+      lng: -69.458340041388709,
+    },
     async create(makers) {
-      const item = makers.threeObject(await loadGLTF('/assets/items/geiger-counter/'), { name: 'Geiger Counter', cameraPosition: { x: 6, y: 2, z: 4 } });
+      const item = makers.threeObject(await loadGLTF('/assets/items/geiger-counter/'), { name: 'Geiger Counter', cameraPosition: { x: 8, y: 2, z: -6 } });
       item.activate = async (map, audioContext) => {
         console.log('geiger counter activated', !!map);
-        initGeigerCounterDetection(map, audioContext, new google.maps.LatLng({ lat: -20.506171507511695, lng: -69.37666966949742 }));
+        initGeigerCounterDetection(map, audioContext, new google.maps.LatLng({
+          lat: -20.467868891278783,
+          lng: -69.459964265975231,
+        }));
       };
 
       return item;

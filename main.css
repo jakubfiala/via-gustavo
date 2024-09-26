@@ -124,6 +124,15 @@ p.subtitle {
   z-index: 1;
 }
 
+.text-overlay--bottom {
+  bottom: 8rem;
+}
+
+.text-overlay--middle {
+  bottom: 50%;
+  translate: 50%;
+}
+
 #text-display {
   top: 4rem;
 }
@@ -136,15 +145,39 @@ p.subtitle {
 #status-display {
   font-size: 4rem;
   font-weight: bold;
-  bottom: 50%;
   visibility: hidden;
   color: pink;
   text-shadow: 1px 1px #12548e;
 }
 
-#status-display.fade-in {
+.text-overlay.fade-in {
   animation: fade-in 1s;
   visibility: visible;
+}
+
+#help-display {
+  font-size: 2rem;
+  color: white;
+  text-shadow: 2px 2px #0005;
+}
+
+.help-keys {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.help-keys__key {
+  display: flex;
+  align-items: end;
+  border: solid 1px white;
+  border-radius: 0.25rem;
+  height: 2em;
+  width: 2em;
+  padding: 0.5rem;
+  line-height: 1;
 }
 
 .crystal-ball-decor:before {
@@ -436,10 +469,11 @@ p.subtitle {
   top: 6rem;
   margin-top: 0;
   white-space: nowrap;
-  width: 100%;
   text-align: center;
   scale: 1 2.5;
   letter-spacing: -0.01em;
+  left: 50%;
+  translate: -50% 0;
 }
 
 .intro__content {

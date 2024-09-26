@@ -1,10 +1,13 @@
 import { Loader as MapsAPILoader } from "@googlemaps/js-api-loader";
 import { TextDisplay } from "./text.js";
+
 import {
   scheduleScript,
-  IntroScript,
-  Chapter1Intro
-} from "./script.js";
+} from "./script/index.js";
+import IntroScript from './script/intro.js';
+import { Chapter1Intro } from './script/chapter1.js';
+import { TestScriptGeiger1 } from './script/test.js';
+
 import { Sharawadji } from "../sharawadji/src/index.js";
 import { latLngDist } from "./utils.js";
 import { fakeCaptcha } from "./fakeCaptcha.js";
@@ -14,6 +17,7 @@ import { LOCALSTORAGE_POSITION_KEY, START_POSITION, START_POV, MAPS_API_KEY } fr
 import loadItems from './items.js';
 import { initChapters, completeChapter, chapters, completed as completedChapters } from './chapters.js';
 import initGamepad from './gamepad.js';
+import { sounds } from './sounds.js';
 
 const INIT_RAMP = 4;
 
@@ -24,13 +28,23 @@ const introCTAContinue = document.getElementById("intro-cta-continue");
 const bgAudio = document.getElementById("bg-audio");
 const textContainer = document.getElementById("text-display");
 const statusContainer = document.getElementById("status-display");
+const helpContainer = document.getElementById("help-display");
 const fakeCaptchas = Array.from(
   document.getElementsByClassName("fake-captcha")
 ).map(c => fakeCaptcha(c));
 
-
 const textDisplay = new TextDisplay(textContainer);
 let audioContext, masterGain = null;
+
+const baseScriptContext = {
+  bgAudio,
+  statusContainer,
+  helpContainer,
+  fakeCaptchas,
+  textDisplay,
+  masterGain,
+  audioContext,
+};
 
 const debug = location.search.includes("debug=true");
 document.body.classList.toggle('debug', debug);
@@ -50,34 +64,6 @@ if (completedChapters.size > 0) {
   introCTAContinue.hidden = false;
 }
 
-const sounds = [
-  {
-    name: "checkpoint1-music",
-    lat: -20.503758,
-    lng: -69.3805445,
-    timestamp: 551459942721,
-    src: "assets/audio/lobotomy-loop.mp3",
-    db: 80,
-    loop: true
-  },
-  {
-    name: "desert-storm-atmos",
-    lat: -20.468511343004337,
-    lng: -69.458340041388709,
-    src: "assets/audio/desert-storm-atmos.mp3",
-    db: 80,
-    loop: true
-  },
-  {
-    name: "desert-winds-quiet",
-    lat: -20.467191495806950,
-    lng: -69.460925633319292,
-    src: "assets/audio/desert-winds-quiet.mp3",
-    db: 80,
-    loop: true
-  }
-];
-
 const Checkpoints = [
   // {
   //   lat: -20.503758,
@@ -93,14 +79,23 @@ const Checkpoints = [
   //   }
   // }
   {
+    lat: -20.468511343004337,
+    lng: -69.458340041388709,
+    async callback(map) {
+      await scheduleScript(TestScriptGeiger1, {
+        ...baseScriptContext,
+        map,
+      });
+    },
+  },
+  {
     lat: -20.467491495806950,
     lng: -69.460925633319292,
     chapter: chapters[0],
     async callback(map) {
       await scheduleScript(Chapter1Intro, {
+        ...baseScriptContext,
         map,
-        bgAudio,
-        statusContainer, fakeCaptchas, textDisplay, masterGain, audioContext,
         chapter: this.chapter,
       });
     }
@@ -166,7 +161,7 @@ const initialize = async () => {
   bgAudio.play();
 
   if (completedChapters.size === 0) {
-    scheduleScript(IntroScript, { textDisplay, map, bgAudio, statusContainer, fakeCaptchas, masterGain, audioContext });
+    scheduleScript(IntroScript, { ...baseScriptContext, map });
   }
 
   masterGain.gain.setValueAtTime(0, audioContext.currentTime);
