@@ -1,4 +1,4 @@
-import { latLngDist } from '../utils.js';
+import { latLngDist } from '../../utils.js';
 
 const DISTANCE_FACTOR = 1e-1;
 

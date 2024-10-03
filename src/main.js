@@ -11,7 +11,7 @@ import { fakeCaptcha } from "./interactions/fakeCaptcha.js";
 import initHUD, { setLatLngDisplay, setPovDisplay } from './hud/index.js';
 import initSettings, { resetGame } from './settings.js';
 import { LOCALSTORAGE_POSITION_KEY, START_POSITION, START_POV, MAPS_API_KEY } from './constants.js';
-import loadItems from './items.js';
+import loadItems from './items/index.js';
 import { initChapters, completed as completedChapters } from './chapters.js';
 import initGamepad from './gamepad.js';
 import { localisedSounds } from './audio/localised-sounds.js';

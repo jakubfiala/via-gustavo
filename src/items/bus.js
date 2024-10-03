@@ -1,4 +1,4 @@
-import { loadGLTF } from '../3d-objects/gltf.js';
+import { loadGLTF } from './3d-objects/gltf.js';
 
 export const takeTheBus = (map, { locationName, latLng, pov }) => {
   const agree = confirm(`Are you ready to take the bus to ${locationName}?`)
