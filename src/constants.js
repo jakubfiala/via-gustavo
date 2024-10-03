@@ -7,3 +7,4 @@ export const LOCALSTORAGE_CHAPTERS_KEY = 'vg_cha';
 export const START_POSITION = { lat: -20.4693001, lng: -69.4563347 };
 export const START_POV = { heading: 279.83396999258559, pitch:  -1.184891582816434 };
 export const MAPS_API_KEY = 'AIzaSyA1VOiLnJEwz3HzcDxEExa_tCTu5KKOoqQ';
+export const OBJECT_APPEAR_THRESHOLD = 60;

@@ -20,7 +20,7 @@ export default [
       lng: -69.459964265975231,
     },
     async create(makers) {
-      return makers.threeObject(await loadGLTF('/assets/items/coke/'), { name: 'Coke' });
+      return makers.threeObject('/assets/items/coke/', { name: 'Coke' });
     },
   },
   createBusStopItem({
@@ -60,7 +60,7 @@ export default [
       lng: -69.458340041388709,
     },
     async create(makers) {
-      const item = makers.threeObject(await loadGLTF('/assets/items/geiger-counter/'), { name: 'Geiger Counter', cameraPosition: { x: 8, y: 2, z: -6 } });
+      const item = makers.threeObject('/assets/items/geiger-counter/', { name: 'Geiger Counter', cameraPosition: { x: 8, y: 2, z: -6 } });
       item.activate = async (map, audioContext) => {
         console.log('geiger counter activated', !!map);
         initGeigerCounterDetection(map, audioContext, new google.maps.LatLng({

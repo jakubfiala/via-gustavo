@@ -53,8 +53,9 @@ const mapOptions = {
 initChapters();
 
 if (completedChapters.size > 0) {
-  document.documentElement.style = `--intro-darkness-duration: ${FADE_OUT_DELAY_MS}ms;`;
   introCTAContinue.hidden = false;
+} else {
+  document.documentElement.style = `--intro-darkness-duration: ${FADE_OUT_DELAY_MS}ms;`;
 }
 
 const initialize = async () => {

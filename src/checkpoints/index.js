@@ -1,4 +1,5 @@
 import { completeChapter, chapters } from '../chapters.js';
+import { scheduleScript } from '../script/index.js';
 import { Chapter1Intro } from '../script/chapter1.js';
 import { TestScriptGeiger1 } from '../script/test.js';
 import { latLngDist } from "../utils.js";

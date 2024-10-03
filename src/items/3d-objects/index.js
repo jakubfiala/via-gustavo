@@ -6,6 +6,9 @@ import {
   Vector3,
   WebGLRenderer,
 } from 'three';
+import { latLngDist } from '../../utils.js';
+import { OBJECT_APPEAR_THRESHOLD } from '../../constants.js';
+import { loadGLTF } from './gltf.js';
 
 const CANVAS_SIZE = 300;;
 const CAMERA_MOVEMENT_INCREMENT_Z = 1e4 * 6;
@@ -23,7 +26,7 @@ const createLights = () => {
   return [ambientLight, light];
 };
 
-export const THREEObjectMaker = (InfoWindow) => (mesh, { name, cameraPosition, scale, rotation = {} } = {}) => {
+export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, scale, rotation = {} } = {}) => {
   const cameraInitX = cameraPosition?.x ?? CAMERA_DEFAULT_X;
   const cameraInitY = cameraPosition?.y ?? CAMERA_DEFAULT_Y;
   const cameraInitZ = cameraPosition?.z ?? CAMERA_DEFAULT_Z;
@@ -37,25 +40,16 @@ export const THREEObjectMaker = (InfoWindow) => (mesh, { name, cameraPosition, s
 
   const scene = new Scene();
   createLights().forEach((l) => scene.add(l));
-  scene.add(mesh);
 
   const camera = new PerspectiveCamera(45, 1, 0.1, 1000);
   camera.position.x = cameraInitX;
   camera.position.y = cameraInitY;
   camera.position.z = cameraInitZ;
-  camera.lookAt(mesh.position);
-
-  mesh.scale.x = scale ?? 1;
-  mesh.scale.y = scale ?? 1;
-  mesh.scale.z = scale ?? 1;
-
-  mesh.rotation.x = rotation.x ?? 0;
-  mesh.rotation.y = rotation.y ?? 0;
-  mesh.rotation.z = rotation.z ?? 0;
 
   const renderer = new WebGLRenderer({ canvas, alpha: true });
   renderer.setClearColor(0x000000, 0);
 
+  let mesh;
   console.log({ mesh, camera, moveCam: (x, y, z) => {
     camera.position.x = x;
     camera.position.y = y;
@@ -64,6 +58,18 @@ export const THREEObjectMaker = (InfoWindow) => (mesh, { name, cameraPosition, s
     renderer.render(scene, camera);
   } });
   console.groupEnd();
+
+  const createMesh = async () => {
+    mesh = await loadGLTF(url);
+    mesh.scale.x = scale ?? 1;
+    mesh.scale.y = scale ?? 1;
+    mesh.scale.z = scale ?? 1;
+
+    mesh.rotation.x = rotation.x ?? 0;
+    mesh.rotation.y = rotation.y ?? 0;
+    mesh.rotation.z = rotation.z ?? 0;
+    scene.add(mesh);
+  }
 
   return {
     scene, camera, renderer, mesh, canvas,
@@ -75,11 +81,9 @@ export const THREEObjectMaker = (InfoWindow) => (mesh, { name, cameraPosition, s
         position,
         content: canvas,
       });
-
-      this.render();
-      this.info.open({ map });
     },
     render() {
+      console.log('rendering', name);
       renderer.render(scene, camera);
     },
     reset() {
@@ -90,7 +94,7 @@ export const THREEObjectMaker = (InfoWindow) => (mesh, { name, cameraPosition, s
       camera.lookAt(mesh.position);
       this.render();
     },
-    update() {
+    async update() {
       if (this.isBeingHeld) {
         return;
       }
@@ -99,6 +103,22 @@ export const THREEObjectMaker = (InfoWindow) => (mesh, { name, cameraPosition, s
       const objectPosition = this.info.getPosition();
       const dx = userPosition.lat() - objectPosition.lat();
       const dy = userPosition.lng() - objectPosition.lng();
+
+      const dist = latLngDist(objectPosition, userPosition);
+      console.log(dist);
+      if (!this.info.isOpen) {
+        if (dist < OBJECT_APPEAR_THRESHOLD) {
+          console.log('opening', name);
+          this.info.open({ map: this.map });
+        } else {
+          return;
+        }
+      }
+
+      if (!mesh) {
+        await createMesh();
+      }
+
       // rotate the object so it always faces the same direction in the panorama
       mesh.rotation.y = Math.atan2(dy, dx);
       camera.position.z = cameraInitZ * 2 + Math.abs(dy * CAMERA_MOVEMENT_INCREMENT_Z);
