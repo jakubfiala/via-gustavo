@@ -5,21 +5,19 @@ import {
   scheduleScript,
 } from "./script/index.js";
 import IntroScript from './script/intro.js';
-import { Chapter1Intro } from './script/chapter1.js';
-import { TestScriptGeiger1 } from './script/test.js';
 
 import { Sharawadji } from "../sharawadji/src/index.js";
-import { latLngDist } from "./utils.js";
-import { fakeCaptcha } from "./fakeCaptcha.js";
+import { fakeCaptcha } from "./interactions/fakeCaptcha.js";
 import initHUD, { setLatLngDisplay, setPovDisplay } from './hud/index.js';
 import initSettings, { resetGame } from './settings.js';
 import { LOCALSTORAGE_POSITION_KEY, START_POSITION, START_POV, MAPS_API_KEY } from './constants.js';
 import loadItems from './items.js';
-import { initChapters, completeChapter, chapters, completed as completedChapters } from './chapters.js';
+import { initChapters, completed as completedChapters } from './chapters.js';
 import initGamepad from './gamepad.js';
-import { localisedSounds } from './localised-sounds.js';
-import { FADE_OUT_DELAY_MS, playGatewaySound } from './gateway-sound.js';
+import { localisedSounds } from './audio/localised-sounds.js';
+import { FADE_OUT_DELAY_MS, playGatewaySound } from './audio/gateway-sound.js';
 import { enableClickToGoCB } from './script/utils.js';
+import { checkForCheckpoints } from './checkpoints/index.js';
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
@@ -29,10 +27,7 @@ const bgAudio = document.getElementById("bg-audio");
 const textContainer = document.getElementById("text-display");
 const statusContainer = document.getElementById("status-display");
 const helpContainer = document.getElementById("help-display");
-const fakeCaptchas = Array.from(
-  document.getElementsByClassName("fake-captcha")
-).map(c => fakeCaptcha(c));
-
+const fakeCaptchas = Array.from(document.getElementsByClassName("fake-captcha")).map(c => fakeCaptcha(c));
 const textDisplay = new TextDisplay(textContainer);
 
 const scriptContext = {
@@ -58,61 +53,9 @@ const mapOptions = {
 initChapters();
 
 if (completedChapters.size > 0) {
+  document.documentElement.style = `--intro-darkness-duration: ${FADE_OUT_DELAY_MS}ms;`;
   introCTAContinue.hidden = false;
 }
-
-const Checkpoints = [
-  {
-    lat: -20.468511343004337,
-    lng: -69.458340041388709,
-    async callback(map) {
-      await scheduleScript(TestScriptGeiger1, {
-        ...scriptContext,
-        map,
-      });
-    },
-  },
-  {
-    lat: -20.467491495806950,
-    lng: -69.460925633319292,
-    chapter: chapters[0],
-    async callback(map) {
-      await scheduleScript(Chapter1Intro, {
-        ...scriptContext,
-        map,
-        chapter: this.chapter,
-      });
-    }
-  }
-];
-
-const CHECKPOINT_DISTANCE_THRESHOLD = 30;
-
-const checkForCheckpoints = map => () => {
-  const position = map.getPosition();
-
-  for (const checkpoint of Checkpoints) {
-    if (checkpoint.passed) {
-      continue;
-    }
-
-    const distanceFromCheckpoint = latLngDist(
-      position,
-      new google.maps.LatLng(checkpoint.lat, checkpoint.lng)
-    );
-
-    if (distanceFromCheckpoint < CHECKPOINT_DISTANCE_THRESHOLD) {
-      checkpoint.passed = true;
-      checkpoint
-        .callback(map)
-        .then(() => {
-          if (checkpoint.chapter) {
-            completeChapter(checkpoint.chapter);
-          }
-        });
-    }
-  }
-};
 
 const initialize = async () => {
   const mapsLoader = new MapsAPILoader({
@@ -197,8 +140,6 @@ const initialize = async () => {
 };
 
 const initialSequence = (context) => {
-  document.documentElement.style = `--intro-darkness-duration: ${FADE_OUT_DELAY_MS}ms;`;
-
   setTimeout(() => {
     playGatewaySound(context);
   }, 1000);
@@ -220,4 +161,5 @@ introCTAFromScratch.addEventListener('click', () => {
   resetGame();
   initialize();
 });
+
 introCTAContinue.addEventListener('click', initialize);

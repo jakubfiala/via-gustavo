@@ -2,7 +2,7 @@ import { THREEObjectMaker } from './3d-objects/index.js';
 import { embedMaker } from './embeds/index.js';
 import Inventory from './inventory/index.js';
 import { loadGLTF } from './3d-objects/gltf.js';
-import { createBusStopItem } from './bus.js';
+import { createBusStopItem } from './interactions/bus.js';
 import { initGeigerCounterDetection } from '../assets/items/geiger-counter/detection.js';
 
 const itemDescs = [
