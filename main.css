@@ -130,7 +130,7 @@ p.subtitle {
 
 .text-overlay--middle {
   bottom: 50%;
-  translate: 50%;
+  translate: 0 50%;
 }
 
 #text-display {
@@ -142,11 +142,11 @@ p.subtitle {
   line-height: 1.618;
 }
 
-#status-display {
+.status-display {
   font-size: 4rem;
   font-weight: bold;
   visibility: hidden;
-  color: pink;
+  color: white;
   text-shadow: 1px 1px #12548e;
 }
 

@@ -65,19 +65,6 @@ if (completedChapters.size > 0) {
 }
 
 const Checkpoints = [
-  // {
-  //   lat: -20.503758,
-  //   lng: -69.3805445,
-  //   chapter: chapters[0],
-  //   async callback(map) {
-  //     await scheduleScript(Checkpoint1IntroScript, {
-  //       map,
-  //       bgAudio,
-  //       statusContainer, fakeCaptchas, textDisplay, masterGain, audioContext,
-  //       chapter: this.chapter,
-  //     });
-  //   }
-  // }
   {
     lat: -20.468511343004337,
     lng: -69.458340041388709,

@@ -27,13 +27,14 @@ const itemDescs = [
     },
   },
   createBusStopItem({
-    position: { lat: -20.50669, lng: -69.37579679565727 },
+    position: { lat: -20.465831125863527, lng: -69.465165895362929 },
     destination: {
+      // -20.6149262,-69.6215191,3a,21.3y,246.1h,85.51t
       locationName: 'Geoglifos de Pintados',
-      latLng: { lat: -20.6214391, lng: -69.662639 },
-      pov: { heading: 23.53, pitch: 3 },
+      latLng: { lat: -20.6149262, lng: -69.6215191 },
+      pov: { heading: 244.88262499989355, pitch: -0.6144093248599347, zoom: 1.679122777824333 },
     },
-    cameraPosition: { y: 6 },
+    cameraPosition: { y: 3.5 },
     scale: 0.8,
   }),
   {
