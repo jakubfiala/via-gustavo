@@ -1,4 +1,4 @@
-export const sounds = [
+export const localisedSounds = [
   {
     name: "checkpoint1-music",
     lat: -20.467491495806950,

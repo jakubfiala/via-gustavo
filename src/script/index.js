@@ -35,6 +35,8 @@ export const scheduleScript = async (script, context) => {
 
     if (line.text) {
       textDisplay.addLine(line.text, duration * 1000);
+      // const utterance = new SpeechSynthesisUtterance(line.text);
+      // speechSynthesis.speak(utterance);
     }
 
     line.callback?.(context);

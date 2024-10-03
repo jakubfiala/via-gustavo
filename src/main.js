@@ -17,9 +17,9 @@ import { LOCALSTORAGE_POSITION_KEY, START_POSITION, START_POV, MAPS_API_KEY } fr
 import loadItems from './items.js';
 import { initChapters, completeChapter, chapters, completed as completedChapters } from './chapters.js';
 import initGamepad from './gamepad.js';
-import { sounds } from './sounds.js';
-
-const INIT_RAMP = 4;
+import { localisedSounds } from './localised-sounds.js';
+import { FADE_OUT_DELAY_MS, playGatewaySound } from './gateway-sound.js';
+import { enableClickToGoCB } from './script/utils.js';
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
@@ -34,16 +34,13 @@ const fakeCaptchas = Array.from(
 ).map(c => fakeCaptcha(c));
 
 const textDisplay = new TextDisplay(textContainer);
-let audioContext, masterGain = null;
 
-const baseScriptContext = {
+const scriptContext = {
   bgAudio,
   statusContainer,
   helpContainer,
   fakeCaptchas,
   textDisplay,
-  masterGain,
-  audioContext,
 };
 
 const debug = location.search.includes("debug=true");
@@ -70,7 +67,7 @@ const Checkpoints = [
     lng: -69.458340041388709,
     async callback(map) {
       await scheduleScript(TestScriptGeiger1, {
-        ...baseScriptContext,
+        ...scriptContext,
         map,
       });
     },
@@ -81,7 +78,7 @@ const Checkpoints = [
     chapter: chapters[0],
     async callback(map) {
       await scheduleScript(Chapter1Intro, {
-        ...baseScriptContext,
+        ...scriptContext,
         map,
         chapter: this.chapter,
       });
@@ -130,6 +127,8 @@ const initialize = async () => {
 
   const map = new StreetViewPanorama(container, mapOptions);
   window.map = map;
+  scriptContext.map = map;
+
   event.addListener(
     map,
     "position_changed",
@@ -140,29 +139,31 @@ const initialize = async () => {
   intro.hidden = true;
   bgAudio.volume = 0.15;
 
-  audioContext = new AudioContext();
-  masterGain = new GainNode(audioContext, { gain: 0 });
+  scriptContext.audioContext = new AudioContext();
+  scriptContext.masterGain = new GainNode(scriptContext.audioContext, { gain: 0 });
 
-  const bgNode = new MediaElementAudioSourceNode(audioContext, { mediaElement: bgAudio });
-  bgNode.connect(masterGain).connect(audioContext.destination);
+  const bgNode = new MediaElementAudioSourceNode(scriptContext.audioContext, { mediaElement: bgAudio });
+  scriptContext.bgVolume = new GainNode(scriptContext.audioContext, { gain: 0 });
+  bgNode
+    .connect(scriptContext.bgVolume)
+    .connect(scriptContext.masterGain)
+    .connect(scriptContext.audioContext.destination);
   bgAudio.play();
 
-  if (completedChapters.size === 0) {
-    scheduleScript(IntroScript, { ...baseScriptContext, map });
+  if (!debug && completedChapters.size === 0) {
+    initialSequence(scriptContext);
+  } else {
+    revisitedSequence(scriptContext);
   }
 
-  masterGain.gain.setValueAtTime(0, audioContext.currentTime);
-  masterGain.gain.linearRampToValueAtTime(
-    1,
-    audioContext.currentTime + INIT_RAMP
-  );
+  scriptContext.masterGain.gain.setValueAtTime(1, scriptContext.audioContext.currentTime);
 
-  new Sharawadji(sounds, map, {
+  new Sharawadji(localisedSounds, map, {
     debug,
     compressor: true
   });
 
-  const items = await loadItems(InfoWindow, map, audioContext);
+  const items = await loadItems(InfoWindow, map, scriptContext.audioContext);
   items.forEach((o) => o.update());
 
   event.addListener(
@@ -191,6 +192,26 @@ const initialize = async () => {
   setLatLngDisplay(initialPosition);
   setPovDisplay(map.getPov());
   initGamepad();
+
+  document.body.classList.add('game-on');
+};
+
+const initialSequence = (context) => {
+  document.documentElement.style = `--intro-darkness-duration: ${FADE_OUT_DELAY_MS}ms;`;
+
+  setTimeout(() => {
+    playGatewaySound(context);
+  }, 1000);
+
+  setTimeout(() => {
+    context.bgVolume.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 2);
+    scheduleScript(IntroScript, context);
+  }, FADE_OUT_DELAY_MS);
+}
+
+const revisitedSequence = (context) => {
+  enableClickToGoCB(context);
+  context.bgVolume.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 2);
 };
 
 introCTAFromScratch.addEventListener('click', () => {
