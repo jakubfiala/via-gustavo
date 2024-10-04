@@ -10,29 +10,25 @@ export const checkpoints = [
   {
     lat: -20.468511343004337,
     lng: -69.458340041388709,
-    async callback(map) {
-      await scheduleScript(TestScriptGeiger1, {
-        ...scriptContext,
-        map,
-      });
+    callback(context) {
+      return scheduleScript(TestScriptGeiger1, context);
     },
   },
   {
     lat: -20.467491495806950,
     lng: -69.460925633319292,
     chapter: chapters[0],
-    async callback(map) {
-      await scheduleScript(Chapter1Intro, {
-        ...scriptContext,
-        map,
+    callback(context) {
+      return scheduleScript(Chapter1Intro, {
+        ...context,
         chapter: this.chapter,
       });
     }
   }
 ];
 
-export const checkForCheckpoints = map => () => {
-  const position = map.getPosition();
+export const checkForCheckpoints = context => () => {
+  const position = context.map.getPosition();
 
   for (const checkpoint of checkpoints) {
     if (checkpoint.passed) {
@@ -47,7 +43,7 @@ export const checkForCheckpoints = map => () => {
     if (distanceFromCheckpoint < CHECKPOINT_DISTANCE_THRESHOLD) {
       checkpoint.passed = true;
       checkpoint
-        .callback(map)
+        .callback(context)
         .then(() => {
           if (checkpoint.chapter) {
             completeChapter(checkpoint.chapter);

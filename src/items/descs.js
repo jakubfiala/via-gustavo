@@ -17,14 +17,14 @@ export default [
     collectible: true,
     position: {
       lat: -20.467868891278783,
-      lng: -69.459964265975231,
+      lng: -69.459834265975231,
     },
     async create(makers) {
       return makers.threeObject('/assets/items/coke/', { name: 'Coke' });
     },
   },
   createBusStopItem({
-    position: { lat: -20.465831125863527, lng: -69.465165895362929 },
+    position: { lat: -20.465831125863527, lng: -69.465265895362929 },
     destination: {
       // -20.6149262,-69.6215191,3a,21.3y,246.1h,85.51t
       locationName: 'Geoglifos de Pintados',
@@ -57,7 +57,7 @@ export default [
     handheld: true,
     position: {
       lat: -20.468511343004337,
-      lng: -69.458340041388709,
+      lng: -69.458480041388709,
     },
     async create(makers) {
       const item = makers.threeObject('/assets/items/geiger-counter/', { name: 'Geiger Counter', cameraPosition: { x: 8, y: 2, z: -6 } });

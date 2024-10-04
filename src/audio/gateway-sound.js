@@ -1,4 +1,4 @@
-const VOLUME = 0.5;
+const VOLUME = 0.3;
 const FADE_IN_S = 6;
 const FADE_OUT_S = 12;
 export const FADE_OUT_DELAY_MS = 20000;

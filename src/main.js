@@ -54,7 +54,7 @@ initChapters();
 
 if (completedChapters.size > 0) {
   introCTAContinue.hidden = false;
-} else {
+} else if (!debug) {
   document.documentElement.style = `--intro-darkness-duration: ${FADE_OUT_DELAY_MS}ms;`;
 }
 
@@ -76,7 +76,7 @@ const initialize = async () => {
   event.addListener(
     map,
     "position_changed",
-    checkForCheckpoints(map)
+    checkForCheckpoints(scriptContext)
   );
 
   intro.removeEventListener("click", initialize);

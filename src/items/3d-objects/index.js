@@ -86,7 +86,12 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
       console.log('rendering', name);
       renderer.render(scene, camera);
     },
-    reset() {
+    async reset() {
+      if (!mesh) {
+        // this could happen if we're jumping in the middle of a game where an item is handheld
+        await createMesh();
+      }
+
       mesh.rotation.y = 0;
       camera.position.x = 0;
       camera.position.y = 0;

@@ -36,6 +36,7 @@ export default [
   { text: "presented to us as a function" },
   { text: "of latitude, longitude, heading and pitch." },
   { duration: 2 },
-  { text: "Come, let's walk down this road together," },
+  { text: "Can you see the trees towards the west?" },
+  { text: "Let's walk that way," },
   { text: "and I'll tell you about me.", callback: () => document.body.classList.add('dreamz') },
 ];

@@ -11,7 +11,7 @@ export const localisedSounds = [
   {
     name: "desert-storm-atmos",
     lat: -20.468511343004337,
-    lng: -69.458340041388709,
+    lng: -69.457940041388709,
     src: "assets/audio/desert-storm-atmos.mp3",
     db: 80,
     loop: true

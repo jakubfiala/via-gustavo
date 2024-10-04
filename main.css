@@ -57,7 +57,7 @@ body.game-on::before {
   opacity: 1;
   animation: fade-in alternate both;
   animation-delay: var(--halo-delay);
-  animation-duration: calc(var(--intro-darkness-duration) / 2 - var(--halo-delay) * 2);
+  animation-duration: calc(var(--intro-darkness-duration) / 2 - var(--halo-delay));
   animation-iteration-count: 2;
 }
 
@@ -294,51 +294,6 @@ p.subtitle {
   font-size: 40px;
 }
 
-#sigils {
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: row;
-  mix-blend-mode: screen;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none;
-}
-
-.sigil {
-  display: block;
-  flex: 1;
-  position: relative;
-  transition: opacity 1s;
-  opacity: 1;
-}
-
-.sigil--hidden {
-  opacity: 0;
-}
-
-.sigil:nth-of-type(2) {
-  flex: 2;
-}
-
-.sigil-video {
-  opacity: 0.4;
-  position: relative;
-  z-index: 1;
-  width: 100%;
-}
-
-.sigil-video--blur {
-  filter: blur(10px);
-  opacity: 1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-}
-
 /* this disables styling of GMaps Info Windows */
 .gm-style .gm-style-iw-c {
   background: none;
@@ -463,10 +418,6 @@ p.subtitle {
   text-align: center;
 }
 
-.chapters__chapter--complete::after {
-  content: '[COMPLETE]';
-}
-
 .intro {
   background: pink;
   font-size: 1.382rem;
@@ -584,4 +535,28 @@ p.subtitle {
 
 .handheld-item .vg-item {
   animation: slide-in-full 1s both;
+}
+
+.chapters-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chapters__chapter {
+  padding: 0.5rem;
+}
+
+.chapters__chapter + .chapters__chapter {
+  border-top: solid 1px currentColor;
+}
+
+.chapters__chapter::before {
+  content: '☑';
+  margin-right: 1ch;
+  visibility: hidden;
+}
+
+.chapters__chapter--complete::before {
+  visibility: visible;
 }

@@ -1,5 +1,6 @@
 import { LOCALSTORAGE_CHAPTERS_KEY } from './constants.js';
 
+const ITEM_CLASS = 'chapters__chapter';
 const COMPLETED_CLASS = 'chapters__chapter--complete';
 
 const list = document.getElementById('chapters-list');
@@ -61,11 +62,12 @@ export const completeChapter = (chapter) => {
   localStorage.setItem(LOCALSTORAGE_CHAPTERS_KEY, JSON.stringify(Array.from(completed)));
 };
 
-export const initChapters = (map) => {
+export const initChapters = (context) => {
   chapters.forEach((chapter) => {
     const item = document.createElement('li');
     item.dataset.id = chapter.id;
     item.innerText = chapter.title;
+    item.classList.add(ITEM_CLASS);
 
     chapter.indicator = item;
     if (completed.has(chapter.id)) {
