@@ -1,6 +1,6 @@
-import { loadGLTF } from './3d-objects/gltf.js';
 import { createBusStopItem } from './bus.js';
 import { initGeigerCounterDetection } from '../../assets/items/geiger-counter/detection.js';
+import { createTarotCardItem } from './tarot/index.js';
 
 export default [
   {
@@ -72,4 +72,8 @@ export default [
       return item;
     },
   },
+  createTarotCardItem({
+    position: { lat: -20.4695001, lng: -69.4563347 },
+    card: 'judgement',
+  }),
 ];

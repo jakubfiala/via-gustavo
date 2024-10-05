@@ -1,6 +1,7 @@
 import Inventory from '../inventory/index.js';
 import { THREEObjectMaker } from './3d-objects/index.js';
 import { embedMaker } from './embeds/index.js';
+import { tarotCardMaker } from './tarot/index.js';
 import itemDescs from './descs.js';
 
 const handheldContainer = document.getElementById('handheld-item');
@@ -41,6 +42,7 @@ export default async (InfoWindow, map, audioContext) => {
   const makers = {
     threeObject: THREEObjectMaker(InfoWindow),
     embed: embedMaker(InfoWindow),
+    tarotCard: tarotCardMaker(InfoWindow),
   };
 
   const items = [];

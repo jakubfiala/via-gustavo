@@ -560,3 +560,7 @@ p.subtitle {
 .chapters__chapter--complete::before {
   visibility: visible;
 }
+
+.tarot-card {
+  border-radius: 10px;
+}
