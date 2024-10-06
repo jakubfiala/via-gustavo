@@ -1,16 +1,20 @@
 import { OBJECT_APPEAR_THRESHOLD } from '../../constants.js';
 import { latLngDist } from '../../utils.js';
+import { createGenericItemContainer } from '../generic.js';
 
 const DISTANCE_FACTOR = 1e-1;
-const CARD_WIDTH = 350;
+const CARD_WIDTH = 250;
 
 export const getCardImage = card => `/assets/img/tarot/${card}.jpg`;
 
 export const tarotCardMaker = (InfoWindow) => (card) => {
+  const container = createGenericItemContainer();
   const img = document.createElement('img');
   img.src = getCardImage(card);
   img.width = CARD_WIDTH;
   img.classList.add('tarot-card');
+  img.title = `${card} card`;
+  container.appendChild(img);
 
   return {
     insert(map, position) {
@@ -19,7 +23,7 @@ export const tarotCardMaker = (InfoWindow) => (card) => {
       this.info = new InfoWindow({
         headerDisabled: true,
         position,
-        content: img,
+        content: container,
       });
     },
     update() {

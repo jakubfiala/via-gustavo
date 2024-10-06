@@ -15,6 +15,7 @@ import loadItems from './items/index.js';
 import { initChapters, completed as completedChapters } from './chapters.js';
 import initGamepad from './gamepad.js';
 import { localisedSounds } from './audio/localised-sounds.js';
+import { bgAudio } from './audio/score-sounds.js';
 import { FADE_OUT_DELAY_MS, playGatewaySound } from './audio/gateway-sound.js';
 import { enableClickToGoCB } from './script/utils.js';
 import { checkForCheckpoints } from './checkpoints/index.js';
@@ -23,7 +24,7 @@ const container = document.getElementById("container");
 const intro = document.getElementById("intro");
 const introCTAFromScratch = document.getElementById("intro-cta-from-scratch");
 const introCTAContinue = document.getElementById("intro-cta-continue");
-const bgAudio = document.getElementById("bg-audio");
+
 const textContainer = document.getElementById("text-display");
 const statusContainer = document.getElementById("status-display");
 const helpContainer = document.getElementById("help-display");

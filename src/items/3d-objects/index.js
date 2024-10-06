@@ -9,6 +9,7 @@ import {
 import { latLngDist } from '../../utils.js';
 import { OBJECT_APPEAR_THRESHOLD } from '../../constants.js';
 import { loadGLTF } from './gltf.js';
+import { createGenericItemContainer } from '../generic.js';
 
 const CANVAS_SIZE = 300;;
 const CAMERA_MOVEMENT_INCREMENT_Z = 1e4 * 6;
@@ -32,11 +33,13 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
   const cameraInitZ = cameraPosition?.z ?? CAMERA_DEFAULT_Z;
 
   console.group(name);
+  const container = createGenericItemContainer();
   const canvas = document.createElement('canvas');
   canvas.classList.add('vg-item');
   canvas.height = CANVAS_SIZE;
   canvas.width = CANVAS_SIZE;
   canvas.title = name;
+  container.appendChild(canvas);
 
   const scene = new Scene();
   createLights().forEach((l) => scene.add(l));
@@ -79,7 +82,7 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
       this.info = new InfoWindow({
         headerDisabled: true,
         position,
-        content: canvas,
+        content: container,
       });
     },
     render() {

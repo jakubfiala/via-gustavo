@@ -1,19 +1,11 @@
 import { completeChapter, chapters } from '../chapters.js';
 import { scheduleScript } from '../script/index.js';
 import { Chapter1Intro } from '../script/chapter1.js';
-import { TestScriptGeiger1 } from '../script/test.js';
 import { latLngDist } from "../utils.js";
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
 export const checkpoints = [
-  {
-    lat: -20.468511343004337,
-    lng: -69.458340041388709,
-    callback(context) {
-      return scheduleScript(TestScriptGeiger1, context);
-    },
-  },
   {
     lat: -20.467491495806950,
     lng: -69.460925633319292,

@@ -298,6 +298,7 @@ p.subtitle {
 .gm-style .gm-style-iw-c {
   background: none;
   box-shadow: none;
+  overflow: visible !important;
   /* pointer-events: none; */
 }
 
@@ -563,4 +564,20 @@ p.subtitle {
 
 .tarot-card {
   border-radius: 10px;
+  transform: perspective(1000px) rotate3d(1,0,0,75deg) translateY(200%) scale(0.4);
+  transform-origin: top center;
+}
+
+.gm-style-iw-d:has(.tarot-card) {
+  overflow: visible !important;
+}
+
+.gustavo-item {
+  transition: scale 500ms;
+  cursor: pointer;
+  scale: 1;
+}
+
+.gustavo-item:hover {
+  scale: 1.1;
 }

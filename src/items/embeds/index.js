@@ -1,13 +1,16 @@
 import { OBJECT_APPEAR_THRESHOLD } from '../../constants.js';
 import { latLngDist } from '../../utils.js';
+import { createGenericItemContainer } from '../generic.js';
 
 const DISTANCE_FACTOR = 1e-1;
 
 export const embedMaker = (InfoWindow) => (url) => {
+  const container = createGenericItemContainer();
   const iframe = document.createElement('iframe');
   iframe.src = url;
   iframe.width = window.innerWidth/2;
   iframe.height = window.innerHeight/2;
+  container.appendChild(iframe);
 
   return {
     insert(map, position) {
@@ -16,7 +19,7 @@ export const embedMaker = (InfoWindow) => (url) => {
       this.info = new InfoWindow({
         headerDisabled: true,
         position,
-        content: iframe,
+        content: container,
       });
     },
     update() {
