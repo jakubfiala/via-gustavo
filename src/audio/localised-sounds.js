@@ -10,16 +10,16 @@ export const localisedSounds = [
   // },
   {
     name: "desert-storm-atmos",
-    lat: -20.44826,
-    lng: -69.50893,
+    lat: -20.44865,
+    lng: -69.50902,
     src: "assets/audio/desert-storm-atmos.mp3",
     db: 80,
     loop: true
   },
   {
     name: "desert-winds-quiet",
-    lat: -20.44549,
-    lng: -69.5144,
+    lat: -20.4463,
+    lng: -69.51475,
     src: "assets/audio/desert-winds-quiet.mp3",
     db: 80,
     loop: true
