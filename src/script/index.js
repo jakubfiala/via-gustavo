@@ -2,32 +2,20 @@ import { documentVisible, sleep } from '../utils.js';
 
 const DEFAULT_DURATION = 4;
 
-const createPlayState = () => ({
-  playing: true,
-  queue: [],
-  set(state) {
-    this.playing = state;
-    if (playing) {
-      this.queue.forEach((resolve) => resolve());
-    }
-  },
-  isPlaying() {
-    return new Promise((resolve) => {
-      if (this.playing) {
-        resolve();
-      } else {
-        this.queue.push(resolve);
-      }
-    });
-  },
-});
+window.currentScript = null;
 
 export const scheduleScript = async (script, context) => {
   const { textDisplay } = context;
-  const playState = createPlayState();
+
+  let interrupted = false;
+  currentScript?.interrupt();
+  currentScript = { interrupt: () => interrupted = true };
 
   for (let line of script) {
-    await playState.isPlaying();
+    if (interrupted) {
+      return;
+    }
+
     const duration = line.duration ?? DEFAULT_DURATION;
     const time = line.time ?? duration;
 
@@ -43,4 +31,6 @@ export const scheduleScript = async (script, context) => {
 
     await sleep(time * 1000);
   }
+  // we played the whole script without interruption
+  currentScript = null;
 };

@@ -60,7 +60,7 @@ export default [
   { text: "through a sort of one-way mirror." },
   { text: "Don't take this personally -" },
   { text: "But I suspect", duration: 2.5 },
-  { text: "many of them aren't even real." },
+  { text: "many of you aren't even real." },
   { duration: 5 },
   { text: "I find myself feeling", duration: 3 },
   { text: "like a llama who ventured to the sea" },

@@ -1,6 +1,6 @@
 import { completeChapter, chapters } from '../chapters.js';
 import { scheduleScript } from '../script/index.js';
-import { Chapter1Intro } from '../script/chapter1.js';
+import { Chapter1HisLand, Chapter1Intro, Chapter1Searching } from '../script/chapter1.js';
 import { latLngDist } from "../utils.js";
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
@@ -16,7 +16,21 @@ export const checkpoints = [
         chapter: this.chapter,
       });
     }
-  }
+  },
+  {
+    lat: -20.43945,
+    lng: -69.53325,
+    callback(context) {
+      return scheduleScript(Chapter1Searching, context);
+    },
+  },
+  {
+    lat: -20.43771,
+    lng: -69.53864,
+    callback(context) {
+      return scheduleScript(Chapter1HisLand, context);
+    },
+  },
 ];
 
 export const checkForCheckpoints = context => () => {

@@ -103,7 +103,7 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
       this.render();
     },
     async update() {
-      if (this.isBeingHeld) {
+      if (this.taken) {
         return;
       }
 

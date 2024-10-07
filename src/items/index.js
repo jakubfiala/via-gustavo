@@ -24,6 +24,8 @@ const initItem = (makers) => async (desc, context) => {
 
   if (desc.collectible) {
     item.info.content.addEventListener('click', () => {
+      item.taken = true;
+
       Inventory.addItem(desc);
 
       if (desc.handheld) {
@@ -54,6 +56,7 @@ export default async (InfoWindow, context) => {
     if (Inventory.hasItem(desc.name)) {
       if (desc.handheld || desc.canBeActivated) {
         const item = await desc.create(makers);
+        item.taken = true;
 
         if (desc.handheld) {
           setHandheldItem(item);
