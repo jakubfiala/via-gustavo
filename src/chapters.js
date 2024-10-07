@@ -10,10 +10,10 @@ export const completed = new Set(JSON.parse(localStorage.getItem(LOCALSTORAGE_CH
 export const chapters = [
   {
     id: 1,
-    title: "La Huayca",
+    title: "The Lost Friend",
     position: {
-      lat: -20.467491495806950,
-      lng: -69.460925633319292,
+      lat: -20.442087695890653,
+      lng: -69.525976864376787,
     },
   },
   {

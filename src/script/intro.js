@@ -42,7 +42,7 @@ export default [
   { text: "Can you see the trees" },
   { text: "towards the west, away from the mountains?" },
   { text: "Let's walk that way," },
-  { text: "and I'll tell you about me.", callback: () => document.body.classList.add('dreamz') },
+  { text: "and I'll tell you about me." },
   { duration: 5 },
   { text: "I have been on these plains" },
   { text: "for a very long time." },

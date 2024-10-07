@@ -10,18 +10,26 @@ export const localisedSounds = [
   // },
   {
     name: "desert-storm-atmos",
-    lat: -20.468511343004337,
-    lng: -69.457940041388709,
+    lat: -20.44826,
+    lng: -69.50893,
     src: "assets/audio/desert-storm-atmos.mp3",
     db: 80,
     loop: true
   },
   {
     name: "desert-winds-quiet",
-    lat: -20.467191495806950,
-    lng: -69.460925633319292,
+    lat: -20.44549,
+    lng: -69.5144,
     src: "assets/audio/desert-winds-quiet.mp3",
     db: 80,
     loop: true
-  }
+  },
+  {
+    name: "dogs-barking",
+    lat: -20.435150980335941,
+    lng: -69.545929008780504,
+    src: "assets/audio/dogs-barking.mp3",
+    db: 80,
+    loop: true
+  },
 ];

@@ -14,8 +14,9 @@ const Chapter1Outro = [
 export const Chapter1Intro = [
   {
     text: '',
-    duration: 5,
+    duration: 7,
     callback: (context) => {
+      context.score.bachPiano.play();
       flashStatus(`Chapter ${context.chapter.id} - ${context.chapter.title}`)(context);
     }
   },

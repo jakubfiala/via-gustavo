@@ -6,21 +6,20 @@ import itemDescs from './descs.js';
 
 const handheldContainer = document.getElementById('handheld-item');
 
-const setHandheldItem = (item, map, audioContext) => {
+const setHandheldItem = (item) => {
   if (item.canvas) {
     handheldContainer.appendChild(item.canvas);
     item.reset();
-    item.activate?.(map, audioContext);
     item.isBeingHeld = true;
   }
 };
 
-const initItem = (makers) => async (map, desc, audioContext) => {
+const initItem = (makers) => async (desc, context) => {
   const item = await desc.create(makers);
-  item.insert(map, desc.position);
+  item.insert(context.map, desc.position);
 
   if (desc.onClick) {
-    item.info.content.addEventListener('click', () => desc.onClick(map, item));
+    item.info.content.addEventListener('click', () => desc.onClick(context.map, item));
   }
 
   if (desc.collectible) {
@@ -28,7 +27,11 @@ const initItem = (makers) => async (map, desc, audioContext) => {
       Inventory.addItem(desc);
 
       if (desc.handheld) {
-        setHandheldItem(item, map, audioContext);
+        setHandheldItem(item);
+      }
+
+      if (desc.canBeActivated) {
+        item.activate?.(context);
       }
 
       item.info.close();
@@ -38,7 +41,7 @@ const initItem = (makers) => async (map, desc, audioContext) => {
   return item;
 };
 
-export default async (InfoWindow, map, audioContext) => {
+export default async (InfoWindow, context) => {
   const makers = {
     threeObject: THREEObjectMaker(InfoWindow),
     embed: embedMaker(InfoWindow),
@@ -49,16 +52,23 @@ export default async (InfoWindow, map, audioContext) => {
 
   for (const desc of itemDescs) {
     if (Inventory.hasItem(desc.name)) {
-      if (desc.handheld) {
+      if (desc.handheld || desc.canBeActivated) {
         const item = await desc.create(makers);
-        setHandheldItem(item, map, audioContext);
+
+        if (desc.handheld) {
+          setHandheldItem(item);
+        }
+
+        if (desc.canBeActivated) {
+          item.activate?.(context);
+        }
       }
 
       continue;
     }
 
     const init = initItem(makers);
-    items.push(await init(map, desc, audioContext));
+    items.push(await init(desc, context));
   }
 
   return items;

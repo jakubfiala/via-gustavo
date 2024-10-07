@@ -15,11 +15,11 @@ import loadItems from './items/index.js';
 import { initChapters, completed as completedChapters } from './chapters.js';
 import initGamepad from './gamepad.js';
 import { localisedSounds } from './audio/localised-sounds.js';
-import { bgAudio } from './audio/score-sounds.js';
 import { FADE_OUT_DELAY_MS, playGatewaySound } from './audio/gateway-sound.js';
 import { enableClickToGoCB, enableSFX } from './script/utils.js';
 import { checkForCheckpoints } from './checkpoints/index.js';
 import createSFX from './audio/sfx.js';
+import createScore from './audio/score-sounds.js';
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
@@ -33,7 +33,6 @@ const fakeCaptchas = Array.from(document.getElementsByClassName("fake-captcha"))
 const textDisplay = new TextDisplay(textContainer);
 
 const scriptContext = {
-  bgAudio,
   statusContainer,
   helpContainer,
   fakeCaptchas,
@@ -76,23 +75,21 @@ const initialize = async () => {
 
   const map = new StreetViewPanorama(container, mapOptions);
   window.map = map;
+  window.scriptContext = scriptContext;
   scriptContext.map = map;
 
   intro.removeEventListener("click", initialize);
   intro.hidden = true;
-  bgAudio.volume = 0.15;
 
   scriptContext.audioContext = new AudioContext();
   scriptContext.masterGain = new GainNode(scriptContext.audioContext, { gain: 0 });
-  scriptContext.sfx = await createSFX(scriptContext);
+  scriptContext.masterGain.connect(scriptContext.audioContext.destination);
 
-  const bgNode = new MediaElementAudioSourceNode(scriptContext.audioContext, { mediaElement: bgAudio });
-  scriptContext.bgVolume = new GainNode(scriptContext.audioContext, { gain: 0 });
-  bgNode
-    .connect(scriptContext.bgVolume)
-    .connect(scriptContext.masterGain)
-    .connect(scriptContext.audioContext.destination);
-  bgAudio.play();
+  scriptContext.score = createScore(scriptContext);
+  scriptContext.score.background.volume = 0.25;
+  scriptContext.score.background.play();
+
+  scriptContext.sfx = await createSFX(scriptContext);
 
   if (!debug && completedChapters.size === 0) {
     initialSequence(scriptContext);
@@ -107,14 +104,14 @@ const initialize = async () => {
     compressor: true
   });
 
-  const items = await loadItems(InfoWindow, map, scriptContext.audioContext);
+  const items = await loadItems(InfoWindow, scriptContext);
   items.forEach((o) => o.update());
 
   event.addListener(
     map,
     "position_changed",
     () => {
-      checkForCheckpoints(scriptContext);
+      checkForCheckpoints(scriptContext)();
       scriptContext.sfx.footsteps();
 
       const position = { lat: map.getPosition().lat(), lng: map.getPosition().lng() };
@@ -151,7 +148,7 @@ const initialSequence = (context) => {
   }, 1000);
 
   setTimeout(() => {
-    context.bgVolume.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 2);
+    context.scoreGain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 2);
     scheduleScript(IntroScript, context);
   }, FADE_OUT_DELAY_MS);
 }
@@ -164,7 +161,7 @@ const revisitedSequence = (context) => {
   }, 10000);
 
   enableClickToGoCB(context);
-  context.bgVolume.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 2);
+  context.scoreGain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 2);
 };
 
 introCTAFromScratch.addEventListener('click', () => {

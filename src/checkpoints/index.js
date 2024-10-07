@@ -7,8 +7,8 @@ const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
 export const checkpoints = [
   {
-    lat: -20.467491495806950,
-    lng: -69.460925633319292,
+    lat: -20.442087695890653,
+    lng: -69.525976864376787,
     chapter: chapters[0],
     callback(context) {
       return scheduleScript(Chapter1Intro, {

@@ -1,37 +1,41 @@
 const FOOTSTEPS_URL = '/assets/audio/footsteps.mp3';
+const CHEWING_URL = '/assets/audio/chewing.mp3';
 
-const getFootstepsBuffer = async (audioContext) => {
-  const response = await fetch(FOOTSTEPS_URL);
+const getBuffer = async (audioContext, url) => {
+  const response = await fetch(url);
   return audioContext.decodeAudioData(await response.arrayBuffer());
 };
 
-const getFootstepsNode = async (context) => {
-  const node = new AudioBufferSourceNode(context.audioContext, { buffer: await getFootstepsBuffer(context.audioContext) });
+const getNodes = async (context, url) => {
+  const source = new AudioBufferSourceNode(context.audioContext, { buffer: await getBuffer(context.audioContext, url) });
   const gain = new GainNode(context.audioContext, { gain: 0 });
 
-  node.connect(gain).connect(context.sfxGain);
-  node.loop = true;
-  node.start();
+  source.connect(gain).connect(context.sfxGain);
+  source.loop = true;
+  source.start();
 
-  return gain;
+  return { source, gain };
 };
 
-const playSFX = async (context, node, duration, ramp = 0.05) => {
-  node.gain.cancelScheduledValues(context.audioContext.currentTime);
-  node.gain.setValueAtTime(0, context.audioContext.currentTime);
-  node.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + ramp);
-  node.gain.setValueAtTime(1, context.audioContext.currentTime + duration);
-  node.gain.linearRampToValueAtTime(0, context.audioContext.currentTime + duration + ramp);
+const playSFX = async (context, nodes, dur = 0, ramp = 0.05) => {
+  const duration = dur || nodes.source.buffer.duration;
+  nodes.gain.gain.cancelScheduledValues(context.audioContext.currentTime);
+  nodes.gain.gain.setValueAtTime(0, context.audioContext.currentTime);
+  nodes.gain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + ramp);
+  nodes.gain.gain.setValueAtTime(1, context.audioContext.currentTime + duration);
+  nodes.gain.gain.linearRampToValueAtTime(0, context.audioContext.currentTime + duration + ramp);
 };
 
 export default async (context) => {
   context.sfxGain = new GainNode(context.audioContext, { gain: 0 });
   context.sfxGain.connect(context.masterGain);
 
-  const footsteps = await getFootstepsNode(context);
+  const footsteps = await getNodes(context, FOOTSTEPS_URL);
+  const chewing = await getNodes(context, CHEWING_URL);
 
   return {
     footsteps: () => playSFX(context, footsteps, 2),
+    chewing: () => playSFX(context, chewing),
   };
 };
 
