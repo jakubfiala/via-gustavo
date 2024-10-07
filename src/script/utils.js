@@ -1,3 +1,10 @@
+export const enableSFX = (context) => {
+  console.log('enabling SFX', context.sfxGain);
+  if (context.sfxGain) {
+    context.sfxGain.gain.value = 1;
+  }
+};
+
 export const enableClickToGoCB = context => {
   context.map.setOptions({ clickToGo: true, showRoadLabels: true });
 };

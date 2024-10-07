@@ -113,7 +113,6 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
       const dy = userPosition.lng() - objectPosition.lng();
 
       const dist = latLngDist(objectPosition, userPosition);
-      console.log(dist);
       if (!this.info.isOpen) {
         if (dist < OBJECT_APPEAR_THRESHOLD) {
           console.log('opening', name);

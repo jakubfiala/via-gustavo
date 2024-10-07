@@ -17,8 +17,9 @@ import initGamepad from './gamepad.js';
 import { localisedSounds } from './audio/localised-sounds.js';
 import { bgAudio } from './audio/score-sounds.js';
 import { FADE_OUT_DELAY_MS, playGatewaySound } from './audio/gateway-sound.js';
-import { enableClickToGoCB } from './script/utils.js';
+import { enableClickToGoCB, enableSFX } from './script/utils.js';
 import { checkForCheckpoints } from './checkpoints/index.js';
+import createSFX from './audio/sfx.js';
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
@@ -67,18 +68,15 @@ const initialize = async () => {
   });
 
   const { StreetViewPanorama, InfoWindow } = await mapsLoader.importLibrary('streetView');
-  const { event } = await mapsLoader.importLibrary('core');
+  const { event, ControlPosition } = await mapsLoader.importLibrary('core');
   container.hidden = false;
+
+  mapOptions.panControl = true,
+  mapOptions.panControlOptions = { position: ControlPosition.BLOCK_START_INLINE_END };
 
   const map = new StreetViewPanorama(container, mapOptions);
   window.map = map;
   scriptContext.map = map;
-
-  event.addListener(
-    map,
-    "position_changed",
-    checkForCheckpoints(scriptContext)
-  );
 
   intro.removeEventListener("click", initialize);
   intro.hidden = true;
@@ -86,6 +84,7 @@ const initialize = async () => {
 
   scriptContext.audioContext = new AudioContext();
   scriptContext.masterGain = new GainNode(scriptContext.audioContext, { gain: 0 });
+  scriptContext.sfx = await createSFX(scriptContext);
 
   const bgNode = new MediaElementAudioSourceNode(scriptContext.audioContext, { mediaElement: bgAudio });
   scriptContext.bgVolume = new GainNode(scriptContext.audioContext, { gain: 0 });
@@ -115,6 +114,9 @@ const initialize = async () => {
     map,
     "position_changed",
     () => {
+      checkForCheckpoints(scriptContext);
+      scriptContext.sfx.footsteps();
+
       const position = { lat: map.getPosition().lat(), lng: map.getPosition().lng() };
       setLatLngDisplay(position);
 
@@ -142,6 +144,8 @@ const initialize = async () => {
 };
 
 const initialSequence = (context) => {
+  console.info('initial sequence');
+
   setTimeout(() => {
     playGatewaySound(context);
   }, 1000);
@@ -153,6 +157,12 @@ const initialSequence = (context) => {
 }
 
 const revisitedSequence = (context) => {
+  console.info('revisited sequence');
+
+  setTimeout(() => {
+    enableSFX(context);
+  }, 10000);
+
   enableClickToGoCB(context);
   context.bgVolume.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 2);
 };
