@@ -581,3 +581,19 @@ p.subtitle {
 .gustavo-item:hover {
   scale: 1.1;
 }
+
+.sky-images:not([hidden]) {
+  animation: fade-in 2s var(--intro-darkness-duration) both;
+  mix-blend-mode: screen;
+}
+
+.sky-image {
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  opacity: 0.2;
+  pointer-events: none;
+  transform: perspective(100px) rotate3d(1, 0, 0, -7deg) translateY(45px);
+}
