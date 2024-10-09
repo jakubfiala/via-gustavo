@@ -1,8 +1,8 @@
 import { latLngDist } from './utils.js';
 
 const MIX_TRANS_TIME = 2;
-const PLAY_DISTANCE_THRESHOLD = 140;
-const LOAD_DISTANCE_THRESHOLD = 150;
+const PLAY_DISTANCE_THRESHOLD = 300;
+const LOAD_DISTANCE_THRESHOLD = PLAY_DISTANCE_THRESHOLD + 20;
 
 class Sound {
   constructor(context, data, map, destination, options) {
@@ -70,7 +70,7 @@ class Sound {
     this.state = Sound.state.PLAYING;
   }
 
-  stop() {
+  suspend() {
     this.source.disconnect();
     this.state = Sound.state.SUSPENDED;
   }
@@ -111,12 +111,14 @@ class Sound {
         return false;
       case Sound.state.PLAYING:
         if (distance >= PLAY_DISTANCE_THRESHOLD) {
-          this.stop();
+          console.info('[sharawadji]', 'suspending', this.data.name);
+          this.suspend();
           return false;
         }
         break;
       case Sound.state.SUSPENDED:
         if (distance < PLAY_DISTANCE_THRESHOLD) {
+          console.info('[sharawadji]', 'starting', this.data.name);
           this.start();
         } else {
           return false;

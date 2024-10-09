@@ -99,7 +99,7 @@ a:visited {
 }
 
 .dreamz .map-container canvas {
-  animation: dreamz 240s infinite;
+  animation: dreamz 240s 15s infinite;
 }
 
 .overlay {

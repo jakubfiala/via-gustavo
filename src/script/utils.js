@@ -5,6 +5,10 @@ export const enableSFX = (context) => {
   }
 };
 
+export const disableClickToGoCB = context => {
+  context.map.setOptions({ clickToGo: false, showRoadLabels: false });
+};
+
 export const enableClickToGoCB = context => {
   context.map.setOptions({ clickToGo: true, showRoadLabels: true });
 };
@@ -34,14 +38,13 @@ export const showHelpMessage = (text, keys = [], duration = 5) => context => {
 };
 
 export const showFakeCaptcha = (callback = () => {}) => context => {
+  disableClickToGoCB(context)();
+
   const captcha = context.fakeCaptchas[0];
   captcha.element.hidden = false;
-  const listener = e => {
-    callback(e, context);
-    captcha.checkbox.removeEventListener('click', listener);
-  };
 
-  captcha.checkbox.addEventListener('click', listener);
+  captcha.checkbox.addEventListener('click', e => callback(e, context), { once: true });
+  captcha.checkbox.addEventListener('click', enableClickToGoCB(context), { once: true });
 }
 
 export const hideFakeCaptcha = context => {

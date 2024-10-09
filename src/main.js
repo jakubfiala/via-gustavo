@@ -20,7 +20,6 @@ import { enableClickToGoCB, enableSFX } from './script/utils.js';
 import { checkForCheckpoints } from './checkpoints/index.js';
 import createSFX from './audio/sfx.js';
 import createScore from './audio/score-sounds.js';
-import { scale } from './utils.js';
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
@@ -123,17 +122,12 @@ const initialize = async () => {
     },
   );
 
-  const skyImages = document.getElementById('sky-images');
-  skyImages.hidden = false;
-
-  const marsSky = document.getElementById('mars-sky-image');
   event.addListener(
     map,
     "pov_changed",
     () => {
       const pov = map.getPov();
       setPovDisplay(pov);
-      marsSky.style.translate = `${scale(pov.heading, 200, 350, 100, -100)}vw ${scale(pov.pitch, -60, 80, -100, 100)}vh`;
     },
   );
 
@@ -149,6 +143,7 @@ const initialize = async () => {
 
 const initialSequence = (context) => {
   console.info('initial sequence');
+  document.documentElement.style = `--intro-darkness-duration: ${FADE_OUT_DELAY_MS}ms;`;
 
   setTimeout(() => {
     playGatewaySound(context);

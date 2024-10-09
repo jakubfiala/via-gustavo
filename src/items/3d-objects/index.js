@@ -32,7 +32,6 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
   const cameraInitY = cameraPosition?.y ?? CAMERA_DEFAULT_Y;
   const cameraInitZ = cameraPosition?.z ?? CAMERA_DEFAULT_Z;
 
-  console.group(name);
   const container = createGenericItemContainer();
   const canvas = document.createElement('canvas');
   canvas.classList.add('vg-item');
@@ -53,14 +52,13 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
   renderer.setClearColor(0x000000, 0);
 
   let mesh;
-  console.log({ mesh, camera, moveCam: (x, y, z) => {
+  console.info('[3d-objects]', name, { mesh, camera, moveCam: (x, y, z) => {
     camera.position.x = x;
     camera.position.y = y;
     camera.position.z = z;
     camera.lookAt(mesh.position);
     renderer.render(scene, camera);
   } });
-  console.groupEnd();
 
   const createMesh = async () => {
     mesh = await loadGLTF(url);
@@ -86,7 +84,7 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
       });
     },
     render() {
-      console.log('rendering', name);
+      console.info('[3d-objects]', 'rendering', name);
       renderer.render(scene, camera);
     },
     async reset() {
@@ -115,7 +113,6 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
       const dist = latLngDist(objectPosition, userPosition);
       if (!this.info.isOpen) {
         if (dist < OBJECT_APPEAR_THRESHOLD) {
-          console.log('opening', name);
           this.info.open({ map: this.map });
         } else {
           return;

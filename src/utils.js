@@ -57,8 +57,4 @@ export const documentVisible = () => new Promise((resolve) => {
   }
 });
 
-export const scale = (value, sourceRangeMin, sourceRangeMax, targetRangeMin, targetRangeMax) => {
-  const targetRange = targetRangeMax - targetRangeMin;
-  const sourceRange = sourceRangeMax - sourceRangeMin;
-  return (value - sourceRangeMin) * targetRange / sourceRange + targetRangeMin;
-}
+export const scale = (value, smin, smax, tmin, tmax) => (value - smin) * (tmax - tmin) / (smax - smin) + tmin;
