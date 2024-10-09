@@ -45,7 +45,8 @@ class Sound {
     this.panner = this.context.createPanner();
     this.panner.panningModel = 'HRTF';
     this.panner.distanceModel = 'exponential';
-    this.panner.setPosition(this.position.lat(), this.position.lng(), 0);
+    this.panner.positionX.value = this.position.lat();
+    this.panner.positionY.value = this.position.lng();
 
     this.filter = this.context.createBiquadFilter();
     this.filter.type = 'lowpass';

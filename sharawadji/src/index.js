@@ -1,5 +1,6 @@
 import { Sound } from './sound.js';
 import { throttle } from './utils.js';
+import { calculateListenerOrientation } from './panner-utils.js';
 
 const ATTENUATION_TARGET = 60;
 
@@ -50,17 +51,16 @@ class Sharawadji {
 		const userPosition = this.panorama.getPosition();
 		const userPov = this.panorama.getPov();
 
-		this.audioContext.listener.setPosition(userPosition.lat(), userPosition.lng(), 0);
+		this.audioContext.listener.positionX.value = userPosition.lat();
+		this.audioContext.listener.positionY.value = userPosition.lng();
 
-		const headingRad = userPov.heading * (Math.PI / 180);
-		const f1 = Math.cos(headingRad);
-		const f3 = Math.sin(headingRad);
-
-		const pitchRad = userPov.pitch * (Math.PI / 180);
-		const u1 = Math.cos(pitchRad);
-		const u3 = Math.sin(pitchRad);
-
-		this.audioContext.listener.setOrientation(f1, 0, f3, u1, 1, u3);
+		const listenerOrientation = calculateListenerOrientation(userPov.heading, userPov.pitch, 0);
+		this.audioContext.listener.forwardX.value = listenerOrientation.forward.x;
+		this.audioContext.listener.forwardY.value = listenerOrientation.forward.y;
+		this.audioContext.listener.forwardZ.value = listenerOrientation.forward.z;
+		this.audioContext.listener.upX.value = listenerOrientation.up.x;
+		this.audioContext.listener.upY.value = listenerOrientation.up.y;
+		this.audioContext.listener.upZ.value = listenerOrientation.up.z;
 
 		const activeSoundsCount = this.sounds.filter(s => s.state === Sound.state.PLAYING).length;
 
