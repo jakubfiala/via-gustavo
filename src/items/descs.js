@@ -1,6 +1,7 @@
 import { createBusStopItem } from './bus.js';
 import { initGeigerCounterDetection } from '../../assets/items/geiger-counter/detection.js';
 import { createTarotCardItem } from './tarot/index.js';
+import { createShrooms } from './shrooms.js';
 
 export default [
   {
@@ -77,22 +78,12 @@ export default [
     position: { lat: -20.445812, lng: -69.5168 },
     card: 'judgement',
   }),
-  {
-    name: 'Magic Mushrooms 1',
-    thumbnailURL: '/assets/items/magic-mushrooms/thumb.webp',
-    collectible: true,
-    canBeActivated: true,
-    position: {
-      lat: -20.43544,
-      lng: -69.54638,
-    },
-    async create(makers) {
-      const item = makers.threeObject('/assets/items/magic-mushrooms/', { name: this.name, cameraPosition: { y: 1 }, scale: 1.5 });
-      item.activate = (context) => {
-        context.sfx.chewing();
-        document.body.classList.add('dreamz');
-      };
-      return item;
-    },
-  },
+  createShrooms('1', {
+    lat: -20.43544,
+    lng: -69.54638,
+  }),
+  createShrooms('2', {
+    lat: -20.43526,
+    lng: -69.54645,
+  }),
 ];
