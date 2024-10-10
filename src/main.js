@@ -60,6 +60,12 @@ if (completedChapters.size > 0) {
 }
 
 const initialize = async () => {
+  try {
+    await document.body.requestFullscreen();
+  } catch (err) {
+    console.warn('Fullscreen not available', err);
+  }
+
   const mapsLoader = new MapsAPILoader({
     apiKey: MAPS_API_KEY,
     version: '3.exp',
