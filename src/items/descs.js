@@ -24,17 +24,16 @@ export default [
   //     return makers.threeObject('/assets/items/coke/', { name: this.name });
   //   },
   // },
-  // createBusStopItem({
-  //   position: { lat: -20.465831125863527, lng: -69.465265895362929 },
-  //   destination: {
-  //     // -20.6149262,-69.6215191,3a,21.3y,246.1h,85.51t
-  //     locationName: 'Geoglifos de Pintados',
-  //     latLng: { lat: -20.6149262, lng: -69.6215191 },
-  //     pov: { heading: 244.88262499989355, pitch: -0.6144093248599347, zoom: 1.679122777824333 },
-  //   },
-  //   cameraPosition: { y: 3.5 },
-  //   scale: 0.8,
-  // }),
+  createBusStopItem({
+    position: { lat: -20.43098, lng: -69.56023 },
+    destination: {
+      locationName: 'La Tirana',
+      latLng: { lat: -20.3348426, lng: -69.6595644 },
+      pov: { heading: 138.431316898245541, pitch: -4.065105711230174 },
+    },
+    cameraPosition: { x: -8, y: 3.5 },
+    scale: 0.8,
+  }),
   {
     name: 'RR',
     collectible: false,

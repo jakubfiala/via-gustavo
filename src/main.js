@@ -142,7 +142,7 @@ const initialize = async () => {
 };
 
 const initialSequence = (context) => {
-  console.info('initial sequence');
+  console.info('[main]', 'initial sequence');
   document.documentElement.style = `--intro-darkness-duration: ${FADE_OUT_DELAY_MS}ms;`;
 
   setTimeout(() => {
@@ -156,7 +156,7 @@ const initialSequence = (context) => {
 }
 
 const revisitedSequence = (context) => {
-  console.info('revisited sequence');
+  console.info('[main]', 'revisited sequence');
 
   setTimeout(() => {
     enableSFX(context);

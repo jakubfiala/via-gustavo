@@ -68,6 +68,7 @@ export default [
   { text: "dipped her hooves in sinking sand." },
   { text: "I'm still here, but something underneath" },
   { text: "holds me." },
+  { text: "Stuck in the infrastructure ..." },
   { duration: 2 },
   { text: "I can only look up to the cliffs" },
   { text: "or in my case, the foothills of the Andes" },
@@ -81,6 +82,6 @@ export default [
   { text: "A friend, you might say." },
   { duration: 1 },
   { text: "It has been years" },
-  { text: "since he last drove towards Pintados", duration: 5 },
+  { text: "since he last drove towards La Tirana", duration: 5 },
   { text: "and vanished from my world." },
 ];

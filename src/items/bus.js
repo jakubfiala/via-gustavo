@@ -19,7 +19,7 @@ export const takeTheBus = (map, { locationName, latLng, pov }) => {
 };
 
 export const createBusStopItem = ({ position, destination: { locationName, latLng, pov }, cameraPosition, scale }) => ({
-  name: `Bus Stop to ${locationName}`,
+  name: `Take the bus to ${locationName}`,
   collectible: false,
   position,
   async create(makers) {

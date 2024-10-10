@@ -1,5 +1,5 @@
 export const enableSFX = (context) => {
-  console.log('enabling SFX', context.sfxGain);
+  console.info('[script]', 'enabling SFX', context.sfxGain);
   if (context.sfxGain) {
     context.sfxGain.gain.value = 1;
   }
@@ -38,13 +38,13 @@ export const showHelpMessage = (text, keys = [], duration = 5) => context => {
 };
 
 export const showFakeCaptcha = (callback = () => {}) => context => {
-  disableClickToGoCB(context)();
+  disableClickToGoCB(context);
 
   const captcha = context.fakeCaptchas[0];
   captcha.element.hidden = false;
 
   captcha.checkbox.addEventListener('click', e => callback(e, context), { once: true });
-  captcha.checkbox.addEventListener('click', enableClickToGoCB(context), { once: true });
+  captcha.checkbox.addEventListener('click', () => enableClickToGoCB(context), { once: true });
 }
 
 export const hideFakeCaptcha = context => {

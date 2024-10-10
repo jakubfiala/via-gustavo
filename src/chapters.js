@@ -18,10 +18,10 @@ export const chapters = [
   },
   {
     id: 2,
-    title: "At the rancho",
+    title: "дары небес",
     position: {
-      lat: -20.467491495806950,
-      lng: -69.460925633319292,
+      lat: -20.33514,
+      lng: -69.65933,
     },
   },
   {

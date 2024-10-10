@@ -1,7 +1,7 @@
-import { flashStatus, showFakeCaptcha, hideFakeCaptcha } from './utils.js';
+import { flashStatus, showFakeCaptcha, hideFakeCaptcha, showHelpMessage } from './utils.js';
 import { scheduleScript } from './index.js';
 
-export const Chapter1Intro = [
+export const intro = [
   {
     text: '',
     duration: 8,
@@ -27,20 +27,20 @@ export const Chapter1Intro = [
     callback: showFakeCaptcha((e, context) => {
       setTimeout(() => {
         hideFakeCaptcha(context);
-        scheduleScript(Chapter1Thanks, context);
+        scheduleScript(thanks, context);
       }, 3000);
     })
   },
 ];
 
-const Chapter1Thanks = [
+const thanks = [
   { text: 'Thank you.' },
   { text: 'It\'s not that I don\'t trust you,' },
   { text: 'but the protocol is the protocol.' },
   { duration: 2 },
 ];
 
-export const Chapter1Searching = [
+export const searching = [
   { text: "I'd see him come down from Matilla," },
   { text: "pull over, and disappear among the trees." },
   { text: "He really believed he'd find a heap of" },
@@ -54,7 +54,7 @@ export const Chapter1Searching = [
   { text: "until he stepped out of the truck." },
 ];
 
-export const Chapter1HisLand = [
+export const hisLand = [
   { text: "He must have grown up in these bush lands" },
   { text: "chasing after animals and kicking a ball among the rocks." },
   { text: "Must have seen dozens of tourist cabañas crop up on the town's edge." },
@@ -62,8 +62,31 @@ export const Chapter1HisLand = [
   { text: "seem to draw crowds from far and wide." },
 ];
 
-const Chapter1Outro = [
-  { text: 'I wanted to show you something a little further away.'},
-  { text: 'There is a bus stop just a short walk down' },
-  { text: '- we can ride on from there.'},
+export const showYouSomething = [
+  { text: "I wanted to show you something a little further away."},
+  { text: "We will soon reach the town;"},
+  { text: "a bus stops there at the plaza with trees." },
+  { text: "We can ride it from there."},
+];
+
+export const animita = [
+  { text: "He'd often stop here at the animita," },
+  { text: "it's just a modest shrine" },
+  { text: "by the stone wall of the orchard." },
+  { text: "His prayers were brief and quiet" },
+  { text: "I could only hear the match lighting up" },
+  { text: "as he relit the candles" },
+  { text: "and set the little cross straight." },
+];
+
+export const weMadeIt = [
+  { text: "We made it into town!" },
+  { text: "The bus stop is just a little further down." },
+];
+
+export const theresTheBus = [
+  { text: "There's the bus stop!" },
+  { text: "It should be here any minute" },
+  { text: "", callback: showHelpMessage("Click on the bus stop to start travelling") },
+  { text: "See you on the other side!" },
 ];
