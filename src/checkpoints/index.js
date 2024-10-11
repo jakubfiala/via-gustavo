@@ -3,6 +3,7 @@ import { scheduleScript } from '../script/index.js';
 import * as chapter1 from '../script/chapter1.js';
 import * as chapter2 from '../script/chapter2.js';
 import { latLngDist } from "../utils.js";
+import { showSkyImages } from '../sky-images.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
@@ -71,6 +72,15 @@ export const checkpoints = [
       });
     }
   },
+
+  // Humberstone
+  {
+    lat: -20.20556,
+    lng: -69.79509,
+    async callback(context) {
+      return showSkyImages(context);
+    }
+  }
 ];
 
 export const checkForCheckpoints = context => () => {

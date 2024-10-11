@@ -39,8 +39,11 @@ const scriptContext = {
   textDisplay,
 };
 
-const debug = location.search.includes("debug=true");
+const currentURL = new URL(location.href);
+const debug = currentURL.searchParams.get('debug') === 'true';
+const dev = currentURL.searchParams.get('dev') === 'true';
 document.body.classList.toggle('debug', debug);
+document.body.classList.toggle('dev', dev);
 
 const initialPosition = JSON.parse(localStorage.getItem(LOCALSTORAGE_POSITION_KEY)) || START_POSITION;
 const mapOptions = {
@@ -60,10 +63,12 @@ if (completedChapters.size > 0) {
 }
 
 const initialize = async () => {
-  try {
-    await document.body.requestFullscreen();
-  } catch (err) {
-    console.warn('Fullscreen not available', err);
+  if (!dev) {
+    try {
+      await document.body.requestFullscreen();
+    } catch (err) {
+      console.warn('Fullscreen not available', err);
+    }
   }
 
   const mapsLoader = new MapsAPILoader({
@@ -74,6 +79,8 @@ const initialize = async () => {
 
   const { StreetViewPanorama, InfoWindow } = await mapsLoader.importLibrary('streetView');
   const { event, ControlPosition } = await mapsLoader.importLibrary('core');
+  scriptContext.google = { event, StreetViewPanorama, InfoWindow };
+
   container.hidden = false;
 
   mapOptions.panControl = true,
@@ -112,6 +119,8 @@ const initialize = async () => {
 
   const items = await loadItems(InfoWindow, scriptContext);
   items.forEach((o) => o.update());
+
+  checkForCheckpoints(scriptContext)();
 
   event.addListener(
     map,

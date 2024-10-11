@@ -3,26 +3,26 @@ import { scheduleScript } from './index.js';
 
 export const intro = [
   {
-    text: '',
+    text: "",
     duration: 8,
     callback: (context) => {
       context.score.bachPiano.play();
       flashStatus(`Chapter ${context.chapter.id} - ${context.chapter.title}`)(context);
     }
   },
-  { text: 'I remember the time a spacecraft crashed somewhere in the desert' },
-  { text: 'Gustavo was a dapper young man', time: 3 },
-  { text: 'He watched the news every evening' },
-  { text: 'It was then that he began driving down here more often' },
-  { text: 'it was a simpler time.' },
+  { text: "I remember the time a spacecraft crashed somewhere in the desert" },
+  { text: "Gustavo was a dapper young man", time: 3 },
+  { text: "He watched the news every evening"},
+  { text: "It was then that he began driving down here more often"},
+  { text: "it was a simpler time."},
   { duration: 5 },
-  { text: 'Do you know what it feels like?' },
-  { text: 'Can you even imagine?' },
-  { text: 'In fact, I should really test you to find out' },
-  { text: 'before I take you anywhere...'},
-  { text: 'more important.' },
+  { text: "Do you know what it feels like?"},
+  { text: "Can you even imagine?"},
+  { text: "In fact, I should really test you to find out"},
+  { text: "before I take you anywhere..." },
+  { text: "more important."},
   {
-    text: '',
+    text: "",
     duration: 2,
     callback: showFakeCaptcha((e, context) => {
       setTimeout(() => {
@@ -34,9 +34,9 @@ export const intro = [
 ];
 
 const thanks = [
-  { text: 'Thank you.' },
-  { text: 'It\'s not that I don\'t trust you,' },
-  { text: 'but the protocol is the protocol.' },
+  { text: "Thank you."},
+  { text: "It\'s not that I don\'t trust you,"},
+  { text: "but the protocol is the protocol."},
   { duration: 2 },
 ];
 

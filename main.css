@@ -593,7 +593,7 @@ p.subtitle {
   top: 0;
   left: 0;
   z-index: 4;
-  opacity: 0.2;
+  opacity: 0.3;
   pointer-events: none;
   transform: perspective(100px) rotate3d(1, 0, 0, -7deg) translateY(45px);
 }
