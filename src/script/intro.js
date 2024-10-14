@@ -11,6 +11,9 @@ export default [
   { text: "Not that you really need one - what with all the tags, coordinates, entries and hyperlinks.", time: 3, duration: 6 },
   {
     text: "Look around, perhaps you'll notice them already.",
+    callback: (context) => {
+      context.soundscape.set(context.soundscape.plane);
+    },
   },
   {
     duration: 5,

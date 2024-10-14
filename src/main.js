@@ -20,6 +20,7 @@ import { enableClickToGoCB, enableSFX } from './script/utils.js';
 import { checkForCheckpoints } from './checkpoints/index.js';
 import createSFX from './audio/sfx.js';
 import createScore from './audio/score-sounds.js';
+import createSoundscape from './audio/soundscapes.js';
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
@@ -99,8 +100,8 @@ const initialize = async () => {
   scriptContext.masterGain.connect(scriptContext.audioContext.destination);
 
   scriptContext.score = createScore(scriptContext);
-  scriptContext.score.background.volume = 0.25;
-  scriptContext.score.background.play();
+  scriptContext.soundscape = createSoundscape(scriptContext);
+  scriptContext.soundscape.set(scriptContext.soundscape.base);
 
   scriptContext.sfx = await createSFX(scriptContext);
 
@@ -165,7 +166,7 @@ const initialSequence = (context) => {
   }, 1000);
 
   setTimeout(() => {
-    context.scoreGain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 2);
+    context.soundscapeGain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 2);
     scheduleScript(IntroScript, context);
   }, FADE_OUT_DELAY_MS);
 }
