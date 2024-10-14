@@ -81,7 +81,7 @@ export default [
   { text: "and I've been looking for someone" },
   { text: "A friend, you might say." },
   { duration: 1 },
-  { text: "It has been years" },
+  { text: "It has been weeks, maybe months" },
   { text: "since he last drove towards La Tirana", duration: 5 },
   { text: "and vanished from my world." },
 ];

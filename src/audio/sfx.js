@@ -1,5 +1,6 @@
 const FOOTSTEPS_URL = '/assets/audio/footsteps.mp3';
 const CHEWING_URL = '/assets/audio/chewing.mp3';
+const BACKPACK_URL = '/assets/audio/backpack.mp3';
 
 const getBuffer = async (audioContext, url) => {
   const response = await fetch(url);
@@ -32,10 +33,12 @@ export default async (context) => {
 
   const footsteps = await getNodes(context, FOOTSTEPS_URL);
   const chewing = await getNodes(context, CHEWING_URL);
+  const backpack = await getNodes(context, BACKPACK_URL);
 
   return {
     footsteps: () => playSFX(context, footsteps, 2),
     chewing: () => playSFX(context, chewing),
+    backpack: () => playSFX(context, backpack),
   };
 };
 

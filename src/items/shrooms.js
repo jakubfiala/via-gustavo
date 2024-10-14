@@ -4,10 +4,10 @@ export const createShrooms = (label, position) => ({
   collectible: true,
   canBeActivated: true,
   position,
+  pickUpSFX: 'chewing',
   async create(makers) {
     const item = makers.threeObject('/assets/items/magic-mushrooms/', { name: this.name, cameraPosition: { y: 1 }, scale: 1.5 });
     item.activate = (context) => {
-      context.sfx.chewing();
       document.body.classList.add('dreamz');
     };
     return item;

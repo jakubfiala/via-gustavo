@@ -4,6 +4,8 @@ import { embedMaker } from './embeds/index.js';
 import { tarotCardMaker } from './tarot/index.js';
 import itemDescs from './descs.js';
 
+const DEFAULT_PICK_UP_SFX = 'backpack';
+
 const handheldContainer = document.getElementById('handheld-item');
 
 const setHandheldItem = (item) => {
@@ -27,6 +29,9 @@ const initItem = (makers) => async (desc, context) => {
       item.taken = true;
 
       Inventory.addItem(desc);
+
+      const pickUpSound = context.sfx[desc.pickUpSFX || DEFAULT_PICK_UP_SFX];
+      pickUpSound();
 
       if (desc.handheld) {
         setHandheldItem(item);
