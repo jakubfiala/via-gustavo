@@ -7,6 +7,7 @@ export const intro = [
     duration: 8,
     callback: (context) => {
       context.score.bachPiano.play();
+      context.soundscape.set(context.soundscape.trees);
       flashStatus(`Chapter ${context.chapter.id} - ${context.chapter.title}`)(context);
     }
   },
@@ -55,7 +56,12 @@ export const searching = [
 ];
 
 export const hisLand = [
-  { text: "He must have grown up in these bush lands" },
+  {
+    text: "He must have grown up in these bush lands",
+    callback: (context) => {
+      context.soundscape.set(context.soundscape.base);
+    },
+  },
   { text: "chasing after animals and kicking a ball among the rocks." },
   { text: "Must have seen dozens of tourist cabañas crop up on the town's edge." },
   { text: "The merciless sun and bone-dry wind" },

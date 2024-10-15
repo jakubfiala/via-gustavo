@@ -9,12 +9,7 @@ export default [
   { text: "Anyways, here we are, and I suppose I should explain briefly.", time: 3, duration: 3 },
   { text: "I'm going to be your guide today." },
   { text: "Not that you really need one - what with all the tags, coordinates, entries and hyperlinks.", time: 3, duration: 6 },
-  {
-    text: "Look around, perhaps you'll notice them already.",
-    callback: (context) => {
-      context.soundscape.set(context.soundscape.plane);
-    },
-  },
+  { text: "Look around, perhaps you'll notice them already." },
   {
     duration: 5,
     callback: showHelpMessage('Click and drag to look around'),
@@ -37,7 +32,12 @@ export default [
   { text: "Isn't that wonderful?" },
   { text: "You move your muscles, and the image around you changes:" },
   { text: "First smeared, then sharp again" },
-  { text: "You might even hear the soundscape alter" },
+  {
+    text: "You might even hear the soundscape alter",
+    callback: (context) => {
+      context.soundscape.set(context.soundscape.plane);
+    },
+  },
   { text: "What is a world, if not a series of multisensory images" },
   { text: "presented to us as a function" },
   { text: "of latitude, longitude, heading and pitch." },
@@ -52,7 +52,13 @@ export default [
   { text: "Saw countless pickup trucks retrace the paths" },
   { text: "chartered by proud ancient steeds" },
   { text: "and their humans." },
-  { text: "You could say, they mold me into being.", duration: 5 },
+  {
+    text: "You could say, they mold me into being.",
+    duration: 5,
+    callback: (context) => {
+      context.soundscape.set(context.soundscape.base);
+    },
+  },
   { text: "I have been a reliable observer" },
   { text: "and they've heeded my advice." },
   { text: "Perhaps because I meet them face-to-face" },

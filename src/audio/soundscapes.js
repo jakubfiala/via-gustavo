@@ -1,12 +1,11 @@
 const SOUNDSCAPE_FADE_DURATION_S = 10;
 const FADE_OUT_OFFSET = SOUNDSCAPE_FADE_DURATION_S / 4;
 
-const createSoundscape = (context, src, loop) => {
+const createSoundscape = (context, src) => {
   const mediaElement = new Audio();
-  mediaElement.loop = loop;
+  mediaElement.loop = true;
   mediaElement.preload = 'none';
   mediaElement.src = src;
-
 
   const node = new MediaElementAudioSourceNode(context.audioContext, { mediaElement });
   const gainNode = new GainNode(context.audioContext, { gain: 0 });
@@ -16,6 +15,7 @@ const createSoundscape = (context, src, loop) => {
   mediaElement.addEventListener('pause', () => console.info('[soundscapes]', 'pausing', mediaElement));
 
   return {
+    mediaElement,
     fadeOut() {
       console.info('[soundscapes]', 'fading out', mediaElement);
       gainNode.gain.setValueAtTime(1, context.audioContext.currentTime + FADE_OUT_OFFSET);
@@ -36,9 +36,15 @@ export default (context) => {
   context.soundscapeGain.connect(context.masterGain);
 
   return {
-    base: createSoundscape(context, 'assets/audio/soundscapes/desert-base.mp3', true),
-    plane: createSoundscape(context, 'assets/audio/soundscapes/desert-plane.mp3', true),
+    base: createSoundscape(context, 'assets/audio/soundscapes/desert-base.mp3'),
+    plane: createSoundscape(context, 'assets/audio/soundscapes/desert-plane.mp3'),
+    trees: createSoundscape(context, 'assets/audio/soundscapes/trees.mp3'),
+    town: createSoundscape(context, 'assets/audio/soundscapes/town.mp3'),
     set(soundscape) {
+      if (soundscape === context.currentSoundscape) {
+        return;
+      }
+
       context.currentSoundscape?.fadeOut();
       context.currentSoundscape = soundscape;
       context.currentSoundscape.fadeIn();

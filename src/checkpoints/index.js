@@ -41,10 +41,24 @@ export const checkpoints = [
     },
   },
   {
+    lat: -20.4341,
+    lng: -69.55155,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.trees);
+    },
+  },
+  {
     lat: -20.433129833628328,
     lng: -69.554247855052452,
     callback(context) {
       return scheduleScript(chapter1.animita, context);
+    },
+  },
+  {
+    lat: -20.4323,
+    lng: -69.55628,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.town);
     },
   },
   {

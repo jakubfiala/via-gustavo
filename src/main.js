@@ -179,7 +179,7 @@ const revisitedSequence = (context) => {
   }, 10000);
 
   enableClickToGoCB(context);
-  context.scoreGain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 2);
+  context.soundscapeGain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 2);
 };
 
 introCTAFromScratch.addEventListener('click', () => {
