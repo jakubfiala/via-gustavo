@@ -52,13 +52,21 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
   renderer.setClearColor(0x000000, 0);
 
   let mesh;
-  console.info('[3d-objects]', name, { mesh, camera, moveCam: (x, y, z) => {
-    camera.position.x = x;
-    camera.position.y = y;
-    camera.position.z = z;
-    camera.lookAt(mesh.position);
-    renderer.render(scene, camera);
-  } });
+
+  const debugObject = {
+    mesh,
+    camera,
+    moveCam: (x, y, z) => {
+      camera.position.x = x;
+      camera.position.y = y;
+      camera.position.z = z;
+      camera.lookAt(mesh.position);
+      renderer.render(scene, camera);
+    },
+    move: null,
+  };
+
+  console.info('[3d-objects]', name, debugObject);
 
   const createMesh = async () => {
     mesh = await loadGLTF(url);
@@ -82,6 +90,10 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
         position,
         content: container,
       });
+
+      debugObject.move = (position) => {
+        this.info.setPosition(position);
+      };
     },
     render() {
       console.info('[3d-objects]', 'rendering', name);

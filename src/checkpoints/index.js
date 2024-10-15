@@ -76,15 +76,113 @@ export const checkpoints = [
     },
   },
   {
-    lat: -20.33514,
-    lng: -69.65933,
+    lat: -20.34114,
+    lng: -69.65651,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.town2);
+    },
+  },
+  {
+    lat: -20.34075,
+    lng: -69.65655,
     chapter: chapters[1],
     callback(context) {
       return scheduleScript(chapter2.intro, {
         ...context,
         chapter: this.chapter,
       });
-    }
+    },
+  },
+  {
+    lat: -20.33629,
+    lng: -69.65669,
+    callback(context) {
+      return scheduleScript(chapter2.station1, context);
+    },
+  },
+  {
+    lat: -20.33705,
+    lng: -69.65913,
+    callback(context) {
+      return scheduleScript(chapter2.mainRoad, context);
+    },
+  },
+  {
+    lat: -20.33531,
+    lng: -69.65914,
+    callback(context) {
+      return scheduleScript(chapter2.station2, context);
+    },
+  },
+  {
+    lat: -20.33362,
+    lng: -69.66595,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.base);
+    },
+  },
+  {
+    lat: -20.33353,
+    lng: -69.66675,
+    callback(context) {
+      return scheduleScript(chapter2.station3, context);
+    },
+  },
+  {
+    lat: -20.33263,
+    lng: -69.6745,
+    callback(context) {
+      return scheduleScript(chapter2.station4, context);
+    },
+  },
+  {
+    lat: -20.3319,
+    lng: -69.68088,
+    callback(context) {
+      return scheduleScript(chapter2.station5, context);
+    },
+  },
+  {
+    lat: -20.33184,
+    lng: -69.68141,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.birdsWind);
+    },
+  },
+  {
+    lat: -20.33115,
+    lng: -69.68778,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.base);
+    },
+  },
+  {
+    lat: -20.33094,
+    lng: -69.68898,
+    async callback(context) {
+      return scheduleScript(chapter2.station6, context);
+    },
+  },
+  {
+    lat: -20.33004,
+    lng: -69.69689,
+    async callback(context) {
+      return scheduleScript(chapter2.station7, context);
+    },
+  },
+  {
+    lat: -20.32944,
+    lng: -69.70198,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.plane);
+    },
+  },
+  {
+    lat: -20.32843,
+    lng: -69.71013,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.base);
+    },
   },
 
   // Humberstone

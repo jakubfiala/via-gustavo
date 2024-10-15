@@ -31,4 +31,20 @@ export const localisedSounds = [
     db: 80,
     loop: true
   },
+  {
+    name: "bar1",
+    lat: -20.33806,
+    lng: -69.65589,
+    src: "assets/audio/bar.mp3",
+    db: 80,
+    loop: true
+  },
+  {
+    name: "bar2",
+    lat: -20.33543,
+    lng: -69.65581,
+    src: "assets/audio/bar.mp3",
+    db: 80,
+    loop: true
+  },
 ];

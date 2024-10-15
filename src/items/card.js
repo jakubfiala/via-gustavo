@@ -1,19 +1,17 @@
-import { OBJECT_APPEAR_THRESHOLD } from '../../constants.js';
-import { latLngDist } from '../../utils.js';
-import { createGenericItemContainer } from '../generic.js';
+import { OBJECT_APPEAR_THRESHOLD } from '../constants.js';
+import { latLngDist } from '../utils.js';
+import { createGenericItemContainer } from './generic.js';
 
 const DISTANCE_FACTOR = 1e-1;
 const CARD_WIDTH = 250;
 
-export const getCardImage = card => `/assets/img/tarot/${card}.jpg`;
-
-export const tarotCardMaker = (InfoWindow) => (card) => {
+export const cardMaker = (InfoWindow) => ({ src, name }) => {
   const container = createGenericItemContainer();
   const img = document.createElement('img');
-  img.src = getCardImage(card);
+  img.src = src;
   img.width = CARD_WIDTH;
-  img.classList.add('tarot-card');
-  img.title = `${card} card`;
+  img.classList.add('gustavo-card');
+  img.title = name;
   container.appendChild(img);
 
   return {
@@ -25,6 +23,8 @@ export const tarotCardMaker = (InfoWindow) => (card) => {
         position,
         content: container,
       });
+
+      console.info('[card]', name, { position, move: (p) => this.info.setPosition(p) });
     },
     update() {
       const userPosition = this.map.getPosition();
@@ -44,15 +44,3 @@ export const tarotCardMaker = (InfoWindow) => (card) => {
     },
   };
 }
-
-export const createTarotCardItem = ({ position, card }) => ({
-  thumbnailURL: getCardImage(card),
-  name: `${card} card`,
-  collectible: true,
-  position,
-  async create(makers) {
-    return makers.tarotCard(card);
-  },
-  onClick: (map, item) => {
-  },
-});

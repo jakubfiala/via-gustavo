@@ -1,7 +1,7 @@
 import Inventory from '../inventory/index.js';
 import { THREEObjectMaker } from './3d-objects/index.js';
 import { embedMaker } from './embeds/index.js';
-import { tarotCardMaker } from './tarot/index.js';
+import { cardMaker } from './card.js';
 import itemDescs from './descs.js';
 
 const DEFAULT_PICK_UP_SFX = 'backpack';
@@ -52,7 +52,7 @@ export default async (InfoWindow, context) => {
   const makers = {
     threeObject: THREEObjectMaker(InfoWindow),
     embed: embedMaker(InfoWindow),
-    tarotCard: tarotCardMaker(InfoWindow),
+    card: cardMaker(InfoWindow),
   };
 
   const items = [];

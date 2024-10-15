@@ -8,13 +8,21 @@ export const intro = [
       flashStatus(`Chapter ${context.chapter.id} - ${context.chapter.title}`)(context);
     }
   },
+  { text: "There you are!" },
+  { text: "I'm glad you made it." },
+  { text: "Was the journey alright?" },
+  { text: "There is a large white church" },
+  { text: "in the town, across the roundabout," },
+  { text: "then directly straight ahead." },
+  { text: "Meet me in front of the church and I'll tell you everything." },
 ];
-
-  // intro, send player to cathedral
 
 export const station1 = [
   // 1. laid in his tomb
-  { text: "Picture Gustavo" },
+  {
+    text: "Picture Gustavo",
+    callback: (context) => context.soundscape.set(context.soundscape.town2),
+  },
   { text: "laying in his bed" },
   { text: "hist best shirt creased at the elbows" },
   { text: "his black trousers outlining his bones" },
@@ -28,6 +36,19 @@ export const station1 = [
   { text: "A fucking corpse?'" },
   { text: "He'd sit up, the mattress moaning under his weight" },
   { text: "and look you in the eyes." },
+  { duration: 4 },
+  { text: "This place is only the beginning" },
+  { text: "we can move to the next station...", duration: 5 },
+  { text: "See that street at the back of the church?" },
+  { text: "It's called Eleuterio Ramírez." },
+  { text: "Let's go that way, turn to the right," },
+  { text: "and walk down westwards." },
+];
+
+export const mainRoad = [
+  { text: "It's nice to see you again." },
+  { text: "See that cross to the north?" },
+  { text: "The next station is just a little further past it." },
 ];
 
 export const station2 = [
@@ -50,6 +71,9 @@ export const station2 = [
   { text: "We all have our vices." },
   { text: "He slams the truck door shut." },
   { text: "The ignition roars." },
+  { duration: 4 },
+  { text: "Let's keep going northwest" },
+  { text: "and out of this town." },
 ];
 
 export const station3 = [
@@ -80,7 +104,7 @@ export const station4 = [
   { text: "with a screen, some buttons" },
   { text: "and a gauge." },
   { text: "He puts on his baseball cap" },
-  { text: "- it hass the NASA logo on it." },
+  { text: "- it has the NASA logo on it." },
   { text: "Perhaps he got it from Amazon" },
   { text: "for his own birthday." },
   { text: "The seatbelt wraps around his body" },
@@ -89,7 +113,7 @@ export const station4 = [
   { text: "into the buckle." },
   { text: "The click could dramatically echo" },
   { text: "but it doesn't - this isn't a 90s thriller." },
-  { text: "This is an internet game." },
+  { text: "This is a game on the Internet." },
 ];
 
 export const station5 = [
@@ -102,12 +126,15 @@ export const station5 = [
   { text: "This time, he really lets it all out." },
   { text: "It feels so good that when he's done" },
   { text: "he fires up another one to his brothers" },
-  { text: "grandad" },
-  { text: "auntie" },
+  { text: "grandad", duration: 2 },
+  { text: "auntie", duration: 2 },
   { text: "finally, he does one for the whole family chat." },
   { text: "If his journey was to be a secret" },
   { text: "it certainly isn't anymore." },
   { text: "Now there's no going back." },
+  { duration: 7 },
+  { text: "I hope this pilgrimage isn't boring you" },
+  { text: "it's still quite a long way." },
 ];
 
 export const station6 = [
@@ -124,19 +151,20 @@ export const station6 = [
 ];
 
 export const station7 = [
-  // 7. meets the women
+  // 7. meets the women of Jerusalem
   { text: "He takes the pedestrian path" },
   { text: "they've only built it recently" },
   { text: "he still remembers when they walked" },
   { text: "ten kilometres in a single file" },
   { text: "along the main road" },
   { text: "cars whizzing past at illegal speeds" },
-  { text: "every year" },
-  { text: "on the way to the big Fiesta." },
+  { text: "every year on the way to the big Fiesta." },
   { text: "He meets a group of mothers pushing buggies" },
   { text: "they look at him" },
   { text: "and note he's underdressed for the night." },
   { text: "He frowns and yells back" },
   { text: "They should look after their own kids" },
   { text: "not him, a grown-ass man." },
+  { duration: 5 },
+  { text: "We're halfway there." },
 ];

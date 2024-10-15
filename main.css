@@ -562,13 +562,13 @@ p.subtitle {
   visibility: visible;
 }
 
-.tarot-card {
+.gustavo-card {
   border-radius: 10px;
   transform: perspective(1000px) rotate3d(1,0,0,75deg) translateY(200%) scale(0.4);
   transform-origin: top center;
 }
 
-.gm-style-iw-d:has(.tarot-card) {
+.gm-style-iw-d:has(.gustavo-card) {
   overflow: visible !important;
 }
 

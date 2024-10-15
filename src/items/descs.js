@@ -1,6 +1,5 @@
 import { createBusStopItem } from './bus.js';
 import { initGeigerCounterDetection } from '../../assets/items/geiger-counter/detection.js';
-import { createTarotCardItem } from './tarot/index.js';
 import { createShrooms } from './shrooms.js';
 
 export default [
@@ -25,8 +24,12 @@ export default [
     position: { lat: -20.43098, lng: -69.56023 },
     destination: {
       locationName: 'La Tirana',
-      latLng: { lat: -20.3348426, lng: -69.6595644 },
-      pov: { heading: 138.431316898245541, pitch: -4.065105711230174 },
+      // -20.3412425,-69.6565267,3a,75y,352.81h,85.98t
+      latLng: {
+        lat: -20.3412425,
+        lng: -69.6565267,
+      },
+      pov: { heading: 352.81, pitch: 85.98 },
     },
     cameraPosition: { x: -8, y: 3.5 },
     scale: 0.8,
@@ -70,10 +73,99 @@ export default [
   //     return item;
   //   },
   // },
-  createTarotCardItem({
+  {
+    thumbnailURL: '/assets/img/tarot/judgement.jpg',
+    name: 'Tarot Card - Judgement',
+    collectible: true,
     position: { lat: -20.445812, lng: -69.5168 },
-    card: 'judgement',
-  }),
+    async create(makers) {
+      return makers.card({ src: this.thumbnailURL, name: this.name });
+    },
+  },
+  {
+    thumbnailURL: '/assets/img/via-crucis/14.jpg',
+    name: 'XIV - Laid in his tomb',
+    collectible: true,
+    position: {
+      lat: -20.33616,
+      lng: -69.65671,
+    },
+    async create(makers) {
+      return makers.card({ src: this.thumbnailURL, name: this.name });
+    },
+  },
+  {
+    thumbnailURL: '/assets/img/via-crucis/13.jpg',
+    name: 'XIII - Taken down from the cross',
+    collectible: true,
+    position: {
+      lat: -20.33532,
+      lng: -69.659,
+    },
+    async create(makers) {
+      return makers.card({ src: this.thumbnailURL, name: this.name });
+    },
+  },
+  {
+    thumbnailURL: '/assets/img/via-crucis/12.jpg',
+    name: 'XII - Dies on the cross',
+    collectible: true,
+    position: {
+      lat: -20.33353,
+      lng: -69.66675,
+    },
+    async create(makers) {
+      return makers.card({ src: this.thumbnailURL, name: this.name });
+    },
+  },
+  {
+    thumbnailURL: '/assets/img/via-crucis/11.jpg',
+    name: 'XI - Nailed to the cross',
+    collectible: true,
+    position: {
+      lat: -20.33263,
+      lng: -69.6745,
+    },
+    async create(makers) {
+      return makers.card({ src: this.thumbnailURL, name: this.name });
+    },
+  },
+  {
+    thumbnailURL: '/assets/img/via-crucis/10.jpg',
+    name: 'X - His clothes are torn',
+    collectible: true,
+    position: {
+      lat: -20.3319,
+      lng: -69.68088,
+    },
+    async create(makers) {
+      return makers.card({ src: this.thumbnailURL, name: this.name });
+    },
+  },
+  {
+    thumbnailURL: '/assets/img/via-crucis/09.jpg',
+    name: 'IX - Fails the third time',
+    collectible: true,
+    position: {
+      lat: -20.33094,
+      lng: -69.68898,
+    },
+    async create(makers) {
+      return makers.card({ src: this.thumbnailURL, name: this.name });
+    },
+  },
+  {
+    thumbnailURL: '/assets/img/via-crucis/08.jpg',
+    name: 'VIII - Meets the women of Jerusalem',
+    collectible: true,
+    position: {
+      lat: -20.33004,
+      lng: -69.69689,
+    },
+    async create(makers) {
+      return makers.card({ src: this.thumbnailURL, name: this.name });
+    },
+  },
   createShrooms('1', {
     lat: -20.43544,
     lng: -69.54638,

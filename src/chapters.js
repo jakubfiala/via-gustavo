@@ -18,15 +18,15 @@ export const chapters = [
   },
   {
     id: 2,
-    title: "дары небес",
+    title: "Via Crucis",
     position: {
-      lat: -20.33514,
-      lng: -69.65933,
+      lat: -20.34075,
+      lng: -69.65655,
     },
   },
   {
     id: 3,
-    title: "Paint the mountainside",
+    title: "дары небес",
     position: {
       lat: -20.467491495806950,
       lng: -69.460925633319292,

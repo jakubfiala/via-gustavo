@@ -40,6 +40,8 @@ export default (context) => {
     plane: createSoundscape(context, 'assets/audio/soundscapes/desert-plane.mp3'),
     trees: createSoundscape(context, 'assets/audio/soundscapes/trees.mp3'),
     town: createSoundscape(context, 'assets/audio/soundscapes/town.mp3'),
+    town2: createSoundscape(context, 'assets/audio/soundscapes/town2.mp3'),
+    birdsWind: createSoundscape(context, 'assets/audio/soundscapes/birds_wind.mp3'),
     set(soundscape) {
       if (soundscape === context.currentSoundscape) {
         return;
