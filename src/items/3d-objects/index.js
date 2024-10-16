@@ -63,6 +63,12 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
       camera.lookAt(mesh.position);
       renderer.render(scene, camera);
     },
+    rotateMesh: (x, y, z) => {
+      mesh.rotateX(x ?? 0);
+      mesh.rotateY(y ?? 0);
+      mesh.rotateZ(z ?? 0);
+      renderer.render(scene, camera);
+    },
     move: null,
   };
 
@@ -70,13 +76,14 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
 
   const createMesh = async () => {
     mesh = await loadGLTF(url);
+    debugObject.mesh = mesh;
     mesh.scale.x = scale ?? 1;
     mesh.scale.y = scale ?? 1;
     mesh.scale.z = scale ?? 1;
 
-    mesh.rotation.x = rotation.x ?? 0;
-    mesh.rotation.y = rotation.y ?? 0;
-    mesh.rotation.z = rotation.z ?? 0;
+    mesh.rotateX(rotation.x ?? 0);
+    mesh.rotateY(rotation.y ?? 0);
+    mesh.rotateZ(rotation.z ?? 0);
     scene.add(mesh);
   }
 

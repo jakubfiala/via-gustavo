@@ -228,7 +228,7 @@ export const checkpoints = [
   },
   {
     lat: -20.32416,
-    lng: -69.74547,
+    lng: -69.75158,
     async callback(context) {
       return scheduleScript(chapter2.station14, context);
     },

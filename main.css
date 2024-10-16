@@ -566,6 +566,7 @@ p.subtitle {
   border-radius: 10px;
   transform: perspective(1000px) rotate3d(1,0,0,75deg) translateY(200%) scale(0.4);
   transform-origin: top center;
+  filter: drop-shadow(4px 7px 4px rgba(0,0,0,0.3));
 }
 
 .gm-style-iw-d:has(.gustavo-card) {
