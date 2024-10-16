@@ -1,3 +1,4 @@
+import { enableJaywalk } from '../interactions/jaywalk-button.js';
 import { flashStatus } from './utils.js';
 
 export const intro = [
@@ -269,5 +270,13 @@ export const station14 = [
   { text: "if you follow that path" },
   { text: "you will find him." },
   { text: "Other guides might show up." },
-  { text: "Are you ready to cross the road?" },
 ];
+
+export const outro = [
+  { text: "Are you ready to cross to the other side?" },
+  {
+    callback: (context) => {
+      enableJaywalk(context, { lat: -20.32047, lng: -69.75582 })
+    },
+  },
+]

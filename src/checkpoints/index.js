@@ -233,6 +233,13 @@ export const checkpoints = [
       return scheduleScript(chapter2.station14, context);
     },
   },
+  {
+    lat: -20.32411,
+    lng: -69.75218,
+    async callback(context) {
+      return scheduleScript(chapter2.outro, context);
+    },
+  },
 
   // Humberstone
   {
