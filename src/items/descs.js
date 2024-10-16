@@ -166,6 +166,90 @@ export default [
       return makers.card({ src: this.thumbnailURL, name: this.name });
     },
   },
+  {
+    thumbnailURL: '/assets/img/via-crucis/07.jpg',
+    name: 'VII - Fails the second time',
+    collectible: true,
+    position: {
+      lat: -20.32901,
+      lng: -69.70551,
+    },
+    async create(makers) {
+      return makers.card({ src: this.thumbnailURL, name: this.name });
+    },
+  },
+  {
+    thumbnailURL: '/assets/img/via-crucis/06.jpg',
+    name: 'VI - Veronica wipes his face',
+    collectible: true,
+    position: {
+      lat: -20.3279,
+      lng: -69.71511,
+    },
+    async create(makers) {
+      return makers.card({ src: this.thumbnailURL, name: this.name });
+    },
+  },
+  {
+    thumbnailURL: '/assets/img/via-crucis/05.jpg',
+    name: 'V - Simon of Cyrene helps him carry the cross',
+    collectible: true,
+    position: {
+      lat: -20.32696,
+      lng: -69.72382,
+    },
+    async create(makers) {
+      return makers.card({ src: this.thumbnailURL, name: this.name });
+    },
+  },
+  {
+    thumbnailURL: '/assets/img/via-crucis/04.jpg',
+    name: 'IV - Meets his mother',
+    collectible: true,
+    position: {
+      lat: -20.32612,
+      lng: -69.73172,
+    },
+    async create(makers) {
+      return makers.card({ src: this.thumbnailURL, name: this.name });
+    },
+  },
+  {
+    thumbnailURL: '/assets/img/via-crucis/03.jpg',
+    name: 'III - Fails the first time',
+    collectible: true,
+    position: {
+      lat: -20.32612,
+      lng: -69.73172,
+    },
+    async create(makers) {
+      return makers.card({ src: this.thumbnailURL, name: this.name });
+    },
+  },
+  {
+    thumbnailURL: '/assets/img/via-crucis/02.jpg',
+    name: 'II - Fails the first time',
+    collectible: true,
+    position: {
+      lat: -20.32471,
+      lng: -69.74547,
+    },
+    async create(makers) {
+      return makers.card({ src: this.thumbnailURL, name: this.name });
+    },
+  },
+  {
+    thumbnailURL: '/assets/img/via-crucis/01.jpg',
+    name: 'I - Takes up his cross',
+    collectible: true,
+    position: {
+      lat: -20.32416,
+      lng: -69.74547,
+    },
+    async create(makers) {
+      return makers.card({ src: this.thumbnailURL, name: this.name });
+    },
+  },
   createShrooms('1', {
     lat: -20.43544,
     lng: -69.54638,

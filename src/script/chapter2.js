@@ -227,6 +227,47 @@ export const station10 = [
 ];
 
 // 11. He meets his mother
+export const station11 = [
+  { text: "His pace is now nervous and irregular" },
+  { text: "His mother calls." },
+  { text: "He stares at the phone in doubt" },
+  { text: "then picks up and continues to walk." },
+  { text: "He talks quietly, I cannot quite make out what he's saying" },
+  { text: "but his voice is forceful and full of anger." },
+];
+
 // 12. He falls the first time
+export const station12 = [
+  { text: "He's still on the phone, wildly gesturing" },
+  { text: "He trips on a rock laying on the asphalt, almost falls" },
+  { text: "and mumbles a string of curses." },
+  { text: "In his agitation, he does not notice the yellow device" },
+  { text: "slip out of the half-open backpack." },
+  { text: "'I am hanging up now', he yells" },
+  { text: "and presses on." },
+];
+
 // 13. He takes up his Cross
+export const station13 = [
+  { text: "He can already hear the traffic on the Panamericana" },
+  { text: "the coastal mountain range towers over him." },
+  { text: "He stops and takes a deep breath" },
+  { text: "tightens the straps on his backpack" },
+  { text: "looks up at the sky one more time" },
+  { text: "and sets off again." },
+  { text: "The journey is nearing its end." },
+];
+
 // 14. He is condemned to death
+export const station14 = [
+  { text: "And that's it" },
+  { text: "That's where the pilgrimage ends." },
+  { text: "I watched him carefully cross the many lanes of the highway intersection" },
+  { text: "and follow the dirt road on the other side" },
+  { text: "This is as far as I can go with you" },
+  { text: "but I am beyond certain" },
+  { text: "if you follow that path" },
+  { text: "you will find him." },
+  { text: "Other guides might show up." },
+  { text: "Are you ready to cross the road?" },
+];

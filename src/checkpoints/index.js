@@ -184,6 +184,55 @@ export const checkpoints = [
       context.soundscape.set(context.soundscape.base);
     },
   },
+  {
+    lat: -20.32901,
+    lng: -69.70551,
+    async callback(context) {
+      return scheduleScript(chapter2.station8, context);
+    },
+  },
+  {
+    lat: -20.3279,
+    lng: -69.71511,
+    async callback(context) {
+      return scheduleScript(chapter2.station9, context);
+    },
+  },
+  {
+    lat: -20.32696,
+    lng: -69.72382,
+    async callback(context) {
+      return scheduleScript(chapter2.station10, context);
+    },
+  },
+  {
+    lat: -20.32612,
+    lng: -69.73172,
+    async callback(context) {
+      return scheduleScript(chapter2.station11, context);
+    },
+  },
+  {
+    lat: -20.32535,
+    lng: -69.73902,
+    async callback(context) {
+      return scheduleScript(chapter2.station12, context);
+    },
+  },
+  {
+    lat: -20.32471,
+    lng: -69.74547,
+    async callback(context) {
+      return scheduleScript(chapter2.station13, context);
+    },
+  },
+  {
+    lat: -20.32416,
+    lng: -69.74547,
+    async callback(context) {
+      return scheduleScript(chapter2.station14, context);
+    },
+  },
 
   // Humberstone
   {
