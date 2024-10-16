@@ -20,9 +20,12 @@ export const intro = [
 export const station1 = [
   // 1. laid in his tomb
   {
-    text: "Picture Gustavo",
+    text: "This is it -",
     callback: (context) => context.soundscape.set(context.soundscape.town2),
   },
+  { text: "- they call it the 'Church of the Sanctuary'." },
+  { text: "I... I think I'm ready to tell you what I've seen.", duration: 5 },
+  { text: "Picture Gustavo" },
   { text: "laying in his bed" },
   { text: "hist best shirt creased at the elbows" },
   { text: "his black trousers outlining his bones" },
@@ -168,3 +171,62 @@ export const station7 = [
   { duration: 5 },
   { text: "We're halfway there." },
 ];
+
+// 8. He falls for the second time
+export const station8 = [
+  { text: "He keeps walking." },
+  { text: "Suddenly, something among the trees catches his eye" },
+  { text: "and he runs off the path." },
+  { text: "The ground crunches under his feet as he sprints northwards." },
+  { text: "He leaps over a pile of gravel" },
+  { text: "but as he lands, his feet sink too deep" },
+  { text: "he loses balance" },
+  { text: "and collapses onto the rough terrain." },
+];
+
+// 9. Veronica wipes his face
+export const station9 = [
+  { text: "He lies there for a while" },
+  { text: "looking up, face covered in dust." },
+  { text: "He stares at the violent blue sky," },
+  { text: "fading into a yellowish white towards the horizon." },
+  { text: "The sun begins to burn his scalp" },
+  { text: "and the scratches of his knees start stinging." },
+  { text: "Suddenly, it seems to him" },
+  { text: "a glowing ring has formed above him" },
+  { text: "pulsating and growing" },
+  { text: "traces of a gentle face form out of the azure" },
+  { text: "he knows that face" },
+  { text: "Indeed, it seems the Lady of Mount Carmel herself" },
+  { text: "or the loving Pachamama" },
+  { text: "has arrived to his aid." },
+  { text: "She reaches out to him" },
+  { text: "he feels her porcelain touch" },
+  { text: "as she wipes his face clean." },
+];
+
+// 10. Simon of Cyrene helps him carry the Cross
+export const station10 = [
+  { text: "A new spur of energy flows through his limbs" },
+  { text: "as though another being moved them." },
+  { text: "He rises effortlessly" },
+  { text: "and returns to the pilgrims' path." },
+  { text: "As he walks, he keeps turning his head" },
+  { text: "looking back, looking to the sides" },
+  { text: "as if he felt some other presence." },
+  { text: "There are people in the desert" },
+  { text: "who he cannot see", duration: 3 },
+  { text: "and yet they are present." },
+  { text: "Some are ancient spirits" },
+  { text: "some are souls of recent past" },
+  { text: "circling around their little places on the roadside" },
+  { text: "and some are present NOW," },
+  { text: "in ways he cannot quite comprehend." },
+  { text: "Whatever they are, they are all here to help" },
+  { text: "carry his burden." },
+];
+
+// 11. He meets his mother
+// 12. He falls the first time
+// 13. He takes up his Cross
+// 14. He is condemned to death
