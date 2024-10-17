@@ -1,5 +1,5 @@
 import { enableJaywalk } from '../interactions/jaywalk-button.js';
-import { flashStatus } from './utils.js';
+import { disableClickToGoCB, flashStatus } from './utils.js';
 
 export const intro = [
   {
@@ -192,7 +192,7 @@ export const station9 = [
   { text: "He stares at the violent blue sky," },
   { text: "fading into a yellowish white towards the horizon." },
   { text: "The sun begins to burn his scalp" },
-  { text: "and the scratches of his knees start stinging." },
+  { text: "and the scratches on his knees start stinging." },
   { text: "Suddenly, it seems to him" },
   { text: "a glowing ring has formed above him" },
   { text: "pulsating and growing" },
@@ -246,6 +246,9 @@ export const station12 = [
   { text: "slip out of the half-open backpack." },
   { text: "'I am hanging up now', he yells" },
   { text: "and presses on." },
+  { duration: 3 },
+  { text: "You should probably pick up that device" },
+  { text: "if you haven't already." },
 ];
 
 // 13. He takes up his Cross
@@ -276,7 +279,7 @@ export const outro = [
   { text: "Are you ready to cross to the other side?" },
   {
     callback: (context) => {
-      enableJaywalk(context, { lat: -20.32047, lng: -69.75582 })
+      enableJaywalk(context, { lat: -20.32047, lng: -69.75582 });
     },
   },
 ]

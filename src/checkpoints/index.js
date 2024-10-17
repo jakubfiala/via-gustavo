@@ -2,6 +2,7 @@ import { completeChapter, chapters } from '../chapters.js';
 import { scheduleScript } from '../script/index.js';
 import * as chapter1 from '../script/chapter1.js';
 import * as chapter2 from '../script/chapter2.js';
+import * as chapter3 from '../script/chapter3.js';
 import { latLngDist } from "../utils.js";
 import { showSkyImages } from '../sky-images.js';
 
@@ -82,6 +83,8 @@ export const checkpoints = [
       context.soundscape.set(context.soundscape.town2);
     },
   },
+
+  // Chapter 2
   {
     lat: -20.34075,
     lng: -69.65655,
@@ -234,10 +237,23 @@ export const checkpoints = [
     },
   },
   {
-    lat: -20.32411,
-    lng: -69.75218,
+    lat: -20.324071688546439,
+    lng: -69.752710427462290,
     async callback(context) {
       return scheduleScript(chapter2.outro, context);
+    },
+  },
+
+  // Chapter 3
+  {
+    lat: -20.32047,
+    lng: -69.75582,
+    chapter: chapters[2],
+    async callback(context) {
+      return scheduleScript(chapter3.intro, {
+        ...context,
+        chapter: this.chapter,
+      });
     },
   },
 

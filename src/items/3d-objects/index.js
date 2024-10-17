@@ -27,12 +27,16 @@ const createLights = () => {
   return [ambientLight, light];
 };
 
-export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, scale, rotation = {} } = {}) => {
+export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPosition, scale, rotation = {}, onGround = false } = {}) => {
   const cameraInitX = cameraPosition?.x ?? CAMERA_DEFAULT_X;
   const cameraInitY = cameraPosition?.y ?? CAMERA_DEFAULT_Y;
   const cameraInitZ = cameraPosition?.z ?? CAMERA_DEFAULT_Z;
 
   const container = createGenericItemContainer();
+  if (onGround) {
+    container.classList.add('gustavo-item--on-ground');
+  }
+
   const canvas = document.createElement('canvas');
   canvas.classList.add('vg-item');
   canvas.height = CANVAS_SIZE;
@@ -51,7 +55,15 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
   const renderer = new WebGLRenderer({ canvas, alpha: true });
   renderer.setClearColor(0x000000, 0);
 
-  let mesh;
+  const mesh = await loadGLTF(url);
+  mesh.scale.x = scale ?? 1;
+  mesh.scale.y = scale ?? 1;
+  mesh.scale.z = scale ?? 1;
+
+  mesh.rotateX(rotation.x ?? 0);
+  mesh.rotateY(rotation.y ?? 0);
+  mesh.rotateZ(rotation.z ?? 0);
+  scene.add(mesh);
 
   const debugObject = {
     mesh,
@@ -74,19 +86,6 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
 
   console.info('[3d-objects]', name, debugObject);
 
-  const createMesh = async () => {
-    mesh = await loadGLTF(url);
-    debugObject.mesh = mesh;
-    mesh.scale.x = scale ?? 1;
-    mesh.scale.y = scale ?? 1;
-    mesh.scale.z = scale ?? 1;
-
-    mesh.rotateX(rotation.x ?? 0);
-    mesh.rotateY(rotation.y ?? 0);
-    mesh.rotateZ(rotation.z ?? 0);
-    scene.add(mesh);
-  }
-
   return {
     scene, camera, renderer, mesh, canvas,
     insert(map, position) {
@@ -107,12 +106,9 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
       renderer.render(scene, camera);
     },
     async reset() {
-      if (!mesh) {
-        // this could happen if we're jumping in the middle of a game where an item is handheld
-        await createMesh();
-      }
-
+      mesh.rotation.x = 0;
       mesh.rotation.y = 0;
+      mesh.rotation.z = 0;
       camera.position.x = 0;
       camera.position.y = 0;
       camera.position.z = 5;
@@ -136,10 +132,6 @@ export const THREEObjectMaker = (InfoWindow) => (url, { name, cameraPosition, sc
         } else {
           return;
         }
-      }
-
-      if (!mesh) {
-        await createMesh();
       }
 
       // rotate the object so it always faces the same direction in the panorama

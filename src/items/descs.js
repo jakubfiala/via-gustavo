@@ -50,29 +50,36 @@ export default [
   //     return makers.embed('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d372.91442031695556!2d-69.81590167423839!3d-20.187049561492504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915237000d0aa3d3%3A0xbb3391a4b788961!2sGeoglifo%20Humberstone!5e1!3m2!1sen!2sbe!4v1724752820012!5m2!1sen!2sbe');
   //   },
   // },
-  // {
-  //   name: 'Geiger Counter',
-  //   thumbnailURL: '/assets/items/geiger-counter/thumb.webp',
-  //   collectible: true,
-  //   handheld: true,
-  //   canBeActivated: true,
-  //   position: {
-  //     lat: -20.468511343004337,
-  //     lng: -69.458480041388709,
-  //   },
-  //   async create(makers) {
-  //     const item = makers.threeObject('/assets/items/geiger-counter/', { name: this.name, cameraPosition: { x: 8, y: 2, z: -6 } });
-  //     item.activate = async (context) => {
-  //       console.log('geiger counter activated', !!map);
-  //       initGeigerCounterDetection(context.map, context.audioContext, new google.maps.LatLng({
-  //         lat: -20.467868891278783,
-  //         lng: -69.459964265975231,
-  //       }));
-  //     };
+  {
+    name: 'Geiger Counter',
+    thumbnailURL: '/assets/items/geiger-counter/thumb.webp',
+    collectible: true,
+    handheld: true,
+    canBeActivated: true,
+    position: {
+      lat: -20.3252,
+      lng: -69.7392,
+    },
+    async create(makers) {
+      const item = await makers.threeObject('/assets/items/geiger-counter/',
+        {
+          name: this.name,
+          cameraPosition: { x: 12, y: 5, z: -6 },
+          rotation: { x: 0.5, y: 1, z: -1.25 },
+          onGround: true,
+        },
+      );
+      item.activate = async (context) => {
+        console.info('[items]', 'geiger counter activated');
+        initGeigerCounterDetection(context.map, context.audioContext, new google.maps.LatLng({
+          lat: -20.467868891278783,
+          lng: -69.459964265975231,
+        }));
+      };
 
-  //     return item;
-  //   },
-  // },
+      return item;
+    },
+  },
   {
     thumbnailURL: '/assets/img/tarot/judgement.jpg',
     name: 'Tarot Card - Judgement',

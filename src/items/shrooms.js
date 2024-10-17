@@ -6,7 +6,7 @@ export const createShrooms = (label, position) => ({
   position,
   pickUpSFX: 'chewing',
   async create(makers) {
-    const item = makers.threeObject('/assets/items/magic-mushrooms/', { name: this.name, cameraPosition: { y: 1 }, scale: 1.5 });
+    const item = await makers.threeObject('/assets/items/magic-mushrooms/', { name: this.name, cameraPosition: { y: 1 }, scale: 1.5 });
     item.activate = (context) => {
       document.body.classList.add('dreamz');
     };

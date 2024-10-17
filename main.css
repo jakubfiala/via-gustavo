@@ -573,6 +573,10 @@ p.subtitle {
   overflow: visible !important;
 }
 
+.gm-style-iw-d:has(.gustavo-item--on-ground) {
+  translate: 0 15vh;
+}
+
 .gustavo-item {
   transition: scale 500ms;
   cursor: pointer;
