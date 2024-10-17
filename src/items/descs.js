@@ -1,6 +1,8 @@
 import { createBusStopItem } from './bus.js';
 import { initGeigerCounterDetection } from '../../assets/items/geiger-counter/detection.js';
 import { createShrooms } from './shrooms.js';
+import { scheduleScript } from '../script/index.js';
+import { geigerCounterReply } from '../script/chapter2.js';
 
 export default [
   // {
@@ -17,7 +19,7 @@ export default [
     collectible: true,
     position: { lat: -20.336991952131125, lng: -69.656776540749206 },
     async create(makers) {
-      return makers.threeObject('/assets/items/coke/', { name: this.name });
+      return makers.threeObject('/assets/items/coke/', { name: this.name, onGround: true });
     },
   },
   createBusStopItem({
@@ -70,6 +72,7 @@ export default [
         },
       );
       item.activate = async (context) => {
+        scheduleScript(geigerCounterReply, context);
         console.info('[items]', 'geiger counter activated');
         initGeigerCounterDetection(context.map, context.audioContext, new google.maps.LatLng({
           lat: -20.467868891278783,
@@ -103,8 +106,8 @@ export default [
     name: 'XIII - Taken down from the cross',
     collectible: true,
     position: {
-      lat: -20.33532,
-      lng: -69.659,
+      lat: -20.33545,
+      lng: -69.65917,
     },
     async create(makers) {
       return makers.card({ src: this.thumbnailURL, name: this.name });

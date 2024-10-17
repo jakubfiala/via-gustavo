@@ -1,5 +1,5 @@
 import { enableJaywalk } from '../interactions/jaywalk-button.js';
-import { disableClickToGoCB, flashStatus } from './utils.js';
+import { flashStatus, showHelpMessage } from './utils.js';
 
 export const intro = [
   {
@@ -25,7 +25,11 @@ export const station1 = [
     callback: (context) => context.soundscape.set(context.soundscape.town2),
   },
   { text: "- they call it the 'Church of the Sanctuary'." },
-  { text: "I... I think I'm ready to tell you what I've seen.", duration: 5 },
+  {
+    text: "I... I think I'm ready to tell you what I've seen.",
+    duration: 5,
+  },
+  { duration: 5, callback: (context) => context.score.viaCrucis1.play() },
   { text: "Picture Gustavo" },
   { text: "laying in his bed" },
   { text: "hist best shirt creased at the elbows" },
@@ -57,6 +61,7 @@ export const mainRoad = [
 
 export const station2 = [
   // 2. taken down from the cross
+  { duration: 2, callback: (context) => context.score.viaCrucis3.play() },
   { text: "He'd shake his head and slowly stand up," },
   { text: "straighten the shirt" },
   { text: "- or attempt to, there's no time to look for the iron." },
@@ -93,7 +98,13 @@ export const station3 = [
   { text: "The heavens are somewhere up there" },
   { text: "He says nothing," },
   { text: "but you and I both know" },
-  { text: "He's asking WHY?" },
+  {
+    text: "He's asking WHY?",
+    duration: 6,
+  },
+  {
+    callback: (context) => context.score.viaCrucis2.play(),
+  }
 ];
 
 export const station4 = [
@@ -148,6 +159,7 @@ export const station6 = [
   { text: "The truck has stalled" },
   { text: "rolled onto the dirt" },
   { text: "and ground to a halt." },
+  { callback: (context) => context.score.viaCrucis1.play() },
   { text: "He gets up, throws his tools into a backpack" },
   { text: "and crosses the road near the bus stop" },
   { text: "A bird of prey flies out of a nearby tree" },
@@ -193,11 +205,12 @@ export const station9 = [
   { text: "fading into a yellowish white towards the horizon." },
   { text: "The sun begins to burn his scalp" },
   { text: "and the scratches on his knees start stinging." },
-  { text: "Suddenly, it seems to him" },
-  { text: "a glowing ring has formed above him" },
-  { text: "pulsating and growing" },
-  { text: "traces of a gentle face form out of the azure" },
-  { text: "he knows that face" },
+  { text: "Suddenly, he can see images in the heavens" },
+  { text: "faint outlines, lines of text, like technical diagrams," },
+  { text: "They pulsate and reconfigure," },
+  { text: "till traces of a gentle face form out of the azure." },
+  { callback: (context) => context.score.viaCrucis3.play() },
+  { text: "He knows that face." },
   { text: "Indeed, it seems the Lady of Mount Carmel herself," },
   { text: "the loving Pachamama," },
   { text: "has arrived to his aid." },
@@ -216,11 +229,11 @@ export const station10 = [
   { text: "looking back, looking to the sides" },
   { text: "as if he felt some other presence." },
   { text: "There are people in the desert" },
-  { text: "who he cannot see", duration: 3 },
+  { text: "whom he cannot see", duration: 3 },
   { text: "and yet they are present." },
   { text: "Some are ancient spirits" },
   { text: "some are souls of recent past" },
-  { text: "circling around their little places on the roadside" },
+  { text: "circling around their little shrines on the roadside" },
   { text: "and some are present NOW," },
   { text: "in ways he cannot quite comprehend." },
   { text: "Whatever they are, they are all here to help" },
@@ -249,6 +262,11 @@ export const station12 = [
   { duration: 3 },
   { text: "You should probably pick up that device" },
   { text: "if you haven't already." },
+  { text: "", callback: showHelpMessage("Click on the device to pick it up.") },
+];
+
+export const geigerCounterReply = [
+  { text: "Oh, it's a Geiger counter!" },
 ];
 
 // 13. He takes up his Cross
@@ -260,6 +278,7 @@ export const station13 = [
   { text: "looks up at the sky one more time" },
   { text: "and sets off again." },
   { text: "The journey is nearing its end." },
+  { callback: (context) => context.score.viaCrucis4.play() },
 ];
 
 // 14. He is condemned to death

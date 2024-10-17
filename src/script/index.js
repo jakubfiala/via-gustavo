@@ -1,8 +1,22 @@
-import { documentVisible, sleep } from '../utils.js';
+import { documentVisible, scale, sleep } from '../utils.js';
 
+const MIN_WORDS = 1;
+const MAX_WORDS = 10;
+const MIN_DURATION = 2;
+const MAX_DURATION = 6;
 const DEFAULT_DURATION = 4;
 
 window.currentScript = null;
+
+const getDurationFromText = text => {
+  if (text) {
+    const words = text.split(' ');
+    const duration = scale(words.length, MIN_WORDS, MAX_WORDS, MIN_DURATION, MAX_DURATION);
+    return Math.min(MAX_DURATION, Math.max(MIN_DURATION, duration));
+  }
+
+  return DEFAULT_DURATION;
+};
 
 export const scheduleScript = async (script, context) => {
   const { textDisplay } = context;
@@ -16,7 +30,7 @@ export const scheduleScript = async (script, context) => {
       return;
     }
 
-    const duration = line.duration ?? DEFAULT_DURATION;
+    const duration = line.duration ?? getDurationFromText(line.text);
     const time = line.time ?? duration;
 
     await documentVisible();

@@ -42,6 +42,7 @@ const thanks = [
 ];
 
 export const searching = [
+  { duration: 3, callback: (context) => context.score.veniceMedium.play() },
   { text: "I'd see him come down from Matilla," },
   { text: "pull over, and disappear among the trees." },
   { text: "He really believed he'd find a heap of" },
@@ -56,6 +57,7 @@ export const searching = [
 ];
 
 export const hisLand = [
+  { callback: (context) => context.score.veniceShort.play() },
   {
     text: "He must have grown up in these bush lands",
     callback: (context) => {
@@ -76,6 +78,7 @@ export const showYouSomething = [
 ];
 
 export const animita = [
+  { duration: 3, callback: (context) => context.score.veniceLong.play() },
   { text: "He'd often stop here at the animita," },
   { text: "it's just a modest shrine" },
   { text: "by the stone wall of the orchard." },
@@ -88,6 +91,7 @@ export const animita = [
 export const weMadeIt = [
   { text: "We made it into town!" },
   { text: "The bus stop is just a little further down." },
+  { callback: (context) => context.score.veniceShort.play() },
 ];
 
 export const theresTheBus = [

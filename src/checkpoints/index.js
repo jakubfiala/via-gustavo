@@ -111,8 +111,8 @@ export const checkpoints = [
     },
   },
   {
-    lat: -20.33531,
-    lng: -69.65914,
+    lat: -20.335455499426374,
+    lng: -69.659308859205751,
     callback(context) {
       return scheduleScript(chapter2.station2, context);
     },
@@ -121,7 +121,7 @@ export const checkpoints = [
     lat: -20.33362,
     lng: -69.66595,
     async callback(context) {
-      context.soundscape.set(context.soundscape.base);
+      context.soundscape.set(context.soundscape.trees);
     },
   },
   {
@@ -129,6 +129,13 @@ export const checkpoints = [
     lng: -69.66675,
     callback(context) {
       return scheduleScript(chapter2.station3, context);
+    },
+  },
+  {
+    lat: -20.33274,
+    lng: -69.67337,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.trees);
     },
   },
   {
