@@ -92,7 +92,7 @@ export const station3 = [
   { text: "Gustavo stares ahead through the windshield." },
   { text: "It looks as if he suddenly realised something." },
   { text: "Something inevitable." },
-  { text: "He looks up to the sky" },
+  { text: "He looks up to the sky", callback: (context) => context.score.viaCrucis2.play() },
   { text: "and though all he sees is the dusty roof" },
   { text: "he pierces it with his eyes" },
   { text: "The heavens are somewhere up there" },
@@ -102,9 +102,6 @@ export const station3 = [
     text: "He's asking WHY?",
     duration: 6,
   },
-  {
-    callback: (context) => context.score.viaCrucis2.play(),
-  }
 ];
 
 export const station4 = [
@@ -129,6 +126,7 @@ export const station4 = [
   { text: "The click could dramatically echo" },
   { text: "but it doesn't - this isn't a 90s thriller." },
   { text: "This is a game on the Internet." },
+  { callback: (context) => context.score.viaCrucis5.play() }
 ];
 
 export const station5 = [
@@ -144,6 +142,7 @@ export const station5 = [
   { text: "grandad", duration: 2 },
   { text: "auntie", duration: 2 },
   { text: "finally, he does one for the whole family chat." },
+  { duration: 1, callback: (context) => context.score.viaCrucis6.play() },
   { text: "If his journey was to be a secret" },
   { text: "it certainly isn't anymore." },
   { text: "Now there's no going back." },
@@ -159,7 +158,6 @@ export const station6 = [
   { text: "The truck has stalled" },
   { text: "rolled onto the dirt" },
   { text: "and ground to a halt." },
-  { callback: (context) => context.score.viaCrucis1.play() },
   { text: "He gets up, throws his tools into a backpack" },
   { text: "and crosses the road near the bus stop" },
   { text: "A bird of prey flies out of a nearby tree" },
@@ -168,8 +166,8 @@ export const station6 = [
 
 export const station7 = [
   // 7. meets the women of Jerusalem
-  { text: "He takes the pedestrian path" },
-  { text: "they've only built it recently" },
+  { text: "He takes the pedestrian path." },
+  { text: "They've only built it recently", callback: (context) => context.score.viaCrucis7.play() },
   { text: "he still remembers when they walked" },
   { text: "ten kilometres in a single file" },
   { text: "along the main road" },
@@ -188,7 +186,7 @@ export const station7 = [
 // 8. He falls for the second time
 export const station8 = [
   { text: "He keeps walking." },
-  { text: "Suddenly, something among the trees catches his eye" },
+  { text: "Suddenly, something among the trees catches his eye", callback: (context) => context.score.viaCrucis5.play() },
   { text: "and he runs off the path." },
   { text: "The ground crunches under his feet as he sprints northwards." },
   { text: "He leaps over a pile of gravel" },
@@ -208,12 +206,12 @@ export const station9 = [
   { text: "Suddenly, he can see images in the heavens" },
   { text: "faint outlines, lines of text, like technical diagrams," },
   { text: "They pulsate and reconfigure," },
-  { text: "till traces of a gentle face form out of the azure." },
+  { text: "till traces of a woman's gentle face form out of the azure." },
   { callback: (context) => context.score.viaCrucis3.play() },
   { text: "He knows that face." },
-  { text: "Indeed, it seems the Lady of Mount Carmel herself," },
-  { text: "the loving Pachamama," },
-  { text: "has arrived to his aid." },
+  { text: "Perhaps it was the Lady of Mount Carmel herself," },
+  { text: "or loving Pachamama," },
+  { text: "who arrived to his aid." },
   { text: "She reaches out to him" },
   { text: "he feels her porcelain touch" },
   { text: "as she wipes his face clean." },
@@ -228,6 +226,7 @@ export const station10 = [
   { text: "As he walks, he keeps turning his head" },
   { text: "looking back, looking to the sides" },
   { text: "as if he felt some other presence." },
+  { duration: 1, callback: (context) => context.score.viaCrucis7.play() },
   { text: "There are people in the desert" },
   { text: "whom he cannot see", duration: 3 },
   { text: "and yet they are present." },
@@ -236,15 +235,13 @@ export const station10 = [
   { text: "circling around their little shrines on the roadside" },
   { text: "and some are present NOW," },
   { text: "in ways he cannot quite comprehend." },
-  { text: "Whatever they are, they are all here to help" },
-  { text: "carry his burden." },
 ];
 
 // 11. He meets his mother
 export const station11 = [
   { text: "His pace is now nervous and irregular" },
   { text: "His mother calls." },
-  { text: "He stares at the phone in doubt" },
+  { text: "He stares at the phone in doubt", callback: (context) => context.score.viaCrucis7.play() },
   { text: "then picks up and continues to walk." },
   { text: "He talks quietly, I cannot quite make out what he's saying" },
   { text: "but his voice is forceful and full of anger." },
@@ -291,6 +288,7 @@ export const station14 = [
   { text: "but I am beyond certain" },
   { text: "if you follow that path" },
   { text: "you will find him." },
+  { text: "When in doubt, just follow the path." },
   { text: "Other guides might show up." },
 ];
 
