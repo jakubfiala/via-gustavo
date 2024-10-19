@@ -1,4 +1,5 @@
 const FOOTSTEPS_URL = '/assets/audio/footsteps.mp3';
+const FOOTSTEPS_GRAVEL_URL = '/assets/audio/footsteps-gravel.mp3';
 const CHEWING_URL = '/assets/audio/chewing.mp3';
 const BACKPACK_URL = '/assets/audio/backpack.mp3';
 
@@ -31,12 +32,20 @@ export default async (context) => {
   context.sfxGain = new GainNode(context.audioContext, { gain: 0 });
   context.sfxGain.connect(context.masterGain);
 
-  const footsteps = await getNodes(context, FOOTSTEPS_URL);
+  const footstepsNormal = await getNodes(context, FOOTSTEPS_URL);
+  const footstepsGravel = await getNodes(context, FOOTSTEPS_GRAVEL_URL);
   const chewing = await getNodes(context, CHEWING_URL);
   const backpack = await getNodes(context, BACKPACK_URL);
 
   return {
-    footsteps: () => playSFX(context, footsteps, 2),
+    footstepsSounds: {
+      footstepsNormal,
+      footstepsGravel,
+    },
+    currentFootsteps: footstepsNormal,
+    footsteps() {
+      playSFX(context, this.currentFootsteps, 2);
+    },
     chewing: () => playSFX(context, chewing),
     backpack: () => playSFX(context, backpack),
   };

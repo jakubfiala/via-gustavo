@@ -1,6 +1,6 @@
 import { latLngDist } from './utils.js';
 
-const MIX_TRANS_TIME = 2;
+const MIX_TRANS_TIME = 1;
 const PLAY_DISTANCE_THRESHOLD = 300;
 const LOAD_DISTANCE_THRESHOLD = PLAY_DISTANCE_THRESHOLD + 20;
 
@@ -44,7 +44,7 @@ class Sound {
   createFXGraph() {
     this.panner = this.context.createPanner();
     this.panner.panningModel = 'HRTF';
-    this.panner.distanceModel = 'exponential';
+    this.panner.distanceModel = 'linear';
     this.panner.positionX.value = this.position.lat();
     this.panner.positionY.value = this.position.lng();
 

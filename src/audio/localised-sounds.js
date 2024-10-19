@@ -44,7 +44,15 @@ export const localisedSounds = [
     lat: -20.33543,
     lng: -69.65581,
     src: "assets/audio/bar.mp3",
-    db: 80,
+    db: 60,
+    loop: true
+  },
+  {
+    name: "highway-front-mid",
+    lat: -20.32409,
+    lng: -69.75246,
+    src: "assets/audio/highway-front-mid.mp3",
+    db: 90,
     loop: true
   },
 ];

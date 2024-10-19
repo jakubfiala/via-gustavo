@@ -442,10 +442,6 @@ p.subtitle {
   filter: contrast(1.5);
 }
 
-.intro__landscape--ground {
-  animation: fade-in 500ms both, slide-in 1s both;
-}
-
 @keyframes intro-h1-slide-in {
   from {
     translate: 0 15%;
@@ -458,19 +454,10 @@ p.subtitle {
 
 .intro h1 {
   animation: fade-in 1s 500ms both, intro-h1-slide-in 1s 500ms both;
-  font-family: "Chicle", serif;
-  font-weight: 400;
   color: white;
-  font-size: 35vh;
-  text-transform: uppercase;
-  line-height: 1;
-  justify-self: start;
   position: absolute;
-  top: 4rem;
+  top: 2rem;
   margin-top: 0;
-  white-space: nowrap;
-  text-align: center;
-  scale: 1 1.5;
   left: 0;
   width: 100%;
   text-align: center;
