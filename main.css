@@ -376,13 +376,15 @@ p.subtitle {
 }
 
 .hud__title {
-  font-family: "Chicle";
-  text-transform: uppercase;
-  letter-spacing: 2px;
   color: white;
-  text-shadow: 1px 1px #12548e;
-  margin-right: 0.5rem;
-  font-size: 1.5em;
+  margin: 0;
+}
+
+.hud__title svg {
+  width: auto;
+  height: 2.5rem;
+  display: block;
+  margin-right: 1rem;
 }
 
 .hud__display {
@@ -621,6 +623,7 @@ p.subtitle {
   background: #5252ff;
   padding: 3rem;
   translate: -50% -50%;
+  box-shadow: 4px 7px 4px rgba(0,0,0,0.3);
 }
 
 #jaywalk-button {
@@ -648,4 +651,31 @@ p.subtitle {
   height: 100%;
   overflow: hidden;
   border-radius: 5rem;
+}
+
+@keyframes drone-flyby {
+  0% {
+    translate: -100% 0;
+    scale: 1;
+  }
+
+  35% {
+    translate: 100vw 25vh;
+    scale: 0.9;
+  }
+
+  100% {
+    translate: calc(50vw - 50%) 15vh;
+    scale: 0.01;
+  }
+}
+
+#drone {
+  animation: drone-flyby 3s ease-in-out both paused;
+  position: fixed;
+  z-index: 6;
+  top: 0;
+  left: 0;
+  width: 400px;
+  pointer-events: none;
 }

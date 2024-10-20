@@ -55,4 +55,12 @@ export const localisedSounds = [
     db: 90,
     loop: true
   },
+  {
+    name: "drone-distant",
+    lat: -20.31347,
+    lng: -69.7629,
+    src: "assets/audio/drone-distant.mp3",
+    db: 80,
+    loop: true
+  },
 ];

@@ -5,6 +5,7 @@ import * as chapter2 from '../script/chapter2.js';
 import * as chapter3 from '../script/chapter3.js';
 import { latLngDist } from "../utils.js";
 import { showSkyImages } from '../sky-images.js';
+import { flyBy } from '../drone.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
@@ -261,6 +262,13 @@ export const checkpoints = [
         ...context,
         chapter: this.chapter,
       });
+    },
+  },
+  {
+    lat: -20.305932332865950,
+    lng: -69.769828449520617,
+    async callback(context) {
+      flyBy(context);
     },
   },
 

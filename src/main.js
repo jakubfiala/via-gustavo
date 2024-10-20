@@ -64,7 +64,7 @@ if (completedChapters.size > 0) {
 }
 
 const initialize = async () => {
-  if (!dev) {
+  if (!dev && !debug) {
     try {
       await document.body.requestFullscreen();
     } catch (err) {
