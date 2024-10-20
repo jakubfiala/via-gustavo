@@ -580,7 +580,8 @@ p.subtitle {
   filter: drop-shadow(4px 7px 4px rgba(0,0,0,0.3));
 }
 
-.gm-style-iw-d:has(.gustavo-card) {
+.gm-style-iw-d:has(.gustavo-card),
+.gm-style-iw-d:has(.gustavo-image) {
   overflow: visible !important;
 }
 
@@ -678,4 +679,16 @@ p.subtitle {
   left: 0;
   width: 400px;
   pointer-events: none;
+}
+
+#drone-hovering {
+  opacity: 0;
+  pointer-events: none;
+  translate: 0 -100vh;
+  transition: translate 2s;
+}
+
+#drone-hovering.drone-hovering--visible {
+  opacity: 1;
+  translate: 0 0;
 }

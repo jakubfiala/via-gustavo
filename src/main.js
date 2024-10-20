@@ -113,7 +113,7 @@ const initialize = async () => {
 
   scriptContext.masterGain.gain.setValueAtTime(1, scriptContext.audioContext.currentTime);
 
-  new Sharawadji(localisedSounds, map, {
+  scriptContext.localisedSounds = new Sharawadji(localisedSounds, map, {
     debug,
     compressor: true
   });

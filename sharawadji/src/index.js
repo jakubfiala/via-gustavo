@@ -67,6 +67,10 @@ class Sharawadji {
 		const attenuation = Math.max(Math.min(activeSoundsCount / ATTENUATION_TARGET, 0.7), 0);
 		this.sounds.forEach(s => s.updateMix(1 - attenuation));
 	}
+
+	getSoundByName(name) {
+		return this.sounds.find((sound) => sound.data.name === name);
+	}
 };
 
 window.Sharawadji = Sharawadji;

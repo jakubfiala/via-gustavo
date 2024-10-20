@@ -229,4 +229,12 @@ export default [
     lat: -20.43526,
     lng: -69.54645,
   }),
+  {
+    name: 'Hovering drone',
+    collectible: false,
+    position: { lat: -20.29233, lng: -69.78107 },
+    create(makers) {
+      return makers.simpleImage('/assets/img/drone.webp', 'drone-hovering');
+    },
+  },
 ];

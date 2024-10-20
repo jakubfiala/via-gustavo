@@ -2,6 +2,7 @@ import Inventory from '../inventory/index.js';
 import { THREEObjectMaker } from './3d-objects/index.js';
 import { embedMaker } from './embeds/index.js';
 import { cardMaker } from './card.js';
+import { simpleImageMaker } from './simple-image.js';
 import itemDescs from './descs.js';
 
 const DEFAULT_PICK_UP_SFX = 'backpack';
@@ -53,6 +54,7 @@ export default async (InfoWindow, context) => {
     threeObject: THREEObjectMaker(InfoWindow),
     embed: embedMaker(InfoWindow),
     card: cardMaker(InfoWindow),
+    simpleImage: simpleImageMaker(InfoWindow),
   };
 
   const items = [];

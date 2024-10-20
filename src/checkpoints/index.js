@@ -5,7 +5,7 @@ import * as chapter2 from '../script/chapter2.js';
 import * as chapter3 from '../script/chapter3.js';
 import { latLngDist } from "../utils.js";
 import { showSkyImages } from '../sky-images.js';
-import { flyBy } from '../drone.js';
+import * as drone from '../drone.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
@@ -268,7 +268,18 @@ export const checkpoints = [
     lat: -20.305932332865950,
     lng: -69.769828449520617,
     async callback(context) {
-      flyBy(context);
+      context.soundscape.set(context.soundscape.highwayRight);
+      context.sfx.currentFootsteps = context.sfx.footstepsSounds.footstepsGravel;
+      drone.flyBy(context);
+    },
+  },
+  {
+    lat: -20.292360241167511,
+    lng: -69.781218354251735,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.highwayRight);
+      context.sfx.currentFootsteps = context.sfx.footstepsSounds.footstepsGravel;
+      drone.hover(context, { lat: -20.29233, lng: -69.78107 })
     },
   },
 

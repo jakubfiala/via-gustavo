@@ -29,7 +29,7 @@ class Sound {
     this.context = context;
     this.destination = destination;
 
-    this.updateMix();
+    this.updateMix(1);
   }
 
   static get state() {
@@ -42,17 +42,17 @@ class Sound {
   }
 
   createFXGraph() {
-    this.panner = this.context.createPanner();
+    this.panner = new PannerNode(this.context);
     this.panner.panningModel = 'HRTF';
     this.panner.distanceModel = 'linear';
     this.panner.positionX.value = this.position.lat();
     this.panner.positionY.value = this.position.lng();
 
-    this.filter = this.context.createBiquadFilter();
+    this.filter = new BiquadFilterNode(this.context);
     this.filter.type = 'lowpass';
     this.filter.frequency.value = 22000;
 
-    this.gain = this.context.createGain();
+    this.gain = new GainNode(this.context);
     this.gain.gain.setValueAtTime(0, this.context.currentTime);
 
     this.panner.connect(this.filter);
@@ -63,7 +63,7 @@ class Sound {
   }
 
   start() {
-    this.source = this.context.createBufferSource();
+    this.source = new AudioBufferSourceNode(this.context);
     this.source.loop = this.loop;
     this.source.buffer = this.buffer;
     this.source.connect(this.processingChainStart);
@@ -76,29 +76,25 @@ class Sound {
     this.state = Sound.state.SUSPENDED;
   }
 
-  async load(src) {
-    const response = await fetch(src);
-    const soundData = await response.arrayBuffer();
+  async load() {
     this.state = Sound.state.LOADING;
-    if (this.debug) console.info(`loading ${src}`);
+    const response = await fetch(this.src);
+    const soundData = await response.arrayBuffer();
+    if (this.debug) console.info(`loading ${this.src}`);
 
     try {
       // iOS Safari still doesn't support dAD with promises ¯\_(ツ)_/¯
-      this.context.decodeAudioData(
+      const buffer = await this.context.decodeAudioData(
         soundData,
-        buffer => {
-          if (this.debug) console.info(`loaded`, src, buffer, this.loaded);
-          this.buffer = buffer;
-          this.createFXGraph();
-          this.state = Sound.state.SUSPENDED;
-          this.playIfNear();
-        },
-        err => {
-          throw new Error(err);
-        }
       );
+
+      if (this.debug) console.info(`loaded`, this.src, buffer, this.loaded);
+      this.buffer = buffer;
+      this.createFXGraph();
+      this.state = Sound.state.SUSPENDED;
+      this.playIfNear();
     } catch(e) {
-      console.warn(`Couldn't decode ${src}`);
+      console.warn(`Couldn't decode ${this.src}`);
     }
   }
 
@@ -129,9 +125,9 @@ class Sound {
       default:
         if (distance < LOAD_DISTANCE_THRESHOLD) {
           try {
-            this.load(this.src);
+            this.load();
           } catch(e) {
-            console.warn(`Couldn't load ${src}`);
+            console.warn(`Couldn't load ${this.src}`);
           }
           return false;
         } else {
