@@ -15,6 +15,16 @@ const setHandheldItem = (item) => {
     item.reset();
     item.isBeingHeld = true;
   }
+
+  return {
+    drop: async (context) => {
+      console.info('[items]', 'dropping', item);
+      await item.deactivate?.(context);
+      item.isBeingHeld = false;
+      handheldContainer.removeChild(item.canvas);
+      Inventory.removeItem(item.name);
+    },
+  }
 };
 
 const initItem = (makers) => async (desc, context) => {
@@ -35,7 +45,7 @@ const initItem = (makers) => async (desc, context) => {
       pickUpSound();
 
       if (desc.handheld) {
-        setHandheldItem(item);
+        context.handheldItem = setHandheldItem(item);
       }
 
       if (desc.canBeActivated) {
@@ -66,7 +76,7 @@ export default async (InfoWindow, context) => {
         item.taken = true;
 
         if (desc.handheld) {
-          setHandheldItem(item);
+          context.handheldItem = setHandheldItem(item);
         }
 
         if (desc.canBeActivated) {

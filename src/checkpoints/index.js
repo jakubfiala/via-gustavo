@@ -279,7 +279,7 @@ export const checkpoints = [
     async callback(context) {
       context.soundscape.set(context.soundscape.highwayRight);
       context.sfx.currentFootsteps = context.sfx.footstepsSounds.footstepsGravel;
-      drone.hover(context, { lat: -20.29233, lng: -69.78107 })
+      // drone.hover(context, { lat: -20.29233, lng: -69.78107 });
     },
   },
 

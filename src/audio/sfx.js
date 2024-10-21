@@ -3,6 +3,7 @@ const FOOTSTEPS_GRAVEL_URL = '/assets/audio/footsteps-gravel.mp3';
 const CHEWING_URL = '/assets/audio/chewing.mp3';
 const BACKPACK_URL = '/assets/audio/backpack.mp3';
 const DRONE_FLYBY_URL = '/assets/audio/drone-flyby.mp3';
+const EXPLOSION_URL = '/assets/audio/explosion.mp3';
 
 const getBuffer = async (audioContext, url) => {
   const response = await fetch(url);
@@ -47,6 +48,7 @@ export default async (context) => {
   const chewing = await getNodes(context, CHEWING_URL);
   const backpack = await getNodes(context, BACKPACK_URL);
   const droneFlyBy = await getNodes(context, DRONE_FLYBY_URL, true);
+  const explosion = await getNodes(context, EXPLOSION_URL, true);
 
   return {
     footstepsSounds: {
@@ -60,6 +62,7 @@ export default async (context) => {
     chewing: () => playSFX(context, chewing),
     backpack: () => playSFX(context, backpack),
     droneFlyBy: () => playSFX(context, droneFlyBy),
+    explosion: () => playSFX(context, explosion),
   };
 };
 

@@ -98,7 +98,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
   console.info('[3d-objects]', name, debugObject);
 
   return {
-    scene, camera, renderer, mesh, canvas,
+    name, scene, camera, renderer, mesh, canvas,
     insert(map, position) {
       this.map = map;
 

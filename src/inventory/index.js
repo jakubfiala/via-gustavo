@@ -12,6 +12,7 @@ const addToUI = (item) => {
   const figcaption = cell.querySelector('figcaption');
   figcaption.innerText = item.name;
 
+  cell.children[0].dataset.name = item.name;
   inventory.appendChild(cell);
 };
 
@@ -41,5 +42,18 @@ export default {
     inventory.innerHTML = '';
     this.items = [];
     localStorage.removeItem(LOCALSTORAGE_INVENTORY_KEY);
+  },
+  removeItem(name) {
+    const toRemove = this.items.findIndex((item) => item.name === name);
+    console.info('[inventory]', 'removing item', name, toRemove);
+    if (toRemove !== -1) {
+      this.items.splice(toRemove, 1);
+      console.info('[inventory]', 'items after splicing', this.items);
+      this.persist();
+
+      const element = inventory.querySelector(`[data-name="${name}"]`);
+      console.log('[inventory]', 'removing item', name, toRemove);
+      inventory.removeChild(element);
+    }
   },
 }

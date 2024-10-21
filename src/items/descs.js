@@ -3,6 +3,9 @@ import { initGeigerCounterDetection } from '../../assets/items/geiger-counter/de
 import { createShrooms } from './shrooms.js';
 import { scheduleScript } from '../script/index.js';
 import { geigerCounterReply } from '../script/chapter2.js';
+import { hover } from '../drone.js';
+import inventory from '../inventory/index.js';
+import { sleep } from '../utils.js';
 
 export default [
   // {
@@ -82,7 +85,12 @@ export default [
           lng: -69.78133,
         });
 
-        initGeigerCounterDetection(context, item, target);
+        item.detection = initGeigerCounterDetection(context, item, target);
+      };
+
+      item.deactivate = async () => {
+        console.info('[items]', 'geiger counter deactivated');
+        item.detection.end();
       };
 
       return item;
@@ -237,9 +245,48 @@ export default [
   {
     name: 'Hovering drone',
     collectible: false,
-    position: { lat: -20.29233, lng: -69.78107 },
+    position: { lat: -20.29203, lng: -69.78111 },
     create(makers) {
       return makers.simpleImage('/assets/img/drone.webp', 'drone-hovering');
+    },
+  },
+  {
+    name: 'NASA Backpack',
+    thumbnailURL: '/assets/items/backpack/thumb.webp',
+    collectible: true,
+    canBeActivated: true,
+    position: {
+      lat: -20.29224,
+      lng: -69.78133,
+    },
+    async create(makers) {
+      const item = await makers.threeObject('/assets/items/backpack/',
+        {
+          name: this.name,
+          onGround: true,
+          scale: 0.8,
+          cameraPosition: { y: 0.8 },
+        },
+      );
+      item.activate = async (context) => {
+        console.info('[backpack]', 'activated');
+        if (!inventory.hasItem('Geiger Counter')) {
+          return;
+        }
+
+        await sleep(2000);
+        document.getElementById('handheld-explosion').hidden = false;
+        context.sfx.explosion();
+
+        await sleep(800);
+        await context.handheldItem?.drop(context);
+        document.getElementById('handheld-explosion').hidden = true;
+
+        await sleep(2000);
+        hover(context, { lat: -20.29203, lng: -69.78111 });
+      };
+
+      return item;
     },
   },
 ];
