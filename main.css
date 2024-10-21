@@ -143,7 +143,6 @@ p.subtitle {
 }
 
 .text-overlay {
-  font-family: serif;
   font-size: 1.618rem;
   color: #12548e;
   position: absolute;
@@ -344,7 +343,7 @@ p.subtitle {
   z-index: 2;
   padding: 0;
   min-width: 300px;
-  min-height: 300px;
+  min-height: 150px;
 }
 
 .hud__dialog-header {
@@ -538,11 +537,11 @@ p.subtitle {
   animation: handheld 1s infinite;
   position: fixed;
   z-index: 2;
-  bottom: -7rem;
+  bottom: -14rem;
   right: 50%;
   pointer-events: none;
-  scale: 1.5 1.5;
   transform-origin: center center;
+  scale: 0.5 0.5;
 }
 
 .handheld-item .vg-item {
@@ -581,6 +580,7 @@ p.subtitle {
 }
 
 .gm-style-iw-d:has(.gustavo-card),
+.gm-style-iw-d:has(.gustavo-item),
 .gm-style-iw-d:has(.gustavo-image) {
   overflow: visible !important;
 }
@@ -590,13 +590,13 @@ p.subtitle {
 }
 
 .gustavo-item {
-  transition: scale 500ms;
+  transition: filter 250ms;
   cursor: pointer;
   scale: 1;
 }
 
 .gustavo-item:hover {
-  scale: 1.1;
+  filter: brightness(200%);
 }
 
 .sky-images:not([hidden]) {
@@ -691,4 +691,23 @@ p.subtitle {
 #drone-hovering.drone-hovering--visible {
   opacity: 1;
   translate: 0 0;
+}
+
+#bus-dialog::backdrop {
+  animation: fade-in 1s both;
+  background: rgba(0,0,0,0.5);
+}
+
+#bus-dialog-form {
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+#bus-dialog-form p {
+  margin: 0 0 1rem;
+}
+
+#bus-dialog-form button {
+  display: block;
+  margin: 0 auto;
 }

@@ -72,7 +72,7 @@ export default [
   { text: "many of you aren't even real." },
   { duration: 5 },
   { text: "I find myself feeling", duration: 3 },
-  { text: "like a llama who ventured to the sea" },
+  { text: "like a llama who ventured to a lake" },
   { text: "and by sheer ignorance" },
   { text: "dipped her hooves in sinking sand." },
   { text: "I'm still here, but something underneath" },
@@ -90,7 +90,7 @@ export default [
   { text: "and I've been looking for someone" },
   { text: "A friend, you might say." },
   { duration: 1 },
-  { text: "It has been weeks, maybe months" },
+  { text: "It has been days, maybe weeks" },
   { text: "since he last drove towards La Tirana", duration: 5 },
   { text: "and vanished from my world." },
 ];

@@ -137,7 +137,7 @@ export const station5 = [
   { text: "so he pulls out his phone" },
   { text: "and starts a voice note." },
   { text: "This time, he really lets it all out." },
-  { text: "It feels so good that when he's done" },
+  { text: "It feels so good that, when he's done," },
   { text: "he fires up another one to his brothers" },
   { text: "grandad", duration: 2 },
   { text: "auntie", duration: 2 },
@@ -244,7 +244,7 @@ export const station11 = [
   { text: "He stares at the phone in doubt", callback: (context) => context.score.viaCrucis7.play() },
   { text: "then picks up and continues to walk." },
   { text: "He talks quietly, I cannot quite make out what he's saying" },
-  { text: "but his voice is forceful and full of anger." },
+  { text: "but his voice is forceful and angry." },
 ];
 
 // 12. He falls the first time

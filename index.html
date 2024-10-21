@@ -158,7 +158,6 @@
       </div>
     </form>
     <div id="bus-overlay" class="overlay overlay--full" hidden>
-      &hellip; bussing it &hellip;
       <audio id="bus-audio" src="assets/audio/bus.mp3"></audio>
     </div>
     <div id="handheld-item" class="handheld-item"></div>
@@ -171,5 +170,17 @@
       </button>
     </div>
     <img id="drone" src="/assets/img/drone.webp" loading="lazy">
+    <dialog id="bus-dialog" class="hud__dialog">
+      <header class="hud__dialog-header">
+        Bus
+        <button id="bus-dialog-close" class="hud__dialog-close">Close</button>
+      </header>
+      <form id="bus-dialog-form" method="dialog">
+        <p>
+          Would you like to travel to <strong id="bus-dialog-destination">the next place?</strong>?
+        </p>
+        <button class="hud__button">Travel</button>
+      </form>
+    </dialog>
   </body>
 </html>

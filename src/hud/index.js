@@ -3,7 +3,7 @@ const povDisplay = document.getElementById('pov-display');
 const hud = document.getElementById('hud');
 
 const setupDialog = ({ toggle, close, dialog }) => {
-  toggle.addEventListener('click', () => {
+  toggle?.addEventListener('click', () => {
     if (dialog.open) {
       dialog.close();
     } else {
@@ -42,6 +42,10 @@ export default () => {
       dialog: document.getElementById('settings-dialog'),
       toggle: document.getElementById('settings-button'),
       close: document.getElementById('settings-close'),
+    },
+    {
+      dialog: document.getElementById('bus-dialog'),
+      close: document.getElementById('bus-dialog-close'),
     },
   ].forEach((dialogSettings) => setupDialog(dialogSettings));
 };

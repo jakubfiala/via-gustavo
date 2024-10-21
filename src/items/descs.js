@@ -19,7 +19,9 @@ export default [
     collectible: true,
     position: { lat: -20.336991952131125, lng: -69.656776540749206 },
     async create(makers) {
-      return makers.threeObject('/assets/items/coke/', { name: this.name, onGround: true });
+      return makers.threeObject('/assets/items/coke/',
+        { name: this.name, onGround: true, scale: 0.3, cameraPosition: { x: 0, y: 0.5, z: 1 } },
+      );
     },
   },
   createBusStopItem({
@@ -66,8 +68,9 @@ export default [
       const item = await makers.threeObject('/assets/items/geiger-counter/',
         {
           name: this.name,
-          cameraPosition: { x: 12, y: 5, z: -6 },
-          rotation: { x: 0.5, y: 1, z: -1.25 },
+          cameraPosition: { x: 6, y: 2.5, z: -3 },
+          rotation: { x: 0.6, y: -0.95, z: -1.25 },
+          lightPosition: { z: -0.7 },
           onGround: true,
         },
       );

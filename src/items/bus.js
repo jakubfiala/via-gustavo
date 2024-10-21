@@ -1,7 +1,10 @@
-export const takeTheBus = (map, { locationName, latLng, pov }) => {
-  const overlay = document.getElementById('bus-overlay');
-  const audio = document.getElementById('bus-audio');
+const overlay = document.getElementById('bus-overlay');
+const audio = document.getElementById('bus-audio');
+const dialog = document.getElementById('bus-dialog');
+const form = document.getElementById('bus-dialog-form');
+const destination = document.getElementById('bus-dialog-destination');
 
+const travel = (map, { locationName, latLng, pov }) => {
   overlay.hidden = false;
   audio.play();
 
@@ -13,6 +16,12 @@ export const takeTheBus = (map, { locationName, latLng, pov }) => {
   audio.addEventListener('ended', () => {
     overlay.hidden = true;
   }, { once: true });
+}
+
+export const takeTheBus = (map, data) => {
+  destination.innerText = data.locationName;
+  dialog.showModal();
+  form.addEventListener('submit', () => travel(map, data), { once: true });
 };
 
 export const createBusStopItem = ({ position, destination: { locationName, latLng, pov }, cameraPosition, scale }) => ({

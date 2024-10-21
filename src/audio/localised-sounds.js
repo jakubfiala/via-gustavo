@@ -36,7 +36,7 @@ export const localisedSounds = [
     lat: -20.33806,
     lng: -69.65589,
     src: "assets/audio/bar.mp3",
-    db: 80,
+    db: 40,
     loop: true
   },
   {
@@ -44,7 +44,7 @@ export const localisedSounds = [
     lat: -20.33543,
     lng: -69.65581,
     src: "assets/audio/bar.mp3",
-    db: 60,
+    db: 40,
     loop: true
   },
   {
@@ -60,7 +60,7 @@ export const localisedSounds = [
     lat: -20.31347,
     lng: -69.7629,
     src: "assets/audio/drone-distant.mp3",
-    db: 80,
+    db: 90,
     loop: true
   },
   {
