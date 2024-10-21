@@ -557,6 +557,8 @@ p.subtitle {
 
 .chapters__chapter {
   padding: 0.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .chapters__chapter + .chapters__chapter {
@@ -571,6 +573,17 @@ p.subtitle {
 
 .chapters__chapter--complete::before {
   visibility: visible;
+}
+
+.chapters__replay {
+  margin-right: 0;
+  margin-left: auto;
+  padding: 0.25rem;
+}
+
+.chapters__replay::before {
+  content: '▶';
+  margin-right: 0.5ch;
 }
 
 .gustavo-card {

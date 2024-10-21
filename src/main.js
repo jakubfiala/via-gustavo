@@ -55,8 +55,6 @@ const mapOptions = {
   showRoadLabels: false,
 };
 
-initChapters();
-
 if (completedChapters.size > 0) {
   introCTAContinue.hidden = false;
 } else if (!debug) {
@@ -147,12 +145,13 @@ const initialize = async () => {
     },
   );
 
-  initHUD();
-  initSettings();
+  initHUD(scriptContext);
+  initSettings(scriptContext);
+  initChapters(scriptContext);
 
   setLatLngDisplay(initialPosition);
   setPovDisplay(map.getPov());
-  initGamepad();
+  initGamepad(scriptContext);
 
   document.body.classList.add('game-on');
 };

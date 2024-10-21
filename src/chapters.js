@@ -3,6 +3,7 @@ import { LOCALSTORAGE_CHAPTERS_KEY } from './constants.js';
 const ITEM_CLASS = 'chapters__chapter';
 const COMPLETED_CLASS = 'chapters__chapter--complete';
 
+const dialog = document.getElementById('chapters-dialog');
 const list = document.getElementById('chapters-list');
 
 export const completed = new Set(JSON.parse(localStorage.getItem(LOCALSTORAGE_CHAPTERS_KEY)) || []);
@@ -34,7 +35,7 @@ export const chapters = [
   },
   {
     id: 4,
-    title: "дары небес",
+    title: "Humberstone",
     position: {
       lat: -20.467491495806950,
       lng: -69.460925633319292,
@@ -72,6 +73,16 @@ export const initChapters = (context) => {
     chapter.indicator = item;
     if (completed.has(chapter.id)) {
       chapter.indicator.classList.add(COMPLETED_CLASS);
+
+      const button = document.createElement('button');
+      button.innerText = 'Replay';
+      button.addEventListener('click', () => {
+        dialog.close();
+        context.map.setPosition(chapter.position);
+      });
+      button.classList.add('hud__button', 'chapters__replay');
+
+      item.appendChild(button);
     }
 
     list.appendChild(item);
