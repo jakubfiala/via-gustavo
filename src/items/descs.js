@@ -77,10 +77,12 @@ export default [
       item.activate = async (context) => {
         scheduleScript(geigerCounterReply, context);
         console.info('[items]', 'geiger counter activated');
-        initGeigerCounterDetection(context.map, context.audioContext, new google.maps.LatLng({
-          lat: -20.467868891278783,
-          lng: -69.459964265975231,
-        }));
+        const target = new google.maps.LatLng({
+          lat: -20.29224,
+          lng: -69.78133,
+        });
+
+        initGeigerCounterDetection(context, item, target);
       };
 
       return item;

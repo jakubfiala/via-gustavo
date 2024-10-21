@@ -15,7 +15,7 @@
 
 @keyframes handheld {
   0% { translate: 0 0; }
-  50% { translate: 0 2.5%; }
+  50% { translate: 0 2%; }
   100% { translate: 0 0; }
 }
 
@@ -542,6 +542,7 @@ p.subtitle {
   pointer-events: none;
   transform-origin: center center;
   scale: 0.5 0.5;
+  color: #36bdcc;
 }
 
 .handheld-item .vg-item {
