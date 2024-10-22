@@ -8,14 +8,14 @@ import inventory from '../inventory/index.js';
 import { sleep } from '../utils.js';
 
 export default [
-  // {
-  //   name: 'Mars96',
-  //   collectible: false,
-  //   position: { lat: -20.506417885036914, lng: -69.37627137940446 },
-  //   create(makers) {
-  //     return makers.embed('https://en.wikipedia.org/wiki/Mars_96');
-  //   },
-  // },
+  {
+    name: 'Mars96',
+    collectible: false,
+    position: { lat: -20.28906, lng: -69.78257 },
+    create(makers) {
+      return makers.embed('https://en.wikipedia.org/wiki/Mars_96');
+    },
+  },
   {
     name: 'Coke',
     thumbnailURL: '/assets/items/coke/thumb.webp',

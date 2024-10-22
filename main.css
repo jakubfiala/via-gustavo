@@ -609,7 +609,7 @@ p.subtitle {
   scale: 1;
 }
 
-.gustavo-item:hover {
+.gustavo-item:not(:has(iframe)):hover {
   filter: brightness(200%);
 }
 
