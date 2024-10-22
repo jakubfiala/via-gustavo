@@ -80,6 +80,7 @@ export const initGeigerCounterDetection = (context, item, targetLatLng) => {
       overheatDisplay();
     },
     end: () => {
+      console.info('[geiger-counter]', 'ending');
       endSound();
       listener.remove();
     }

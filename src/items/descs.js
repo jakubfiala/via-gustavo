@@ -284,7 +284,7 @@ export default [
         {
           name: this.name,
           onGround: true,
-          scale: 0.3,
+          scale: 0.2,
           cameraPosition: { y: 0.8 },
         },
       );
