@@ -54,7 +54,7 @@
           <template id="inventory-cell-template">
             <li class="inventory__cell">
               <figure>
-                <img src="">
+                <img loading="lazy" src="">
                 <figcaption></figcaption>
               </figure>
             </li>
@@ -160,20 +160,20 @@
       </div>
     </form>
     <div id="bus-overlay" class="overlay overlay--full" hidden>
-      <audio id="bus-audio" src="assets/audio/bus.mp3"></audio>
+      <audio id="bus-audio" src="" preload="none"></audio>
     </div>
     <div id="handheld-item" class="handheld-item">
-      <img id="handheld-explosion" class="handheld-explosion" src="/assets/img/explosion.gif" hidden>
+      <img id="handheld-explosion" class="handheld-explosion" src="/assets/img/explosion.gif" loading="lazy" hidden>
     </div>
     <div id="sky-images" class="sky-images" hidden>
-      <img id="mars-sky-image" src="/assets/img/mars-diagram.jpg" class="sky-image">
+      <img id="mars-sky-image" src="/assets/img/mars-diagram.jpg" class="sky-image" loading="lazy">
     </div>
     <div id="jaywalk" hidden>
       <button id="jaywalk-button">
         <img src="/assets/img/jaywalk.webp" loading="lazy">
       </button>
     </div>
-    <img id="drone" src="/assets/img/drone.webp" loading="lazy">
+    <img id="drone" src="/assets/img/drone.webp" loading="lazy" hidden>
     <dialog id="bus-dialog" class="hud__dialog">
       <header class="hud__dialog-header">
         Bus

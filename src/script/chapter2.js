@@ -40,8 +40,8 @@ export const station1 = [
   { text: "in his hands, so he can smell the flowers." },
   { text: "That's not a good idea" },
   { text: "- he'd probably wake up and get mad at you." },
-  { text: "'What do you think I am?" },
-  { text: "A fucking corpse?'" },
+  { text: "«What do you think I am?»" },
+  { text: "«A fucking corpse?»" },
   { text: "He'd sit up, the mattress moaning under his weight" },
   { text: "and look you in the eyes." },
   { duration: 4 },
@@ -99,7 +99,7 @@ export const station3 = [
   { text: "He says nothing," },
   { text: "but you and I both know" },
   {
-    text: "He's asking WHY?",
+    text: "He's asking «WHY?»",
     duration: 6,
   },
 ];
@@ -153,7 +153,7 @@ export const station5 = [
 
 export const station6 = [
   // 6. fails the 3rd time
-  { text: "'Conchetumadre'" },
+  { text: "«Conchetumadre»" },
   { text: "he mumbles into his palms." },
   { text: "The truck has stalled" },
   { text: "rolled onto the dirt" },
@@ -254,7 +254,7 @@ export const station12 = [
   { text: "and mumbles a string of curses." },
   { text: "In his agitation, he does not notice the yellow device" },
   { text: "slip out of the half-open backpack." },
-  { text: "'I am hanging up now', he yells" },
+  { text: "«I am hanging up now», he yells" },
   { text: "and presses on." },
   { duration: 3 },
   { text: "You should probably pick up that device" },

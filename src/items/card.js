@@ -8,6 +8,7 @@ const CARD_WIDTH = 250;
 export const cardMaker = (InfoWindow) => ({ src, name }) => {
   const container = createGenericItemContainer();
   const img = document.createElement('img');
+  img.loading = 'lazy';
   img.src = src;
   img.width = CARD_WIDTH;
   img.classList.add('gustavo-card');

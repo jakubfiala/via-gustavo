@@ -61,6 +61,7 @@ export const completeChapter = (chapter) => {
   chapter.indicator.classList.add(COMPLETED_CLASS);
   completed.add(chapter.id);
   localStorage.setItem(LOCALSTORAGE_CHAPTERS_KEY, JSON.stringify(Array.from(completed)));
+  chapter.indicator.querySelector('.chapters__replay').hidden = false;
 };
 
 export const initChapters = (context) => {
@@ -71,18 +72,20 @@ export const initChapters = (context) => {
     item.classList.add(ITEM_CLASS);
 
     chapter.indicator = item;
+
+    const button = document.createElement('button');
+    button.innerText = 'Replay';
+    button.addEventListener('click', () => {
+      dialog.close();
+      context.map.setPosition(chapter.position);
+    });
+    button.classList.add('hud__button', 'chapters__replay');
+    button.hidden = true;
+    item.appendChild(button);
+
     if (completed.has(chapter.id)) {
       chapter.indicator.classList.add(COMPLETED_CLASS);
-
-      const button = document.createElement('button');
-      button.innerText = 'Replay';
-      button.addEventListener('click', () => {
-        dialog.close();
-        context.map.setPosition(chapter.position);
-      });
-      button.classList.add('hud__button', 'chapters__replay');
-
-      item.appendChild(button);
+      button.hidden = false;
     }
 
     list.appendChild(item);

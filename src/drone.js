@@ -2,6 +2,7 @@ const drone = document.getElementById('drone');
 
 export const flyBy = (context) => {
   console.info('[drone]', 'flying by');
+  drone.hidden = false;
   drone.style.animationDelay = '6s';
   drone.style.animationPlayState = 'running';
   context.sfx.droneFlyBy();
