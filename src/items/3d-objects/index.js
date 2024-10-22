@@ -126,6 +126,9 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
       mesh.rotation.x = 0;
       mesh.rotation.y = 0;
       mesh.rotation.z = 0;
+      mesh.scale.x = 1;
+      mesh.scale.y = 1;
+      mesh.scale.z = 1;
       lights[1].position.x = DIRLIGHT_DEFAULT_X;
       lights[1].position.y = DIRLIGHT_DEFAULT_Y;
       lights[1].position.z = DIRLIGHT_DEFAULT_Z;

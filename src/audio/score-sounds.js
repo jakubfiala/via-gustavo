@@ -29,5 +29,9 @@ export default (context) => {
     veniceShort: createScorePart(context, 'assets/audio/score/venice-short.mp3', false, 0.4),
     veniceMedium: createScorePart(context, 'assets/audio/score/venice-medium.mp3', false, 0.4),
     veniceLong: createScorePart(context, 'assets/audio/score/venice-long.mp3', false, 0.4),
+    dirtRoad1: createScorePart(context, 'assets/audio/score/dirt-road-1.mp3', false),
+    dirtRoad2: createScorePart(context, 'assets/audio/score/dirt-road-2.mp3', false),
+    dirtRoad3: createScorePart(context, 'assets/audio/score/dirt-road-3.mp3', false),
+    dirtRoad4: createScorePart(context, 'assets/audio/score/dirt-road-4.mp3', false),
   };
 };

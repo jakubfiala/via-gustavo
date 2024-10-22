@@ -265,6 +265,13 @@ export const checkpoints = [
     },
   },
   {
+    lat: -20.311606127473066,
+    lng: -69.764257554131845,
+    async callback(context) {
+      context.score.dirtRoad1.play();
+    },
+  },
+  {
     lat: -20.305932332865950,
     lng: -69.769828449520617,
     async callback(context) {
@@ -274,12 +281,33 @@ export const checkpoints = [
     },
   },
   {
+    lat: -20.304420012943268,
+    lng: -69.771311857793776,
+    async callback(context) {
+      context.score.dirtRoad2.play();
+    },
+  },
+  {
     lat: -20.292360241167511,
     lng: -69.781218354251735,
     async callback(context) {
       context.soundscape.set(context.soundscape.highwayRight);
       context.sfx.currentFootsteps = context.sfx.footstepsSounds.footstepsGravel;
       // drone.hover(context, { lat: -20.29233, lng: -69.78107 });
+    },
+  },
+  {
+    lat: -20.28908,
+    lng: -69.78266,
+    async callback(context) {
+      context.score.dirtRoad3.play();
+    },
+  },
+  {
+    lat: -20.28189,
+    lng: -69.78645,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.trees);
     },
   },
 
