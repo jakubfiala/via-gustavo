@@ -100,6 +100,23 @@ export default [
     },
   },
   {
+    name: 'Gustavo\'s truck',
+    thumbnailURL: '/assets/items/coke/thumb.webp',
+    collectible: false,
+    position: { lat: -20.33167, lng: -69.68165 },
+    async create(makers) {
+      return makers.threeObject('/assets/items/truck/',
+        {
+          name: this.name,
+          big: true,
+          onGround: true,
+          cameraPosition: { x: -10, y: 2, z: -2 },
+          lightPosition: { x: 0, y: 10, z: 0 },
+        },
+      );
+    },
+  },
+  {
     thumbnailURL: '/assets/img/tarot/judgement.jpg',
     name: 'Tarot Card - Judgement',
     collectible: true,

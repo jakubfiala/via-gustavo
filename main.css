@@ -537,6 +537,11 @@ p.subtitle {
   top: 3rem;
 }
 
+.map-container .vg-item--big {
+  width: 1000px;
+  height: 1000px;
+}
+
 .debug .vg-item {
   border: solid 1px red;
 }
@@ -608,6 +613,10 @@ p.subtitle {
 }
 
 .gm-style-iw-d:has(.gustavo-item--on-ground) {
+  translate: 0 15vh;
+}
+
+.gm-style-iw-d:has(.gustavo-item--on-ground.gustavo-item--big) {
   translate: 0 15vh;
 }
 

@@ -14,6 +14,7 @@ import { createGenericItemContainer } from '../generic.js';
 const DISTANCE_FACTOR = 1e-1;
 
 const CANVAS_SIZE = 300;
+const CANVAS_SIZE_BIG = 1000;
 const CAMERA_TARGET_INCREMENT_Z = 1e4 * 3.5;
 
 const CAMERA_DEFAULT_X = 0;
@@ -36,7 +37,7 @@ const createLights = ({ x, y, z }) => {
   return [ambientLight, light];
 };
 
-export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPosition, scale, rotation = {}, lightPosition = {}, onGround = false } = {}) => {
+export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPosition, scale, rotation = {}, lightPosition = {}, onGround = false, big = false } = {}) => {
   const cameraInitX = cameraPosition?.x ?? CAMERA_DEFAULT_X;
   const cameraInitY = cameraPosition?.y ?? CAMERA_DEFAULT_Y;
   const cameraInitZ = cameraPosition?.z ?? CAMERA_DEFAULT_Z;
@@ -45,11 +46,14 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
   if (onGround) {
     container.classList.add('gustavo-item--on-ground');
   }
+  if (big) {
+    container.classList.add('gustavo-item--big');
+  }
 
   const canvas = document.createElement('canvas');
-  canvas.classList.add('vg-item');
-  canvas.height = CANVAS_SIZE;
-  canvas.width = CANVAS_SIZE;
+  canvas.classList.add('vg-item', 'vg-item--big');
+  canvas.height = big ? CANVAS_SIZE_BIG : CANVAS_SIZE;
+  canvas.width = big ? CANVAS_SIZE_BIG : CANVAS_SIZE;
   canvas.title = name;
   container.appendChild(canvas);
 
