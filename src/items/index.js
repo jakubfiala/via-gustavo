@@ -57,6 +57,10 @@ const initItem = (makers) => async (desc, context) => {
     });
   }
 
+  if (!desc.collectible && !desc.onClick && item.container) {
+    item.container.classList.add('gustavo-item--noninteractive');
+  }
+
   return item;
 };
 

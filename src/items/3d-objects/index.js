@@ -25,6 +25,8 @@ const DIRLIGHT_DEFAULT_X = 0.32;
 const DIRLIGHT_DEFAULT_Y = 0.39;
 const DIRLIGHT_DEFAULT_Z = 0.7;
 
+const MIN_ZOOM = 0.8;
+
 const createLights = ({ x, y, z }) => {
   const ambientLight = new AmbientLight(0x7c7c7c, 3.0);
   const light = new DirectionalLight(0xFFFFFF, 3.0);
@@ -102,7 +104,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
   console.info('[3d-objects]', name, debugObject);
 
   return {
-    name, scene, camera, renderer, mesh, canvas,
+    name, scene, camera, renderer, mesh, canvas, container,
     insert(map, position) {
       this.map = map;
 
@@ -133,6 +135,14 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
       camera.lookAt(mesh.position);
       this.render();
     },
+    async povUpdate() {
+      if (this.taken || !this.info.isOpen) {
+        return;
+      }
+
+      const { zoom  } = this.map.getPov();
+      container.style.scale = (1/this.dist) * Math.max(MIN_ZOOM, zoom);
+    },
     async update() {
       if (this.taken) {
         return;
@@ -143,9 +153,9 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
       const dx = userPosition.lat() - objectPosition.lat();
       const dy = userPosition.lng() - objectPosition.lng();
 
-      const dist = latLngDist(objectPosition, userPosition) * DISTANCE_FACTOR;
+      this.dist = latLngDist(objectPosition, userPosition) * DISTANCE_FACTOR;
       if (!this.info.isOpen) {
-        if (dist < OBJECT_APPEAR_THRESHOLD) {
+        if (this.dist < OBJECT_APPEAR_THRESHOLD) {
           this.info.open({ map: this.map });
         } else {
           return;
@@ -155,10 +165,12 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
       // rotate the object so it always faces the same direction in the panorama
       mesh.rotation.y = Math.atan2(dy, dx);
       // camera.position.z = cameraInitZ * 2 + Math.abs(dy * CAMERA_MOVEMENT_INCREMENT_Z);
-      container.style.scale = (1/dist);
+
+      const { zoom  } = this.map.getPov();
+      container.style.scale = (1/this.dist) * Math.max(MIN_ZOOM, zoom);
 
       if (!onGround) {
-        container.style.translate = `0 ${Math.min(13,dist/3*10)}vh`;
+        container.style.translate = `0 ${Math.min(13,this.dist/3*10)}vh`;
       }
 
       // move the camera target above the object as we move further away from it

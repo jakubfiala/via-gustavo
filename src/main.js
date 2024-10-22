@@ -142,6 +142,8 @@ const initialize = async () => {
     () => {
       const pov = map.getPov();
       setPovDisplay(pov);
+
+      items.forEach((o) => o.povUpdate?.());
     },
   );
 

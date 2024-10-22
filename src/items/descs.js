@@ -110,7 +110,7 @@ export default [
           name: this.name,
           big: true,
           onGround: true,
-          cameraPosition: { x: -10, y: 2, z: -2 },
+          cameraPosition: { x: -10, y: 2.5, z: -2 },
           lightPosition: { x: 0, y: 10, z: 0 },
         },
       );

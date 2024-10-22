@@ -616,8 +616,8 @@ p.subtitle {
   translate: 0 15vh;
 }
 
-.gm-style-iw-d:has(.gustavo-item--on-ground.gustavo-item--big) {
-  translate: 0 15vh;
+.gm-style-iw-d:has(.gustavo-item--noninteractive) {
+  pointer-events: none;
 }
 
 .gustavo-item {
