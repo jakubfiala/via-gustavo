@@ -77,8 +77,11 @@ export default [
           onGround: true,
         },
       );
-      item.activate = async (context) => {
-        scheduleScript(geigerCounterReply, context);
+      item.activate = async (context, { firstTime }) => {
+        if (firstTime) {
+          scheduleScript(geigerCounterReply, context);
+        }
+
         console.info('[items]', 'geiger counter activated');
         const target = new google.maps.LatLng({
           lat: -20.29224,
@@ -273,6 +276,9 @@ export default [
         if (!inventory.hasItem('Geiger Counter')) {
           return;
         }
+
+        console.log('GEIGER ITEM', context.handheldItem);
+        context.handheldItem?.item.detection?.overheat();
 
         await sleep(2000);
         document.getElementById('handheld-explosion').hidden = false;

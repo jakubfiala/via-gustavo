@@ -4,7 +4,7 @@ import { startDisplay } from './display.js';
 const FREQ_DEFAULT = 300;
 const FREQ_MIN = 30;
 const FREQ_MAX = 5000;
-const RANGE_M = 180;
+const RANGE_M = 300;
 
 const startSound = (audioContext) => {
   const osc = new OscillatorNode(audioContext, { type: 'square', frequency: 2000 });
@@ -12,6 +12,7 @@ const startSound = (audioContext) => {
 
   let frequency = FREQ_DEFAULT;
   let timeout = null;
+  let beepDuration = 0.01;
 
   const playClick = () => {
     timeout = setTimeout(playClick, Math.random() * frequency + 50);
@@ -20,8 +21,8 @@ const startSound = (audioContext) => {
       return;
     }
 
-    env.gain.setValueAtTime(Math.random() * 0.2 + 0.25, audioContext.currentTime);
-    env.gain.linearRampToValueAtTime(0, audioContext.currentTime + Math.random() * 0.01);
+    env.gain.setValueAtTime(Math.random() * 0.2 + 0.3, audioContext.currentTime);
+    env.gain.linearRampToValueAtTime(0, audioContext.currentTime + Math.random() * beepDuration);
   };
 
   timeout = setTimeout(playClick, 10);
@@ -35,10 +36,13 @@ const startSound = (audioContext) => {
       console.log('[geiger-counter]', 'setting radioactivity to', radioactivity);
       frequency = FREQ_MIN + (1 / radioactivity) * FREQ_MAX;
     },
+    overheatSound: () => {
+      beepDuration = 0.5;
+    },
     endSound() {
       clearTimeout(timeout);
       osc.stop();
-    }
+    },
   }
 };
 
@@ -56,8 +60,8 @@ const radioactivityFromDistance = (p1, p2) => {
 export const initGeigerCounterDetection = (context, item, targetLatLng) => {
   console.info('[geiger-counter]', 'detecting radioactivity...', item, targetLatLng);
 
-  const { soundForRadioactivity, endSound } = startSound(context.audioContext);
-  const { displayRadioactivity } = startDisplay(item);
+  const { soundForRadioactivity, overheatSound, endSound } = startSound(context.audioContext);
+  const { displayRadioactivity, overheatDisplay } = startDisplay(item);
 
   const update = () => {
     const radioactivity = radioactivityFromDistance(targetLatLng, context.map.getPosition());
@@ -70,6 +74,11 @@ export const initGeigerCounterDetection = (context, item, targetLatLng) => {
   const listener = google.maps.event.addListener(context.map, "position_changed", update);
 
   return {
+    overheat: () => {
+      console.info('[geiger-counter]', 'overheating!!!');
+      overheatSound();
+      overheatDisplay();
+    },
     end: () => {
       endSound();
       listener.remove();

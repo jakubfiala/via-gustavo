@@ -17,6 +17,7 @@ const setHandheldItem = (item) => {
   }
 
   return {
+    item,
     drop: async (context) => {
       console.info('[items]', 'dropping', item);
       await item.deactivate?.(context);
@@ -49,7 +50,7 @@ const initItem = (makers) => async (desc, context) => {
       }
 
       if (desc.canBeActivated) {
-        item.activate?.(context);
+        item.activate?.(context, { firstTime: true });
       }
 
       item.info.close();
@@ -80,7 +81,7 @@ export default async (InfoWindow, context) => {
         }
 
         if (desc.canBeActivated) {
-          item.activate?.(context);
+          item.activate?.(context, { firstTime: false });
         }
       }
 
