@@ -1,4 +1,5 @@
 import { documentVisible, scale, sleep } from '../utils.js';
+import { playSpeech } from './speech.js';
 
 const MIN_WORDS = 1;
 const MAX_WORDS = 10;
@@ -35,15 +36,14 @@ export const scheduleScript = async (script, context) => {
 
     await documentVisible();
 
-    if (line.text) {
-      textDisplay.addLine(line.text, duration * 1000);
-      // const utterance = new SpeechSynthesisUtterance(line.text);
-      // speechSynthesis.speak(utterance);
-    }
-
     line.callback?.(context);
 
-    await sleep(time * 1000);
+    if (line.text) {
+      textDisplay.addLine(line.text, duration * 1000);
+      await playSpeech(context, line.text, duration * 1000);
+    }
+
+    // await sleep(time * 1000);
   }
   // we played the whole script without interruption
   currentScript = null;

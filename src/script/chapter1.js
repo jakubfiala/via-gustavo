@@ -45,15 +45,13 @@ export const searching = [
   { duration: 3, callback: (context) => context.score.veniceMedium.play() },
   { text: "I'd see him come down from Matilla," },
   { text: "pull over, and disappear among the trees." },
-  { text: "He really believed he'd find a heap of" },
-  { text: "some Soviet electronics" },
+  { text: "He really believed he'd find a heap of some Soviet electronics" },
   { text: "or precious metals." },
   { text: "I always thought it was silly," },
   { text: "most of it was probably on the ocean floor." },
   { duration: 2 },
   { text: "Alas, it was not my role to talk him out of it." },
-  { text: "Best I could do is to keep him company" },
-  { text: "until he stepped out of the truck." },
+  { text: "Best I could do is to keep him company, until he stepped out of the truck." },
 ];
 
 export const hisLand = [

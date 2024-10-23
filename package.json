@@ -22,6 +22,10 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "rollup": "^4.21.3",
+    "slug": "^10.0.0",
     "three": "^0.168.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-replace": "^6.0.1"
   }
 }

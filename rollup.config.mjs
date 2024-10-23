@@ -1,5 +1,6 @@
 import terser from '@rollup/plugin-terser';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
 
 const plugins = [];
 
@@ -17,6 +18,10 @@ export default {
     },
   ],
   plugins: [
+    replace({
+      'process.env.NODE_ENV': `"${process.env.ROLLUP_WATCH ? 'dev' : 'prod'}"`,
+      preventAssignment: true,
+    }),
     nodeResolve(),
   ],
 };
