@@ -1,5 +1,6 @@
 import { flashStatus, showFakeCaptcha, hideFakeCaptcha, showHelpMessage } from './utils.js';
 import { scheduleScript } from './index.js';
+import { removeTask, setTask } from '../task.js';
 
 export const intro = [
   {
@@ -11,17 +12,18 @@ export const intro = [
       flashStatus(`Chapter ${context.chapter.id} - ${context.chapter.title}`)(context);
     }
   },
-  { text: "I remember the time a spacecraft crashed somewhere in the desert" },
-  { text: "Gustavo was a dapper young man", time: 3 },
+  { text: "I remember the time a spacecraft crashed somewhere in the desert." },
+  { text: "Gustavo was a dapper young man.", time: 3 },
   { text: "He watched the news every evening"},
   { text: "It was then that he began driving down here more often"},
-  { text: "it was a simpler time."},
+  { text: "It was a simpler time. My heart jumped with joy every time I saw him."},
   { duration: 5 },
-  { text: "Do you know what it feels like?"},
-  { text: "Can you even imagine?"},
-  { text: "In fact, I should really test you to find out"},
-  { text: "before I take you anywhere..." },
-  { text: "more important."},
+  { text: "Do you know what it feels like? Can you even imagine?"},
+  { text: "In fact, I should really test you to find out,"},
+  {
+    text: "before I take you anywhere... more important.",
+    callback: () => setTask('Pass the challenge.'),
+  },
   {
     text: "",
     duration: 2,
@@ -35,18 +37,22 @@ export const intro = [
 ];
 
 const thanks = [
-  { text: "Thank you."},
+  {
+    text: "Thank you.",
+    callback: () => removeTask(),
+  },
   { text: "It\'s not that I don\'t trust you,"},
   { text: "but the protocol is the protocol."},
-  { duration: 2 },
+  {
+    duration: 2,
+    callback: () => setTask('Continue down the road.'),
+  },
 ];
 
 export const searching = [
   { duration: 3, callback: (context) => context.score.veniceMedium.play() },
-  { text: "I'd see him come down from Matilla," },
-  { text: "pull over, and disappear among the trees." },
-  { text: "He really believed he'd find a heap of some Soviet electronics" },
-  { text: "or precious metals." },
+  { text: "I'd see him come down from Matilla, pull over, and disappear among the trees." },
+  { text: "He really believed he'd find a heap of some Soviet electronics, or precious metals." },
   { text: "I always thought it was silly," },
   { text: "most of it was probably on the ocean floor." },
   { duration: 2 },
@@ -64,15 +70,17 @@ export const hisLand = [
   },
   { text: "chasing after animals and kicking a ball among the rocks." },
   { text: "Must have seen dozens of tourist cabañas crop up on the town's edge." },
-  { text: "The merciless sun and bone-dry wind" },
-  { text: "seem to draw crowds from far and wide." },
+  { text: "The merciless sun and bone-dry wind, seem to draw crowds from far and wide." },
 ];
 
 export const showYouSomething = [
   { text: "I wanted to show you something a little further away."},
-  { text: "We will soon reach the town;"},
-  { text: "a bus stops there at the plaza with trees." },
-  { text: "We can ride it from there."},
+  { text: "We will soon reach the town."},
+  { text: "A bus stops there at the plaza with trees" },
+  {
+    text: "- we can ride it from there.",
+    callback: () => setTask('Continue into town.'),
+  },
 ];
 
 export const animita = [
@@ -92,6 +100,7 @@ export const weMadeIt = [
 
 export const theresTheBus = [
   { text: "There's the bus stop!" },
+  { duration: 1, callback: () => setTask('Travel to La Tirana') },
   { text: "It should be here any minute" },
   { text: "", callback: showHelpMessage("Click on the bus stop to start travelling") },
   { text: "See you on the other side!" },

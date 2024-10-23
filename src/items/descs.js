@@ -105,7 +105,6 @@ export default [
           cameraPosition: { x: 6, y: 2.5, z: -3 },
           rotation: { x: 0.6, y: -0.95, z: -1.25 },
           lightPosition: { z: -0.7 },
-          scale: 0.5,
           onGround: true,
         },
       );
@@ -145,15 +144,6 @@ export default [
           lightPosition: { x: 0, y: 10, z: 0 },
         },
       );
-    },
-  },
-  {
-    thumbnailURL: '/assets/img/tarot/judgement.jpg',
-    name: 'Tarot Card - Judgement',
-    collectible: true,
-    position: { lat: -20.445812, lng: -69.5168 },
-    async create(makers) {
-      return makers.card({ src: this.thumbnailURL, name: this.name });
     },
   },
   {
@@ -301,7 +291,7 @@ export default [
         {
           name: this.name,
           onGround: true,
-          scale: 0.2,
+          scale: 0.9,
           cameraPosition: { y: 0.8 },
         },
       );

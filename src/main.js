@@ -4,7 +4,7 @@ import { TextDisplay } from "./text.js";
 import {
   scheduleScript,
 } from "./script/index.js";
-import IntroScript from './script/intro.js';
+import { intro1 } from './script/intro.js';
 
 import { Sharawadji } from "../sharawadji/src/index.js";
 import { fakeCaptcha } from "./interactions/fakeCaptcha.js";
@@ -173,7 +173,7 @@ const initialSequence = (context) => {
 
   setTimeout(() => {
     context.soundscapeGain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 2);
-    scheduleScript(IntroScript, context);
+    scheduleScript(intro1, context);
   }, FADE_OUT_DELAY_MS);
 }
 

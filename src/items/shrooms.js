@@ -11,7 +11,6 @@ export const createShrooms = (label, position) => ({
     const item = await makers.threeObject('/assets/items/magic-mushrooms/', {
       name: this.name,
       onGround: true,
-      scale: 0.3,
       cameraPosition: { x: 0, y: 0.5, z: 2 },
     });
     item.activate = (context) => {

@@ -12,9 +12,11 @@
   </head>
   <body>
     <main id="container" class="map-container" hidden></main>
-    <div id="text-display" class="text-overlay"></div>
     <div id="status-display" class="text-overlay text-overlay--middle status-display"></div>
     <div id="help-display" class="text-overlay text-overlay--bottom"></div>
+    <div class="text-overlay text-overlay--top">
+      <div id="text-display"></div>
+    </div>
     <div id="hud" class="hud" hidden>
       <div class="hud__display">
         <output id="latlng-display"></output>

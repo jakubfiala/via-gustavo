@@ -53,12 +53,15 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
   if (onGround) {
     container.classList.add('gustavo-item--on-ground');
   }
-  if (big) {
-    container.classList.add('gustavo-item--big');
-  }
 
   const canvas = document.createElement('canvas');
   canvas.classList.add('vg-item');
+
+  if (big) {
+    container.classList.add('gustavo-item--big');
+    canvas.classList.add('vg-item--big');
+  }
+
   canvas.height = big ? CANVAS_SIZE_BIG : CANVAS_SIZE;
   canvas.width = big ? CANVAS_SIZE_BIG : CANVAS_SIZE;
   canvas.title = name;

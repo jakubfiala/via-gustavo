@@ -1,12 +1,14 @@
 import Inventory from './inventory/index.js';
 import { LOCALSTORAGE_POSITION_KEY } from './constants.js';
 import * as chapters from './chapters.js';
+import { clearTask } from './task.js';
 
 const resetButton = document.getElementById('reset-button');
 
 export const resetGame = () => {
   Inventory.clear();
   chapters.clear();
+  clearTask();
   localStorage.removeItem(LOCALSTORAGE_POSITION_KEY);
 };
 

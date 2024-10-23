@@ -6,10 +6,25 @@ import * as chapter3 from '../script/chapter3.js';
 import { latLngDist } from "../utils.js";
 import { showSkyImages } from '../sky-images.js';
 import * as drone from '../drone.js';
+import { intro2, intro3 } from '../script/intro.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
 export const checkpoints = [
+  {
+    lat: -20.448960415574838,
+    lng: -69.508360649033690,
+    async callback(context) {
+      return scheduleScript(intro2, context);
+    },
+  },
+  {
+    lat: -20.44615,
+    lng: -69.516,
+    async callback(context) {
+      return scheduleScript(intro3, context);
+    },
+  },
   {
     lat: -20.442087695890653,
     lng: -69.525976864376787,

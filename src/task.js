@@ -20,3 +20,7 @@ export const initTask = () => {
     setTask(stored);
   }
 };
+
+export const clearTask = () => {
+  localStorage.removeItem(LOCALSTORAGE_TASK_KEY);
+};

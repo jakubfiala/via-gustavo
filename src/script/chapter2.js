@@ -13,6 +13,7 @@ export const intro = [
       flashStatus(`Chapter ${context.chapter.id} - ${context.chapter.title}`)(context);
     }
   },
+  { duration: 5 },
   { text: "There you are!" },
   { text: "I'm glad you made it. Was the journey alright?" },
   { text: "A truck just drove past, to the main square." },
@@ -85,13 +86,13 @@ export const station2 = [
 
 export const station3 = [
   // 3. dies on the cross
-  { text: "The roaring stops, but the truck doesn't move." },
-  { text: "Gustavo stares ahead through the windshield." },
-  { text: "It looks as if he suddenly realised something - something inevitable." },
   {
-    text: "He looks up to the sky, and though all he sees is the dusty roof,",
+    text: "The roaring stops, but the truck doesn't move.",
     callback: (context) => context.score.viaCrucis2.play(),
   },
+  { text: "Gustavo stares ahead through the windshield." },
+  { text: "It looks as if he suddenly realised something - something inevitable." },
+  { text: "He looks up to the sky, and though all he sees is the dusty roof," },
   { text: "he pierces it with his eyes." },
   { text: "The heavens are somewhere up there." },
   { text: "He says nothing, but you and I both know" },
@@ -137,7 +138,10 @@ export const station5 = [
 
 export const station6 = [
   // 6. fails the 3rd time
-  { text: "«Conchetumadre», he mumbles into his palms." },
+  {
+    text: "«Conchetumadre», he mumbles into his palms.",
+    callback: (context) => context.score.viaCrucis5.play()
+  },
   { text: "The truck has stalled, rolled onto the dirt, and ground to a halt." },
   { text: "He gets up, throws his tools into a backpack" },
   { text: "and crosses the road near the bus stop" },

@@ -152,7 +152,8 @@ p.subtitle {
 }
 
 .text-overlay {
-  font-size: 1.618rem;
+  --text-shadow: #0c3458 2px 2px, #12548e09 0 0 10px, #12548e05 0 0 20px;
+  font-size: 2rem;
   color: var(--color-blue);
   position: absolute;
   text-align: center;
@@ -160,8 +161,12 @@ p.subtitle {
   z-index: 1;
 }
 
+.text-overlay--top {
+  top: 8rem;
+}
+
 .text-overlay--bottom {
-  bottom: 8rem;
+  top: calc(100vh - 16rem);
 }
 
 .text-overlay--middle {
@@ -170,13 +175,15 @@ p.subtitle {
 }
 
 #text-display {
-  top: 4rem;
-}
-
-.text-display-inline {
-  background: white;
-  line-height: 1.618;
+  color: white;
+  font-weight: bold;
+  text-shadow: var(--text-shadow);
+  line-height: 1.15;
   padding: 0.25rem 0.5ch;
+  pointer-events: none;
+  max-width: 900px;
+  margin: 0 auto;
+  text-wrap: balance;
 }
 
 .status-display {
@@ -184,7 +191,7 @@ p.subtitle {
   font-weight: bold;
   visibility: hidden;
   color: white;
-  text-shadow: 1px 1px var(--color-blue);
+  text-shadow: var(--text-shadow);
 }
 
 .text-overlay.fade-in {
@@ -194,8 +201,9 @@ p.subtitle {
 
 #help-display {
   font-size: 2rem;
+  font-weight: bold;
   color: white;
-  text-shadow: 2px 2px #0005;
+  text-shadow: var(--text-shadow);
 }
 
 .help-keys {

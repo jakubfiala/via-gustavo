@@ -1,32 +1,15 @@
-export class TextDisplay {
-  lines = [];
+const CLEAR_DELAY = 10 * 1000;
 
+export class TextDisplay {
   constructor(container) {
     this.container = container;
+    this.timeout = null;
   }
 
-  addLine(text, duration) {
-    const node = document.createElement("p");
-    node.innerHTML = `<span class="text-display-inline">${text}</span`;
+  addLine(text) {
+    clearTimeout(this.timeout);
 
-    const line = { text, duration, node };
-    this.lines.push(line);
-    this.container.appendChild(node);
-
-    setTimeout(() => {
-      this.lines.splice(this.lines.indexOf(line), 1);
-
-      if (this.container.contains(node)) {
-        this.container.removeChild(node);
-      }
-    }, duration);
-  }
-
-  clear() {
-    this.lines.forEach(({ node }) => {
-      if (this.container.contains(node)) {
-        this.container.removeChild(node);
-      }
-    });
+    this.container.innerText = text;
+    this.timeout = setTimeout(() => this.container.innerText = '', CLEAR_DELAY);
   }
 }
