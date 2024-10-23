@@ -41,9 +41,9 @@ export const scheduleScript = async (script, context) => {
     if (line.text) {
       textDisplay.addLine(line.text, duration * 1000);
       await playSpeech(context, line.text, duration * 1000);
+    } else {
+      await sleep(time * 1000);
     }
-
-    // await sleep(time * 1000);
   }
   // we played the whole script without interruption
   currentScript = null;

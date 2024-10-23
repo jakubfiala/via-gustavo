@@ -97,6 +97,9 @@ const initialize = async () => {
   scriptContext.masterGain = new GainNode(scriptContext.audioContext, { gain: 0 });
   scriptContext.masterGain.connect(scriptContext.audioContext.destination);
 
+  scriptContext.speechGain = new GainNode(scriptContext.audioContext, { gain: 0.8 });
+  scriptContext.speechGain.connect(scriptContext.audioContext.destination);
+
   scriptContext.score = createScore(scriptContext);
   scriptContext.soundscape = createSoundscape(scriptContext);
   scriptContext.soundscape.set(scriptContext.soundscape.base);

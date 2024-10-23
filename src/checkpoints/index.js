@@ -87,8 +87,8 @@ export const checkpoints = [
 
   // Chapter 2
   {
-    lat: -20.34075,
-    lng: -69.65655,
+    lat: -20.34114,
+    lng: -69.65651,
     chapter: chapters[1],
     callback(context) {
       return scheduleScript(chapter2.intro, {

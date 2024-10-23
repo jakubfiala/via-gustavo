@@ -8,7 +8,7 @@ const loadFromSpeechServer = async (context, text) => {
   const response = await fetch('http://localhost:3000/speech', { method: 'post', body: text });
   const buffer = await context.audioContext.decodeAudioData(await response.arrayBuffer());
   const source = new AudioBufferSourceNode(context.audioContext, { buffer });
-  source.connect(context.masterGain);
+  source.connect(context.speechGain);
   source.start();
 
   return source;
@@ -18,7 +18,7 @@ const loadFromCDN = async (context, text) => {
   const fileName = `${slug(text)}.mp3`;
   const mediaElement = new Audio(`/assets/audio/speech/${fileName}`);
   const source = new MediaElementAudioSourceNode(context.audioContext, { mediaElement });
-  source.connect(context.masterGain);
+  source.connect(context.speechGain);
   mediaElement.play();
 
   return mediaElement;

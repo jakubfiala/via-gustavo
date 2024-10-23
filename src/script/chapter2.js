@@ -3,6 +3,9 @@ import { flashStatus, showHelpMessage } from './utils.js';
 
 export const intro = [
   {
+    duration: 10,
+  },
+  {
     text: "",
     callback: (context) => {
       context.score.bachPiano2.play();
@@ -10,12 +13,11 @@ export const intro = [
     }
   },
   { text: "There you are!" },
-  { text: "I'm glad you made it." },
-  { text: "Was the journey alright?" },
-  { text: "There is a large white church" },
-  { text: "in the town, across the roundabout," },
-  { text: "then directly straight ahead." },
-  { text: "Meet me in front of the church and I'll tell you everything." },
+  { text: "I'm glad you made it. Was the journey alright?" },
+  { text: "A truck just drove past, to the main square." },
+  { text: "Empty Coca-Cola cans falling out the trunk." },
+  { text: "Follow them to find the square, in front of the large white church." },
+  { text: "I'll tell you everything there." },
 ];
 
 export const station1 = [

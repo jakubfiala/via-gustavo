@@ -85,7 +85,7 @@ export default [
   { duration: 2 },
   { text: "What I meant to tell you is" },
   { text: "that I could use your help." },
-  { text: "You see, from your celestial vantage point" },
+  { text: "You see, from your vantage point" },
   { text: "you see many things I don't" },
   { text: "and I've been looking for someone" },
   { text: "A friend, you might say." },

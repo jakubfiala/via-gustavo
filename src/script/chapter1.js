@@ -77,12 +77,10 @@ export const showYouSomething = [
 
 export const animita = [
   { duration: 3, callback: (context) => context.score.veniceLong.play() },
-  { text: "He'd often stop here at the animita," },
-  { text: "it's just a modest shrine" },
-  { text: "by the stone wall of the orchard." },
-  { text: "His prayers were brief and quiet" },
-  { text: "I could only hear the match lighting up" },
-  { text: "as he relit the candles" },
+  { text: "He'd often stop here at the animita." },
+  { text: "It's just a modest shrine by the stone wall of the orchard." },
+  { text: "His prayers were brief, and quiet." },
+  { text: "I could only hear the match lighting up as he relit the candles" },
   { text: "and set the little cross straight." },
 ];
 
