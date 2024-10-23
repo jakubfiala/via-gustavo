@@ -21,6 +21,7 @@
 
 html {
   --intro-darkness-duration: 5s;
+  --color-blue: #12548e;
 }
 
 html,
@@ -31,7 +32,7 @@ body {
   font-size: 16px;
   margin: 0;
   padding: 0;
-  color: #12548e;
+  color: var(--color-blue);
 }
 
 body {
@@ -152,7 +153,7 @@ p.subtitle {
 
 .text-overlay {
   font-size: 1.618rem;
-  color: #12548e;
+  color: var(--color-blue);
   position: absolute;
   text-align: center;
   width: 100%;
@@ -183,7 +184,7 @@ p.subtitle {
   font-weight: bold;
   visibility: hidden;
   color: white;
-  text-shadow: 1px 1px #12548e;
+  text-shadow: 1px 1px var(--color-blue);
 }
 
 .text-overlay.fade-in {
@@ -341,8 +342,8 @@ p.subtitle {
 .hud__dialog {
   background: white;
   backdrop-filter: blur(10px);
-  border: solid 1px #12548e;
-  color: #12548e;
+  border: solid 1px var(--color-blue);
+  color: var(--color-blue);
   margin: 0;
   position: fixed;
   top: 50%;
@@ -355,7 +356,7 @@ p.subtitle {
 }
 
 .hud__dialog-header {
-  border-bottom: solid 1px #12548e;
+  border-bottom: solid 1px var(--color-blue);
   padding: 0.25rem;
   display: flex;
   justify-content: space-between;
@@ -370,7 +371,7 @@ p.subtitle {
   cursor: pointer;
   color: inherit;
   background: white;
-  border: solid 1px #12548e;
+  border: solid 1px var(--color-blue);
   font: inherit;
   padding: 0.5rem;
 }
@@ -475,8 +476,8 @@ p.subtitle {
 .intro__content {
   animation: fade-in 500ms 1.5s both;
   background: white;
-  border: solid 1px #12548e;
-  color: #12548e;
+  border: solid 1px var(--color-blue);
+  color: var(--color-blue);
   padding: 2rem;
   position: relative;
   z-index: 1;
@@ -497,7 +498,7 @@ p.subtitle {
 .intro__cta {
   appearance: none;
   background: none;
-  border: solid 1px #12548e;
+  border: solid 1px var(--color-blue);
   color: inherit;
   cursor: pointer;
   font: inherit;
@@ -525,7 +526,7 @@ p.subtitle {
 }
 
 .intro__tips li + li {
-  border-left: solid 1px #12548e;
+  border-left: solid 1px var(--color-blue);
   padding-left: 1rem;
 }
 
@@ -750,4 +751,32 @@ p.subtitle {
   width: 100%;
   height: 100%;
   z-index: 2;
+}
+
+#toast:not([hidden]) {
+  animation: fade-in 500ms both, slide-in 500ms both;
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  font-size: 1.5rem;
+  padding: 1rem;
+  translate: -50% 0;
+  background: var(--color-blue);
+  color: white;
+}
+
+#task:not([hidden]) {
+  animation: fade-in 500ms both;
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  background: white;
+  color: var(--color-blue);
+  padding: 0.5rem;
+  font-size: 1.25rem;
+}
+
+#task::before {
+  content: "👉";
+  margin-right: 0.5ch;
 }

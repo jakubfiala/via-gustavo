@@ -6,6 +6,7 @@ import { geigerCounterReply } from '../script/chapter2.js';
 import { hover } from '../drone.js';
 import inventory from '../inventory/index.js';
 import { sleep } from '../utils.js';
+import { createCoke } from './coke.js';
 
 export default [
   {
@@ -14,17 +15,6 @@ export default [
     position: { lat: -20.28906, lng: -69.78257 },
     create(makers) {
       return makers.embed('https://en.wikipedia.org/wiki/Mars_96');
-    },
-  },
-  {
-    name: 'Coke',
-    thumbnailURL: '/assets/items/coke/thumb.webp',
-    collectible: true,
-    position: { lat: -20.336991952131125, lng: -69.656776540749206 },
-    async create(makers) {
-      return makers.threeObject('/assets/items/coke/',
-        { name: this.name, onGround: true, scale: 0.08, cameraPosition: { x: 0, y: 0.5, z: 1 } },
-      );
     },
   },
   createBusStopItem({
@@ -41,6 +31,63 @@ export default [
     cameraPosition: { x: -8, y: 3.5 },
     scale: 0.6,
   }),
+  createCoke({
+    name: 'Coca-Cola 1',
+    position: { lat: -20.34075, lng: -69.65655 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 2',
+    position: { lat: -20.34053, lng: -69.65618 },
+    rotation: { x: Math.PI/2 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 3',
+    position: { lat: -20.34023, lng: -69.65606 },
+    rotation: { x: Math.PI/2, y: Math.PI*0.8 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 4',
+    position: { lat: -20.33934, lng: -69.65608 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 5',
+    position: { lat: -20.339, lng: -69.65591 },
+    rotation: { x: Math.PI/2, y: Math.PI*0.3 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 6',
+    position: { lat: -20.33773, lng: -69.65601 },
+    rotation: { x: Math.PI/2, y: Math.PI*0.1 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 7',
+    position: { lat: -20.33692, lng: -69.65623 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 8',
+    position: { lat: -20.33678, lng: -69.65673 },
+    rotation: { x: Math.PI/2 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 9',
+    position: { lat: -20.33698, lng: -69.65759 },
+    rotation: { x: Math.PI/2, y: 0.15 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 10',
+    position: { lat: -20.33706, lng: -69.65872 },
+    rotation: { x: Math.PI/2, y: 0.9 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 11',
+    position: { lat: -20.33652, lng: -69.65927 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 12',
+    position: { lat: -20.33609, lng: -69.65923 },
+    rotation: { x: Math.PI/2, y: -0.45 },
+  }),
+
   {
     name: 'Geiger Counter',
     thumbnailURL: '/assets/items/geiger-counter/thumb.webp',
@@ -115,7 +162,7 @@ export default [
     collectible: true,
     position: { lat: -20.33616, lng: -69.65654 },
     async create(makers) {
-      return makers.card({ src: this.thumbnailURL, name: this.name });
+      return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
     },
   },
   {
@@ -127,7 +174,7 @@ export default [
       lng: -69.65917,
     },
     async create(makers) {
-      return makers.card({ src: this.thumbnailURL, name: this.name });
+      return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
     },
   },
   {
@@ -136,7 +183,7 @@ export default [
     collectible: true,
     position: { lat: -20.33343, lng: -69.66675 },
     async create(makers) {
-      return makers.card({ src: this.thumbnailURL, name: this.name });
+      return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
     },
   },
   {
@@ -145,7 +192,7 @@ export default [
     collectible: true,
     position: { lat: -20.33253, lng: -69.6745 },
     async create(makers) {
-      return makers.card({ src: this.thumbnailURL, name: this.name });
+      return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
     },
   },
   {
@@ -154,7 +201,7 @@ export default [
     collectible: true,
     position: { lat: -20.33175, lng: -69.68088 },
     async create(makers) {
-      return makers.card({ src: this.thumbnailURL, name: this.name });
+      return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
     },
   },
   {
@@ -163,7 +210,7 @@ export default [
     collectible: true,
     position: { lat: -20.33083, lng: -69.68898 },
     async create(makers) {
-      return makers.card({ src: this.thumbnailURL, name: this.name });
+      return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
     },
   },
   {
@@ -172,7 +219,7 @@ export default [
     collectible: true,
     position: { lat: -20.32995, lng: -69.69689 },
     async create(makers) {
-      return makers.card({ src: this.thumbnailURL, name: this.name });
+      return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
     },
   },
   {
@@ -181,7 +228,7 @@ export default [
     collectible: true,
     position: { lat: -20.32892, lng: -69.70551 },
     async create(makers) {
-      return makers.card({ src: this.thumbnailURL, name: this.name });
+      return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
     },
   },
   {
@@ -190,7 +237,7 @@ export default [
     collectible: true,
     position: { lat: -20.3278, lng: -69.71511 },
     async create(makers) {
-      return makers.card({ src: this.thumbnailURL, name: this.name });
+      return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
     },
   },
   {
@@ -199,7 +246,7 @@ export default [
     collectible: true,
     position: { lat: -20.32682, lng: -69.72382 },
     async create(makers) {
-      return makers.card({ src: this.thumbnailURL, name: this.name });
+      return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
     },
   },
   {
@@ -208,7 +255,7 @@ export default [
     collectible: true,
     position: { lat: -20.32598, lng: -69.73172 },
     async create(makers) {
-      return makers.card({ src: this.thumbnailURL, name: this.name });
+      return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
     },
   },
   {
@@ -217,7 +264,7 @@ export default [
     collectible: true,
     position: { lat: -20.32522, lng: -69.73902 },
     async create(makers) {
-      return makers.card({ src: this.thumbnailURL, name: this.name });
+      return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
     },
   },
   {
@@ -226,7 +273,7 @@ export default [
     collectible: true,
     position: { lat: -20.32459, lng: -69.74547 },
     async create(makers) {
-      return makers.card({ src: this.thumbnailURL, name: this.name });
+      return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
     },
   },
   {
@@ -235,7 +282,7 @@ export default [
     collectible: true,
     position: { lat: -20.32403, lng: -69.75158 },
     async create(makers) {
-      return makers.card({ src: this.thumbnailURL, name: this.name });
+      return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
     },
   },
   createShrooms('1', {
@@ -251,7 +298,7 @@ export default [
     collectible: false,
     position: { lat: -20.29203, lng: -69.78111 },
     create(makers) {
-      return makers.simpleImage('/assets/img/drone.webp', 'drone-hovering');
+      return makers.simpleImage({ src: '/assets/img/drone.webp', id: 'drone-hovering' });
     },
   },
   {

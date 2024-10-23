@@ -1,4 +1,5 @@
 import { LOCALSTORAGE_INVENTORY_KEY } from '../constants.js';
+import { toast } from '../script/utils.js';
 
 const inventory = document.getElementById('inventory');
 const cellTemplate = document.getElementById('inventory-cell-template');
@@ -26,6 +27,8 @@ export default {
     if (this.items.includes(item)) {
       return;
     }
+
+    toast(`«${item.name}» added to Inventory.`)
 
     this.items.push(item);
     addToUI(item);

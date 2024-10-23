@@ -14,6 +14,7 @@ import { LOCALSTORAGE_POSITION_KEY, START_POSITION, START_POV, MAPS_API_KEY } fr
 import loadItems from './items/index.js';
 import { initChapters, completed as completedChapters } from './chapters.js';
 import initGamepad from './gamepad.js';
+import { initTask } from './task.js';
 import { localisedSounds } from './audio/localised-sounds.js';
 import { FADE_OUT_DELAY_MS, playGatewaySound } from './audio/gateway-sound.js';
 import { enableClickToGoCB, enableSFX } from './script/utils.js';
@@ -97,7 +98,7 @@ const initialize = async () => {
   scriptContext.masterGain = new GainNode(scriptContext.audioContext, { gain: 0 });
   scriptContext.masterGain.connect(scriptContext.audioContext.destination);
 
-  scriptContext.speechGain = new GainNode(scriptContext.audioContext, { gain: 0.8 });
+  scriptContext.speechGain = new GainNode(scriptContext.audioContext, { gain: 0.9 });
   scriptContext.speechGain.connect(scriptContext.audioContext.destination);
 
   scriptContext.score = createScore(scriptContext);
@@ -157,6 +158,7 @@ const initialize = async () => {
   setLatLngDisplay(initialPosition);
   setPovDisplay(map.getPov());
   initGamepad(scriptContext);
+  initTask();
 
   document.body.classList.add('game-on');
 };

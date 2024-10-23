@@ -68,9 +68,13 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
   camera.position.y = cameraInitY;
   camera.position.z = cameraInitZ;
 
-  const renderer = new WebGLRenderer({ canvas, alpha: true });
-  renderer.setPixelRatio(Math.max(2, window.devicePixelRatio));
-  renderer.setClearColor(0x000000, 0);
+  let renderer = null;
+
+  const createRenderer = () => {
+    renderer = new WebGLRenderer({ canvas, alpha: true });
+    renderer.setPixelRatio(Math.max(2, window.devicePixelRatio));
+    renderer.setClearColor(0x000000, 0);
+  }
 
   const mesh = await loadGLTF(url);
   mesh.scale.x = scale ?? 1;
@@ -104,7 +108,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
   console.info('[3d-objects]', name, debugObject);
 
   return {
-    name, scene, camera, renderer, mesh, canvas, container,
+    name, scene, camera, mesh, canvas, container,
     insert(map, position) {
       this.map = map;
 
@@ -120,6 +124,12 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
     },
     render() {
       console.info('[3d-objects]', 'rendering', name);
+
+      if (!renderer) {
+        console.info('[3d-objects]', 'no renderer yet for', name);
+        createRenderer();
+      }
+
       renderer.render(scene, camera);
     },
     async reset() {
@@ -161,6 +171,9 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
         if (this.dist < OBJECT_APPEAR_THRESHOLD) {
           this.info.open({ map: this.map });
         } else {
+          renderer?.dispose();
+          renderer = null;
+
           return;
         }
       }

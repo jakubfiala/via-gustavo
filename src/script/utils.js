@@ -60,3 +60,11 @@ export const updateSoundTrackVolume = volume => context => {
 
 export const fadeInSoundTrack = updateSoundTrackVolume(1);
 export const fadeOutSoundTrack = updateSoundTrackVolume(0);
+
+export const toast = (text) => {
+  const toast = document.getElementById('toast');
+  toast.innerText = text;
+  toast.hidden = false;
+
+  setTimeout(() => toast.hidden = true, 5000);
+};

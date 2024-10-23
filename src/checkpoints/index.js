@@ -106,7 +106,7 @@ export const checkpoints = [
   },
   {
     lat: -20.33705,
-    lng: -69.65913,
+    lng: -69.65924,
     callback(context) {
       return scheduleScript(chapter2.mainRoad, context);
     },

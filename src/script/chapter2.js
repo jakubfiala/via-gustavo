@@ -1,4 +1,5 @@
 import { enableJaywalk } from '../interactions/jaywalk-button.js';
+import { removeTask, setTask } from '../task.js';
 import { flashStatus, showHelpMessage } from './utils.js';
 
 export const intro = [
@@ -18,41 +19,40 @@ export const intro = [
   { text: "Empty Coca-Cola cans falling out the trunk." },
   { text: "Follow them to find the square, in front of the large white church." },
   { text: "I'll tell you everything there." },
+  { callback: () => setTask('Find the plaza in front of the church in La Tirana.') },
 ];
 
 export const station1 = [
   // 1. laid in his tomb
   {
     text: "This is it -",
-    callback: (context) => context.soundscape.set(context.soundscape.town2),
+    callback: (context) => {
+      removeTask();
+      context.soundscape.set(context.soundscape.town2);
+    },
   },
   { text: "- they call it the 'Church of the Sanctuary'." },
-  {
-    text: "I... I think I'm ready to tell you what I've seen.",
-    duration: 5,
-  },
+  { text: "I think I'm ready to tell you what I've seen." },
   { duration: 5, callback: (context) => context.score.viaCrucis1.play() },
-  { text: "Picture Gustavo" },
-  { text: "laying in his bed" },
-  { text: "hist best shirt creased at the elbows" },
+  { text: "Picture Gustavo laying in his bed," },
+  { text: "his best shirt creased at the elbows" },
   { text: "his black trousers outlining his bones" },
-  { text: "his eyes shut, chest gently rising" },
-  { text: "and falling again." },
-  { text: "You'd almost want to put a bouquet" },
-  { text: "in his hands, so he can smell the flowers." },
+  { text: "his eyes shut, chest gently rising, and falling again." },
+  { text: "You'd almost want to put a bouquet in his hands, so he can smell the flowers." },
   { text: "That's not a good idea" },
   { text: "- he'd probably wake up and get mad at you." },
   { text: "«What do you think I am?»" },
   { text: "«A fucking corpse?»" },
-  { text: "He'd sit up, the mattress moaning under his weight" },
+  { text: "He'd sit up, the mattress moaning under his weight," },
   { text: "and look you in the eyes." },
   { duration: 4 },
   { text: "This place is only the beginning" },
-  { text: "we can move to the next station...", duration: 5 },
+  { text: "we can move to the next station..." },
   { text: "See that street at the back of the church?" },
   { text: "It's called Eleuterio Ramírez." },
-  { text: "Let's go that way, turn to the right," },
-  { text: "and walk down westwards." },
+  { text: "Let's go that way and turn right." },
+  { text: "Then just follow the coke!" },
+  { callback: () => setTask('Follow Eleuterio Ramírez to reach the main road.') },
 ];
 
 export const mainRoad = [
