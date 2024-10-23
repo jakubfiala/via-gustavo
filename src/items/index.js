@@ -33,11 +33,15 @@ const initItem = (makers) => async (desc, context) => {
   item.insert(context.map, desc.position);
 
   if (desc.onClick) {
-    item.info.content.addEventListener('click', () => desc.onClick(context.map, item));
+    if (item.addClickHandler) {
+      item.addClickHandler(() => desc.onClick(context.map, item));
+    } else {
+      item.info.content.addEventListener('click', () => desc.onClick(context.map, item));
+    }
   }
 
   if (desc.collectible) {
-    item.info.content.addEventListener('click', () => {
+    const handler = () => {
       item.taken = true;
 
       Inventory.addItem(desc);
@@ -54,7 +58,13 @@ const initItem = (makers) => async (desc, context) => {
       }
 
       item.info.close();
-    });
+    };
+
+    if (item.addClickHandler) {
+      item.addClickHandler(handler);
+    } else {
+      item.info.content.addEventListener('click', handler);
+    }
   }
 
   if (!desc.collectible && !desc.onClick && item.container) {

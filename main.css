@@ -622,12 +622,12 @@ p.subtitle {
 }
 
 .gustavo-item {
-  transition: filter 250ms;
+  transition: filter 150ms;
   cursor: pointer;
   scale: 1;
 }
 
-.gustavo-item:not(:has(iframe)):hover {
+.gustavo-item--highlighted {
   filter: brightness(200%);
 }
 

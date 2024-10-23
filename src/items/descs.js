@@ -29,7 +29,7 @@ export default [
       pov: { heading: 0, pitch: 0 },
     },
     cameraPosition: { x: -8, y: 3.5 },
-    scale: 0.6,
+    scale: 0.8,
   }),
   createCoke({
     name: 'Coca-Cola 1',
@@ -159,7 +159,6 @@ export default [
   {
     thumbnailURL: '/assets/img/via-crucis/14.jpg',
     name: 'XIV - Laid in his tomb',
-    collectible: true,
     position: { lat: -20.33616, lng: -69.65654 },
     async create(makers) {
       return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
@@ -168,7 +167,6 @@ export default [
   {
     thumbnailURL: '/assets/img/via-crucis/13.jpg',
     name: 'XIII - Taken down from the cross',
-    collectible: true,
     position: {
       lat: -20.33545,
       lng: -69.65917,
@@ -180,7 +178,6 @@ export default [
   {
     thumbnailURL: '/assets/img/via-crucis/12.jpg',
     name: 'XII - Dies on the cross',
-    collectible: true,
     position: { lat: -20.33343, lng: -69.66675 },
     async create(makers) {
       return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
@@ -189,7 +186,6 @@ export default [
   {
     thumbnailURL: '/assets/img/via-crucis/11.jpg',
     name: 'XI - Nailed to the cross',
-    collectible: true,
     position: { lat: -20.33253, lng: -69.6745 },
     async create(makers) {
       return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
@@ -198,7 +194,6 @@ export default [
   {
     thumbnailURL: '/assets/img/via-crucis/10.jpg',
     name: 'X - His clothes are torn',
-    collectible: true,
     position: { lat: -20.33175, lng: -69.68088 },
     async create(makers) {
       return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
@@ -207,7 +202,6 @@ export default [
   {
     thumbnailURL: '/assets/img/via-crucis/09.jpg',
     name: 'IX - Fails the third time',
-    collectible: true,
     position: { lat: -20.33083, lng: -69.68898 },
     async create(makers) {
       return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
@@ -216,7 +210,6 @@ export default [
   {
     thumbnailURL: '/assets/img/via-crucis/08.jpg',
     name: 'VIII - Meets the women of Jerusalem',
-    collectible: true,
     position: { lat: -20.32995, lng: -69.69689 },
     async create(makers) {
       return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
@@ -225,7 +218,6 @@ export default [
   {
     thumbnailURL: '/assets/img/via-crucis/07.jpg',
     name: 'VII - Fails the second time',
-    collectible: true,
     position: { lat: -20.32892, lng: -69.70551 },
     async create(makers) {
       return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
@@ -234,7 +226,6 @@ export default [
   {
     thumbnailURL: '/assets/img/via-crucis/06.jpg',
     name: 'VI - Veronica wipes his face',
-    collectible: true,
     position: { lat: -20.3278, lng: -69.71511 },
     async create(makers) {
       return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
@@ -243,7 +234,6 @@ export default [
   {
     thumbnailURL: '/assets/img/via-crucis/05.jpg',
     name: 'V - Simon of Cyrene helps him carry the cross',
-    collectible: true,
     position: { lat: -20.32682, lng: -69.72382 },
     async create(makers) {
       return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
@@ -252,7 +242,6 @@ export default [
   {
     thumbnailURL: '/assets/img/via-crucis/04.jpg',
     name: 'IV - Meets his mother',
-    collectible: true,
     position: { lat: -20.32598, lng: -69.73172 },
     async create(makers) {
       return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
@@ -261,7 +250,6 @@ export default [
   {
     thumbnailURL: '/assets/img/via-crucis/03.jpg',
     name: 'III - Fails the first time',
-    collectible: true,
     position: { lat: -20.32522, lng: -69.73902 },
     async create(makers) {
       return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
@@ -270,7 +258,6 @@ export default [
   {
     thumbnailURL: '/assets/img/via-crucis/02.jpg',
     name: 'II - Takes up his cross',
-    collectible: true,
     position: { lat: -20.32459, lng: -69.74547 },
     async create(makers) {
       return makers.simpleImage({ src: this.thumbnailURL, name: this.name });
@@ -279,7 +266,6 @@ export default [
   {
     thumbnailURL: '/assets/img/via-crucis/01.jpg',
     name: 'I - Is sentenced to death',
-    collectible: true,
     position: { lat: -20.32403, lng: -69.75158 },
     async create(makers) {
       return makers.simpleImage({ src: this.thumbnailURL, name: this.name });

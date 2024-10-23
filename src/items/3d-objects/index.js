@@ -2,7 +2,9 @@ import {
   AmbientLight,
   DirectionalLight,
   PerspectiveCamera,
+  Raycaster,
   Scene,
+  Vector2,
   Vector3,
   WebGLRenderer,
 } from 'three';
@@ -26,6 +28,9 @@ const DIRLIGHT_DEFAULT_Y = 0.39;
 const DIRLIGHT_DEFAULT_Z = 0.7;
 
 const MIN_ZOOM = 0.8;
+const MIN_DPR = 2;
+
+const dpr = Math.max(MIN_DPR, window.devicePixelRatio);
 
 const createLights = ({ x, y, z }) => {
   const ambientLight = new AmbientLight(0x7c7c7c, 3.0);
@@ -53,7 +58,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
   }
 
   const canvas = document.createElement('canvas');
-  canvas.classList.add('vg-item', 'vg-item--big');
+  canvas.classList.add('vg-item');
   canvas.height = big ? CANVAS_SIZE_BIG : CANVAS_SIZE;
   canvas.width = big ? CANVAS_SIZE_BIG : CANVAS_SIZE;
   canvas.title = name;
@@ -72,9 +77,22 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
 
   const createRenderer = () => {
     renderer = new WebGLRenderer({ canvas, alpha: true });
-    renderer.setPixelRatio(Math.max(2, window.devicePixelRatio));
+    renderer.setPixelRatio(dpr);
     renderer.setClearColor(0x000000, 0);
   }
+
+  const raycaster = new Raycaster();
+  const pointer = new Vector2();
+  let isBeingHovered = false;
+
+  canvas.addEventListener('pointermove', (event) => {
+    pointer.x = (event.offsetX / canvas.width) * dpr * 2 - 1;
+    pointer.y = (event.offsetY / canvas.height) * dpr * 2 - 1;
+    raycaster.setFromCamera(pointer, camera);
+    isBeingHovered = raycaster.intersectObjects([mesh], true).length > 0;
+
+    container.classList.toggle('gustavo-item--highlighted', isBeingHovered);
+  });
 
   const mesh = await loadGLTF(url);
   mesh.scale.x = scale ?? 1;
@@ -195,7 +213,16 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
       cameraTarget.copy(mesh.position);
       camera.lookAt(cameraTarget);
       cameraTarget.y += Math.abs(dx * CAMERA_TARGET_INCREMENT_Z);
+      camera.updateMatrixWorld();
       this.render();
+    },
+    addClickHandler(handler) {
+      console.log('adding own click handler for', name);
+      container.addEventListener('click', () => {
+        if (isBeingHovered) {
+          handler();
+        }
+      });
     },
   };
 };

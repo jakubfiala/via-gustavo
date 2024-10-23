@@ -29,7 +29,8 @@ export const createBusStopItem = ({ position, destination: { locationName, latLn
   collectible: false,
   position,
   async create(makers) {
-    return makers.threeObject('/assets/items/bus-stop/', { name: this.name, cameraPosition, scale });
+    return makers.threeObject('/assets/items/bus-stop/',
+      { name: this.name, cameraPosition, lightPosition: { x: -0.5, z: -0.7 }, scale });
   },
   onClick: (map, item) => {
     takeTheBus(map, {
