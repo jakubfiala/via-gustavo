@@ -1,10 +1,5 @@
 import { LOCALSTORAGE_CHAPTERS_KEY } from './constants.js';
-
-const ITEM_CLASS = 'chapters__chapter';
-const COMPLETED_CLASS = 'chapters__chapter--complete';
-
-const dialog = document.getElementById('chapters-dialog');
-const list = document.getElementById('chapters-list');
+import { journalChapter } from './journal/index.js';
 
 export const completed = new Set(JSON.parse(localStorage.getItem(LOCALSTORAGE_CHAPTERS_KEY)) || []);
 
@@ -53,41 +48,15 @@ export const chapters = [
 
 export const clear = () => {
   localStorage.removeItem(LOCALSTORAGE_CHAPTERS_KEY);
-  Array.from(list.children).forEach((item) => item.classList.remove(COMPLETED_CLASS));
   completed.clear();
 };
 
 export const completeChapter = (chapter) => {
-  chapter.indicator.classList.add(COMPLETED_CLASS);
   completed.add(chapter.id);
   localStorage.setItem(LOCALSTORAGE_CHAPTERS_KEY, JSON.stringify(Array.from(completed)));
-  chapter.indicator.querySelector('.chapters__replay').hidden = false;
+  journalChapter(chapter);
 };
 
 export const initChapters = (context) => {
-  chapters.forEach((chapter) => {
-    const item = document.createElement('li');
-    item.dataset.id = chapter.id;
-    item.innerText = chapter.title;
-    item.classList.add(ITEM_CLASS);
 
-    chapter.indicator = item;
-
-    const button = document.createElement('button');
-    button.innerText = 'Replay';
-    button.addEventListener('click', () => {
-      dialog.close();
-      context.map.setPosition(chapter.position);
-    });
-    button.classList.add('hud__button', 'chapters__replay');
-    button.hidden = true;
-    item.appendChild(button);
-
-    if (completed.has(chapter.id)) {
-      chapter.indicator.classList.add(COMPLETED_CLASS);
-      button.hidden = false;
-    }
-
-    list.appendChild(item);
-  });
 };

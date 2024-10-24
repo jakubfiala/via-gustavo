@@ -34,6 +34,8 @@ const createSoundscape = (context, src, name) => {
   };
 };
 
+export const clear = () => localStorage.removeItem(LOCALSTORAGE_SOUNDSCAPE_KEY);
+
 export default (context) => {
   context.soundscapeGain = new GainNode(context.audioContext, { gain: 0 });
   context.soundscapeGain.connect(context.masterGain);

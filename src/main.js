@@ -23,6 +23,7 @@ import { checkForCheckpoints } from './checkpoints/index.js';
 import createSFX from './audio/sfx.js';
 import createScore from './audio/score-sounds.js';
 import createSoundscape from './audio/soundscapes.js';
+import { initJournal } from './journal/index.js';
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
@@ -160,6 +161,7 @@ const initialize = async () => {
   initGamepad(scriptContext);
   setLatLngDisplay(initialPosition);
   setPovDisplay(map.getPov());
+  initJournal();
 
   document.body.classList.add('game-on');
 };

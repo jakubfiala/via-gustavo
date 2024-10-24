@@ -16,22 +16,20 @@ const setupDialog = ({ toggle, close, dialog }) => {
   })
 };
 
-export const setLatLngDisplay = ({ lat, lng }) => latLngDisplay.innerText = `lat: ${lat.toFixed(15)}, lng: ${lng.toFixed(15)}`;
-export const setPovDisplay = ({ heading, pitch }) => povDisplay.innerText = `heading: ${heading.toFixed(15)}, pitch: ${pitch.toFixed(15)}`;
+const LATLNG_PRECISION = 5;
+const POV_PRECISION = 2;
+
+export const setLatLngDisplay = ({ lat, lng }) => latLngDisplay.innerText = `lat: ${lat.toFixed(LATLNG_PRECISION)}, lng: ${lng.toFixed(LATLNG_PRECISION)},`;
+export const setPovDisplay = ({ heading, pitch }) => povDisplay.innerText = `heading: ${heading.toFixed(POV_PRECISION)}, pitch: ${pitch.toFixed(POV_PRECISION)}`;
 
 export default () => {
   hud.hidden = false;
 
   [
     {
-      dialog: document.getElementById('chapters-dialog'),
-      toggle: document.getElementById('chapters-button'),
-      close: document.getElementById('chapters-close'),
-    },
-    {
-      dialog: document.getElementById('inventory-dialog'),
-      toggle: document.getElementById('inventory-button'),
-      close: document.getElementById('inventory-close'),
+      dialog: document.getElementById('journal-dialog'),
+      toggle: document.getElementById('journal-button'),
+      close: document.getElementById('journal-close'),
     },
     {
       dialog: document.getElementById('about-dialog'),

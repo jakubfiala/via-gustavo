@@ -223,7 +223,6 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
       this.render();
     },
     addClickHandler(handler) {
-      console.log('adding own click handler for', name);
       container.addEventListener('click', () => {
         if (isBeingHovered) {
           handler();

@@ -68,7 +68,7 @@ export const intro3 = [
   { text: "Sorry, that wasn't too kind..." },
   { duration: 2 },
   { text: "What I meant to tell you is that I could use your help." },
-  { text: "You see, from your vantage point, you see many things I don't," },
+  { text: "Thing is, from your vantage point, you see many things I don't," },
   { text: "and I've been looking for someone." },
   { text: "A friend, you might say." },
   { duration: 1 },

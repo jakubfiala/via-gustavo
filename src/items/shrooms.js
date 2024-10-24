@@ -6,6 +6,7 @@ export const createShrooms = (label, position) => ({
   collectible: true,
   canBeActivated: true,
   position,
+  collectText: 'Ate some',
   pickUpSFX: 'chewing',
   async create(makers) {
     const item = await makers.threeObject('/assets/items/magic-mushrooms/', {
