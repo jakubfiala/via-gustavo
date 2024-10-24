@@ -1,3 +1,5 @@
+import inventory from '../inventory';
+
 const TRIP_DURATION = 5 * 60 * 1000;
 
 export const createShrooms = (label, position) => ({
@@ -16,7 +18,10 @@ export const createShrooms = (label, position) => ({
     });
     item.activate = (context) => {
       document.body.classList.add('dreamz');
-      setTimeout(() => document.body.classList.remove('dreamz'), TRIP_DURATION);
+      setTimeout(() => {
+        document.body.classList.remove('dreamz');
+        inventory.removeItem(this.name);
+      }, TRIP_DURATION);
     };
     return item;
   },

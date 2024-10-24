@@ -1,4 +1,5 @@
 import { enableJaywalk } from '../interactions/jaywalk-button.js';
+import { journalMoment } from '../journal/index.js';
 import { removeTask, setTask } from '../task.js';
 import { flashStatus, showHelpMessage } from './utils.js';
 
@@ -10,6 +11,7 @@ export const intro = [
     text: "",
     callback: (context) => {
       context.score.bachPiano2.play();
+      journalMoment('🚌', "Got off the bus in the town of La Tirana");
       flashStatus(`Chapter ${context.chapter.id} - ${context.chapter.title}`)(context);
     }
   },
@@ -33,6 +35,9 @@ export const station1 = [
     },
   },
   { text: "- they call it the 'Church of the Sanctuary'." },
+  {
+    callback: () => journalMoment('⛪', "Found the church in La Tirana"),
+  },
   { text: "I think I'm ready to tell you what I've seen." },
   { duration: 5, callback: (context) => context.score.viaCrucis1.play() },
   { text: "Picture Gustavo laying in his bed," },
@@ -47,8 +52,8 @@ export const station1 = [
   { text: "He'd sit up, the mattress moaning under his weight," },
   { text: "and look you in the eyes." },
   { duration: 4 },
-  { text: "This place is only the beginning" },
-  { text: "we can move to the next station..." },
+  { text: "This place is only the beginning." },
+  { text: "We can move to the next station..." },
   { text: "See that street at the back of the church?" },
   { text: "It's called Eleuterio Ramírez." },
   { text: "Let's go that way and turn right." },
@@ -82,6 +87,9 @@ export const station2 = [
   { text: "The ignition roars." },
   { duration: 3 },
   { text: "Let's keep going northwest, and out of this town." },
+  {
+    callback: () => journalMoment('✝️', "Found another Station of the Cross"),
+  }
 ];
 
 export const station3 = [
@@ -133,7 +141,12 @@ export const station5 = [
   { text: "If his journey was to be a secret, it certainly isn't anymore." },
   { text: "Now there's no going back." },
   { duration: 7 },
-  { text: "I hope this pilgrimage isn't boring you - it's still quite a long way." },
+  {
+    text: "I hope this pilgrimage isn't boring you - it's still quite a long way.",
+  },
+  {
+    callback: () => journalMoment('🚗', "Found a truck by the side of the road"),
+  },
 ];
 
 export const station6 = [
@@ -168,7 +181,10 @@ export const station7 = [
 // 8. He falls for the second time
 export const station8 = [
   { text: "He keeps walking." },
-  { text: "Suddenly, something among the trees catches his eye and he runs off the path.", callback: (context) => context.score.viaCrucis5.play() },
+  {
+    text: "Suddenly, something among the trees catches his eye and he runs off the path.",
+    callback: (context) => context.score.viaCrucis5.play(),
+  },
   { text: "The ground crunches under his feet as he sprints northwards." },
   { text: "He leaps over a pile of gravel, but as he lands, his feet sink too deep," },
   { text: "he loses balance and collapses onto the rough terrain." },
@@ -220,7 +236,12 @@ export const station12 = [
   { text: "He's still on the phone, wildly gesturing." },
   { text: "He trips on a rock laying on the asphalt, almost falls, and mumbles a string of curses." },
   { text: "In his agitation, he does not notice the yellow device slip out of the half-open backpack." },
-  { text: "«I am hanging up now», he yells, and presses on." },
+  {
+    text: "«I am hanging up now», he yells, and presses on.",
+  },
+  {
+    callback: () => journalMoment('📟', "Found Gustavo's lost device"),
+  },
   { duration: 3 },
   { text: "You should probably pick up that device if you haven't already." },
   { text: "", callback: showHelpMessage("Click on the device to pick it up.") },
@@ -242,7 +263,12 @@ export const station13 = [
 
 // 14. He is condemned to death
 export const station14 = [
-  { text: "And that's it. That's where the pilgrimage ends." },
+  {
+    text: "And that's it. That's where the pilgrimage ends.",
+  },
+  {
+    callback: () => journalMoment('✝️', "Visited all the Stations of the Cross"),
+  },
   { text: "I watched him carefully cross the many lanes of the highway intersection" },
   { text: "and follow the dirt road on the other side." },
   { text: "This is as far as I can go with you, but I am beyond certain" },

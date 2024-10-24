@@ -17,6 +17,9 @@
     <div class="text-overlay text-overlay--top">
       <div id="text-display"></div>
     </div>
+    <div id="handheld-item" class="handheld-item">
+      <img id="handheld-explosion" class="handheld-explosion" src="/assets/img/explosion.gif" loading="lazy" hidden>
+    </div>
     <div id="hud" class="hud" hidden>
       <h1 class="hud__title">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 724 174" fill="none" aria-label="Finding Gustavo">
@@ -36,6 +39,7 @@
           <path fill="currentColor" fill-rule="evenodd" d="M7.101 7.634a19 19 0 0 1 6.798 0l1.114.203A1 1 0 0 0 15 8v8a1 1 0 1 0 2 0V8q0-.084-.013-.163l1.114-.203a19 19 0 0 1 3.899-.3V11a1 1 0 1 0 2 0V7.493q.45.06.899.141l.28.051A1 1 0 0 1 26 8.67v14.11a.853.853 0 0 1-1.006.84c-2.31-.42-4.678-.42-6.988 0L17 23.802V20a1 1 0 1 0-2 0v3.802l-1.006-.183c-2.31-.42-4.678-.42-6.988 0A.853.853 0 0 1 6 22.779V8.67a1 1 0 0 1 .821-.984zm9.436 18.285a3 3 0 0 1-.228.032 1 1 0 0 1-.618 0 3 3 0 0 1-.228-.032l-1.827-.332a17.5 17.5 0 0 0-6.272 0A2.853 2.853 0 0 1 4 22.779V8.67a3 3 0 0 1 2.463-2.951l.28-.051a21 21 0 0 1 7.514 0l1.564.284a1 1 0 0 0 .358 0l1.564-.284a21 21 0 0 1 7.514 0l.28.05A3 3 0 0 1 28 8.67v14.11a2.853 2.853 0 0 1-3.364 2.808 17.5 17.5 0 0 0-6.272 0z" clip-rule="evenodd"/>
         </svg>
         Journal
+        <div class="journal-button__indicator" id="journal-button-indicator" aria-hidden="true" hidden></div>
       </button>
       <dialog id="journal-dialog" class="hud__dialog hud__dialog--big">
         <header class="hud__dialog-header">
@@ -43,7 +47,15 @@
           <button id="journal-close" class="hud__dialog-close">Close</button>
         </header>
         <section class="hud__dialog-content">
-          <ol id="journal-entries"></ol>
+          <article>
+            <ol id="journal-entries">
+              <li class="journal__entry journal__entry--chapter">
+                <h1>
+                  Started the journey
+                </h1>
+              </li>
+            </ol>
+          </article>
 
           <template id="journal-item-template">
             <li class="journal__entry">
@@ -56,7 +68,7 @@
           </template>
 
           <template id="journal-chapter-template">
-            <li class="journal__entry">
+            <li class="journal__entry journal__entry--chapter">
               <h2>
                 Began chapter&nbsp;
                 <span class="journal__chapter-id"></span>
@@ -64,12 +76,14 @@
                 <span class="journal__chapter-title"></span>
                 <button class="hud__button replay-chapter">Replay</button>
               </h2>
-              <ol class="journal__chapter-tasks"></ol>
             </li>
           </template>
 
-          <template id="journal-task-template">
-            <li class="journal__task"></li>
+          <template id="journal-moment-template">
+            <li class="journal__entry journal__entry--moment">
+              <span class="journal__moment-symbol"></span>
+              <span class="journal__moment-text"></span>
+            </li>
           </template>
         </section>
       </dialog>
@@ -104,33 +118,47 @@
           <button id="about-close" class="hud__dialog-close">Close</button>
         </header>
         <section class="hud__dialog-content">
-          <p>
-            Via Gustavo is a walking simulator game in Google Street View.
-          </p>
-          <p>
-            Built by <a href="https://fiala.space" rel="noopener" target="_blank">Jakub Fiala</a>
-            during the <a href="https://heyhuman.art/" rel="noopener" target="_blank">HeyHuman</a> residency in 2024.
-          </p>
+          <div class="about__intro">
+            <p>
+              <em>Finding Gustavo</em> is a walking simulator game by <a href="https://fiala.space" rel="noopener" target="_blank">Jakub Fiala</a>.
+              <br>Built during the <a href="https://heyhuman.art/" rel="noopener" target="_blank">HeyHuman</a> residency in 2024.
+            </p>
+          </div>
+
           <h3>Credits</h3>
+          <h4>3D assets</h4>
           <ul>
-            <li><a href="https://sketchfab.com/ziperistudio">Coca Cola</a> Can by Ziperi</li>
-            <li><a href="https://skfb.ly/oSNuS">"Magic Mushroom Cluster"</a> by RollingThunder is licensed under <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution</a>.</li>
-            <li><a href="https://skfb.ly/oPYAY">"Hovering Drone"</a> by J1G4R is licensed under <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution</a>.</li>
-            <li><a href="https://skfb.ly/oRtBt">"Blue travel backpack"</a> by Jungle Jim is licensed under <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution</a>.</li>
-            <li><a href="https://skfb.ly/MwoB">"Gmc Sierra Work Truck"</a>  by Renafox is licensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial</a>.</li>
-            <li><a href="https://freesound.org/s/59582/">busridetoairport.mp3</a> by morgantj License: <a href="http://creativecommons.org/licenses/by/4.0/">Attribution 4.0</a></li>
-            <li><a href="https://freesound.org/s/147263/">Desert Storm Atmos</a> by kangaroovindaloo License: <a href="http://creativecommons.org/licenses/by/4.0/">Attribution 4.0</a></li>
-            <li><a href="https://freesound.org/s/742236/">Desert winds quiet</a> by jgrzinich License: <a href="http://creativecommons.org/licenses/by-nc/4.0/">Attribution NonCommercial 4.0</a></li>
-            <li><a href="https://freesound.org/s/455056/">footsteps-concrete-asphalt.wav</a> by audioninja001 License: <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode">Creative Commons 0</a></li>
-            <li><a href="https://freesound.org/s/166421/">Some dogs barking a village in Anatolia (Turkey)</a> by felix.blume License: <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode">Creative Commons 0</a></li>
-            <li><a href="https://freesound.org/s/708220/">Chewing by Bathulile231236</a> License: <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode">Creative Commons 0</a></li>
-            <li><a href="https://freesound.org/s/387989/">UAS Drone Pass 03.wav</a> by DCPoke License: <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode">Creative Commons 0</a></li>
-            <li><a href="https://freesound.org/s/387985/">UAS Drone Hover 01.wav</a> by DCPoke License: <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode">Creative Commons 0</a></li>
-            <li><a href="https://freesound.org/s/386862/">8-Bit explosion by Prof.Mudkip License: <a href="https://creativecommons.org/licenses/by/3.0/">Attribution 3.0</a></li>
-            <li>journal by Daniela Paim from <a href="https://thenounproject.com/browse/icons/term/journal/" target="_blank" title="journal Icons">Noun Project</a> (<a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>)</li>
-            <li>Settings by Daniela Paim from <a href="https://thenounproject.com/browse/icons/term/settings/" target="_blank" title="Settings Icons">Noun Project</a> (<a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>)</li>
-            <li>Information by Daniela Paim from <a href="https://thenounproject.com/browse/icons/term/information/" target="_blank" title="Information Icons">Noun Project</a> (<a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>)</li>
+            <li><a href="https://sketchfab.com/ziperistudio">Coca Cola</a> Can by Ziperi is licensed under <a href="http://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></li>
+            <li><a href="https://skfb.ly/oSNuS">"Magic Mushroom Cluster"</a> by RollingThunder is licensed under <a href="http://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>.</li>
+            <li><a href="https://skfb.ly/oPYAY">"Hovering Drone"</a> by J1G4R is licensed under <a href="http://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>.</li>
+            <li><a href="https://skfb.ly/oRtBt">"Blue travel backpack"</a> by Jungle Jim is licensed under <a href="http://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>.</li>
+            <li><a href="https://skfb.ly/MwoB">"Gmc Sierra Work Truck"</a>  by Renafox is licensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>.</li>
+          </ul>
+          <h4>Audio assets</h4>
+          <p>
+            <em>The narrative voiceover was generated using generative machine learning models.</em>
+          </p>
+          <ul>
+            <li><a href="https://freesound.org/s/59582/">busridetoairport.mp3</a> by morgantj License: <a href="http://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></li>
+            <li><a href="https://freesound.org/s/147263/">Desert Storm Atmos</a> by kangaroovindaloo License: <a href="http://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></li>
+            <li><a href="https://freesound.org/s/742236/">Desert winds quiet</a> by jgrzinich License: <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a></li>
+            <li><a href="https://freesound.org/s/455056/">footsteps-concrete-asphalt.wav</a> by audioninja001 License: <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode">CC0</a></li>
+            <li><a href="https://freesound.org/s/166421/">Some dogs barking a village in Anatolia (Turkey)</a> by felix.blume License: <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode">CC0</a></li>
+            <li><a href="https://freesound.org/s/708220/">Chewing by Bathulile231236</a> License: <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode">CC0</a></li>
+            <li><a href="https://freesound.org/s/387989/">UAS Drone Pass 03.wav</a> by DCPoke License: <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode">CC0</a></li>
+            <li><a href="https://freesound.org/s/387985/">UAS Drone Hover 01.wav</a> by DCPoke License: <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode">CC0</a></li>
+            <li><a href="https://freesound.org/s/538554/">Success</a> by Sjonas88 icense: <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode">CC0</a></li>
+            <li><a href="https://freesound.org/s/386862/">8-Bit explosion by Prof.Mudkip License: <a href="https://creativecommons.org/licenses/by/3.0/">CC-BY 3.0</a></li>
+          </ul>
+          <h4>Images &amp; Icons</h4>
+          <ul>
+            <li>journal by Daniela Paim from <a href="https://thenounproject.com/browse/icons/term/journal/" target="_blank" title="journal Icons">Noun Project</a> (<a href="https://creativecommons.org/licenses/by/3.0/">CC-BY 3.0</a>)</li>
+            <li>Settings by Daniela Paim from <a href="https://thenounproject.com/browse/icons/term/settings/" target="_blank" title="Settings Icons">Noun Project</a> (<a href="https://creativecommons.org/licenses/by/3.0/">CC-BY 3.0</a>)</li>
+            <li>Information by Daniela Paim from <a href="https://thenounproject.com/browse/icons/term/information/" target="_blank" title="Information Icons">Noun Project</a> (<a href="https://creativecommons.org/licenses/by/3.0/">CC-BY 3.0</a>)</li>
             <li>explosion gif - author unknown - <a href="https://www.giocagiue.it/2012/07/hai-mai-giocato-a-mortal-kombat-no-ma-ho-visto-il-film/">source</a></li>
+          </ul>
+          <h4>Code</h4>
+          <ul>
             <li>gamepad integration by <a href="https://www.timcowlishaw.co.uk/">Tim Cowlishaw</a></li>
           </ul>
           <img class="cme-logos" src="/assets/img/cme-logos.png" loading="lazy">
@@ -148,7 +176,6 @@
         <output id="pov-display"></output>
       </div>
     </div>
-
     <form class="fake-captcha" hidden>
       <input type="checkbox" name="fake-captcha-cb" id="fake-captcha-cb" />
       <div class="fake-captcha__checkbox"><div class="icon"></div></div>
@@ -162,9 +189,6 @@
     </form>
     <div id="bus-overlay" class="overlay overlay--full" hidden>
       <audio id="bus-audio" src="/assets/audio/bus.mp3" preload="none"></audio>
-    </div>
-    <div id="handheld-item" class="handheld-item">
-      <img id="handheld-explosion" class="handheld-explosion" src="/assets/img/explosion.gif" loading="lazy" hidden>
     </div>
     <div id="sky-images" class="sky-images" hidden>
       <img id="mars-sky-image" src="/assets/img/mars-diagram.jpg" class="sky-image" loading="lazy">

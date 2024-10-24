@@ -205,6 +205,7 @@ p.subtitle {
   font-weight: normal;
   color: white;
   text-shadow: var(--text-shadow);
+  pointer-events: none;
 }
 
 .help-keys {
@@ -588,7 +589,7 @@ p.subtitle {
 .handheld-item {
   animation: handheld 1s infinite;
   position: fixed;
-  z-index: 2;
+  z-index: 1;
   bottom: -14rem;
   right: 55%;
   pointer-events: none;
@@ -806,7 +807,7 @@ p.subtitle {
 }
 
 .journal__entry {
-  padding: 1rem 0 1rem 2rem;
+  padding: 1rem;
 }
 
 .journal__entry + .journal__entry {
@@ -821,6 +822,22 @@ p.subtitle {
   padding-left: 0;
 }
 
+.journal__entry--item {
+  padding-left: 2rem;
+}
+
+.journal__entry--moment {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.journal__entry--moment::before {
+  content: '—';
+  margin-right: 1ch;
+  opacity: 0.4;
+}
+
+.journal__entry h1,
 .journal__entry h2 {
   align-items: center;
   display: flex;
@@ -842,7 +859,6 @@ p.subtitle {
 .replay-chapter {
   margin-right: 0;
   margin-left: auto;
-  padding: 0.25rem;
 }
 
 .replay-chapter:hover {
@@ -852,4 +868,28 @@ p.subtitle {
 .replay-chapter::before {
   content: '▶';
   margin-right: 0.5ch;
+}
+
+.journal-button__indicator:not([hidden]) {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  font-size: 1rem;
+  line-height: 1;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background: red;
+  border-radius: 50%;
+}
+
+.about__intro {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.about__intro::after {
+  content: '~';
+  display: block;
+  font-weight: bolder;
 }

@@ -1,25 +1,32 @@
 import { LOCALSTORAGE_JOURNAL_KEY, DEFAULT_COLLECT_TEXT } from '../constants.js';
+import { flashIndicator } from './interactions.js';
 
 const list = document.getElementById('journal-entries');
 
 const itemEntryTemplate = document.getElementById('journal-item-template');
 const chapterEntryTemplate = document.getElementById('journal-chapter-template');
-const taskTemplate = document.getElementById('journal-task-template');
+const momentEntryTemplate = document.getElementById('journal-moment-template');
 
 export const clear = () => {
-  list.innerHTML = '';
   localStorage.removeItem(LOCALSTORAGE_JOURNAL_KEY);
 };
 
 const persist = () => {
+  console.info('[journal]', 'persisting');
   localStorage.setItem(LOCALSTORAGE_JOURNAL_KEY, list.innerHTML);
 };
 
 export const initJournal = () => {
-  list.innerHTML = localStorage.getItem(LOCALSTORAGE_JOURNAL_KEY) ?? '';
+  console.info('[journal]', 'initialising');
+  const persisted = localStorage.getItem(LOCALSTORAGE_JOURNAL_KEY);
+  if (persisted) {
+    console.info('[journal]', 'loading from localStorage', persisted);
+    list.innerHTML =  persisted;
+  }
 };
 
 export const journalItem = (item) => {
+  console.info('[journal]', 'item', item);
   const itemEntry = itemEntryTemplate.content.cloneNode(true);
 
   const img = itemEntry.querySelector('img');
@@ -31,6 +38,8 @@ export const journalItem = (item) => {
   itemEntry.children[0].dataset.name = item.name;
   list.appendChild(itemEntry);
 
+  flashIndicator('🎒');
+
   persist();
 };
 
@@ -41,12 +50,30 @@ export const journalChapter = (chapter) => {
 
   const idContainer = chapterEntry.querySelector('.journal__chapter-id');
   const titleContainer = chapterEntry.querySelector('.journal__chapter-title');
-  const replayButton = chapterEntry.querySelector('.journal__chapter-replay');
+  const replayButton = chapterEntry.querySelector('.replay-chapter');
 
   idContainer.innerText = chapter.id;
   titleContainer.innerText = chapter.title;
+  replayButton.dataset.chapter = chapter.id;
 
   list.appendChild(chapterEntry);
+
+  persist();
+};
+
+export const journalMoment = (symbol, text) => {
+  console.info('[journal]', 'moment', symbol, text);
+  const momentEntry = momentEntryTemplate.content.cloneNode(true);
+
+  const symbolSpan = momentEntry.querySelector('.journal__moment-symbol');
+  symbolSpan.innerText = symbol;
+
+  const textSpan = momentEntry.querySelector('.journal__moment-text');
+  textSpan.innerText = text;
+
+  list.appendChild(momentEntry);
+
+  flashIndicator(symbol, true);
 
   persist();
 };

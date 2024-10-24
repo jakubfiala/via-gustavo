@@ -7,6 +7,7 @@ import { hover } from '../drone.js';
 import inventory from '../inventory/index.js';
 import { sleep } from '../utils.js';
 import { createCoke } from './coke.js';
+import { journalMoment } from '../journal/index.js';
 
 export default [
   {
@@ -311,6 +312,7 @@ export default [
         await sleep(800);
         await context.handheldItem?.drop(context);
         document.getElementById('handheld-explosion').hidden = true;
+        journalMoment('💥', 'The Geiger counter exploded');
 
         await sleep(2000);
         hover(context, { lat: -20.29203, lng: -69.78111 });

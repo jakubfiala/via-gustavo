@@ -1,6 +1,7 @@
 import { flashStatus, showFakeCaptcha, hideFakeCaptcha, showHelpMessage } from './utils.js';
 import { scheduleScript } from './index.js';
 import { removeTask, setTask } from '../task.js';
+import { journalMoment } from '../journal/index.js';
 
 export const intro = [
   {
@@ -20,14 +21,12 @@ export const intro = [
   { duration: 5 },
   { text: "Do you know what it feels like? Can you even imagine?"},
   { text: "In fact, I should really test you to find out,"},
-  {
-    text: "before I take you anywhere... more important.",
-    callback: () => setTask('Pass the challenge.'),
-  },
+  { text: "before I take you anywhere... more important." },
   {
     text: "",
     duration: 2,
     callback: showFakeCaptcha((e, context) => {
+      setTask('Pass the challenge.');
       setTimeout(() => {
         hideFakeCaptcha(context);
         scheduleScript(thanks, context);
@@ -39,7 +38,10 @@ export const intro = [
 const thanks = [
   {
     text: "Thank you.",
-    callback: () => removeTask(),
+    callback: () => {
+      journalMoment('✅','Passed the challenge. I am human!');
+      removeTask();
+    },
   },
   { text: "It\'s not that I don\'t trust you,"},
   { text: "but the protocol is the protocol."},
@@ -89,13 +91,26 @@ export const animita = [
   { text: "It's just a modest shrine by the stone wall of the orchard." },
   { text: "His prayers were brief, and quiet." },
   { text: "I could only hear the match lighting up as he relit the candles" },
-  { text: "and set the little cross straight." },
+  {
+    text: "and set the little cross straight.",
+  },
+  { duration: 1 },
+  {
+    callback: () => journalMoment('✝️', "Found Gustavo's favourite animita near the orchard"),
+  },
 ];
 
 export const weMadeIt = [
   { text: "We made it into town!" },
   { text: "The bus stop is just a little further down." },
-  { callback: (context) => context.score.veniceShort.play() },
+  {
+    callback: (context) => {
+      context.score.veniceShort.play();
+    },
+  },
+  {
+    callback: () => journalMoment('🏘️', "Reached the town of La Huayca"),
+  },
 ];
 
 export const theresTheBus = [

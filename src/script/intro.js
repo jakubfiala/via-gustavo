@@ -1,3 +1,4 @@
+import { journalMoment } from '../journal/index.js';
 import { setTask } from '../task.js';
 import { showHelpMessage, enableClickToGoCB, enableSFX } from './utils.js';
 
@@ -74,4 +75,6 @@ export const intro3 = [
   { duration: 1 },
   { text: "It has been days, maybe weeks, since he last drove towards La Tirana" },
   { text: "and vanished from my world." },
+  { duration: 1 },
+  { callback: () => journalMoment('🛣️', 'Got to know my first companion') },
 ];
