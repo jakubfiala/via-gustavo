@@ -62,6 +62,8 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
     canvas.classList.add('vg-item--big');
   }
 
+  const appearThreshold = big ? OBJECT_APPEAR_THRESHOLD * 2 : OBJECT_APPEAR_THRESHOLD;
+
   canvas.height = big ? CANVAS_SIZE_BIG : CANVAS_SIZE;
   canvas.width = big ? CANVAS_SIZE_BIG : CANVAS_SIZE;
   canvas.title = name;
@@ -188,8 +190,9 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
       const dy = userPosition.lng() - objectPosition.lng();
 
       this.dist = latLngDist(objectPosition, userPosition) * DISTANCE_FACTOR;
+
       if (!this.info.isOpen) {
-        if (this.dist < OBJECT_APPEAR_THRESHOLD) {
+        if (this.dist < appearThreshold) {
           this.info.open({ map: this.map });
         } else {
           renderer?.dispose();

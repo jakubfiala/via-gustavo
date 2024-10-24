@@ -53,7 +53,7 @@ export const station1 = [
   { text: "It's called Eleuterio Ramírez." },
   { text: "Let's go that way and turn right." },
   { text: "Then just follow the coke!" },
-  { callback: () => setTask('Follow Eleuterio Ramírez to reach the main road.') },
+  { callback: () => setTask('Turn right behind the church and follow Eleuterio Ramírez') },
 ];
 
 export const mainRoad = [
@@ -105,13 +105,13 @@ export const station3 = [
 export const station4 = [
   // 4. nailed to the cross
   { text: "He shifts into reverse, feels the transmission move underneath." },
-  { text: "Kooks at the back seats to make sure his tools are there:" },
+  { text: "Looks at the back seats to make sure his tools are there:" },
   { text: "a dusty notebook, two pencils, a map of Tarapacá" },
   { text: "and a beaten-up yellow device with a screen, some buttons and a gauge." },
   { text: "He puts on his baseball cap - it has the NASA logo on it." },
   { text: "Perhaps he got it from Amazon for his own birthday." },
   { text: "The seatbelt wraps around his body." },
-  { text: "The tongue slides, effortless and final into the buckle." },
+  { text: "The tongue slides, effortless and final, into the buckle." },
   { text: "The click could dramatically echo, but it doesn't." },
   { text: "This isn't a 90s thriller," },
   { text: "This is a game on the Internet." },
@@ -120,15 +120,15 @@ export const station4 = [
 
 export const station5 = [
   // 5. division of the robes
-  { text: "He follows the gently curving road towards La Tirana." },
+  { text: "He follows the long, straight road out of La Tirana." },
   { text: "That probably makes him think of his mother," },
   { text: "so he pulls out his phone and starts a voice note." },
   { text: "This time, he really lets it all out." },
   { text: "It feels so good that, when he's done," },
-  { text: "he fires up another one to his brothers" },
-  { text: "grandad" },
-  { text: "auntie" },
-  { text: "finally, he does one for the whole family chat." },
+  { text: "he fires up another one to his brothers," },
+  { text: "grandad," },
+  { text: "auntie." },
+  { text: "Finally, he does one for the whole family chat." },
   { duration: 1, callback: (context) => context.score.viaCrucis6.play() },
   { text: "If his journey was to be a secret, it certainly isn't anymore." },
   { text: "Now there's no going back." },
@@ -247,7 +247,10 @@ export const station14 = [
   { text: "and follow the dirt road on the other side." },
   { text: "This is as far as I can go with you, but I am beyond certain" },
   { text: "if you follow that path, you will find him." },
-  { text: "When in doubt, just follow the path." },
+  {
+    text: "When in doubt, just follow the path.",
+    callback: () => setTask('Walk across the highway'),
+  },
   { text: "Other guides might show up." },
 ];
 

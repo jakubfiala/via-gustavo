@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rollup -c",
+    "build": "./generate-speech-archive.sh && rollup -c",
     "dev": "rollup -c --watch"
   },
   "repository": {
@@ -21,6 +21,7 @@
     "@googlemaps/js-api-loader": "^1.16.8",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
+    "nanotar": "^0.1.1",
     "rollup": "^4.21.3",
     "slug": "^10.0.0",
     "three": "^0.168.0"

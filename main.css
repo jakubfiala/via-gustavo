@@ -22,6 +22,7 @@
 html {
   --intro-darkness-duration: 5s;
   --color-blue: #12548e;
+  --text-shadow: #0c3458 0.05em 0.05em, #12548e50 0 0 10px, #12548e20 0 0 20px;
 }
 
 html,
@@ -101,6 +102,7 @@ a:visited {
   border: solid 0.5rem white;
   height: calc(100vh - 1rem);
   animation: fade-in 3s var(--intro-darkness-duration) both;
+  filter: contrast(1.3) brightness(0.95);
 }
 
 .map-container[hidden] {
@@ -152,7 +154,6 @@ p.subtitle {
 }
 
 .text-overlay {
-  --text-shadow: #0c3458 2px 2px, #12548e09 0 0 10px, #12548e05 0 0 20px;
   font-size: 2rem;
   color: var(--color-blue);
   position: absolute;
@@ -200,8 +201,8 @@ p.subtitle {
 }
 
 #help-display {
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: 2.5rem;
+  font-weight: normal;
   color: white;
   text-shadow: var(--text-shadow);
 }
@@ -348,8 +349,7 @@ p.subtitle {
 }
 
 .hud__dialog {
-  background: white;
-  backdrop-filter: blur(10px);
+  background: #fffe;
   border: solid 1px var(--color-blue);
   color: var(--color-blue);
   margin: 0;
@@ -361,18 +361,46 @@ p.subtitle {
   padding: 0;
   min-width: 300px;
   min-height: 150px;
+  max-height: 50vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  box-shadow: 2px 2px 20px rgba(0,0,0,0.2);
+}
+
+.hud__dialog[open] {
+  display: grid;
 }
 
 .hud__dialog-header {
-  border-bottom: solid 1px var(--color-blue);
-  padding: 0.25rem;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hud__dialog-header::after {
+  --height: 2.5rem;
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: calc(-1 * var(--height));
+  left: 0;
+  height: var(--height);
+  width: 100%;
+  background: linear-gradient(#fff 0%, #fff0 100%);
+  pointer-events: none;
 }
 
 .hud__dialog-content {
-  padding: 0.5rem;
+  padding: 1rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-size: 1.25rem;
 }
 
 .hud__button, .hud__dialog-close {
@@ -633,6 +661,7 @@ p.subtitle {
   transition: filter 150ms;
   cursor: pointer;
   scale: 1;
+  user-select: none;
 }
 
 .gustavo-item--highlighted {
@@ -778,8 +807,8 @@ p.subtitle {
   position: fixed;
   top: 0.5rem;
   left: 0.5rem;
-  background: white;
-  color: var(--color-blue);
+  color: white;
+  text-shadow: var(--text-shadow);
   padding: 0.5rem;
   font-size: 1.25rem;
 }
@@ -787,4 +816,10 @@ p.subtitle {
 #task::before {
   content: "👉";
   margin-right: 0.5ch;
+}
+
+.cme-logos {
+  display: block;
+  max-width: 50%;
+  margin: 2rem auto;
 }

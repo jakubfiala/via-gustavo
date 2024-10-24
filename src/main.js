@@ -15,6 +15,7 @@ import loadItems from './items/index.js';
 import { initChapters, completed as completedChapters } from './chapters.js';
 import initGamepad from './gamepad.js';
 import { initTask } from './task.js';
+import { initSpeech } from './script/speech.js';
 import { localisedSounds } from './audio/localised-sounds.js';
 import { FADE_OUT_DELAY_MS, playGatewaySound } from './audio/gateway-sound.js';
 import { enableClickToGoCB, enableSFX } from './script/utils.js';
@@ -103,7 +104,6 @@ const initialize = async () => {
 
   scriptContext.score = createScore(scriptContext);
   scriptContext.soundscape = createSoundscape(scriptContext);
-  scriptContext.soundscape.set(scriptContext.soundscape.base);
 
   scriptContext.sfx = await createSFX(scriptContext);
 
@@ -154,11 +154,12 @@ const initialize = async () => {
   initHUD(scriptContext);
   initSettings(scriptContext);
   initChapters(scriptContext);
+  initTask();
+  initSpeech(scriptContext);
 
+  initGamepad(scriptContext);
   setLatLngDisplay(initialPosition);
   setPovDisplay(map.getPov());
-  initGamepad(scriptContext);
-  initTask();
 
   document.body.classList.add('game-on');
 };

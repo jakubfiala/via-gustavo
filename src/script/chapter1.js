@@ -52,7 +52,7 @@ const thanks = [
 export const searching = [
   { duration: 3, callback: (context) => context.score.veniceMedium.play() },
   { text: "I'd see him come down from Matilla, pull over, and disappear among the trees." },
-  { text: "He really believed he'd find a heap of some Soviet electronics, or precious metals." },
+  { text: "He really believed he'd find a heap of some Soviet electronics, or precious metals from the spacecraft." },
   { text: "I always thought it was silly," },
   { text: "most of it was probably on the ocean floor." },
   { duration: 2 },

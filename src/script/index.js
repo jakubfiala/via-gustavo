@@ -4,7 +4,7 @@ import { playSpeech } from './speech.js';
 const MIN_WORDS = 1;
 const MAX_WORDS = 10;
 const MIN_DURATION = 1.5;
-const MAX_DURATION = 6;
+const MAX_DURATION = 7;
 const DEFAULT_DURATION = 4;
 
 window.currentScript = null;

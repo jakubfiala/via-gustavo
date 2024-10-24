@@ -1,4 +1,4 @@
-const CLEAR_DELAY = 10 * 1000;
+const CLEAR_DELAY = 6 * 1000;
 
 export class TextDisplay {
   constructor(container) {
