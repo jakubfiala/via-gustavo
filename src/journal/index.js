@@ -20,7 +20,7 @@ export const initJournal = () => {
   console.info('[journal]', 'initialising');
   const persisted = localStorage.getItem(LOCALSTORAGE_JOURNAL_KEY);
   if (persisted) {
-    console.info('[journal]', 'loading from localStorage', persisted);
+    console.info('[journal]', 'loading from localStorage', persisted.length);
     list.innerHTML =  persisted;
   }
 };
