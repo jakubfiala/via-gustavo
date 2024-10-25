@@ -127,10 +127,18 @@ body.game-on::before {
   }
 }
 
-a,
-a:visited {
+a {
   color: red;
   text-decoration: none;
+}
+
+a:visited {
+  color: rgb(143, 0, 0);
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-color: #f00a;
 }
 
 .map-container {

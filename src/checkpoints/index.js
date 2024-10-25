@@ -373,6 +373,7 @@ export const checkpoints = [
     lat: -20.26465,
     lng: -69.78524,
     async callback(context) {
+      context.sfx.setFootsteps('normal');
       return scheduleScript(chapter4.doYoKnow, context);
     },
   },
