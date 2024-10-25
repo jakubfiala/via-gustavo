@@ -634,6 +634,104 @@ p.subtitle {
   filter: brightness(200%);
 }
 
+@property --vignette-size {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 75%;
+}
+
+@property --vignette-pos-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+@property --vignette-pos-y {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+@keyframes image-fade-pulse {
+  0% {
+    --vignette-size: 70%;
+    --vignette-pos-x: 50%;
+    --vignette-pos-y: 50%;
+    filter: brightness(1.1);
+  }
+
+  20% {
+    --vignette-pos-x: 52%;
+    --vignette-pos-y: 48%;
+  }
+
+  25% {
+    --vignette-size: 72%;
+    filter: brightness(1.17);
+  }
+
+  30% {
+    filter: brightness(1.08);
+  }
+
+  40% {
+    --vignette-pos-x: 48%;
+    --vignette-pos-y: 49%;
+  }
+
+  47% {
+    filter: brightness(1.12);
+  }
+
+  50% {
+    --vignette-size: 66%;
+    filter: brightness(1.08);
+  }
+
+  63% {
+    --vignette-pos-x: 51%;
+    --vignette-pos-y: 48%;
+  }
+
+  77% {
+    filter: brightness(1.15);
+  }
+
+  90% {
+    --vignette-size: 71%;
+    filter: brightness(1.09);
+  }
+
+  93% {
+    filter: brightness(1.13);
+  }
+
+  95% {
+    --vignette-pos-x: 49%;
+    --vignette-pos-y: 51%;
+  }
+
+  100% {
+    --vignette-size: 70%;
+    --vignette-pos-x: 50%;
+    --vignette-pos-y: 50%;
+    filter: brightness(1.1);
+  }
+}
+
+.gustavo-image--fade {
+  --vignette-size: 75%;
+  animation: image-fade-pulse 2s linear infinite;
+  mask-image: radial-gradient(
+    at var(--vignette-pos-x) var(--vignette-pos-y),
+    rgb(0,0,0,1) 0%,
+    rgba(0, 0, 0, 0) var(--vignette-size),
+    transparent 100%
+  );
+  opacity: 0.85;
+  filter: brightness(1.1);
+}
+
 .sky-images:not([hidden]) {
   animation: fade-in 2s var(--intro-darkness-duration) both;
   mix-blend-mode: screen;

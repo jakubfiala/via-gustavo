@@ -4,7 +4,7 @@ import { createGenericItemContainer } from './generic.js';
 
 const DISTANCE_FACTOR = 1e-1;
 
-export const simpleImageMaker = (InfoWindow) => ({ src, name, id }) => {
+export const simpleImageMaker = (InfoWindow) => ({ src, name, id, fade = false }) => {
   const container = createGenericItemContainer();
   const img = new Image();
   img.loading = 'lazy';
@@ -15,6 +15,10 @@ export const simpleImageMaker = (InfoWindow) => ({ src, name, id }) => {
   }
 
   img.classList.add('gustavo-image');
+  if (fade) {
+    img.classList.add('gustavo-image--fade');
+  }
+
   container.appendChild(img);
 
   return {
@@ -42,6 +46,7 @@ export const simpleImageMaker = (InfoWindow) => ({ src, name, id }) => {
       }
 
       img.style.scale = (1/dist);
+      img.style.translate = `0 ${Math.min(20,dist/3*10)}vh`;
     },
   };
 }

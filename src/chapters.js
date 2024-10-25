@@ -15,8 +15,8 @@ export const chapters = [
     id: 2,
     title: "Via Crucis",
     position: {
-      lat: -20.34075,
-      lng: -69.65655,
+      lat: -20.34114,
+      lng: -69.65651,
     },
   },
   {
