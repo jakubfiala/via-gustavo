@@ -1,6 +1,8 @@
+import { replayChapter } from '../chapters.js';
 import { LOCALSTORAGE_JOURNAL_KEY, DEFAULT_COLLECT_TEXT } from '../constants.js';
 import { flashIndicator } from './interactions.js';
 
+const dialog = document.getElementById('journal-dialog');
 const list = document.getElementById('journal-entries');
 
 const itemEntryTemplate = document.getElementById('journal-item-template');
@@ -16,12 +18,22 @@ const persist = () => {
   localStorage.setItem(LOCALSTORAGE_JOURNAL_KEY, list.innerHTML);
 };
 
+const setupReplay = (button) => {
+  button.addEventListener('click', () => {
+    dialog.close();
+    replayChapter(parseInt(button.dataset.chapter));
+  });
+};
+
 export const initJournal = () => {
   console.info('[journal]', 'initialising');
   const persisted = localStorage.getItem(LOCALSTORAGE_JOURNAL_KEY);
   if (persisted) {
     console.info('[journal]', 'loading from localStorage', persisted.length);
     list.innerHTML =  persisted;
+
+    const replayButtons = list.querySelectorAll('.replay-chapter');
+    replayButtons.forEach(setupReplay);
   }
 };
 
@@ -33,7 +45,7 @@ export const journalItem = (item) => {
   img.src = item.thumbnailURL;
 
   const figcaption = itemEntry.querySelector('figcaption');
-  figcaption.innerText = `${item.collectText || DEFAULT_COLLECT_TEXT} ${item.name}`;
+  figcaption.innerText = `${item.collectText || DEFAULT_COLLECT_TEXT} ${item.displayName ?? item.name}`;
 
   itemEntry.children[0].dataset.name = item.name;
   list.appendChild(itemEntry);
@@ -56,6 +68,7 @@ export const journalChapter = (chapter) => {
   titleContainer.innerText = chapter.title;
   replayButton.dataset.chapter = chapter.id;
 
+  setupReplay(replayButton);
   list.appendChild(chapterEntry);
 
   persist();

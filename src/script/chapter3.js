@@ -9,7 +9,7 @@ export const intro = [
       setTask('Look for Gustavo along the dirt road');
       context.score.bachPiano3.play();
       context.soundscape.set(context.soundscape.highwayRight);
-      context.sfx.currentFootsteps = context.sfx.footstepsSounds.footstepsGravel;
+      context.sfx.setFootsteps('gravel');
       flashStatus(`Chapter ${context.chapter.id} - ${context.chapter.title}`)(context);
     }
   },

@@ -7,6 +7,7 @@ import { latLngDist } from "../utils.js";
 import { showSkyImages } from '../sky-images.js';
 import * as drone from '../drone.js';
 import { intro2, intro3 } from '../script/intro.js';
+import { journalChapter } from '../journal/index.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
@@ -290,7 +291,6 @@ export const checkpoints = [
     lat: -20.305932332865950,
     lng: -69.769828449520617,
     async callback(context) {
-      context.sfx.currentFootsteps = context.sfx.footstepsSounds.footstepsGravel;
       drone.flyBy(context);
     },
   },
@@ -300,13 +300,6 @@ export const checkpoints = [
     async callback(context) {
       journalMoment('🛩️', 'A drone flew past');
       context.score.dirtRoad2.play();
-    },
-  },
-  {
-    lat: -20.292360241167511,
-    lng: -69.781218354251735,
-    async callback(context) {
-      context.sfx.currentFootsteps = context.sfx.footstepsSounds.footstepsGravel;
     },
   },
   {
@@ -355,6 +348,7 @@ export const checkForCheckpoints = context => () => {
         .then(() => {
           if (checkpoint.chapter) {
             completeChapter(checkpoint.chapter);
+            journalChapter(checkpoint.chapter);
           }
         });
     }

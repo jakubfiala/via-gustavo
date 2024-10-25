@@ -1,5 +1,4 @@
 import { LOCALSTORAGE_CHAPTERS_KEY } from './constants.js';
-import { journalChapter } from './journal/index.js';
 
 export const completed = new Set(JSON.parse(localStorage.getItem(LOCALSTORAGE_CHAPTERS_KEY)) || []);
 
@@ -54,9 +53,9 @@ export const clear = () => {
 export const completeChapter = (chapter) => {
   completed.add(chapter.id);
   localStorage.setItem(LOCALSTORAGE_CHAPTERS_KEY, JSON.stringify(Array.from(completed)));
-  journalChapter(chapter);
 };
 
-export const initChapters = (context) => {
-
+export const replayChapter = (id) => {
+  const { position } = chapters.find((chapter) => chapter.id === id);
+  map.setPosition(position);
 };

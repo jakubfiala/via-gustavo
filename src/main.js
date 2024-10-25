@@ -12,7 +12,7 @@ import initHUD, { setLatLngDisplay, setPovDisplay } from './hud/index.js';
 import initSettings, { resetGame } from './settings.js';
 import { LOCALSTORAGE_POSITION_KEY, START_POSITION, START_POV, MAPS_API_KEY } from './constants.js';
 import loadItems from './items/index.js';
-import { initChapters, completed as completedChapters } from './chapters.js';
+import { completed as completedChapters } from './chapters.js';
 import initGamepad from './gamepad.js';
 import { initTask } from './task.js';
 import { initSpeech } from './script/speech.js';
@@ -154,7 +154,6 @@ const initialize = async () => {
 
   initHUD(scriptContext);
   initSettings(scriptContext);
-  initChapters(scriptContext);
   initTask();
   initSpeech(scriptContext);
 

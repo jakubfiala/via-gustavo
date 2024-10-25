@@ -1,3 +1,5 @@
+import { LOCALSTORAGE_FOOTSTEPS_KEY } from '../constants.js';
+
 const FOOTSTEPS_URL = '/assets/audio/footsteps.mp3';
 const FOOTSTEPS_GRAVEL_URL = '/assets/audio/footsteps-gravel.mp3';
 const CHEWING_URL = '/assets/audio/chewing.mp3';
@@ -52,14 +54,21 @@ export default async (context) => {
   const explosion = await getNodes(context, EXPLOSION_URL, true);
   const bus = await getNodes(context, BUS_URL, true);
 
-  return {
-    footstepsSounds: {
-      footstepsNormal,
-      footstepsGravel,
+  const footstepsSounds = {
+    normal: footstepsNormal,
+    gravel: footstepsGravel,
+  };
+
+  let currentFootsteps = footstepsNormal;
+
+  const controller = {
+    setFootsteps(name) {
+      console.info('[sfx]', 'setting footsteps sound to', name);
+      currentFootsteps = footstepsSounds[name];
+      localStorage.setItem(LOCALSTORAGE_FOOTSTEPS_KEY, name);
     },
-    currentFootsteps: footstepsNormal,
     footsteps() {
-      playSFX(context, this.currentFootsteps, 2);
+      playSFX(context, currentFootsteps, 2);
     },
     chewing: () => playSFX(context, chewing),
     backpack: () => playSFX(context, backpack),
@@ -67,6 +76,10 @@ export default async (context) => {
     explosion: () => playSFX(context, explosion),
     bus: () => playSFX(context, bus),
   };
+
+  controller.setFootsteps(localStorage.getItem(LOCALSTORAGE_FOOTSTEPS_KEY) || 'normal');
+
+  return controller;
 };
 
 

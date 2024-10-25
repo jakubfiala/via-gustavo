@@ -3,6 +3,7 @@ export const LOCALSTORAGE_INVENTORY_KEY = 'vg_inv';
 export const LOCALSTORAGE_CHAPTERS_KEY = 'vg_cha';
 export const LOCALSTORAGE_TASK_KEY = 'vg_tas';
 export const LOCALSTORAGE_SOUNDSCAPE_KEY = 'vg_ssc';
+export const LOCALSTORAGE_FOOTSTEPS_KEY = 'vg_foo';
 export const LOCALSTORAGE_JOURNAL_KEY = 'vg_jou';
 // test location
 // export const START_POSITION = { lat: -20.506808759909188, lng: -69.37564029846219 };
