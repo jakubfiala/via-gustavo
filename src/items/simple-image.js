@@ -22,6 +22,7 @@ export const simpleImageMaker = (InfoWindow) => ({ src, name, id, fade = false, 
   container.appendChild(img);
 
   return {
+    name, id,
     insert(map, position) {
       this.map = map;
 

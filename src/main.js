@@ -108,12 +108,6 @@ const initialize = async () => {
 
   scriptContext.sfx = await createSFX(scriptContext);
 
-  if (!debug && completedChapters.size === 0) {
-    initialSequence(scriptContext);
-  } else {
-    revisitedSequence(scriptContext);
-  }
-
   scriptContext.masterGain.gain.setValueAtTime(1, scriptContext.audioContext.currentTime);
 
   scriptContext.localisedSounds = new Sharawadji(localisedSounds, map, {
@@ -121,8 +115,14 @@ const initialize = async () => {
     compressor: true
   });
 
-  const items = await loadItems(InfoWindow, scriptContext);
-  items.forEach((o) => o.update());
+  scriptContext.items = await loadItems(InfoWindow, scriptContext);
+  scriptContext.items.forEach((o) => o.update());
+
+  if (!debug && completedChapters.size === 0) {
+    initialSequence(scriptContext);
+  } else {
+    revisitedSequence(scriptContext);
+  }
 
   checkForCheckpoints(scriptContext)();
 
@@ -137,7 +137,7 @@ const initialize = async () => {
       setLatLngDisplay(position);
 
       localStorage.setItem(LOCALSTORAGE_POSITION_KEY, JSON.stringify(position));
-      items.forEach((o) => o.update());
+      scriptContext.items.forEach((o) => o.update());
     },
   );
 
@@ -148,7 +148,7 @@ const initialize = async () => {
       const pov = map.getPov();
       setPovDisplay(pov);
 
-      items.forEach((o) => o.povUpdate?.());
+      scriptContext.items.forEach((o) => o.povUpdate?.());
     },
   );
 

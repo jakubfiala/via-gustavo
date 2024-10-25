@@ -3,6 +3,7 @@ import { scheduleScript } from '../script/index.js';
 import * as chapter1 from '../script/chapter1.js';
 import * as chapter2 from '../script/chapter2.js';
 import * as chapter3 from '../script/chapter3.js';
+import * as chapter4 from '../script/chapter4.js';
 import { latLngDist } from "../utils.js";
 import { showSkyImages } from '../sky-images.js';
 import * as drone from '../drone.js';
@@ -310,10 +311,76 @@ export const checkpoints = [
     },
   },
   {
+    lat: -20.28805,
+    lng: -69.78323,
+    async callback(context) {
+      context.droneHoveringBehindYou = await drone.hoverBehind(context, {
+        lat: -20.28815,
+        lng: -69.78317,
+      });
+    },
+  },
+  {
+    lat: -20.2812,
+    lng: -69.78685,
+    async callback(context) {
+      context.droneHoveringBehindYou?.stopHovering(context);
+      context.droneHoveringBehindYou = null;
+    },
+  },
+  {
     lat: -20.28189,
     lng: -69.78645,
     async callback(context) {
       context.soundscape.set(context.soundscape.trees);
+    },
+  },
+  {
+    lat: -20.27938,
+    lng: -69.78727,
+    async callback(context) {
+      context.score.dirtRoad4.play();
+    },
+  },
+  {
+    lat: -20.27244,
+    lng: -69.78621,
+    async callback(context) {
+      return scheduleScript(chapter3.outro, context);
+    },
+  },
+
+  // Chapter 4
+  {
+    lat: -20.27109,
+    lng: -69.78599,
+    chapter: chapters[3],
+    async callback(context) {
+      return scheduleScript(chapter4.aboutDrone, {
+        ...context,
+        chapter: this.chapter,
+      });
+    },
+  },
+  {
+    lat: -20.27143,
+    lng: -69.78607,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.town3);
+    },
+  },
+  {
+    lat: -20.26465,
+    lng: -69.78524,
+    async callback(context) {
+      return scheduleScript(chapter4.doYoKnow, context);
+    },
+  },
+  {
+    lat: -20.263,
+    lng: -69.78573,
+    async callback(context) {
+      return scheduleScript(chapter4.pozoAlmonteMF, context);
     },
   },
 

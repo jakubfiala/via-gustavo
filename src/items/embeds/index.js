@@ -3,6 +3,7 @@ import { latLngDist } from '../../utils.js';
 import { createGenericItemContainer } from '../generic.js';
 
 const DISTANCE_FACTOR = 1e-1;
+const MIN_ZOOM = 0.8;
 
 export const embedMaker = (InfoWindow) => (url) => {
   const container = createGenericItemContainer();
@@ -22,13 +23,21 @@ export const embedMaker = (InfoWindow) => (url) => {
         content: container,
       });
     },
+    povUpdate() {
+      if (!this.info.isOpen) {
+        return;
+      }
+
+      const { zoom  } = this.map.getPov();
+      iframe.style.scale = (1/this.dist) * Math.max(MIN_ZOOM, zoom);
+    },
     update() {
       const userPosition = this.map.getPosition();
       const objectPosition = this.info.getPosition();
-      const dist = latLngDist(objectPosition, userPosition) * DISTANCE_FACTOR;
+      this.dist = latLngDist(objectPosition, userPosition) * DISTANCE_FACTOR;
 
       if (!this.info.isOpen) {
-        if (dist < OBJECT_APPEAR_THRESHOLD) {
+        if (this.dist < OBJECT_APPEAR_THRESHOLD) {
           console.log('opening', url);
           this.info.open({ map: this.map });
         } else {
@@ -36,8 +45,8 @@ export const embedMaker = (InfoWindow) => (url) => {
         }
       }
 
-      iframe.width = window.innerWidth/2 * (1/dist);
-      iframe.height = window.innerHeight/2 * (1/dist);
+      iframe.style.scale = (1/this.dist);
+      iframe.style.translate = `0 ${Math.min(13,this.dist/3*10)}vh`;
     },
   };
 }

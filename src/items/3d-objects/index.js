@@ -171,7 +171,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
       camera.lookAt(mesh.position);
       this.render();
     },
-    async povUpdate() {
+    povUpdate() {
       if (this.taken || !this.info.isOpen) {
         return;
       }

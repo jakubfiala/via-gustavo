@@ -77,6 +77,11 @@ class Sound {
   }
 
   async load() {
+    if (this.buffer) {
+      this.playIfNear();
+      return;
+    }
+
     this.state = Sound.state.LOADING;
     const response = await fetch(this.src);
     const soundData = await response.arrayBuffer();
@@ -88,7 +93,7 @@ class Sound {
         soundData,
       );
 
-      if (this.debug) console.info(`loaded`, this.src, buffer, this.loaded);
+      if (this.debug) console.info(`loaded`, this.src, buffer);
       this.buffer = buffer;
       this.createFXGraph();
       this.state = Sound.state.SUSPENDED;

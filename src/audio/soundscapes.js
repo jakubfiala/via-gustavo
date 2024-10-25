@@ -46,6 +46,7 @@ export default (context) => {
     trees: createSoundscape(context, 'assets/audio/soundscapes/trees.mp3', 'trees'),
     town: createSoundscape(context, 'assets/audio/soundscapes/town.mp3', 'town'),
     town2: createSoundscape(context, 'assets/audio/soundscapes/town2.mp3', 'town2'),
+    town3: createSoundscape(context, 'assets/audio/soundscapes/town3.mp3', 'town3'),
     birdsWind: createSoundscape(context, 'assets/audio/soundscapes/birds_wind.mp3', 'birdsWind'),
     highwayRight: createSoundscape(context, 'assets/audio/soundscapes/highway-right.mp3', 'highwayRight'),
     set(soundscape) {

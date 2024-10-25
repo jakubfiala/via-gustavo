@@ -29,10 +29,10 @@ export const chapters = [
   },
   {
     id: 4,
-    title: "Humberstone",
+    title: "Salt of the Earth",
     position: {
-      lat: -20.467491495806950,
-      lng: -69.460925633319292,
+      lat: -20.27109,
+      lng: -69.78599,
     },
   },
   {
