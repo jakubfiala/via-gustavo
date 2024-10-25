@@ -275,7 +275,7 @@ export default [
     collectible: false,
     position: { lat: -20.29203, lng: -69.78111 },
     create(makers) {
-      return makers.simpleImage({ src: '/assets/img/drone.webp', id: 'drone-hovering' });
+      return makers.simpleImage({ src: '/assets/img/drone.webp', id: 'drone-hovering', correctZ: false });
     },
   },
   {

@@ -4,7 +4,7 @@ import { createGenericItemContainer } from './generic.js';
 
 const DISTANCE_FACTOR = 1e-1;
 
-export const simpleImageMaker = (InfoWindow) => ({ src, name, id, fade = false }) => {
+export const simpleImageMaker = (InfoWindow) => ({ src, name, id, fade = false, correctZ = true }) => {
   const container = createGenericItemContainer();
   const img = new Image();
   img.loading = 'lazy';
@@ -46,7 +46,10 @@ export const simpleImageMaker = (InfoWindow) => ({ src, name, id, fade = false }
       }
 
       img.style.scale = (1/dist);
-      img.style.translate = `0 ${Math.min(20,dist/3*10)}vh`;
+
+      if (correctZ) {
+        img.style.translate = `0 ${Math.min(20,dist/3*10)}vh`;
+      }
     },
   };
 }
