@@ -45,6 +45,9 @@ export const intro1 = [
   {
     text: "Let's walk that way, and I'll tell you about me.",
   },
+  {
+    text: "No need to hurry - take your time."
+  },
   { duration: 1, callback: () => setTask('Walk towards the trees to the west.') },
 ];
 

@@ -6,7 +6,7 @@ export const enableSFX = (context) => {
 };
 
 export const disableClickToGoCB = context => {
-  context.map.setOptions({ clickToGo: false, showRoadLabels: false, linksControl: true });
+  context.map.setOptions({ clickToGo: false, showRoadLabels: false, linksControl: false });
 };
 
 export const enableClickToGoCB = context => {
