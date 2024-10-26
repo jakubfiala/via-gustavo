@@ -14,8 +14,10 @@ export const createShrooms = (label, position) => ({
   async create(makers) {
     const item = await makers.threeObject('/assets/items/magic-mushrooms/', {
       name: this.name,
+      displayName: this.displayName,
       onGround: true,
       cameraPosition: { x: 0, y: 0.5, z: 2 },
+      scale: 0.06,
     });
     item.activate = (context) => {
       document.body.classList.add('dreamz');

@@ -8,7 +8,8 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				4
+				0,
+				1
 			]
 		}
 	],
@@ -16,51 +17,25 @@
 		{
 			"mesh":0,
 			"name":"SM_MagicMushroomCluster_lambert2_0",
-			"scale":[
-				6,
-				5.999999523162842,
-				5.999999523162842
-			]
-		},
-		{
-			"children":[
+			"rotation":[
+				0,
+				0.9676632285118103,
+				0,
+				0.25224569439888
+			],
+			"translation":[
+				0,
+				-3.669501781463623,
 				0
-			],
-			"name":"SM_MagicMushroomCluster"
-		},
-		{
-			"children":[
-				1
-			],
-			"name":"RootNode"
-		},
-		{
-			"children":[
-				2
-			],
-			"name":"0336e70501504dcfbbcc682ef633b4c4.fbx",
-			"rotation":[
-				0.70710688829422,
-				0,
-				0,
-				0.7071066498756409
-			],
-			"scale":[
-				0.009999999776482582,
-				0.010000000707805157,
-				0.010000000707805157
 			]
 		},
 		{
-			"children":[
-				3
-			],
-			"name":"Sketchfab_model",
-			"rotation":[
-				-0.70710688829422,
-				0,
-				0,
-				0.7071066498756409
+			"mesh":1,
+			"name":"hover-helper",
+			"scale":[
+				4.758359909057617,
+				4.758359909057617,
+				4.758359909057617
 			]
 		}
 	],
@@ -89,6 +64,19 @@
 					},
 					"indices":3,
 					"material":0
+				}
+			]
+		},
+		{
+			"name":"Cube",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":4,
+						"NORMAL":5,
+						"TEXCOORD_0":6
+					},
+					"indices":7
 				}
 			]
 		}
@@ -140,6 +128,40 @@
 			"componentType":5123,
 			"count":3024,
 			"type":"SCALAR"
+		},
+		{
+			"bufferView":4,
+			"componentType":5126,
+			"count":24,
+			"max":[
+				1,
+				1,
+				1
+			],
+			"min":[
+				-1,
+				-1,
+				-1
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":5,
+			"componentType":5126,
+			"count":24,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":6,
+			"componentType":5126,
+			"count":24,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":7,
+			"componentType":5123,
+			"count":36,
+			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
@@ -166,6 +188,30 @@
 			"byteLength":6048,
 			"byteOffset":27200,
 			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":288,
+			"byteOffset":33248,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":288,
+			"byteOffset":33536,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":192,
+			"byteOffset":33824,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":72,
+			"byteOffset":34016,
+			"target":34963
 		}
 	],
 	"samplers":[
@@ -176,7 +222,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":33248,
+			"byteLength":34088,
 			"uri":"model.bin"
 		}
 	]

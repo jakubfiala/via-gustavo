@@ -1,6 +1,7 @@
 import {
   AmbientLight,
   DirectionalLight,
+  DoubleSide,
   PerspectiveCamera,
   Raycaster,
   Scene,
@@ -30,6 +31,8 @@ const DIRLIGHT_DEFAULT_Z = 0.7;
 const MIN_ZOOM = 0.8;
 const MIN_DPR = 2;
 
+const HOVER_HELPER_NAME = 'hover-helper';
+
 const dpr = Math.max(MIN_DPR, window.devicePixelRatio);
 
 const createLights = ({ x, y, z }) => {
@@ -44,7 +47,7 @@ const createLights = ({ x, y, z }) => {
   return [ambientLight, light];
 };
 
-export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPosition, scale, rotation = {}, lightPosition = {}, onGround = false, big = false } = {}) => {
+export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName, cameraPosition, scale, rotation = {}, lightPosition = {}, onGround = false, big = false } = {}) => {
   const cameraInitX = cameraPosition?.x ?? CAMERA_DEFAULT_X;
   const cameraInitY = cameraPosition?.y ?? CAMERA_DEFAULT_Y;
   const cameraInitZ = cameraPosition?.z ?? CAMERA_DEFAULT_Z;
@@ -66,7 +69,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
 
   canvas.height = big ? CANVAS_SIZE_BIG : CANVAS_SIZE;
   canvas.width = big ? CANVAS_SIZE_BIG : CANVAS_SIZE;
-  canvas.title = name;
+  canvas.title = displayName || name;
   container.appendChild(canvas);
 
   const scene = new Scene();
@@ -86,6 +89,23 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
     renderer.setClearColor(0x000000, 0);
   }
 
+  const object = await loadGLTF(url);
+
+  const hoverHelper = object.getObjectByName(HOVER_HELPER_NAME);
+  if (hoverHelper) {
+    console.info('[3d-objects]', name, 'has a hover helper');
+    hoverHelper.visible = false;
+  }
+
+  object.scale.x = scale ?? 1;
+  object.scale.y = scale ?? 1;
+  object.scale.z = scale ?? 1;
+
+  object.rotation.x = rotation.x ?? 0;
+  object.rotation.y = rotation.y ?? 0;
+  object.rotation.z = rotation.z ?? 0;
+  scene.add(object);
+
   const raycaster = new Raycaster();
   const pointer = new Vector2();
   let isBeingHovered = false;
@@ -94,35 +114,27 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
     pointer.x = (event.offsetX / canvas.width) * dpr * 2 - 1;
     pointer.y = (event.offsetY / canvas.height) * dpr * 2 - 1;
     raycaster.setFromCamera(pointer, camera);
-    isBeingHovered = raycaster.intersectObjects([mesh], true).length > 0;
+    const intersections = raycaster.intersectObject(hoverHelper ?? object, true).length;
+    isBeingHovered = intersections > 0;
 
     container.classList.toggle('gustavo-item--highlighted', isBeingHovered);
   });
 
-  const mesh = await loadGLTF(url);
-  mesh.scale.x = scale ?? 1;
-  mesh.scale.y = scale ?? 1;
-  mesh.scale.z = scale ?? 1;
-
-  mesh.rotation.x = rotation.x ?? 0;
-  mesh.rotation.y = rotation.y ?? 0;
-  mesh.rotation.z = rotation.z ?? 0;
-  scene.add(mesh);
-
   const debugObject = {
-    mesh,
+    object,
     camera,
+    isBeingHovered,
     moveCam: (x, y, z) => {
       camera.position.x = x;
       camera.position.y = y;
       camera.position.z = z;
-      camera.lookAt(mesh.position);
+      camera.lookAt(object.position);
       renderer.render(scene, camera);
     },
     rotateMesh: (x, y, z) => {
-      mesh.rotateX(x ?? 0);
-      mesh.rotateY(y ?? 0);
-      mesh.rotateZ(z ?? 0);
+      object.rotateX(x ?? 0);
+      object.rotateY(y ?? 0);
+      object.rotateZ(z ?? 0);
       renderer.render(scene, camera);
     },
     move: null,
@@ -131,7 +143,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
   console.info('[3d-objects]', name, debugObject);
 
   return {
-    name, scene, camera, mesh, canvas, container,
+    name, scene, camera, mesh: object, canvas, container,
     insert(map, position) {
       this.map = map;
 
@@ -156,19 +168,19 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
       renderer.render(scene, camera);
     },
     async reset() {
-      mesh.rotation.x = 0;
-      mesh.rotation.y = 0;
-      mesh.rotation.z = 0;
-      mesh.scale.x = 1;
-      mesh.scale.y = 1;
-      mesh.scale.z = 1;
+      object.rotation.x = 0;
+      object.rotation.y = 0;
+      object.rotation.z = 0;
+      object.scale.x = 1;
+      object.scale.y = 1;
+      object.scale.z = 1;
       lights[1].position.x = DIRLIGHT_DEFAULT_X;
       lights[1].position.y = DIRLIGHT_DEFAULT_Y;
       lights[1].position.z = DIRLIGHT_DEFAULT_Z;
       camera.position.x = 0;
       camera.position.y = 0;
       camera.position.z = 5;
-      camera.lookAt(mesh.position);
+      camera.lookAt(object.position);
       this.render();
     },
     povUpdate() {
@@ -203,7 +215,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
       }
 
       // rotate the object so it always faces the same direction in the panorama
-      mesh.rotation.y = Math.atan2(dy, dx);
+      object.rotation.y = Math.atan2(dy, dx);
       // camera.position.z = cameraInitZ * 2 + Math.abs(dy * CAMERA_MOVEMENT_INCREMENT_Z);
 
       const { zoom  } = this.map.getPov();
@@ -216,7 +228,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, cameraPositi
       // move the camera target above the object as we move further away from it
       // this ensures the object doesn't follow the InfoWindow as it rises within the panorama.
       const cameraTarget = new Vector3();
-      cameraTarget.copy(mesh.position);
+      cameraTarget.copy(object.position);
       camera.lookAt(cameraTarget);
       cameraTarget.y += Math.abs(dx * CAMERA_TARGET_INCREMENT_Z);
       camera.updateMatrixWorld();
