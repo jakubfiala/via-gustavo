@@ -8,7 +8,7 @@ import { latLngDist } from "../utils.js";
 import { showSkyImages } from '../sky-images.js';
 import * as drone from '../drone.js';
 import { intro2, intro3 } from '../script/intro.js';
-import { journalChapter } from '../journal/index.js';
+import { journalChapter, journalMoment } from '../journal/index.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
@@ -326,6 +326,7 @@ export const checkpoints = [
     async callback(context) {
       context.droneHoveringBehindYou?.stopHovering(context);
       context.droneHoveringBehindYou = null;
+      journalMoment('🛸', 'The drone finally left me alone')
     },
   },
   {
@@ -374,6 +375,7 @@ export const checkpoints = [
     lng: -69.78524,
     async callback(context) {
       context.sfx.setFootsteps('normal');
+      context.soundscape.set(context.soundscape.town5);
       return scheduleScript(chapter4.doYoKnow, context);
     },
   },
@@ -382,6 +384,13 @@ export const checkpoints = [
     lng: -69.78573,
     async callback(context) {
       return scheduleScript(chapter4.pozoAlmonteMF, context);
+    },
+  },
+  {
+    lat: -20.25056,
+    lng: -69.78606,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.townBigRoad);
     },
   },
 
