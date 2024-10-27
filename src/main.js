@@ -81,8 +81,8 @@ const initialize = async () => {
   });
 
   const { StreetViewPanorama, InfoWindow, StreetViewService } = await mapsLoader.importLibrary('streetView');
-  const { event, ControlPosition } = await mapsLoader.importLibrary('core');
-  scriptContext.google = { event, StreetViewPanorama, StreetViewService, InfoWindow };
+  const { event, ControlPosition, Size, LatLng } = await mapsLoader.importLibrary('core');
+  scriptContext.google = { event, StreetViewPanorama, StreetViewService, InfoWindow, Size, LatLng };
 
   container.hidden = false;
 
