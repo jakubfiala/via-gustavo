@@ -24,6 +24,7 @@ import createSFX from './audio/sfx.js';
 import createScore from './audio/score-sounds.js';
 import createSoundscape from './audio/soundscapes.js';
 import { initJournal } from './journal/index.js';
+import { initCustomPanorama } from './custom-panorama/index.js';
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
@@ -79,9 +80,9 @@ const initialize = async () => {
     libraries: ['streetView'],
   });
 
-  const { StreetViewPanorama, InfoWindow } = await mapsLoader.importLibrary('streetView');
+  const { StreetViewPanorama, InfoWindow, StreetViewService } = await mapsLoader.importLibrary('streetView');
   const { event, ControlPosition } = await mapsLoader.importLibrary('core');
-  scriptContext.google = { event, StreetViewPanorama, InfoWindow };
+  scriptContext.google = { event, StreetViewPanorama, StreetViewService, InfoWindow };
 
   container.hidden = false;
 
@@ -92,6 +93,8 @@ const initialize = async () => {
   window.map = map;
   window.scriptContext = scriptContext;
   scriptContext.map = map;
+
+  await initCustomPanorama(scriptContext);
 
   intro.removeEventListener("click", initialize);
   intro.hidden = true;
