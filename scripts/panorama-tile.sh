@@ -27,6 +27,9 @@ levels=(
   "0 6.25% 1x1"
 )
 
+# Ensure output directory exists.
+mkdir -p "$output_path"
+
 echo "Tiling image $input_image into $output_path at $world_size"
 
 # First, we resize the original to our desired 'world size'.

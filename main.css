@@ -682,6 +682,10 @@ p.subtitle {
   filter: brightness(200%);
 }
 
+.gustavo-item > iframe {
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+}
+
 @property --vignette-size {
   syntax: "<percentage>";
   inherits: false;

@@ -1,8 +1,10 @@
 const OWN_COPYRIGHT = 'Imagery (c) 2024 Jakub Fiala';
 
-const WORLD_W = 6694;
-const WORLD_H = 3347;
-const TILE_SIZE = 558;
+const WORLD_W = 4096;
+const WORLD_H = 2048;
+const TILE_SIZE = 342;
+
+const GUSTAVO_ENTRY_PANO = 'saEVtxCMSAzSNAbh-LFpVQ';
 
 const tileDimensionsForZoom = {
   4: { x: 12, y: 6 },
@@ -18,7 +20,7 @@ const getTileUrl = (pano, zoom, x, y) => {
   return `/assets/img/panoramas/${pano}/z${zoom}-i${index}.jpg`;
 }
 
-const createCustomPanorama = (pano, latLng, sizes) => (entry) => ({
+const panoMaker = (latLng, sizes) => (pano, next) => ({
   location: {
     pano,
     description: '',
@@ -26,46 +28,57 @@ const createCustomPanorama = (pano, latLng, sizes) => (entry) => ({
   },
   links: [
     {
-      heading: 70,
-      description: 'Back to the real world',
-      pano: entry.location.pano,
+      heading: 63,
+      description: '',
+      pano: next,
     },
   ],
   copyright: OWN_COPYRIGHT,
   tiles: {
     ...sizes,
-    centerHeading: 105,
+    centerHeading: 160,
     getTileUrl,
   },
 });
 
 export const initCustomPanorama = async (context) => {
-  const service = new context.google.StreetViewService();
-  const { data: entryPanorama } = await service.getPanorama({ location: { lat: -20.29136, lng: -69.78151 } });
-  console.info('[custom-panorama]', 'got entry panorama', entryPanorama);
-
-  const sizes = {
-    tileSize: new context.google.Size(TILE_SIZE, TILE_SIZE),
-    worldSize: new context.google.Size(WORLD_W, WORLD_H),
-  };
-
-  const ddsOffice = createCustomPanorama(
-    'dds-office',
+  const createPano = panoMaker(
     new context.google.LatLng(-20.28817, -69.78392),
-    sizes,
-  )(entryPanorama);
+    {
+      tileSize: new context.google.Size(TILE_SIZE, TILE_SIZE),
+      worldSize: new context.google.Size(WORLD_W, WORLD_H),
+    },
+  )
+
+  const limbo = createPano('limbo', '');
+  const gustavoDissolve5 = createPano('gustavoDissolve5', 'limbo');
+  const gustavoDissolve4 = createPano('gustavoDissolve4', 'gustavoDissolve5');
+  const gustavoDissolve3 = createPano('gustavoDissolve3', 'gustavoDissolve4');
+  const gustavoDissolve2 = createPano('gustavoDissolve2', 'gustavoDissolve3');
+  const gustavoDissolve1 = createPano('gustavoDissolve1', 'gustavoDissolve2');
+
+  gustavoDissolve1.links.push({
+    heading: 200,
+    description: 'Back to the real world',
+    pano: GUSTAVO_ENTRY_PANO,
+  });
 
   const customPanoramas = {
-    'dds-office': ddsOffice,
+    gustavoDissolve1,
+    gustavoDissolve2,
+    gustavoDissolve3,
+    gustavoDissolve4,
+    gustavoDissolve5,
+    limbo,
   };
 
   context.map.registerPanoProvider((name) => customPanoramas[name] ?? null);
   context.map.addListener('links_changed', () => {
-    if (map.getPano() === entryPanorama.location.pano) {
+    if (map.getPano() === GUSTAVO_ENTRY_PANO) {
       const link = {
-        pano: 'dds-office',
+        pano: 'gustavoDissolve1',
         description: '',
-        heading: 255,
+        heading: 63,
       };
 
       console.info('[custom-panorama]', 'adding link', link);
