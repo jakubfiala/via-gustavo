@@ -20,19 +20,21 @@ const getTileUrl = (pano, zoom, x, y) => {
   return `/assets/img/panoramas/${pano}/z${zoom}-i${index}.jpg`;
 }
 
+const getLinks = (next) => {
+  if (!next) {
+    return [];
+  }
+
+  return [next];
+};
+
 const panoMaker = (latLng, sizes) => (pano, next) => ({
   location: {
     pano,
     description: '',
     latLng,
   },
-  links: [
-    {
-      heading: 63,
-      description: '',
-      pano: next,
-    },
-  ],
+  links: getLinks(next),
   copyright: OWN_COPYRIGHT,
   tiles: {
     ...sizes,
@@ -50,12 +52,14 @@ export const initCustomPanorama = async (context) => {
     },
   )
 
-  const limbo = createPano('limbo', '');
-  const gustavoDissolve5 = createPano('gustavoDissolve5', 'limbo');
-  const gustavoDissolve4 = createPano('gustavoDissolve4', 'gustavoDissolve5');
-  const gustavoDissolve3 = createPano('gustavoDissolve3', 'gustavoDissolve4');
-  const gustavoDissolve2 = createPano('gustavoDissolve2', 'gustavoDissolve3');
-  const gustavoDissolve1 = createPano('gustavoDissolve1', 'gustavoDissolve2');
+  const limbo2 = createPano('limbo2', null);
+  const limbo = createPano('limbo', { pano: 'limbo2', heading: 70 });
+
+  const gustavoDissolve5 = createPano('gustavoDissolve5', { pano: 'limbo', heading: 63 });
+  const gustavoDissolve4 = createPano('gustavoDissolve4', { pano: 'gustavoDissolve5', heading: 63 });
+  const gustavoDissolve3 = createPano('gustavoDissolve3', { pano: 'gustavoDissolve4', heading: 63 });
+  const gustavoDissolve2 = createPano('gustavoDissolve2', { pano: 'gustavoDissolve3', heading: 63 });
+  const gustavoDissolve1 = createPano('gustavoDissolve1', { pano: 'gustavoDissolve2', heading: 63 });
 
   gustavoDissolve1.links.push({
     heading: 200,
@@ -70,6 +74,7 @@ export const initCustomPanorama = async (context) => {
     gustavoDissolve4,
     gustavoDissolve5,
     limbo,
+    limbo2,
   };
 
   context.map.registerPanoProvider((name) => customPanoramas[name] ?? null);

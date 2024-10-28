@@ -29,7 +29,7 @@ export const chapters = [
   },
   {
     id: 4,
-    title: "Salt of the Earth",
+    title: "Finding Deolinda",
     position: {
       lat: -20.27109,
       lng: -69.78599,
