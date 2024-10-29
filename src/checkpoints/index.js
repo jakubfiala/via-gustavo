@@ -391,6 +391,30 @@ export const checkpoints = [
     lng: -69.78606,
     async callback(context) {
       context.soundscape.set(context.soundscape.townBigRoad);
+      return scheduleScript(chapter4.difunta1, context);
+    },
+  },
+  {
+    lat: -20.24185,
+    lng: -69.78692,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.townBigRoad);
+      return scheduleScript(chapter4.difunta2, context);
+    },
+  },
+  {
+    lat: -20.23327,
+    lng: -69.78749,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.townBigRoad);
+      return scheduleScript(chapter4.difunta3, context);
+    },
+  },
+  {
+    lat: -20.22341,
+    lng: -69.78831,
+    async callback(context) {
+      return scheduleScript(chapter4.difunta4, context);
     },
   },
 
