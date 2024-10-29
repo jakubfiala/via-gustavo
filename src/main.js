@@ -25,6 +25,7 @@ import createScore from './audio/score-sounds.js';
 import createSoundscape from './audio/soundscapes.js';
 import { initJournal } from './journal/index.js';
 import { initCustomPanorama } from './custom-panorama/index.js';
+import { createDelayEffect } from './items/shrooms.js';
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
@@ -100,11 +101,15 @@ const initialize = async () => {
   intro.hidden = true;
 
   scriptContext.audioContext = new AudioContext();
+
   scriptContext.masterGain = new GainNode(scriptContext.audioContext, { gain: 0 });
   scriptContext.masterGain.connect(scriptContext.audioContext.destination);
 
+  scriptContext.delay = createDelayEffect(scriptContext);
+  scriptContext.masterGain.connect(scriptContext.delay).connect(scriptContext.audioContext.destination);
+
   scriptContext.speechGain = new GainNode(scriptContext.audioContext, { gain: 0.9 });
-  scriptContext.speechGain.connect(scriptContext.audioContext.destination);
+  scriptContext.speechGain.connect(scriptContext.masterGain);
 
   scriptContext.score = createScore(scriptContext);
   scriptContext.soundscape = createSoundscape(scriptContext);

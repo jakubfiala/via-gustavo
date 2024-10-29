@@ -14,7 +14,8 @@ export const intro = [
     }
   },
   { text: "I remember the time a spacecraft crashed somewhere in the desert." },
-  { text: "Gustavo was a dapper young man.", time: 3 },
+  { duration: 1 },
+  { text: "Gustavo was a dapper young man." },
   { text: "He watched the news every evening"},
   { text: "It was then that he began driving down here more often"},
   { text: "It was a simpler time. My heart jumped with joy every time I saw him."},

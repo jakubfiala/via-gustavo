@@ -44,17 +44,21 @@ export const initCustomPanorama = async (context) => {
     },
   )
 
+  const limbo3 = createPano(
+    'limbo3',
+    [{ pano: 'limbo1', heading: 260 }, { pano: 'limbo2', heading: 80 }],
+    { centerHeading: 260 },
+  );
   const limbo2 = createPano(
     'limbo2',
-    [{ pano: 'limbo1', heading: 260 }, { pano: 'limbo1', heading: 80 }],
+    [{ pano: 'limbo3', heading: 260 }, { pano: 'limbo1', heading: 80 }],
     { centerHeading: 260 },
   );
   const limbo1 = createPano(
     'limbo1',
-    [{ pano: 'limbo2', heading: 80 }, { pano: 'limbo2', heading: 260 }],
+    [{ pano: 'limbo2', heading: 260 }, { pano: 'limbo3', heading: 80 }],
     { centerHeading: 260 },
   );
-  console.log(limbo1, limbo2);
 
   const gustavoDissolve5 = createPano('gustavoDissolve5', [{ pano: 'limbo1', heading: 63 }]);
   const gustavoDissolve4 = createPano('gustavoDissolve4', [{ pano: 'gustavoDissolve5', heading: 63 }]);
@@ -70,6 +74,7 @@ export const initCustomPanorama = async (context) => {
     gustavoDissolve5,
     limbo1,
     limbo2,
+    limbo3,
   };
 
   context.map.registerPanoProvider((name) => customPanoramas[name] ?? null);

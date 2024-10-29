@@ -39,8 +39,11 @@ export const pozoAlmonteMF = [
   },
 ];
 
-
 export const difunta1 = [
+  { text: "Well, I hope you had fun down there." },
+  { text: "You probably expect me to share some profound wisdom, or tell some deep-ass story." },
+  { text: "You know what? I'll tell you one." },
+  { duration: 1 },
   { text: "Picture Deolinda" },
   { text: "walking on parched, rocky ground" },
   { text: "carrying a babe, still a suckling, no more than two months old." },
