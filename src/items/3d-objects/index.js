@@ -2,9 +2,13 @@ import {
   AmbientLight,
   DirectionalLight,
   DoubleSide,
+  EquirectangularReflectionMapping,
   PerspectiveCamera,
   Raycaster,
   Scene,
+  SRGBColorSpace,
+  Texture,
+  TextureLoader,
   Vector2,
   Vector3,
   WebGLRenderer,
@@ -35,9 +39,9 @@ const HOVER_HELPER_NAME = 'hover-helper';
 
 const dpr = Math.max(MIN_DPR, window.devicePixelRatio);
 
-const createLights = ({ x, y, z }) => {
-  const ambientLight = new AmbientLight(0x7c7c7c, 3.0);
-  const light = new DirectionalLight(0xFFFFFF, 3.0);
+const createLights = ({ x, y, z }, intensity = 3) => {
+  const ambientLight = new AmbientLight(0x7c7c7c, intensity);
+  const light = new DirectionalLight(0xFFFFFF, intensity);
   light.position.set(
     x ?? DIRLIGHT_DEFAULT_X,
     y ?? DIRLIGHT_DEFAULT_Y,
@@ -47,7 +51,7 @@ const createLights = ({ x, y, z }) => {
   return [ambientLight, light];
 };
 
-export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName, cameraPosition, scale, rotation = {}, lightPosition = {}, onGround = false, big = false } = {}) => {
+export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName, cameraPosition, scale, rotation = {}, lightPosition = {}, onGround = false, big = false, env = null } = {}) => {
   const cameraInitX = cameraPosition?.x ?? CAMERA_DEFAULT_X;
   const cameraInitY = cameraPosition?.y ?? CAMERA_DEFAULT_Y;
   const cameraInitZ = cameraPosition?.z ?? CAMERA_DEFAULT_Z;
@@ -73,7 +77,16 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
   container.appendChild(canvas);
 
   const scene = new Scene();
-  const lights = createLights(lightPosition)
+  if (env) {
+    new TextureLoader().load(env, (texture) => {
+      console.info('[3d-objects]', 'loaded env texture for', name);
+      texture.mapping = EquirectangularReflectionMapping;
+      texture.colorSpace = SRGBColorSpace;
+      scene.environment = texture;
+    });
+  }
+
+  const lights = createLights(lightPosition, env ? 0.8 : 3);
   lights.forEach((l) => scene.add(l));
 
   const camera = new PerspectiveCamera(45, 1, 0.1, 1000);

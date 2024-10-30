@@ -398,7 +398,6 @@ export const checkpoints = [
     lat: -20.24185,
     lng: -69.78692,
     async callback(context) {
-      context.soundscape.set(context.soundscape.townBigRoad);
       return scheduleScript(chapter4.difunta2, context);
     },
   },
@@ -406,7 +405,6 @@ export const checkpoints = [
     lat: -20.23327,
     lng: -69.78749,
     async callback(context) {
-      context.soundscape.set(context.soundscape.townBigRoad);
       return scheduleScript(chapter4.difunta3, context);
     },
   },

@@ -3,11 +3,12 @@ import { LOCALSTORAGE_SOUNDSCAPE_KEY } from '../constants.js';
 const SOUNDSCAPE_FADE_DURATION_S = 10;
 const FADE_OUT_OFFSET = SOUNDSCAPE_FADE_DURATION_S / 4;
 
-const createSoundscape = (context, src, name) => {
+const createSoundscape = (context, src, name, volume = 1) => {
   const mediaElement = new Audio();
   mediaElement.loop = true;
   mediaElement.preload = 'none';
   mediaElement.src = src;
+  mediaElement.volume = volume;
 
   const node = new MediaElementAudioSourceNode(context.audioContext, { mediaElement });
   const gainNode = new GainNode(context.audioContext, { gain: 0 });
@@ -50,7 +51,7 @@ export default (context) => {
     town2: createSoundscape(context, 'assets/audio/soundscapes/town2.mp3', 'town2'),
     town3: createSoundscape(context, 'assets/audio/soundscapes/town3.mp3', 'town3'),
     town5: createSoundscape(context, 'assets/audio/soundscapes/town5.mp3', 'town5'),
-    townBigRoad: createSoundscape(context, 'assets/audio/soundscapes/town-big-road.mp3', 'townBigRoad'),
+    townBigRoad: createSoundscape(context, 'assets/audio/soundscapes/town-big-road.mp3', 'townBigRoad', 0.7),
     birdsWind: createSoundscape(context, 'assets/audio/soundscapes/birds_wind.mp3', 'birdsWind'),
     highwayRight: createSoundscape(context, 'assets/audio/soundscapes/highway-right.mp3', 'highwayRight'),
     set(soundscape) {

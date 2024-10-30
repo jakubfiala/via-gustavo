@@ -320,4 +320,26 @@ export default [
       return item;
     },
   },
+  {
+    name: 'Bottles',
+    collectible: false,
+    position: {
+      lat: -20.22333,
+      lng: -69.78822,
+    },
+    async create(makers) {
+      const item = await makers.threeObject('/assets/items/bottles/',
+        {
+          name: this.name,
+          onGround: true,
+          big: true,
+          cameraPosition: { x: 0, y: 0.6, z: 2.1 },
+          env: '/assets/img/difunta.env.jpg',
+          scale: 0.4,
+        },
+      );
+
+      return item;
+    },
+  },
 ];

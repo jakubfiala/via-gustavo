@@ -2,8 +2,11 @@
 // for private research purposes only
 
 
+// lhceA_Fts0IINvq26BbcQw (at difunta's animita)
+
+
 const grab = async (w, h) => {
-  const getUrl = (x,y) =>`https://streetviewpixels-pa.googleapis.com/v1/tile?cb_client=apiv3&panoid=saEVtxCMSAzSNAbh-LFpVQ&output=tile&x=${x}&y=${y}&zoom=4&nbt=1&fover=2`;
+  const getUrl = (x,y) =>`https://streetviewpixels-pa.googleapis.com/v1/tile?cb_client=apiv3&panoid=lhceA_Fts0IINvq26BbcQw&output=tile&x=${x}&y=${y}&zoom=4&nbt=1&fover=2`;
 
   const fetchTile = (x,y) => {
     const img = new Image();

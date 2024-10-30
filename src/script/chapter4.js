@@ -1,6 +1,7 @@
 import { setTask } from '../task.js';
-import { flashStatus } from './utils.js';
+import { flashStatus, showHelpMessage } from './utils.js';
 import { journalMoment } from '../journal/index.js';
+import { enableDonate } from '../interactions/donate-button.js';
 
 export const aboutDrone = [
   {
@@ -37,6 +38,8 @@ export const pozoAlmonteMF = [
     text: "And so did your guy Gustavo, and his old man, and that guy's old man before him",
     callback: () => journalMoment('🧂', 'Discovered the mighty town of Pozo Almonte'),
   },
+  { text: "It's just the kind of salt we're into, that's changed." },
+  { text: "You'll see what I mean." },
 ];
 
 export const difunta1 = [
@@ -44,6 +47,9 @@ export const difunta1 = [
   { text: "You probably expect me to share some profound wisdom, or tell some deep-ass story." },
   { text: "You know what? I'll tell you one." },
   { duration: 1 },
+  {
+    callback: (context) => context.score.circuito2.play(),
+  },
   { text: "Picture Deolinda, walking on parched, rocky ground" },
   { text: "carrying a babe, still a suckling, no more than two months old." },
   { text: "Her hand placed over the child's face, protecting it from the relentless sun." },
@@ -63,6 +69,9 @@ export const difunta1 = [
 ];
 
 export const difunta2 = [
+  {
+    callback: (context) => context.score.circuito5.play(),
+  },
   { text: "She really is scraping the bottom of the barrel." },
   { text: "Her tongue feels like sandpaper, her lips are swollen and cracked." },
   { text: "She squeezes the last drop of water from a small leather pouch." },
@@ -70,13 +79,19 @@ export const difunta2 = [
   { text: "The child will not stop wailing, and her beloved one is nowhere to be found." },
   { text: "She prays to the gods - the old and the new ones," },
   { text: "but when her knees falter and she crumbles onto the ground, none of them are there to hear it." },
-  { text: "The little one stays pressed against her chest as silence takes hold on the pampa again." },
   {
-    callback: () => setTask("Continue walking to hear more of the story"),
+    text: "The little one stays pressed against her chest as silence takes hold on the pampa again.",
+    callback: (context) => context.soundscape.set(context.soundscape.base),
+  },
+  {
+    callback: () => setTask("Continue walking to hear more of Deolinda's story"),
   }
 ];
 
 export const difunta3 = [
+  {
+    callback: (context) => context.score.circuito3.play(),
+  },
   { text: "Days later, a group of gauchos ride across the plains with their cattle." },
   { text: "One of them, a young lad, keen to prove himself, keeps circling around the herd" },
   { text: "avoiding the thorny bushes by millimeters." },
@@ -87,7 +102,13 @@ export const difunta3 = [
   { text: "Suddenly, the gauchos gasp." },
   { text: "The little child moves, makes a sound, and presses its lips to the woman's breast." },
   { text: "It has been there for days, sustained from her limp body." },
-  { text: "The Mother provides even in death." },
+  {
+    text: "The Mother provides even in death.",
+    callback: (context) => {
+      context.score.circuito4.play();
+      context.soundscape.set(context.soundscape.townBigRoad);
+    },
+  },
 ];
 
 export const difunta4 = [
@@ -95,7 +116,16 @@ export const difunta4 = [
   { text: "The story's not exactly a box office hit - but it's kind of a big deal here." },
   { text: "And it befits someone like you and I, the wanderers, the wayfinders and the vagabonds," },
   { text: "the gauchos, truck drivers and other travellers, to leave her an offering of water at the roadside." },
+  {
+    callback: (context) => context.score.circuito1.play(),
+  },
   { text: "Come, let's honor the brave Deolinda!" },
   { text: "May she guard us on the voyages to come." },
+  {
+    callback: (context) => {
+      setTask('Leave an offering at the animita');
+      enableDonate(context);
+    },
+  },
 ];
 

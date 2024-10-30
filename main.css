@@ -798,27 +798,44 @@ p.subtitle {
   transform: perspective(100px) rotate3d(1, 0, 0, -7deg) translateY(45px);
 }
 
-#jaywalk {
+#jaywalk,
+#donate {
   animation: fade-in 700ms both;
   position: fixed;
   top: 50%;
   left: 50%;
   z-index: 6;
-  background: #5252ff;
   padding: 3rem;
   translate: -50% -50%;
+}
+
+#jaywalk {
+  background: #5252ff;
   box-shadow: 4px 7px 4px rgba(0, 0, 0, 0.3);
 }
 
-#jaywalk-button {
+#jaywalk-button,
+#donate-button {
   appearance: none;
   border: none;
   cursor: pointer;
   background: none;
-  width: 10rem;
-  height: 10rem;
   display: flex;
   padding: 0;
+  transition: top 0.05s linear, filter 0.05s linear;
+}
+
+#donate-button {
+  width: 20rem;
+}
+
+#donate-button:hover {
+  filter: brightness(90%);
+}
+
+#jaywalk-button {
+  width: 10rem;
+  height: 10rem;
   filter: drop-shadow(0 10px 0 #f27a7a);
   position: relative;
   top: -5px;
@@ -830,9 +847,13 @@ p.subtitle {
   top: -2px;
 }
 
-#jaywalk-button img {
+#jaywalk-button img,
+#donate-button img {
   width: 100%;
   height: 100%;
+}
+
+#jaywalk-button img {
   overflow: hidden;
   border-radius: 5rem;
 }
