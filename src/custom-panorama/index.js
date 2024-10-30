@@ -1,8 +1,8 @@
 const OWN_COPYRIGHT = 'Imagery (c) 2024 Jakub Fiala';
 
-const WORLD_W = 4096;
-const WORLD_H = 2048;
-const TILE_SIZE = 342;
+const WORLD_W = 8192;
+const WORLD_H = 4096;
+const TILE_SIZE = 683;
 
 const GUSTAVO_ENTRY_PANO = 'saEVtxCMSAzSNAbh-LFpVQ';
 
@@ -60,8 +60,7 @@ export const initCustomPanorama = async (context) => {
     { centerHeading: 260 },
   );
 
-  const gustavoDissolve5 = createPano('gustavoDissolve5', [{ pano: 'limbo1', heading: 63 }]);
-  const gustavoDissolve4 = createPano('gustavoDissolve4', [{ pano: 'gustavoDissolve5', heading: 63 }]);
+  const gustavoDissolve4 = createPano('gustavoDissolve4', [{ pano: 'limbo1', heading: 63 }]);
   const gustavoDissolve3 = createPano('gustavoDissolve3', [{ pano: 'gustavoDissolve4', heading: 63 }]);
   const gustavoDissolve2 = createPano('gustavoDissolve2', [{ pano: 'gustavoDissolve3', heading: 63 }]);
   const gustavoDissolve1 = createPano('gustavoDissolve1', [{ pano: 'gustavoDissolve2', heading: 63 }]);
@@ -71,7 +70,6 @@ export const initCustomPanorama = async (context) => {
     gustavoDissolve2,
     gustavoDissolve3,
     gustavoDissolve4,
-    gustavoDissolve5,
     limbo1,
     limbo2,
     limbo3,

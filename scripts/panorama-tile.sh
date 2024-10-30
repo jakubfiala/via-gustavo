@@ -17,7 +17,7 @@ set -o nounset
 input_image="$1"
 output_path="$2"
 
-world_size="4096x2048"
+world_size="8192x4096"
 
 levels=(
   "4 100%  12x6"
