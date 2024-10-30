@@ -334,6 +334,7 @@ export default [
           onGround: true,
           big: true,
           cameraPosition: { x: 0, y: 0.6, z: 2.1 },
+          lightPosition: { y: 1 },
           env: '/assets/img/difunta.env.jpg',
           scale: 0.4,
         },
