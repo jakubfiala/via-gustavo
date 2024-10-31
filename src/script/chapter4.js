@@ -1,7 +1,8 @@
 import { setTask } from '../task.js';
 import { flashStatus, showHelpMessage } from './utils.js';
 import { journalMoment } from '../journal/index.js';
-import { enableDonate } from '../interactions/donate-button.js';
+import { askForDonation } from '../interactions/donate-button.js';
+import { sleep } from '../utils.js';
 
 export const aboutDrone = [
   {
@@ -114,7 +115,8 @@ export const difunta3 = [
 export const difunta4 = [
   { text: "I know, I know." },
   { text: "The story's not exactly a box office hit - but it's kind of a big deal here." },
-  { text: "And it befits someone like you and I, the wanderers, the wayfinders and the vagabonds," },
+  { text: "They now call her La Difunta Correa," },
+  { text: "and it befits someone like you and I, the wanderers, the wayfinders and the vagabonds," },
   { text: "the gauchos, truck drivers and other travellers, to leave her an offering of water at the roadside." },
   {
     callback: (context) => context.score.circuito1.play(),
@@ -122,10 +124,38 @@ export const difunta4 = [
   { text: "Come, let's honor the brave Deolinda!" },
   { text: "May she guard us on the voyages to come." },
   {
-    callback: (context) => {
+    callback: async (context) => {
       setTask('Leave an offering at the animita');
-      enableDonate(context);
+      await askForDonation(context);
+      setTask('Continue walking');
+      await sleep(3000);
+      journalMoment('💦', 'Gave an offering of water to the Difunta Correa');
     },
   },
+];
+
+export const afterDifunta = [
+  { text: "Alright, alright, I have seen Gustavo." },
+  { text: "Many, many times, also recently." },
+  { text: "He would sit on his grandfather's lap in the excavator when they built the highway." },
+  { text: "His mother would take him to Humberstone, where she had grown up," },
+  { text: "before the town's people moved out and the ghosts moved in." },
+  { text: "His father, whom Gustavo never knew, earned his living in the very salitrera you'll see to the west." },
+];
+
+export const lithium = [
+  { text: "Yes, I have seen Gustavo." },
+  { text: "I've seen the azure-green pools of lithium reflect in his sunglasses as he set off home after work." },
+  { text: "He would take out his phone while driving to call his brother," },
+  { text: "and talk about his day." },
+  { text: "He'd talk about the precious groundwater, pulled out from beneath the desert," },
+  { text: "and left to evaporate in the blazing sun." },
+  { text: "He sounded proud when he talked about it." },
+  { text: "He'd clutch his phone slightly harder, aware of the piece of the Atacama inside." },
+  { text: "Inside his brother's phone, his mum's iPad and a billion other objects" },
+  { text: "from Shenzen to Nevada, from Seoul to Brandenburg." },
+  { duration: 1 },
+  { text: "He'd smile when he left the gates of the mine" },
+  { text: "passing the dying trees and flamingo carcasses." },
 ];
 

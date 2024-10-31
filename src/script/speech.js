@@ -5,6 +5,7 @@ import { sleep } from '../utils.js';
 
 const ARCHIVE_URL = '/assets/audio/speech.tar';
 const PAUSE_MS = 1000;
+const WAIT_FOR_ARCHIVE_MS = 2000;
 
 const loadFromSpeechServer = async (context, text) => {
   const response = await fetch('http://localhost:3000/speech', { method: 'post', body: text });
@@ -16,23 +17,14 @@ const loadFromSpeechServer = async (context, text) => {
   return source;
 };
 
-// const loadFromCDN = async (context, text) => {
-//   const fileName = `${slug(text)}.mp3`;
-//   const mediaElement = new Audio(`/assets/audio/speech/${fileName}`);
-//   const source = new MediaElementAudioSourceNode(context.audioContext, { mediaElement });
-//   source.connect(context.speechGain);
-//   mediaElement.play();
-
-//   return mediaElement;
-// }
-
 export const initSpeech = async (context) => {
   if (process.env.NODE_ENV !== 'dev') {
     console.info('[speech]', 'loadin speech parts archive', ARCHIVE_URL);
     const response = await fetch(ARCHIVE_URL);
     const buffer = await response.arrayBuffer();
     const entries = parseTar(buffer).map(({ name, data }) => [
-      name.replace('.mp3', ''),
+      // strip the file extension (even if truncated)
+      name.replace(/\.[a-z0-9]+/, ''),
       data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength),
     ]);
     const parts = Object.fromEntries(entries);
@@ -71,6 +63,12 @@ export const playSpeech = (context, text, maxDuration) => new Promise(async (res
   if (process.env.NODE_ENV === 'dev') {
     source = await loadFromSpeechServer(context, text);
   } else {
+    if (!context.speech) {
+      // Wait a bit to see if the archive just needs more time to load.
+      // We don't want to wait forever though, in case the request fails completely or something.
+      await sleep(WAIT_FOR_ARCHIVE_MS);
+    }
+
     source = await loadFromArchive(context, text);
   }
 

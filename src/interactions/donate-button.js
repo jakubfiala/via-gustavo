@@ -3,11 +3,13 @@ import { disableClickToGoCB, enableClickToGoCB } from '../script/utils';
 const container = document.getElementById('donate');
 const button = document.getElementById('donate-button');
 
-export const enableDonate = (context) => {
+export const askForDonation = (context) => new Promise((resolve) => {
   container.hidden = false;
   disableClickToGoCB(context);
 
   const onClick = () => {
+    context.sfx.donatingWater();
+
     enableClickToGoCB(context);
     container.hidden = true;
 
@@ -17,7 +19,8 @@ export const enableDonate = (context) => {
       coke.position.y = 0;
       item.update();
     }
+    resolve();
   };
 
   button.addEventListener('click', onClick, { once: true });
-};
+});
