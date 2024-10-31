@@ -50,6 +50,7 @@ export default (context) => {
     town: createSoundscape(context, 'assets/audio/soundscapes/town.mp3', 'town'),
     town2: createSoundscape(context, 'assets/audio/soundscapes/town2.mp3', 'town2'),
     town3: createSoundscape(context, 'assets/audio/soundscapes/town3.mp3', 'town3'),
+    town4: createSoundscape(context, 'assets/audio/soundscapes/town4.mp3', 'town4'),
     town5: createSoundscape(context, 'assets/audio/soundscapes/town5.mp3', 'town5'),
     townBigRoad: createSoundscape(context, 'assets/audio/soundscapes/town-big-road.mp3', 'townBigRoad', 0.7),
     birdsWind: createSoundscape(context, 'assets/audio/soundscapes/birds_wind.mp3', 'birdsWind'),

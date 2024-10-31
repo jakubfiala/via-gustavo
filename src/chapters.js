@@ -37,10 +37,10 @@ export const chapters = [
   },
   {
     id: 5,
-    title: "The Wake",
+    title: "Humberstone",
     position: {
-      lat: -20.467491495806950,
-      lng: -69.460925633319292,
+      lat: -20.20997,
+      lng: -69.79629,
     },
   },
 ];

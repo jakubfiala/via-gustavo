@@ -1,3 +1,5 @@
+import { extraLinks } from './extra-links.js';
+
 const OWN_COPYRIGHT = 'Imagery (c) 2024 Jakub Fiala';
 
 const WORLD_W = 8192;
@@ -88,6 +90,10 @@ export const initCustomPanorama = async (context) => {
 
       const links = map.getLinks();
       links.splice(0, Infinity);
+      links.push(link);
+    } else if (map.getPano() in extraLinks) {
+      const link = extraLinks[map.getPano()];
+      const links = map.getLinks();
       links.push(link);
     }
   });

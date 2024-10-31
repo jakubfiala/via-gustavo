@@ -4,6 +4,7 @@ import { flashIndicator } from './interactions.js';
 
 const dialog = document.getElementById('journal-dialog');
 const list = document.getElementById('journal-entries');
+const journalButton = document.getElementById('journal-button');
 
 const itemEntryTemplate = document.getElementById('journal-item-template');
 const chapterEntryTemplate = document.getElementById('journal-chapter-template');
@@ -35,6 +36,8 @@ export const initJournal = () => {
     const replayButtons = list.querySelectorAll('.replay-chapter');
     replayButtons.forEach(setupReplay);
   }
+
+  journalButton.addEventListener('click', () => list.scrollIntoView({ block: 'end' }));
 };
 
 export const journalItem = (item) => {

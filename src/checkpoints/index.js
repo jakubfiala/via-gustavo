@@ -4,11 +4,13 @@ import * as chapter1 from '../script/chapter1.js';
 import * as chapter2 from '../script/chapter2.js';
 import * as chapter3 from '../script/chapter3.js';
 import * as chapter4 from '../script/chapter4.js';
+import * as chapter5 from '../script/chapter5.js';
 import { latLngDist } from "../utils.js";
 import { showSkyImages } from '../sky-images.js';
 import * as drone from '../drone.js';
 import { intro2, intro3 } from '../script/intro.js';
 import { journalChapter, journalMoment } from '../journal/index.js';
+import { setTask } from '../task.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
@@ -415,13 +417,72 @@ export const checkpoints = [
       return scheduleScript(chapter4.difunta4, context);
     },
   },
+  {
+    lat: -20.22184,
+    lng: -69.78845,
+    async callback(context) {
+      return scheduleScript(chapter4.afterDifunta, context);
+    },
+  },
+  {
+    lat: -20.21883,
+    lng: -69.78868,
+    async callback(context) {
+      return scheduleScript(chapter4.lithium, context);
+    },
+  },
+  {
+    lat: -20.21254,
+    lng: -69.78886,
+    async callback(context) {
+      return scheduleScript(chapter4.geoglyphs, context);
+    },
+  },
 
   // Humberstone
+  {
+    lat: -20.20997,
+    lng: -69.79629,
+    chapter: chapters[4],
+    async callback(context) {
+      return scheduleScript(chapter5.intro, {
+        ...context,
+        chapter: this.chapter,
+      });
+    },
+  },
+  {
+    lat: -20.20953,
+    lng: -69.79687,
+    async callback(context) {
+      context.sfx.setFootsteps('gravel');
+      context.soundscape.set(context.soundscape.town4);
+    },
+  },
+  {
+    lat: -20.20931,
+    lng: -69.79683,
+    async callback(context) {
+      setTask('Climb up the hill behind the town');
+      journalMoment('🏭', 'Discovered the old town of Humberstone');
+    },
+  },
+  {
+    lat: -20.20521,
+    lng: -69.79559,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.birdsWind);
+      context.score.circuitoFull.play();
+    }
+  },
   {
     lat: -20.20556,
     lng: -69.79509,
     async callback(context) {
-      return showSkyImages(context);
+      showSkyImages(context);
+      setTimeout(() => {
+        journalMoment('🌠', 'Strange diagrams appeared in the sky')
+      }, 3000);
     }
   }
 ];

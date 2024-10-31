@@ -1,5 +1,5 @@
 import { setTask } from '../task.js';
-import { flashStatus, showHelpMessage } from './utils.js';
+import { flashStatus } from './utils.js';
 import { journalMoment } from '../journal/index.js';
 import { askForDonation } from '../interactions/donate-button.js';
 import { sleep } from '../utils.js';
@@ -141,14 +141,16 @@ export const afterDifunta = [
   { text: "His mother would take him to Humberstone, where she had grown up," },
   { text: "before the town's people moved out and the ghosts moved in." },
   { text: "His father, whom Gustavo never knew, earned his living in the very salitrera you'll see to the west." },
+  { duration: 0.5 },
+  { text: "So what? What do you care for one human in the desert, who you haven't even met?" },
 ];
 
 export const lithium = [
   { text: "Yes, I have seen Gustavo." },
-  { text: "I've seen the azure-green pools of lithium reflect in his sunglasses as he set off home after work." },
+  { text: "I've seen the azure pools of lithium water reflect in his sunglasses as he drove home from work." },
   { text: "He would take out his phone while driving to call his brother," },
   { text: "and talk about his day." },
-  { text: "He'd talk about the precious groundwater, pulled out from beneath the desert," },
+  { text: "He'd talk about the precious groundwater, how it's pulled from beneath the desert," },
   { text: "and left to evaporate in the blazing sun." },
   { text: "He sounded proud when he talked about it." },
   { text: "He'd clutch his phone slightly harder, aware of the piece of the Atacama inside." },
@@ -157,5 +159,36 @@ export const lithium = [
   { duration: 1 },
   { text: "He'd smile when he left the gates of the mine" },
   { text: "passing the dying trees and flamingo carcasses." },
+  { text: "I still don't see why I should go around looking for him with you." },
+  { text: "Why don't you climb the overpass to the north?" },
+  { text: "You might spot him from up there, for all I care." },
+  {
+    callback: () => setTask('Go up the highway overpass to the north'),
+  },
+];
+
+export const geoglyphs = [
+  {
+    callback:  () => journalMoment('🔎', 'Looked for Gustavo from the overpass. No luck.')
+  },
+  { text: "No luck finding him then?" },
+  { text: "At least you can look at these sick geoglyphs on each side of the overpass." },
+  { text: "We just LOVE shifting soil around in the desert." },
+  { text: "Wouldn't you?" },
+  { text: "If only the Google car had gone there, you could see the ones up in the mountains." },
+  { text: "They are massive, and thousands of years old!" },
+  { duration: 2 },
+  { text: "Listen... I really think you should just leave it." },
+  { text: "It's nice you trying to find this guy, but you aren't even really here, are you?" },
+  { text: "Why don't you check out the fun parts, like a good tourist?" },
+  { text: "To the north-west is the old town of Humberstone." },
+  { text: "UNESCO World Heritage, you know what I'm sayin?" },
+  { text: "Why don't you go and check it out?" },
+  { text: "You can even climb that hill behind it, the view from there is stunning." },
+  { text: "It's what Gustavo would have done." },
+  { text: "Go, go, leave me alone, for Christ's sakes!" },
+  {
+    callback: () => setTask('Visit the town of Humberstone to the north-west 🏭'),
+  },
 ];
 

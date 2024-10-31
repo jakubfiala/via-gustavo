@@ -88,6 +88,22 @@ export default [
     position: { lat: -20.33609, lng: -69.65923 },
     rotation: { x: Math.PI/2, y: -0.45 },
   }),
+  // overpass
+  createCoke({
+    name: 'Coca-Cola 13',
+    position: { lat: -20.21385, lng: -69.78926 },
+    rotation: { x: Math.PI/2, y: -0.45 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 14',
+    position: { lat: -20.21386, lng: -69.78931 },
+    rotation: { y: -0.45 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 15',
+    position: { lat: -20.2138, lng: -69.78931 },
+    rotation: { x: -Math.PI/2, y: 0.9 },
+  }),
 
   {
     name: 'Geiger Counter',
