@@ -94,6 +94,14 @@ export const initCustomPanorama = async (context) => {
     } else if (map.getPano() in extraLinks) {
       const link = extraLinks[map.getPano()];
       const links = map.getLinks();
+
+      if (link.replace) {
+        const toRemoveIndex = links.findIndex(({ pano }) => pano === link.replace);
+        if (toRemoveIndex >= 0) {
+          links.splice(toRemoveIndex, 1);
+        }
+      }
+
       links.push(link);
     }
   });

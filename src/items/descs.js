@@ -104,6 +104,51 @@ export default [
     position: { lat: -20.2138, lng: -69.78931 },
     rotation: { x: -Math.PI/2, y: 0.9 },
   }),
+  createCoke({
+    name: 'Coca-Cola 16',
+    position: { lat: -20.34049, lng: -69.65623 },
+    rotation: { x: -Math.PI/2, y: 0.3 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 17',
+    position: { lat: -20.3391, lng: -69.65599 },
+    rotation: { y: -1.7 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 19',
+    position: { lat: -20.33866, lng: -69.65596 },
+    rotation: { x: Math.PI/2, y: -0.45 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 20',
+    position: { lat: -20.33783, lng: -69.65596 },
+    rotation: { y: -0.45 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 21',
+    position: { lat: -20.33688, lng: -69.65613 },
+    rotation: { x: Math.PI/2, y: 2 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 22',
+    position: { lat: -20.337, lng: -69.65728 },
+    rotation: { y: -0.63 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 23',
+    position: { lat: -20.33703, lng: -69.65821 },
+    rotation: { x: -Math.PI/2, y: 0.3 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 24',
+    position: { lat: -20.33524, lng: -69.65935 },
+    rotation: { y: 0.3 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 25',
+    position: { lat: -20.33477, lng: -69.6596 },
+    rotation: { x: Math.PI/2, y: -0.45 },
+  }),
 
   {
     name: 'Geiger Counter',

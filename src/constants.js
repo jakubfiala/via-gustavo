@@ -11,6 +11,6 @@ export const LOCALSTORAGE_JOURNAL_KEY = 'vg_jou';
 export const START_POSITION = { lat: -20.44995, lng: -69.50578 };
 export const START_POV = { heading: 279.83396999258559, pitch:  -1.184891582816434 };
 export const MAPS_API_KEY = 'AIzaSyA1VOiLnJEwz3HzcDxEExa_tCTu5KKOoqQ';
-export const OBJECT_APPEAR_THRESHOLD = 15;
+export const OBJECT_APPEAR_THRESHOLD = 10;
 
 export const DEFAULT_COLLECT_TEXT = 'Collected';

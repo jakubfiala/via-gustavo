@@ -471,7 +471,7 @@ export const checkpoints = [
     lat: -20.20521,
     lng: -69.79559,
     async callback(context) {
-      context.soundscape.set(context.soundscape.birdsWind);
+      context.soundscape.set(context.soundscape.base);
       context.score.circuitoFull.play();
     }
   },
