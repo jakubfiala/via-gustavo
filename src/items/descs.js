@@ -8,16 +8,9 @@ import inventory from '../inventory/index.js';
 import { sleep } from '../utils.js';
 import { createCoke } from './coke.js';
 import { journalMoment } from '../journal/index.js';
+import { createStationOfTheCross } from './via-crucis.js';
 
 export default [
-  {
-    name: 'Mars96',
-    collectible: false,
-    position: { lat: -20.28906, lng: -69.78257 },
-    create(makers) {
-      return makers.embed('https://en.wikipedia.org/wiki/Mars_96');
-    },
-  },
   createBusStopItem({
     position: { lat: -20.43098, lng: -69.56023 },
     destination: {
@@ -208,121 +201,62 @@ export default [
       );
     },
   },
-  {
-    thumbnailURL: '/assets/img/via-crucis/14.jpg',
-    name: 'XIV - Laid in his tomb',
-    position: { lat: -20.33616, lng: -69.65654 },
-    async create(makers) {
-      return makers.simpleImage({ src: this.thumbnailURL, name: this.name, fade: true });
-    },
-  },
-  {
-    thumbnailURL: '/assets/img/via-crucis/13.jpg',
-    name: 'XIII - Taken down from the cross',
-    position: {
-      lat: -20.33545,
-      lng: -69.65917,
-    },
-    async create(makers) {
-      return makers.simpleImage({ src: this.thumbnailURL, name: this.name, fade: true });
-    },
-  },
-  {
-    thumbnailURL: '/assets/img/via-crucis/12.jpg',
-    name: 'XII - Dies on the cross',
-    position: { lat: -20.33343, lng: -69.66675 },
-    async create(makers) {
-      return makers.simpleImage({ src: this.thumbnailURL, name: this.name, fade: true });
-    },
-  },
-  {
-    thumbnailURL: '/assets/img/via-crucis/11.jpg',
-    name: 'XI - Nailed to the cross',
-    position: { lat: -20.33253, lng: -69.6745 },
-    async create(makers) {
-      return makers.simpleImage({ src: this.thumbnailURL, name: this.name, fade: true });
-    },
-  },
-  {
-    thumbnailURL: '/assets/img/via-crucis/10.jpg',
-    name: 'X - His clothes are torn',
-    position: { lat: -20.33175, lng: -69.68088 },
-    async create(makers) {
-      return makers.simpleImage({ src: this.thumbnailURL, name: this.name, fade: true });
-    },
-  },
-  {
-    thumbnailURL: '/assets/img/via-crucis/09.jpg',
-    name: 'IX - Fails the third time',
-    position: { lat: -20.33083, lng: -69.68898 },
-    async create(makers) {
-      return makers.simpleImage({ src: this.thumbnailURL, name: this.name, fade: true });
-    },
-  },
-  {
-    thumbnailURL: '/assets/img/via-crucis/08.jpg',
-    name: 'VIII - Meets the women of Jerusalem',
-    position: { lat: -20.32995, lng: -69.69689 },
-    async create(makers) {
-      return makers.simpleImage({ src: this.thumbnailURL, name: this.name, fade: true });
-    },
-  },
-  {
-    thumbnailURL: '/assets/img/via-crucis/07.jpg',
-    name: 'VII - Fails the second time',
-    position: { lat: -20.32892, lng: -69.70551 },
-    async create(makers) {
-      return makers.simpleImage({ src: this.thumbnailURL, name: this.name, fade: true });
-    },
-  },
-  {
-    thumbnailURL: '/assets/img/via-crucis/06.jpg',
-    name: 'VI - Veronica wipes his face',
-    position: { lat: -20.3278, lng: -69.71511 },
-    async create(makers) {
-      return makers.simpleImage({ src: this.thumbnailURL, name: this.name, fade: true });
-    },
-  },
-  {
-    thumbnailURL: '/assets/img/via-crucis/05.jpg',
-    name: 'V - Simon of Cyrene helps him carry the cross',
-    position: { lat: -20.32682, lng: -69.72382 },
-    async create(makers) {
-      return makers.simpleImage({ src: this.thumbnailURL, name: this.name, fade: true });
-    },
-  },
-  {
-    thumbnailURL: '/assets/img/via-crucis/04.jpg',
-    name: 'IV - Meets his mother',
-    position: { lat: -20.32598, lng: -69.73172 },
-    async create(makers) {
-      return makers.simpleImage({ src: this.thumbnailURL, name: this.name, fade: true });
-    },
-  },
-  {
-    thumbnailURL: '/assets/img/via-crucis/03.jpg',
-    name: 'III - Fails the first time',
-    position: { lat: -20.32522, lng: -69.73902 },
-    async create(makers) {
-      return makers.simpleImage({ src: this.thumbnailURL, name: this.name, fade: true });
-    },
-  },
-  {
-    thumbnailURL: '/assets/img/via-crucis/02.jpg',
-    name: 'II - Takes up his cross',
-    position: { lat: -20.32459, lng: -69.74547 },
-    async create(makers) {
-      return makers.simpleImage({ src: this.thumbnailURL, name: this.name, fade: true });
-    },
-  },
-  {
-    thumbnailURL: '/assets/img/via-crucis/01.jpg',
-    name: 'I - Is sentenced to death',
-    position: { lat: -20.32403, lng: -69.75158 },
-    async create(makers) {
-      return makers.simpleImage({ src: this.thumbnailURL, name: this.name, fade: true });
-    },
-  },
+  createStationOfTheCross({
+    index: '14', name: 'XIV - Laid in his tomb',
+    position: { lat: -20.33616, lng: -69.65654 }
+  }),
+  createStationOfTheCross({
+    index: '13', name: 'XIII - Taken down from the cross',
+    position: { lat: -20.33545, lng: -69.65917 }
+  }),
+  createStationOfTheCross({
+    index: '12', name: 'XII - Dies on the cross',
+    position: { lat: -20.33343, lng: -69.66675 }
+  }),
+  createStationOfTheCross({
+    index: '11', name: 'XI - Nailed to the cross',
+    position: { lat: -20.33253, lng: -69.6745 }
+  }),
+  createStationOfTheCross({
+    index: '10', name: 'X - His clothes are torn',
+    position: { lat: -20.33175, lng: -69.68088 }
+  }),
+  createStationOfTheCross({
+    index: '09', name: 'IX - Fails the third time',
+    position: { lat: -20.33083, lng: -69.68898 }
+  }),
+  createStationOfTheCross({
+    index: '08', name: 'VIII - Meets the women of Jerusalem',
+    position: { lat: -20.32995, lng: -69.69689 }
+  }),
+  createStationOfTheCross({
+    index: '07', name: 'VII - Fails the second time',
+    position: { lat: -20.32892, lng: -69.70551 }
+  }),
+  createStationOfTheCross({
+    index: '06', name: 'VI - Veronica wipes his face',
+    position: { lat: -20.3278, lng: -69.71511 }
+  }),
+  createStationOfTheCross({
+    index: '05', name: 'V - Simon of Cyrene helps him carry the cross',
+    position: { lat: -20.32682, lng: -69.72382 }
+  }),
+  createStationOfTheCross({
+    index: '04', name: 'IV - Meets his mother',
+    position: { lat: -20.32598, lng: -69.73172 }
+  }),
+  createStationOfTheCross({
+    index: '03', name: 'III - Fails the first time',
+    position: { lat: -20.32522, lng: -69.73902 }
+  }),
+  createStationOfTheCross({
+    index: '02', name: 'II - Takes up his cross',
+    position: { lat: -20.32459, lng: -69.74547 }
+  }),
+  createStationOfTheCross({
+    index: '01', name: 'I - Is sentenced to death',
+    position: { lat: -20.32403, lng: -69.75158 }
+  }),
   createShrooms('1', {
     lat: -20.43544,
     lng: -69.54638,
@@ -398,6 +332,26 @@ export default [
           lightPosition: { y: 1 },
           env: '/assets/img/difunta.env.jpg',
           scale: 0.4,
+        },
+      );
+
+      return item;
+    },
+  },
+  {
+    name: 'NASA baseball cap',
+    thumbnailURL: '/assets/items/baseball-cap/thumb.webp',
+    collectible: true,
+    position: {
+      lat: -20.20549,
+      lng: -69.79511,
+    },
+    async create(makers) {
+      const item = await makers.threeObject('/assets/items/baseball-cap/',
+        {
+          name: this.name,
+          onGround: true,
+          cameraPosition: { x: -6, y: 2, z: 2 },
         },
       );
 

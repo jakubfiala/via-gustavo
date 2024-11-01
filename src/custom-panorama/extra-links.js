@@ -13,5 +13,5 @@ export const extraLinks = {
   'o_eeWzITcvQAg6xVnzInEQ': { pano: 'zdZR5GppjFdWUpw0VKgNBQ', heading: 180 },
 
   // quick way to get off Humberstone hill
-  'cWWmNs9jrwol6u3E1fz5DA': { pano: 'FWKxqbqOhoOS5JOE899m0A', heading: 180 },
+  // 'cWWmNs9jrwol6u3E1fz5DA': { pano: 'FWKxqbqOhoOS5JOE899m0A', heading: 180 },
 };
