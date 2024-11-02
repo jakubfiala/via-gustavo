@@ -1,13 +1,12 @@
 import {
   AmbientLight,
+  ACESFilmicToneMapping,
   DirectionalLight,
-  DoubleSide,
   EquirectangularReflectionMapping,
   PerspectiveCamera,
   Raycaster,
   Scene,
   SRGBColorSpace,
-  Texture,
   TextureLoader,
   Vector2,
   Vector3,
@@ -51,7 +50,7 @@ const createLights = ({ x, y, z }, intensity = 3) => {
   return [ambientLight, light];
 };
 
-export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName, cameraPosition, scale, rotation = {}, lightPosition = {}, onGround = false, big = false, env = null } = {}) => {
+export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName, cameraPosition, scale, rotation = {}, lightPosition = {}, onGround = false, big = false, env = null, envIntensity = 1 } = {}) => {
   const cameraInitX = cameraPosition?.x ?? CAMERA_DEFAULT_X;
   const cameraInitY = cameraPosition?.y ?? CAMERA_DEFAULT_Y;
   const cameraInitZ = cameraPosition?.z ?? CAMERA_DEFAULT_Z;
@@ -84,6 +83,8 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
       texture.colorSpace = SRGBColorSpace;
       scene.environment = texture;
     });
+
+    scene.environmentIntensity = envIntensity;
   }
 
   const lights = createLights(lightPosition, env ? 0.8 : 3);
@@ -100,6 +101,9 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
     renderer = new WebGLRenderer({ canvas, alpha: true });
     renderer.setPixelRatio(dpr);
     renderer.setClearColor(0x000000, 0);
+
+    renderer.toneMapping = ACESFilmicToneMapping;
+    debugObject.renderer = renderer;
   }
 
   const object = await loadGLTF(url);
@@ -137,6 +141,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
     object,
     camera,
     isBeingHovered,
+    renderer,
     moveCam: (x, y, z) => {
       camera.position.x = x;
       camera.position.y = y;

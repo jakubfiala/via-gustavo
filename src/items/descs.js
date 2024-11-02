@@ -358,4 +358,27 @@ export default [
       return item;
     },
   },
+  {
+    name: 'Cybertruck',
+    thumbnailURL: '/assets/items/baseball-cap/thumb.webp',
+    position: {
+      lat: -20.21797,
+      lng: -69.78896,
+    },
+    async create(makers) {
+      const item = await makers.threeObject('/assets/items/cybertruck/',
+        {
+          name: this.name,
+          big: true,
+          onGround: true,
+          cameraPosition: { x: 10, y: 2, z: -3 },
+          env: '/assets/img/difunta.env.jpg',
+          envIntensity: 1.5,
+          lightPosition: { x: 3, y: 10, z: 0 },
+        },
+      );
+
+      return item;
+    },
+  },
 ];
