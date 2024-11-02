@@ -8,7 +8,7 @@ export const aboutDrone = [
   {
     text: "",
     callback: (context) => {
-      context.score.bachPiano.play();
+      context.score.bachPiano4.play();
       journalMoment('🛣️', "Met a new companion. This one's a bit different.");
       flashStatus(`Chapter ${context.chapter.id} - ${context.chapter.title}`)(context);
     }

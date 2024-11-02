@@ -6,8 +6,8 @@ export const intro = [
     text: "",
     callback: (context) => {
       setTask('Enter through the town gate');
-      context.score.bachPiano3.play();
+      context.score.bachPiano5.play();
       flashStatus(`Chapter ${context.chapter.id} - ${context.chapter.title}`)(context);
     }
   },
-]
+];
