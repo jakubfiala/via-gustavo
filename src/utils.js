@@ -29,6 +29,17 @@ latLngDist.metrics = {
   KILOMETERS: 1
 };
 
+// taken from https://www.movable-type.co.uk/scripts/latlong.html
+export const headingFromPoints = (p1, p2) => {
+  const φ1 = rad(p1.lat());
+  const φ2 = rad(p2.lat());
+  const dlng = rad(p1.lng()) - rad(p2.lng());
+  const y = Math.sin(dlng) * Math.cos(φ2);
+  const x = Math.cos(φ1) * Math.sin(φ2) -
+            Math.sin(φ1) * Math.cos(φ2) * Math.cos(dlng);
+  return deg(Math.atan2(y, x));
+};
+
 function* enumerate(iterable) {
   let count = 0;
   for (let item of iterable) {

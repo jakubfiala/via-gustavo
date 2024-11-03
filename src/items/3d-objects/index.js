@@ -11,7 +11,6 @@ import {
   Vector2,
   Vector3,
   WebGLRenderer,
-  PMREMGenerator,
 } from 'three';
 import { latLngDist } from '../../utils.js';
 import { OBJECT_APPEAR_THRESHOLD } from '../../constants.js';
@@ -87,9 +86,8 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
 
   const scene = new Scene();
 
-  let envTexture;
   if (env) {
-    envTexture = await loadEnv(env, name);
+    loadEnv(env, name).then((texture) => scene.environment = texture);
     scene.environmentIntensity = envIntensity;
   }
 
@@ -104,16 +102,12 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
   let renderer = null;
 
   const createRenderer = () => {
-    renderer = new WebGLRenderer({ canvas, alpha: true });
+    renderer = new WebGLRenderer({ canvas, alpha: true, antialias: true });
     renderer.setPixelRatio(dpr);
     renderer.setClearColor(0x000000, 0);
 
     renderer.toneMapping = ACESFilmicToneMapping;
     debugObject.renderer = renderer;
-
-    if (env) {
-      scene.environment = envTexture;
-    }
   }
 
   const object = await loadGLTF(url);
@@ -216,7 +210,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
         return;
       }
 
-      const { zoom  } = this.map.getPov();
+      const { zoom } = this.map.getPov();
       container.style.scale = (1/this.dist) * Math.max(MIN_ZOOM, zoom);
     },
     async update() {
