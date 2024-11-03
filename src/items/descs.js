@@ -360,10 +360,9 @@ export default [
   },
   {
     name: 'Cybertruck',
-    thumbnailURL: '/assets/items/baseball-cap/thumb.webp',
     position: {
-      lat: -20.21797,
-      lng: -69.78896,
+      lat: -20.21432,
+      lng: -69.78936,
     },
     async create(makers) {
       const item = await makers.threeObject('/assets/items/cybertruck/',
@@ -375,6 +374,27 @@ export default [
           env: '/assets/img/difunta.env.jpg',
           envIntensity: 1.5,
           lightPosition: { x: 3, y: 10, z: 0 },
+        },
+      );
+
+      return item;
+    },
+  },
+  {
+    name: 'Mirror',
+    position: {
+      lat: -20.31434,
+      lng: -69.76132,
+    },
+    async create(makers) {
+      const item = await makers.threeObject('/assets/items/mirror/',
+        {
+          name: this.name,
+          big: true,
+          onGround: true,
+          env: '/assets/img/mirror.env.jpg',
+          envIntensity: 1.2,
+          cameraPosition: { x: 2.7, y: 0.8, z: 2.7 },
         },
       );
 

@@ -11,6 +11,7 @@ import {
   Vector2,
   Vector3,
   WebGLRenderer,
+  PMREMGenerator,
 } from 'three';
 import { latLngDist } from '../../utils.js';
 import { OBJECT_APPEAR_THRESHOLD } from '../../constants.js';
@@ -50,6 +51,15 @@ const createLights = ({ x, y, z }, intensity = 3) => {
   return [ambientLight, light];
 };
 
+const loadEnv = (path, name) => new Promise((resolve, reject) => {
+  new TextureLoader().load(path, (texture) => {
+    console.info('[3d-objects]', 'loaded env texture for', name);
+    texture.mapping = EquirectangularReflectionMapping;
+    texture.colorSpace = SRGBColorSpace;
+    resolve(texture);
+  }, () => {}, reject);
+});
+
 export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName, cameraPosition, scale, rotation = {}, lightPosition = {}, onGround = false, big = false, env = null, envIntensity = 1 } = {}) => {
   const cameraInitX = cameraPosition?.x ?? CAMERA_DEFAULT_X;
   const cameraInitY = cameraPosition?.y ?? CAMERA_DEFAULT_Y;
@@ -76,14 +86,10 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
   container.appendChild(canvas);
 
   const scene = new Scene();
-  if (env) {
-    new TextureLoader().load(env, (texture) => {
-      console.info('[3d-objects]', 'loaded env texture for', name);
-      texture.mapping = EquirectangularReflectionMapping;
-      texture.colorSpace = SRGBColorSpace;
-      scene.environment = texture;
-    });
 
+  let envTexture;
+  if (env) {
+    envTexture = await loadEnv(env, name);
     scene.environmentIntensity = envIntensity;
   }
 
@@ -104,6 +110,10 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
 
     renderer.toneMapping = ACESFilmicToneMapping;
     debugObject.renderer = renderer;
+
+    if (env) {
+      scene.environment = envTexture;
+    }
   }
 
   const object = await loadGLTF(url);
