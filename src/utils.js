@@ -69,3 +69,12 @@ export const documentVisible = () => new Promise((resolve) => {
 });
 
 export const scale = (value, smin, smax, tmin, tmax) => (value - smin) * (tmax - tmin) / (smax - smin) + tmin;
+
+
+export const openLink = (href) => {
+  const link = document.createElement('a');
+  link.href = href;
+  link.target = '_blank';
+  link.rel = 'noopener';
+  link.click();
+};

@@ -5,7 +5,7 @@ import { scheduleScript } from '../script/index.js';
 import { geigerCounterReply } from '../script/chapter2.js';
 import { hover } from '../drone.js';
 import inventory from '../inventory/index.js';
-import { sleep } from '../utils.js';
+import { openLink, sleep } from '../utils.js';
 import { createCoke } from './coke.js';
 import { journalMoment } from '../journal/index.js';
 import { createStationOfTheCross } from './via-crucis.js';
@@ -447,7 +447,6 @@ export default [
   },
   {
     name: 'Speaker playing Pancreas Denial by 0E20F2',
-    thumbnailURL: '/assets/items/jbl/thumb.webp',
     position: {
       lat: -20.26018,
       lng: -69.78619,
@@ -463,13 +462,32 @@ export default [
         },
       );
 
-      item.activate = () => {
-        const link = document.createElement('a');
-        link.href = 'https://0e20f2.bandcamp.com/album/pancreas-denial';
-        link.target = '_blank';
-        link.rel = 'noopener';
-        link.click();
-      };
+      item.activate = () => openLink('https://0e20f2.bandcamp.com/album/pancreas-denial');
+
+      return item;
+    },
+  },
+  {
+    name: 'Gnostic Technology stall',
+    position: {
+      lat: -20.26057,
+      lng: -69.78564,
+    },
+    canBeActivated: true,
+    async create(makers) {
+      const item = await makers.threeObject('/assets/items/gnostic-stall/',
+        {
+          name: this.name,
+          big: true,
+          onGround: true,
+          scale: 0.8,
+          cameraPosition: { x: -8, y: 2, z: -1 },
+          env: '/assets/img/difunta.env.jpg',
+          envIntensity: 1.5,
+        },
+      );
+
+      item.activate = () => openLink('https://gnostic.technology/');
 
       return item;
     },
