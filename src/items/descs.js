@@ -142,6 +142,16 @@ export default [
     position: { lat: -20.33477, lng: -69.6596 },
     rotation: { x: Math.PI/2, y: -0.45 },
   }),
+  createCoke({
+    name: 'Coca-Cola 26',
+    position: { lat: -20.21321, lng: -69.78962 },
+    rotation: { x: Math.PI/2, y: -0.45 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 26',
+    position: { lat: -20.21266, lng: -69.79059 },
+    rotation: { x: Math.PI/2, y: -0.45 },
+  }),
 
   {
     name: 'Geiger Counter',
@@ -339,6 +349,27 @@ export default [
     },
   },
   {
+    name: 'Broken drone',
+    thumbnailURL: '/assets/items/broken-drone/thumb.webp',
+    collectible: true,
+    position: {
+      lat: -20.21253,
+      lng: -69.78882,
+    },
+    async create(makers) {
+      const item = await makers.threeObject('/assets/items/broken-drone/',
+        {
+          name: this.name,
+          onGround: true,
+          scale: 0.7,
+          cameraPosition: { x: -6, y: 3, z: -4 },
+        },
+      );
+
+      return item;
+    },
+  },
+  {
     name: 'NASA baseball cap',
     thumbnailURL: '/assets/items/baseball-cap/thumb.webp',
     collectible: true,
@@ -361,8 +392,8 @@ export default [
   {
     name: 'Cybertruck',
     position: {
-      lat: -20.21432,
-      lng: -69.78936,
+      lat: -20.21404,
+      lng: -69.78924,
     },
     async create(makers) {
       const item = await makers.threeObject('/assets/items/cybertruck/',
