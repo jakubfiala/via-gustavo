@@ -157,6 +157,11 @@ export default [
     position: { lat: -20.21311, lng: -69.79841 },
     rotation: { x: -Math.PI/2, y: 0.9 },
   }),
+  createCoke({
+    name: 'Coca-Cola 29',
+    position: { lat: -20.21257, lng: -69.7896 },
+    rotation: { y: -1.3 },
+  }),
 
   {
     name: 'Geiger Counter',
