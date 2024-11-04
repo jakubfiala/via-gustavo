@@ -148,9 +148,14 @@ export default [
     rotation: { x: Math.PI/2, y: -0.45 },
   }),
   createCoke({
-    name: 'Coca-Cola 26',
+    name: 'Coca-Cola 27',
     position: { lat: -20.21266, lng: -69.79059 },
     rotation: { x: Math.PI/2, y: -0.45 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 28',
+    position: { lat: -20.21311, lng: -69.79841 },
+    rotation: { x: -Math.PI/2, y: 0.9 },
   }),
 
   {
@@ -326,6 +331,14 @@ export default [
     },
   },
   {
+    name: 'Mars96',
+    collectible: false,
+    position: { lat: -20.28906, lng: -69.78257 },
+    create(makers) {
+      return makers.embed('https://en.wikipedia.org/wiki/Mars_96');
+    },
+  },
+  {
     name: 'Bottles',
     collectible: false,
     position: {
@@ -428,6 +441,35 @@ export default [
           cameraPosition: { x: 2.7, y: 0.8, z: 2.7 },
         },
       );
+
+      return item;
+    },
+  },
+  {
+    name: 'Speaker playing Pancreas Denial by 0E20F2',
+    thumbnailURL: '/assets/items/jbl/thumb.webp',
+    position: {
+      lat: -20.26018,
+      lng: -69.78619,
+    },
+    canBeActivated: true,
+    async create(makers) {
+      const item = await makers.threeObject('/assets/items/jbl/',
+        {
+          name: this.name,
+          onGround: true,
+          scale: 0.3,
+          cameraPosition: { x: 3, y: 1, z: 1},
+        },
+      );
+
+      item.activate = () => {
+        const link = document.createElement('a');
+        link.href = 'https://0e20f2.bandcamp.com/album/pancreas-denial';
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.click();
+      };
 
       return item;
     },

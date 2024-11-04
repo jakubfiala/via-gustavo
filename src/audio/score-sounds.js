@@ -12,16 +12,16 @@ const createScorePart = (context, src, loop = false, volume = 1) => {
 };
 
 export default (context) => {
-  context.scoreGain = new GainNode(context.audioContext, { gain: 1 });
+  context.scoreGain = new GainNode(context.audioContext, { gain: 0.8 });
   context.scoreGain.connect(context.masterGain);
 
   return {
     bachPiano: createScorePart(context, 'assets/audio/score/bach-piano-short.mp3'),
     bachPiano2: createScorePart(context, 'assets/audio/score/bach-piano-2.mp3'),
     bachPiano3: createScorePart(context, 'assets/audio/score/bach-piano-3.mp3'),
-    bachPiano4: createScorePart(context, 'assets/audio/score/bach-piano-4-major.mp3'),
-    bachPiano5: createScorePart(context, 'assets/audio/score/bach-piano-5-maj-min.mp3'),
-    bachPiano6: createScorePart(context, 'assets/audio/score/bach-piano-6-high.mp3'),
+    bachPiano4: createScorePart(context, 'assets/audio/score/bach-piano-4-major.mp3', false, 0.6),
+    bachPiano5: createScorePart(context, 'assets/audio/score/bach-piano-5-maj-min.mp3', false, 0.6),
+    bachPiano6: createScorePart(context, 'assets/audio/score/bach-piano-6-high.mp3', false, 0.6),
     viaCrucis1: createScorePart(context, 'assets/audio/score/via-crucis-1.mp3', false, 0.4),
     viaCrucis2: createScorePart(context, 'assets/audio/score/via-crucis-2.mp3', false, 0.4),
     viaCrucis3: createScorePart(context, 'assets/audio/score/via-crucis-3.mp3', false, 0.4),
@@ -42,5 +42,7 @@ export default (context) => {
     circuito4: createScorePart(context, 'assets/audio/score/circuito-sketch-4.mp3', false, 0.4),
     circuito5: createScorePart(context, 'assets/audio/score/circuito-sketch-5.mp3', false, 0.4),
     circuitoFull: createScorePart(context, 'assets/audio/score/circuito-full.mp3', false, 0.4),
+    lithiumLoop: createScorePart(context, 'assets/audio/score/lithium-loop.mp3', false, 0.4),
+    lithiumChorus: createScorePart(context, 'assets/audio/score/lithium-chorus.mp3', false, 0.4),
   };
 };

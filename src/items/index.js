@@ -40,24 +40,25 @@ const initItem = (makers) => async (desc, context) => {
     }
   }
 
-  if (desc.collectible) {
+  if (desc.collectible || desc.canBeActivated) {
     const handler = () => {
-      item.taken = true;
+      if (desc.collectible) {
+        item.taken = true;
 
-      Inventory.addItem(desc);
+        Inventory.addItem(desc);
+        const pickUpSound = context.sfx[desc.pickUpSFX || DEFAULT_PICK_UP_SFX];
+        pickUpSound();
 
-      const pickUpSound = context.sfx[desc.pickUpSFX || DEFAULT_PICK_UP_SFX];
-      pickUpSound();
+        if (desc.handheld) {
+          context.handheldItem = setHandheldItem(item);
+        }
 
-      if (desc.handheld) {
-        context.handheldItem = setHandheldItem(item);
+        item.info.close();
       }
 
       if (desc.canBeActivated) {
         item.activate?.(context, { firstTime: true });
       }
-
-      item.info.close();
     };
 
     if (item.addClickHandler) {
@@ -67,7 +68,7 @@ const initItem = (makers) => async (desc, context) => {
     }
   }
 
-  if (!desc.collectible && !desc.onClick && item.container) {
+  if (!desc.collectible && !desc.canBeActivated && !desc.onClick && item.container) {
     item.container.classList.add('gustavo-item--noninteractive');
   }
 

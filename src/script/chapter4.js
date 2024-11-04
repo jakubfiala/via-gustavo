@@ -9,13 +9,22 @@ export const aboutDrone = [
     text: "",
     callback: (context) => {
       context.score.bachPiano4.play();
-      journalMoment('🛣️', "Met a new companion. This one's a bit different.");
       flashStatus(`Chapter ${context.chapter.id} - ${context.chapter.title}`)(context);
+      setTask('Continue straight ahead to the town center');
     }
   },
+  { duration: 8 },
   { text: "I saw the little flying monster earlier" },
   { text: "Must feel strange to be watched, when you're the one watching, huh?" },
-  { text: "Don't worry though, they're not allowed to come here" },
+  {
+    text: "Don't worry though, they're not allowed to come here",
+    callback: () => journalMoment('🛣️', "Met a new companion. This one's a bit different."),
+  },
+];
+
+export const niceBackpack = [
+  { text: "Nice backpack you got there, by the way!" },
+  { text: "Looks heavy..." },
 ];
 
 export const doYoKnow = [
@@ -33,8 +42,8 @@ export const doYoKnow = [
 
 export const pozoAlmonteMF = [
   { text: "Pozo Almonte, motherfucker!" },
-  { text: "This town has only one thing to thank for its existence -" },
-  { text: "salt. That white gold is what we care about here." },
+  { text: "This town has only two things to thank for its existence -" },
+  { text: "water and salt. That white gold is what we care about here." },
   {
     text: "And so did your guy Gustavo, and his old man, and that guy's old man before him",
     callback: () => journalMoment('🧂', 'Discovered the mighty town of Pozo Almonte'),
@@ -45,7 +54,7 @@ export const pozoAlmonteMF = [
 
 export const difunta1 = [
   { text: "Well, I hope you had fun down there." },
-  { text: "You probably expect me to share some profound wisdom, or tell some deep-ass story." },
+  { text: "You probably expect me to share some profound wisdom, or tell some sort of deep story." },
   { text: "You know what? I'll tell you one." },
   { duration: 1 },
   {
@@ -146,6 +155,9 @@ export const afterDifunta = [
 ];
 
 export const lithium = [
+  {
+    callback: (context) => context.score.lithiumLoop.play(),
+  },
   { text: "Yes, I have seen Gustavo." },
   { text: "I've seen the azure pools of lithium water reflect in his sunglasses as he drove home from work." },
   { text: "He would take out his phone while driving to call his brother," },
@@ -177,11 +189,13 @@ export const geoglyphs = [
   { text: "Wouldn't you?" },
   { text: "If only the Google car had gone there, you could see the ones up in the mountains." },
   { text: "They are massive, and thousands of years old!" },
+  { callback: (context) => context.score.lithiumChorus.play() },
   { duration: 2 },
   { text: "Listen... I really think you should just leave it." },
   { text: "It's nice you trying to find this guy, but you aren't even really here, are you?" },
   { text: "Why don't you check out the fun parts, like a good tourist?" },
   { text: "To the north-west is the old town of Humberstone." },
+  { text: "That one with the big chimney - you just have to go back down to reach it." },
   { text: "UNESCO World Heritage, you know what I'm sayin?" },
   { text: "Why don't you go and check it out?" },
   { text: "You can even climb that hill behind it, the view from there is stunning." },

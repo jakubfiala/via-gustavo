@@ -1,6 +1,6 @@
 import { latLngDist } from './utils.js';
 
-const MIX_TRANS_TIME = 1;
+const MIX_TRANS_TIME = 2;
 const PLAY_DISTANCE_THRESHOLD = 300;
 const LOAD_DISTANCE_THRESHOLD = PLAY_DISTANCE_THRESHOLD + 20;
 

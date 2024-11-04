@@ -35,6 +35,7 @@ export const initSpeech = async (context) => {
 };
 
 const loadFromArchive = async (context, text) => {
+  console.log(text);
   const key = slug(text)
     .slice(0, 99); // tar truncates file names to 99
   const buffer = await context.audioContext.decodeAudioData(context.speech.parts[key]);

@@ -11,6 +11,7 @@ import * as drone from '../drone.js';
 import { intro2, intro3 } from '../script/intro.js';
 import { journalChapter, journalMoment } from '../journal/index.js';
 import { setTask } from '../task.js';
+import inventory from '../inventory/index.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
@@ -366,6 +367,15 @@ export const checkpoints = [
     },
   },
   {
+    lat: -20.26845,
+    lng: -69.78555,
+    async callback(context) {
+      if (inventory.hasItem('NASA Backpack')) {
+        return scheduleScript(chapter4.niceBackpack, context);
+      }
+    },
+  },
+  {
     lat: -20.27143,
     lng: -69.78607,
     async callback(context) {
@@ -382,8 +392,8 @@ export const checkpoints = [
     },
   },
   {
-    lat: -20.263,
-    lng: -69.78573,
+    lat: -20.26119,
+    lng: -69.78575,
     async callback(context) {
       return scheduleScript(chapter4.pozoAlmonteMF, context);
     },

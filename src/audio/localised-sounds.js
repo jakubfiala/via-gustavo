@@ -63,4 +63,12 @@ export const localisedSounds = [
     db: 80,
     loop: true
   },
+  {
+    name: "tier-1",
+    lat: -20.26018,
+    lng: -69.78619,
+    src: "assets/audio/tier-1.mp3",
+    db: 30,
+    loop: true
+  },
 ];
