@@ -67,10 +67,6 @@ if (completedChapters.size > 0) {
 }
 
 const initialize = async () => {
-  const permissionsAudio = new Audio();
-  permissionsAudio.src = 'data:audio/wav;base64,UklGRiwAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQgAAACAgH+Af4B/gA==';
-  await permissionsAudio.play();
-
   if (!dev && !debug) {
     try {
       if (document.body.webkitRequestFullscreen) {
@@ -109,6 +105,14 @@ const initialize = async () => {
   intro.hidden = true;
 
   scriptContext.audioContext = new AudioContext();
+
+  const permissionsAudio = new Audio();
+  permissionsAudio.src = 'data:audio/wav;base64,UklGRiwAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQgAAACAgH+Af4B/gA==';
+  permissionsAudio.play().then(() => {
+    console.info('[main]', 'resuming audio context');
+    scriptContext.audioContext.resume()
+    console.info('[main]', 'resumed audio context');
+  });
 
   scriptContext.masterGain = new GainNode(scriptContext.audioContext, { gain: 0 });
   scriptContext.masterGain.connect(scriptContext.audioContext.destination);
