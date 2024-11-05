@@ -497,4 +497,25 @@ export default [
       return item;
     },
   },
+  {
+    name: 'Mirror 2',
+    position: {
+      lat: -20.21005,
+      lng: -69.79683,
+    },
+    async create(makers) {
+      const item = await makers.threeObject('/assets/items/mirror/',
+        {
+          name: this.name,
+          big: true,
+          onGround: true,
+          env: '/assets/img/mirror2.env.jpg',
+          envIntensity: 1.2,
+          cameraPosition: { x: -3, y: 1, z: -2.5 },
+        },
+      );
+
+      return item;
+    },
+  },
 ];

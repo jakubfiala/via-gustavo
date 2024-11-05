@@ -87,7 +87,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
   const scene = new Scene();
 
   if (env) {
-    loadEnv(env, name).then((texture) => scene.environment = texture);
+    scene.environment = await loadEnv(env, name);
     scene.environmentIntensity = envIntensity;
   }
 

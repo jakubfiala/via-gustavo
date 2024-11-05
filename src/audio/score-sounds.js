@@ -12,7 +12,7 @@ const createScorePart = (context, src, loop = false, volume = 1) => {
 };
 
 export default (context) => {
-  context.scoreGain = new GainNode(context.audioContext, { gain: 0.8 });
+  context.scoreGain = new GainNode(context.audioContext, { gain: 0.9 });
   context.scoreGain.connect(context.masterGain);
 
   return {

@@ -5,6 +5,7 @@
 // lhceA_Fts0IINvq26BbcQw (at difunta's animita)
 
 // FDVGJ2MUKTs1ZWOW9Wko9Q (mirror location)
+// 99SDJE4ovAHDBtu5af5wMA (mirror 2 location)
 
 
 const grab = async (pano, w, h) => {

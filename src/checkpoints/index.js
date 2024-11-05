@@ -451,8 +451,8 @@ export const checkpoints = [
 
   // Humberstone
   {
-    lat: -20.20997,
-    lng: -69.79629,
+    lat: -20.21034,
+    lng: -69.79625,
     chapter: chapters[4],
     async callback(context) {
       return scheduleScript(chapter5.intro, {
@@ -492,7 +492,11 @@ export const checkpoints = [
       showSkyImages(context);
       setTimeout(() => {
         journalMoment('🌠', 'Strange diagrams appeared in the sky')
-      }, 3000);
+      }, 3_000);
+
+      setTimeout(() => {
+        scheduleScript(chapter5.changeOfMind, context);
+      }, 20_000);
     }
   }
 ];
