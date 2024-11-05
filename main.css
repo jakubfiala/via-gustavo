@@ -678,7 +678,8 @@ p.subtitle {
   user-select: none;
 }
 
-.gustavo-item--highlighted {
+.gustavo-item--highlighted,
+#coca-cola-truck:hover {
   filter: brightness(200%);
 }
 
@@ -1061,4 +1062,35 @@ p.subtitle {
   content: '~';
   display: block;
   font-weight: bolder;
+}
+
+@keyframes thumb {
+  from {
+    rotate: -90deg;
+  }
+
+  to {
+    rotate: 0;
+  }
+}
+
+#hitch-thumb:not([hidden]) {
+  animation: thumb 1s both;
+  transform-origin: 100% 100%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  pointer-events: none;
+  width: 30vw;
+}
+
+#coca-cola-truck:not([hidden]) {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  z-index: 0;
+  translate: 0 -50%;
+  transition: filter 150ms;
+  cursor: pointer;
 }

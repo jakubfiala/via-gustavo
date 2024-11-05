@@ -1,5 +1,6 @@
 import { setTask } from '../task.js';
 import { flashStatus } from './utils.js';
+import { hitchhikeSequence } from '../interactions/hitchhike.js';
 
 export const intro = [
   {
@@ -32,7 +33,9 @@ export const changeOfMind = [
   { text: "Like I did for Gustavo." },
   { text: "Indeed, I know where he is right now." },
   { text: "The Atacama is vast, but her people know to stick to certain paths." },
-  { text: "It is time that I led you to Gustavo," },
+  { text: "I am so sorry I lied..." },
+  { text: "I misjudged you, and thought it best to lead you away from him." },
+  { text: "But now it's time I led you to Gustavo," },
   { text: "as much as I wish you could have met him elsewhere." },
   { duration: 1 },
   { text: "Come, follow me out of this town." },
@@ -40,4 +43,11 @@ export const changeOfMind = [
   {
     callback: () => setTask('Return to the entrance of Humberstone town'),
   }
+];
+
+export const hitchhike = [
+  {
+    text: "This would be a good place to hitch a ride!",
+    callback: hitchhikeSequence,
+  },
 ];

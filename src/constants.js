@@ -5,6 +5,7 @@ export const LOCALSTORAGE_TASK_KEY = 'vg_tas';
 export const LOCALSTORAGE_SOUNDSCAPE_KEY = 'vg_ssc';
 export const LOCALSTORAGE_FOOTSTEPS_KEY = 'vg_foo';
 export const LOCALSTORAGE_JOURNAL_KEY = 'vg_jou';
+export const LOCALSTORAGE_MILESTONES_KEY = 'vg_mil';
 // test location
 // export const START_POSITION = { lat: -20.506808759909188, lng: -69.37564029846219 };
 // actual location
@@ -14,3 +15,5 @@ export const MAPS_API_KEY = 'AIzaSyA1VOiLnJEwz3HzcDxEExa_tCTu5KKOoqQ';
 export const OBJECT_APPEAR_THRESHOLD = 10;
 
 export const DEFAULT_COLLECT_TEXT = 'Collected';
+
+export const HITCHHIKE_PANO = 'REjdyk2fgnf3LWBQudZiGg';

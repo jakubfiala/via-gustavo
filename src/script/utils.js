@@ -13,6 +13,14 @@ export const enableClickToGoCB = context => {
   context.map.setOptions({ clickToGo: true, showRoadLabels: true, linksControl: true });
 };
 
+export const disableZoom = context => {
+  context.map.setOptions({ scrollwheel: false });
+};
+
+export const enableZoom = context => {
+  context.map.setOptions({ scrollwheel: true });
+};
+
 export const flashStatus = (text, duration = 5) => context => {
   context.statusContainer.innerText = text;
   context.statusContainer.classList.add('fade-in');

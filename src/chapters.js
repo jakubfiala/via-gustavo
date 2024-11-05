@@ -43,6 +43,14 @@ export const chapters = [
       lng: -69.79629,
     },
   },
+  {
+    id: 6,
+    title: "Finding Gustavo",
+    position: {
+      lat: -20.42780,
+      lng: -69.70589,
+    },
+  },
 ];
 
 export const clear = () => {

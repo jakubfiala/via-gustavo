@@ -5,12 +5,13 @@ import * as chapter2 from '../script/chapter2.js';
 import * as chapter3 from '../script/chapter3.js';
 import * as chapter4 from '../script/chapter4.js';
 import * as chapter5 from '../script/chapter5.js';
+import * as chapter6 from '../script/chapter6.js';
 import { latLngDist } from "../utils.js";
 import { showSkyImages } from '../sky-images.js';
 import * as drone from '../drone.js';
 import { intro2, intro3 } from '../script/intro.js';
 import { journalChapter, journalMoment } from '../journal/index.js';
-import { setTask } from '../task.js';
+import { removeTask, setTask } from '../task.js';
 import inventory from '../inventory/index.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
@@ -489,16 +490,38 @@ export const checkpoints = [
     lat: -20.20556,
     lng: -69.79509,
     async callback(context) {
-      showSkyImages(context);
-      setTimeout(() => {
-        journalMoment('🌠', 'Strange diagrams appeared in the sky')
-      }, 3_000);
+      removeTask();
 
-      setTimeout(() => {
-        scheduleScript(chapter5.changeOfMind, context);
-      }, 20_000);
+      checkpoints.push({
+        lat: -20.20979,
+        lng: -69.79693,
+        async callback(context) {
+          scheduleScript(chapter5.hitchhike, context);
+        },
+      });
+
+      showSkyImages(context);
+
+      await sleep(20_000);
+      await scheduleScript(chapter5.changeOfMind, context);
+      await sleep(3_000);
+
+      journalMoment('🌠', 'Strange diagrams appeared in the sky, and my companion had a change of heart.');
     }
-  }
+  },
+
+  // Pampa de Tamarugal
+  {
+    lat: -20.42780,
+    lng: -69.70589,
+    chapter: chapters[5],
+    async callback(context) {
+      return scheduleScript(chapter6.intro, {
+        ...context,
+        chapter: this.chapter,
+      });
+    },
+  },
 ];
 
 export const checkForCheckpoints = context => () => {
@@ -517,6 +540,7 @@ export const checkForCheckpoints = context => () => {
     if (distanceFromCheckpoint < CHECKPOINT_DISTANCE_THRESHOLD) {
       console.info('[checkpoints]', 'triggering', checkpoint);
       checkpoint.passed = true;
+
       checkpoint
         .callback(context)
         .then(() => {

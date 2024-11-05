@@ -4,7 +4,7 @@ const dialog = document.getElementById('bus-dialog');
 const form = document.getElementById('bus-dialog-form');
 const destination = document.getElementById('bus-dialog-destination');
 
-const travel = (map, { locationName, latLng, pov }) => {
+export const travel = (map, { latLng, pov }) => {
   overlay.hidden = false;
   audio.play();
 
