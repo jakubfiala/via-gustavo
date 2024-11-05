@@ -518,4 +518,30 @@ export default [
       return item;
     },
   },
+  {
+    name: 'World Exit Humberstone',
+    position: {
+      lat: -20.20804,
+      lng: -69.79646,
+    },
+    canBeActivated: true,
+    async create(makers) {
+      const item = await makers.threeObject('/assets/items/world-exit/',
+        {
+          name: this.name,
+          big: true,
+          onGround: true,
+          cameraPosition: { x: -10, y: 1, z: 0 },
+          lightPosition: { x: -5, y: 8, z: 0 },
+        },
+      );
+
+      item.activate = () => {
+        console.info('[world-exit]', 'going to DDS Office');
+        map.setPano('dds');
+      };
+
+      return item;
+    },
+  },
 ];

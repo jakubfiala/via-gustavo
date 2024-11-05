@@ -12,6 +12,11 @@ export const extraLinks = {
   'zdZR5GppjFdWUpw0VKgNBQ': { pano: 'o_eeWzITcvQAg6xVnzInEQ', heading: 4 },
   'o_eeWzITcvQAg6xVnzInEQ': { pano: 'zdZR5GppjFdWUpw0VKgNBQ', heading: 180 },
 
+  // Humberstone world exit
+  'o9mETUVAgxbqquXFtBWFLw': { pano: 'dds', heading: 98 },
+  'GA_DDHTmQ-kZilBwIFbbyg': { pano: 'dds', heading: 90 },
+  'Vh9UaTMMN5kNCnBeF3ma9Q': { pano: 'dds', heading: 116 },
+
   // quick way to get off Humberstone hill
   // 'cWWmNs9jrwol6u3E1fz5DA': { pano: 'FWKxqbqOhoOS5JOE899m0A', heading: 180 },
 };
