@@ -69,7 +69,7 @@ if (completedChapters.size > 0) {
 const initialize = async () => {
   const permissionsAudio = new Audio();
   permissionsAudio.src = 'data:audio/wav;base64,UklGRiwAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQgAAACAgH+Af4B/gA==';
-  await permissionsAudio.play();
+  permissionsAudio.play();
 
   if (!dev && !debug) {
     try {
