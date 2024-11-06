@@ -1,10 +1,12 @@
 const overlay = document.getElementById('bus-overlay');
-const audio = document.getElementById('bus-audio');
 const dialog = document.getElementById('bus-dialog');
 const form = document.getElementById('bus-dialog-form');
 const destination = document.getElementById('bus-dialog-destination');
 
-export const travel = (map, { latLng, pov }) => {
+export const bus = document.getElementById('bus-audio');
+export const car = document.getElementById('car-audio');
+
+export const travel = (map, { audio = bus, latLng, pov }) => {
   overlay.hidden = false;
   audio.play();
 

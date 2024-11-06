@@ -8,6 +8,7 @@ const DRONE_FLYBY_URL = '/assets/audio/drone-flyby.mp3';
 const EXPLOSION_URL = '/assets/audio/explosion.mp3';
 const BUS_URL = 'assets/audio/bus.mp3';
 const DONATING_WATER_URL = 'assets/audio/donating-water.mp3';
+const CAR_APPROACH_URL = 'assets/audio/car-approach.mp3';
 
 const getBuffer = async (audioContext, url) => {
   const response = await fetch(url);
@@ -55,6 +56,7 @@ export default async (context) => {
   const explosion = await getNodes(context, EXPLOSION_URL, true);
   const bus = await getNodes(context, BUS_URL, true);
   const donatingWater = await getNodes(context, DONATING_WATER_URL, true);
+  const carApproach = await getNodes(context, CAR_APPROACH_URL, true);
 
   const footstepsSounds = {
     normal: footstepsNormal,
@@ -78,6 +80,7 @@ export default async (context) => {
     explosion: () => playSFX(context, explosion),
     bus: () => playSFX(context, bus),
     donatingWater: () => playSFX(context, donatingWater),
+    carApproach: () => playSFX(context, carApproach),
   };
 
   controller.setFootsteps(localStorage.getItem(LOCALSTORAGE_FOOTSTEPS_KEY) || 'normal');

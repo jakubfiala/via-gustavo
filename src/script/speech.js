@@ -4,7 +4,7 @@ import { parseTar } from 'nanotar';
 import { sleep } from '../utils.js';
 
 const ARCHIVE_URL = '/assets/audio/speech.tar';
-const PAUSE_MS = 1000;
+const PAUSE_MS = 750;
 const WAIT_FOR_ARCHIVE_MS = 2000;
 
 const loadFromSpeechServer = async (context, text) => {

@@ -48,6 +48,11 @@ export const changeOfMind = [
 export const hitchhike = [
   {
     text: "This would be a good place to hitch a ride!",
-    callback: hitchhikeSequence,
+    callback: (context) => {
+      hitchhikeSequence(context);
+    },
+  },
+  {
+    text: "Ask for Pampa del Tamarugal",
   },
 ];

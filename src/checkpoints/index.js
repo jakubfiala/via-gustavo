@@ -13,6 +13,7 @@ import { intro2, intro3 } from '../script/intro.js';
 import { journalChapter, journalMoment } from '../journal/index.js';
 import { removeTask, setTask } from '../task.js';
 import inventory from '../inventory/index.js';
+import { sleep } from '../utils.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
@@ -510,10 +511,10 @@ export const checkpoints = [
     }
   },
 
-  // Pampa de Tamarugal
+  // Chapter 6 - Finding Gustavo
   {
-    lat: -20.42780,
-    lng: -69.70589,
+    lat: -20.37992,
+    lng: -69.72742,
     chapter: chapters[5],
     async callback(context) {
       return scheduleScript(chapter6.intro, {
@@ -521,6 +522,48 @@ export const checkpoints = [
         chapter: this.chapter,
       });
     },
+  },
+  {
+    lat: -20.38045,
+    lng: -69.72716,
+    async callback(context) {
+      return scheduleScript(chapter6.growingUp, context);
+    }
+  },
+  {
+    lat: -20.39206,
+    lng: -69.72192,
+    async callback(context) {
+      return scheduleScript(chapter6.touchTheSky, context);
+    }
+  },
+  {
+    lat: -20.40215,
+    lng: -69.71733,
+    async callback(context) {
+      return scheduleScript(chapter6.evening, context);
+    }
+  },
+  {
+    lat: -20.41443,
+    lng: -69.71181,
+    async callback(context) {
+      return scheduleScript(chapter6.night, context);
+    }
+  },
+  {
+    lat: -20.42766,
+    lng: -69.70583,
+    async callback(context) {
+      return scheduleScript(chapter6.end, context);
+    }
+  },
+  {
+    lat: -20.43882,
+    lng: -69.70097,
+    async callback(context) {
+      return scheduleScript(chapter6.poem, context);
+    }
   },
 ];
 
