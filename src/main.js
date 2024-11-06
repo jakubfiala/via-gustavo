@@ -39,6 +39,7 @@ const fakeCaptchas = Array.from(document.getElementsByClassName("fake-captcha"))
 const textDisplay = new TextDisplay(textContainer);
 
 const scriptContext = {
+  container,
   statusContainer,
   helpContainer,
   fakeCaptchas,

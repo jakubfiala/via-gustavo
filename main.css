@@ -145,7 +145,7 @@ a:hover {
   border: solid 0.5rem white;
   height: calc(100vh - 1rem);
   animation: fade-in 3s var(--intro-darkness-duration) both;
-  filter: contrast(1.2) brightness(0.95);
+  filter: brightness(0.95) contrast(1.2);
 }
 
 .map-container[hidden] {

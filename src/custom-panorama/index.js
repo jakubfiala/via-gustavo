@@ -6,7 +6,7 @@ const WORLD_W = 8192;
 const WORLD_H = 4096;
 const TILE_SIZE = 683;
 
-const GUSTAVO_ENTRY_PANO = 'saEVtxCMSAzSNAbh-LFpVQ';
+// const GUSTAVO_ENTRY_PANO = 'saEVtxCMSAzSNAbh-LFpVQ';
 
 const tileDimensionsForZoom = {
   4: { x: 12, y: 6 },
@@ -82,19 +82,7 @@ export const initCustomPanorama = async (context) => {
 
   context.map.registerPanoProvider((name) => customPanoramas[name] ?? null);
   context.map.addListener('links_changed', () => {
-    if (map.getPano() === GUSTAVO_ENTRY_PANO) {
-      const link = {
-        pano: 'gustavoDissolve1',
-        description: '',
-        heading: 63,
-      };
-
-      console.info('[custom-panorama]', 'adding link', link);
-
-      const links = map.getLinks();
-      links.splice(0, Infinity);
-      links.push(link);
-    } else if (map.getPano() in extraLinks) {
+    if (map.getPano() in extraLinks) {
       const link = extraLinks[map.getPano()];
       const links = map.getLinks();
 

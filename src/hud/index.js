@@ -22,6 +22,9 @@ const POV_PRECISION = 2;
 export const setLatLngDisplay = ({ lat, lng }) => latLngDisplay.innerText = `lat: ${lat.toFixed(LATLNG_PRECISION)}, lng: ${lng.toFixed(LATLNG_PRECISION)},`;
 export const setPovDisplay = ({ heading, pitch }) => povDisplay.innerText = `heading: ${heading.toFixed(POV_PRECISION)}, pitch: ${pitch.toFixed(POV_PRECISION)}`;
 
+export const hideHud = () => hud.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 3_000, fill: 'both' });
+export const showHud = () => hud.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 3_000, fill: 'both' });
+
 export default () => {
   hud.hidden = false;
 

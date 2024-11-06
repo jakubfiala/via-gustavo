@@ -14,6 +14,8 @@ import { journalChapter, journalMoment } from '../journal/index.js';
 import { removeTask, setTask } from '../task.js';
 import inventory from '../inventory/index.js';
 import { sleep } from '../utils.js';
+import { disableClickToGoCB } from '../script/utils.js';
+import { gustavoSequence } from '../interactions/gustavo-sequence.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
@@ -517,10 +519,8 @@ export const checkpoints = [
     lng: -69.72742,
     chapter: chapters[5],
     async callback(context) {
-      return scheduleScript(chapter6.intro, {
-        ...context,
-        chapter: this.chapter,
-      });
+      context.chapter = this.chapter;
+      return scheduleScript(chapter6.intro, context);
     },
   },
   {
@@ -559,12 +559,19 @@ export const checkpoints = [
     }
   },
   {
-    lat: -20.43882,
-    lng: -69.70097,
+    lat: -20.43765,
+    lng: -69.70143,
     async callback(context) {
-      return scheduleScript(chapter6.poem, context);
-    }
+      return gustavoSequence(context);
+    },
   },
+  // {
+  //   lat: -20.43882,
+  //   lng: -69.70097,
+  //   async callback(context) {
+  //     return ;
+  //   }
+  // },
 ];
 
 export const checkForCheckpoints = context => () => {

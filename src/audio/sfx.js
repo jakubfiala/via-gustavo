@@ -9,6 +9,7 @@ const EXPLOSION_URL = '/assets/audio/explosion.mp3';
 const BUS_URL = 'assets/audio/bus.mp3';
 const DONATING_WATER_URL = 'assets/audio/donating-water.mp3';
 const CAR_APPROACH_URL = 'assets/audio/car-approach.mp3';
+const CAR_CRASH_URL = 'assets/audio/crash.mp3';
 
 const getBuffer = async (audioContext, url) => {
   const response = await fetch(url);
@@ -34,7 +35,7 @@ const playSFX = async (context, sound, dur = 0, ramp = 0.05) => {
   if (sound.oneoff) {
     sound.gain.gain.setValueAtTime(1, context.audioContext.currentTime);
     sound.source.start(0);
-    return;
+    return sound.source;
   }
 
   const duration = dur || sound.source.buffer.duration;
@@ -42,6 +43,8 @@ const playSFX = async (context, sound, dur = 0, ramp = 0.05) => {
   sound.gain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + ramp);
   sound.gain.gain.setValueAtTime(1, context.audioContext.currentTime + duration);
   sound.gain.gain.linearRampToValueAtTime(0, context.audioContext.currentTime + duration + ramp);
+
+  return sound.source;
 };
 
 export default async (context) => {
@@ -57,6 +60,7 @@ export default async (context) => {
   const bus = await getNodes(context, BUS_URL, true);
   const donatingWater = await getNodes(context, DONATING_WATER_URL, true);
   const carApproach = await getNodes(context, CAR_APPROACH_URL, true);
+  const carCrash = await getNodes(context, CAR_CRASH_URL, true);
 
   const footstepsSounds = {
     normal: footstepsNormal,
@@ -81,6 +85,7 @@ export default async (context) => {
     bus: () => playSFX(context, bus),
     donatingWater: () => playSFX(context, donatingWater),
     carApproach: () => playSFX(context, carApproach),
+    carCrash: () => playSFX(context, carCrash),
   };
 
   controller.setFootsteps(localStorage.getItem(LOCALSTORAGE_FOOTSTEPS_KEY) || 'normal');
