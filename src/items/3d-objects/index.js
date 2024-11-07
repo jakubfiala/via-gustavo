@@ -13,7 +13,7 @@ import {
   WebGLRenderer,
 } from 'three';
 import { latLngDist } from '../../utils.js';
-import { OBJECT_APPEAR_THRESHOLD } from '../../constants.js';
+import { OBJECT_APPEAR_THRESHOLD, OBJECT_LOAD_THRESHOLD } from '../../constants.js';
 import { loadGLTF } from './gltf.js';
 import { createGenericItemContainer } from '../generic.js';
 
@@ -86,11 +86,6 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
 
   const scene = new Scene();
 
-  if (env) {
-    scene.environment = await loadEnv(env, name);
-    scene.environmentIntensity = envIntensity;
-  }
-
   const lights = createLights(lightPosition, env ? 0.8 : 3);
   lights.forEach((l) => scene.add(l));
 
@@ -100,72 +95,85 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
   camera.position.z = cameraInitZ;
 
   let renderer = null;
+  let object = null;
+  let isBeingHovered = false;
+  let debugObject = null;
 
   const createRenderer = () => {
     renderer = new WebGLRenderer({ canvas, alpha: true, antialias: true });
     renderer.setPixelRatio(dpr);
     renderer.setClearColor(0x000000, 0);
-
     renderer.toneMapping = ACESFilmicToneMapping;
-    debugObject.renderer = renderer;
+
+    if (debugObject) {
+      debugObject.renderer = renderer;
+    }
   }
 
-  const object = await loadGLTF(url);
+  const loadObject = async () => {
+    object = await loadGLTF(url);
 
-  const hoverHelper = object.getObjectByName(HOVER_HELPER_NAME);
-  if (hoverHelper) {
-    console.info('[3d-objects]', name, 'has a hover helper');
-    hoverHelper.visible = false;
+    const hoverHelper = object.getObjectByName(HOVER_HELPER_NAME);
+    if (hoverHelper) {
+      console.info('[3d-objects]', name, 'has a hover helper');
+      hoverHelper.visible = false;
+    }
+
+    object.scale.x = scale ?? 1;
+    object.scale.y = scale ?? 1;
+    object.scale.z = scale ?? 1;
+
+    object.rotation.x = rotation.x ?? 0;
+    object.rotation.y = rotation.y ?? 0;
+    object.rotation.z = rotation.z ?? 0;
+    scene.add(object);
+
+    if (env) {
+      scene.environment = await loadEnv(env, name);
+      scene.environmentIntensity = envIntensity;
+    }
+
+    const raycaster = new Raycaster();
+    const pointer = new Vector2();
+
+    const onPointerMove = (event) => {
+      pointer.x = (event.offsetX / canvas.width) * dpr * 2 - 1;
+      pointer.y = (event.offsetY / canvas.height) * dpr * 2 - 1;
+      raycaster.setFromCamera(pointer, camera);
+      const intersections = raycaster.intersectObject(hoverHelper ?? object, true).length;
+      isBeingHovered = intersections > 0;
+
+      container.classList.toggle('gustavo-item--highlighted', isBeingHovered);
+    };
+
+    canvas.addEventListener('pointermove', onPointerMove);
+
+    debugObject = {
+      object,
+      camera,
+      isBeingHovered,
+      renderer,
+      moveCam: (x, y, z) => {
+        camera.position.x = x;
+        camera.position.y = y;
+        camera.position.z = z;
+        camera.lookAt(object.position);
+        renderer.render(scene, camera);
+      },
+      rotateMesh: (x, y, z) => {
+        object.rotateX(x ?? 0);
+        object.rotateY(y ?? 0);
+        object.rotateZ(z ?? 0);
+        renderer.render(scene, camera);
+      },
+      move: null,
+    };
+
+    console.info('[3d-objects]', 'loaded', name, debugObject);
   }
-
-  object.scale.x = scale ?? 1;
-  object.scale.y = scale ?? 1;
-  object.scale.z = scale ?? 1;
-
-  object.rotation.x = rotation.x ?? 0;
-  object.rotation.y = rotation.y ?? 0;
-  object.rotation.z = rotation.z ?? 0;
-  scene.add(object);
-
-  const raycaster = new Raycaster();
-  const pointer = new Vector2();
-  let isBeingHovered = false;
-
-  canvas.addEventListener('pointermove', (event) => {
-    pointer.x = (event.offsetX / canvas.width) * dpr * 2 - 1;
-    pointer.y = (event.offsetY / canvas.height) * dpr * 2 - 1;
-    raycaster.setFromCamera(pointer, camera);
-    const intersections = raycaster.intersectObject(hoverHelper ?? object, true).length;
-    isBeingHovered = intersections > 0;
-
-    container.classList.toggle('gustavo-item--highlighted', isBeingHovered);
-  });
-
-  const debugObject = {
-    object,
-    camera,
-    isBeingHovered,
-    renderer,
-    moveCam: (x, y, z) => {
-      camera.position.x = x;
-      camera.position.y = y;
-      camera.position.z = z;
-      camera.lookAt(object.position);
-      renderer.render(scene, camera);
-    },
-    rotateMesh: (x, y, z) => {
-      object.rotateX(x ?? 0);
-      object.rotateY(y ?? 0);
-      object.rotateZ(z ?? 0);
-      renderer.render(scene, camera);
-    },
-    move: null,
-  };
-
-  console.info('[3d-objects]', name, debugObject);
 
   return {
-    name, scene, camera, mesh: object, canvas, container,
+    name, scene, camera, canvas, container,
     insert(map, position) {
       this.map = map;
 
@@ -174,13 +182,14 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
         position,
         content: container,
       });
-
-      debugObject.move = (position) => {
-        this.info.setPosition(position);
-      };
     },
-    render() {
+    async render() {
       console.info('[3d-objects]', 'rendering', name);
+
+      if (!object) {
+        console.info('[3d-objects]', 'no object yet for', name);
+        await loadObject();
+      }
 
       if (!renderer) {
         console.info('[3d-objects]', 'no renderer yet for', name);
@@ -228,12 +237,19 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
       if (!this.info.isOpen) {
         if (this.dist < appearThreshold) {
           this.info.open({ map: this.map });
+        } else if (this.dist < OBJECT_LOAD_THRESHOLD && !object) {
+          return loadObject();
         } else {
           renderer?.dispose();
           renderer = null;
 
           return;
         }
+      }
+
+      if (!object) {
+        console.info('[3d-objects]', 'no object yet for', name);
+        await loadObject();
       }
 
       // rotate the object so it always faces the same direction in the panorama
