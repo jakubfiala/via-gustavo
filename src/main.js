@@ -194,6 +194,7 @@ const initialSequence = (context) => {
   }, 1000);
 
   setTimeout(() => {
+    context.soundscapeGain.gain.setValueAtTime(0, context.audioContext.currentTime);
     context.soundscapeGain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 2);
     scheduleScript(intro1, context);
   }, FADE_OUT_DELAY_MS);
@@ -207,6 +208,7 @@ const revisitedSequence = (context) => {
   }, 10000);
 
   enableClickToGoCB(context);
+  context.soundscapeGain.gain.setValueAtTime(0, context.audioContext.currentTime);
   context.soundscapeGain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 2);
 };
 

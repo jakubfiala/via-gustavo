@@ -51,16 +51,25 @@ class Sharawadji {
 		const userPosition = this.panorama.getPosition();
 		const userPov = this.panorama.getPov();
 
-		this.audioContext.listener.positionX.value = userPosition.lat();
-		this.audioContext.listener.positionY.value = userPosition.lng();
+		if (this.audioContext.listener.positionX) {
+			this.audioContext.listener.positionX.value = userPosition.lat();
+			this.audioContext.listener.positionY.value = userPosition.lng();
+    } else {
+			this.audioContext.listener.setPosition(userPosition.lat(), userPosition.lng(), 0);
+		}
 
-		const listenerOrientation = calculateListenerOrientation(userPov.heading, userPov.pitch, 0);
-		this.audioContext.listener.forwardX.value = listenerOrientation.forward.x;
-		this.audioContext.listener.forwardY.value = listenerOrientation.forward.y;
-		this.audioContext.listener.forwardZ.value = listenerOrientation.forward.z;
-		this.audioContext.listener.upX.value = listenerOrientation.up.x;
-		this.audioContext.listener.upY.value = listenerOrientation.up.y;
-		this.audioContext.listener.upZ.value = listenerOrientation.up.z;
+		const { forward, up } = calculateListenerOrientation(userPov.heading, userPov.pitch, 0);
+
+		if (this.audioContext.listener.forwardX) {
+			this.audioContext.listener.forwardX.value = forward.x;
+			this.audioContext.listener.forwardY.value = forward.y;
+			this.audioContext.listener.forwardZ.value = forward.z;
+			this.audioContext.listener.upX.value = up.x;
+			this.audioContext.listener.upY.value = up.y;
+			this.audioContext.listener.upZ.value = up.z;
+		} else {
+			this.audioContext.listener.setOrientation(forward.x, forward.y, forward.z, up.x, up.y, up.z);
+		}
 
 		const activeSoundsCount = this.sounds.filter(s => s.state === Sound.state.PLAYING).length;
 

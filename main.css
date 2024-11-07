@@ -142,7 +142,7 @@ a:hover {
 }
 
 .map-container {
-  height: calc(100vh - 1rem);
+  height: 100vh;
   animation: fade-in 3s var(--intro-darkness-duration) both;
   filter: brightness(0.95) contrast(1.2);
 }
@@ -384,25 +384,50 @@ p.subtitle {
 }
 
 .gm-compass::before,
-.gm-compass::after {
+.gm-compass::after,
+.gm-compass button:first-of-type::before,
+.gm-compass button:last-of-type::after {
   display: block;
   color: var(--color-blue);
   left: 50%;
   translate: -50% 0;
   position: absolute;
   font-weight: bold;
+  font-size: 0.9em;
+  font-family: monospace;
+  opacity: 0.8;
+  z-index: 1;
 }
 
 .gm-compass::before {
   color: #c3131a;
   content: 'N';
   top: 0;
-  z-index: 1;
+  opacity: 1;
 }
 
 .gm-compass::after {
   content: 'S';
   bottom: 0;
+}
+
+.gm-compass button:first-of-type img,
+.gm-compass button:last-of-type img {
+  opacity: 0;
+}
+
+.gm-compass button:first-of-type::before,
+.gm-compass button:last-of-type::after {
+  top: 50%;
+  translate: -50% -50%;
+}
+
+.gm-compass button:first-of-type::before {
+  content: 'E';
+}
+
+.gm-compass button:last-of-type::after {
+  content: 'W';
 }
 
 .hud {
@@ -435,8 +460,9 @@ p.subtitle {
   z-index: 2;
   padding: 0;
   min-width: 300px;
+  width: 50vw;
   min-height: 150px;
-  max-height: 50vh;
+  height: 50vh;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
@@ -519,6 +545,16 @@ p.subtitle {
 .hud__title {
   color: white;
   margin: 0;
+}
+
+.hud__title-link,
+.hud__title-link:visited {
+  color: inherit;
+  transition: color 100ms;
+}
+
+.hud__title-link:hover {
+  color: var(--color-blue);
 }
 
 .hud__title svg {
@@ -606,6 +642,15 @@ p.subtitle {
   max-width: 700px;
 }
 
+.intro__links {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.intro__links a:hover {
+  text-decoration: solid underline 2px red;
+}
+
 .intro__ctas {
   display: flex;
   gap: 1rem;
@@ -639,7 +684,7 @@ p.subtitle {
   gap: 1rem;
   align-items: center;
   padding: 1rem 0;
-  max-width: 200px;
+  max-width: 300px;
 }
 
 .intro__tips li+li {
@@ -1083,15 +1128,10 @@ p.subtitle {
   border-radius: 50%;
 }
 
-.about__intro {
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-.about__intro::after {
-  content: '~';
-  display: block;
-  font-weight: bolder;
+.about-frame {
+  border: none;
+  height: 100%;
+  width: 100%;
 }
 
 @keyframes thumb {

@@ -11,7 +11,6 @@ const setupDialog = ({ toggle, close, dialog }) => {
     }
   });
 
-  console.log(close);
   close.addEventListener('click', () => {
     dialog.close();
   })

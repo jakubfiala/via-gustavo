@@ -10,6 +10,8 @@ export const playGatewaySound = ({ audioContext, masterGain }) => {
   const panner1 = new StereoPannerNode(audioContext, { pan: -1 });
   osc1.connect(gain1).connect(panner1).connect(masterGain);
   osc1.start();
+
+  gain1.gain.setValueAtTime(0, audioContext.currentTime);
   gain1.gain.linearRampToValueAtTime(VOLUME, audioContext.currentTime + FADE_IN_S);
 
   const osc2 = new OscillatorNode(audioContext, { frequency: 426 });
@@ -18,6 +20,7 @@ export const playGatewaySound = ({ audioContext, masterGain }) => {
   osc2.connect(gain2).connect(panner2).connect(masterGain);
   osc2.start();
   setTimeout(() => {
+    gain2.gain.setValueAtTime(0, audioContext.currentTime);
     gain2.gain.linearRampToValueAtTime(VOLUME, audioContext.currentTime + FADE_IN_S);
   }, OSC2_DELAY_MS);
 
