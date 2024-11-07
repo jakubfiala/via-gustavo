@@ -1,6 +1,7 @@
-const createScorePart = (context, src, volume = 1) => {
+const createScorePart = (context, src, volume = 1, loop = false) => {
   const mediaElement = new Audio();
   mediaElement.preload = 'none';
+  mediaElement.loop = loop;
   mediaElement.src = src;
   mediaElement.volume = volume;
 
@@ -10,8 +11,10 @@ const createScorePart = (context, src, volume = 1) => {
   return mediaElement;
 };
 
+export const DEFAULT_SCORE_GAIN = 0.9;
+
 export default (context) => {
-  context.scoreGain = new GainNode(context.audioContext, { gain: 0.9 });
+  context.scoreGain = new GainNode(context.audioContext, { gain: DEFAULT_SCORE_GAIN });
   context.scoreGain.connect(context.masterGain);
 
   return {
@@ -46,5 +49,6 @@ export default (context) => {
     lobotomy: createScorePart(context, 'assets/audio/score/lobotomy.mp3', 0.55),
     finalTheme1: createScorePart(context, 'assets/audio/score/final-theme-1.mp3', 0.7),
     finalTheme3: createScorePart(context, 'assets/audio/score/final-theme-3.mp3', 0.7),
+    lithiumAtmo: createScorePart(context, 'assets/audio/score/lithium-atmo.mp3', 0.5, true),
   };
 };

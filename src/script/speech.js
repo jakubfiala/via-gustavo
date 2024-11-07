@@ -11,6 +11,7 @@ const loadFromSpeechServer = async (context, text) => {
   const response = await fetch('http://localhost:3000/speech', { method: 'post', body: text });
   const buffer = await context.audioContext.decodeAudioData(await response.arrayBuffer());
   const source = new AudioBufferSourceNode(context.audioContext, { buffer });
+  source.playbackRate.value = context.speechPlaybackRate || 1;
   source.connect(context.speechGain);
   source.start();
 
@@ -40,6 +41,7 @@ const loadFromArchive = async (context, text) => {
     .slice(0, 99); // tar truncates file names to 99
   const buffer = await context.audioContext.decodeAudioData(context.speech.parts[key]);
   const source = new AudioBufferSourceNode(context.audioContext, { buffer });
+  source.playbackRate.value = context.speechPlaybackRate || 1;
   source.connect(context.speechGain);
   source.start();
 

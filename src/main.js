@@ -61,6 +61,13 @@ const mapOptions = {
   showRoadLabels: false,
 };
 
+if (initialPosition.lat === 0) {
+  // we're in limbo
+  delete mapOptions.position;
+  mapOptions.pano = 'limbo1';
+  mapOptions.pov = { heading: 80, pitch: 0, zoom: 1 };
+}
+
 if (completedChapters.size > 0) {
   introCTAContinue.hidden = false;
 } else if (!debug) {

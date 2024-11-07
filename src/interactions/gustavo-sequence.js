@@ -62,7 +62,7 @@ export const gustavoSequence = async (context) => {
   await sleep(2_000);
 
   context.sfx.carCrash();
-  context.soundscapeGain.gain.linearRampToValueAtTime(0, context.audioContext.currentTime + 3);
+  context.soundscapeGain.gain.linearRampToValueAtTime(0, context.audioContext.currentTime + 6);
   await sleep(5_550);
 
   approachPov(context, crashPov, 300, 50);
@@ -78,7 +78,7 @@ export const gustavoSequence = async (context) => {
 
   const helpTimeout = setTimeout(
     () => showHelpMessage('Click on the white arrow to move')(context),
-    15_000,
+    20_000,
   );
 
   context.container.addEventListener('click', () => clearTimeout(helpTimeout), { once: true });

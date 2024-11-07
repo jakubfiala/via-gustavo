@@ -51,6 +51,7 @@ export const touchTheSky = [
 
 export const evening = [
   { callback: (context) => {
+      context.soundscape.set(context.soundscape.base);
       context.score.finalTheme1.play();
       context.container.animate([
         { filter: 'brightness(0.95) contrast(1.2) hue-rotate(0deg)' },

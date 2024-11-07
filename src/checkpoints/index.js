@@ -6,6 +6,7 @@ import * as chapter3 from '../script/chapter3.js';
 import * as chapter4 from '../script/chapter4.js';
 import * as chapter5 from '../script/chapter5.js';
 import * as chapter6 from '../script/chapter6.js';
+import * as epilogue from '../script/epilogue.js';
 import { latLngDist } from "../utils.js";
 import { showSkyImages } from '../sky-images.js';
 import * as drone from '../drone.js';
@@ -565,13 +566,15 @@ export const checkpoints = [
       return gustavoSequence(context);
     },
   },
-  // {
-  //   lat: -20.43882,
-  //   lng: -69.70097,
-  //   async callback(context) {
-  //     return ;
-  //   }
-  // },
+
+  // Epilogue
+  {
+    lat: 0,
+    lng: 0.0001,
+    async callback(context) {
+      return scheduleScript(epilogue.intro, context);
+    },
+  }
 ];
 
 export const checkForCheckpoints = context => () => {

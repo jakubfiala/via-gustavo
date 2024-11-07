@@ -22,7 +22,7 @@ const getTileUrl = (pano, zoom, x, y) => {
   return `/assets/img/panoramas/${pano}/z${zoom}-i${index}.jpg`;
 }
 
-const panoMaker = (latLng, sizes) => (pano, links, { centerHeading = 160 } = {}) => ({
+const panoMaker = (sizes) => (pano, links, { latLng, centerHeading = 160 } = {}) => ({
   location: {
     pano,
     description: '',
@@ -38,46 +38,41 @@ const panoMaker = (latLng, sizes) => (pano, links, { centerHeading = 160 } = {})
 });
 
 export const initCustomPanorama = async (context) => {
-  const createPano = panoMaker(
-    new context.google.LatLng(-20.28817, -69.78392),
-    {
-      tileSize: new context.google.Size(TILE_SIZE, TILE_SIZE),
-      worldSize: new context.google.Size(WORLD_W, WORLD_H),
-    },
-  )
+  const createPano = panoMaker({
+    tileSize: new context.google.Size(TILE_SIZE, TILE_SIZE),
+    worldSize: new context.google.Size(WORLD_W, WORLD_H),
+  });
 
-  const limbo3 = createPano(
-    'limbo3',
-    [{ pano: 'limbo1', heading: 260 }, { pano: 'limbo2', heading: 80 }],
-    { centerHeading: 260 },
-  );
-  const limbo2 = createPano(
-    'limbo2',
-    [{ pano: 'limbo3', heading: 260 }, { pano: 'limbo1', heading: 80 }],
-    { centerHeading: 260 },
-  );
-  const limbo1 = createPano(
-    'limbo1',
-    [{ pano: 'limbo2', heading: 260 }, { pano: 'limbo3', heading: 80 }],
-    { centerHeading: 260 },
-  );
-
-  const gustavoDissolve4 = createPano('gustavoDissolve4', [{ pano: 'limbo1', heading: 63 }]);
-  const gustavoDissolve3 = createPano('gustavoDissolve3', [{ pano: 'gustavoDissolve4', heading: 63 }]);
-  const gustavoDissolve2 = createPano('gustavoDissolve2', [{ pano: 'gustavoDissolve3', heading: 63 }]);
-  const gustavoDissolve1 = createPano('gustavoDissolve1', [{ pano: 'gustavoDissolve2', heading: 63 }]);
-
-  const dds = createPano('dds', [{ pano: 'o9mETUVAgxbqquXFtBWFLw', heading: 260 }]);
+  const gustavoLatLng = new context.google.LatLng(-20.28817, -69.78392);
 
   const customPanoramas = {
-    gustavoDissolve1,
-    gustavoDissolve2,
-    gustavoDissolve3,
-    gustavoDissolve4,
-    limbo1,
-    limbo2,
-    limbo3,
-    dds,
+    gustavoDissolve4: createPano(
+      'gustavoDissolve4', [{ pano: 'limbo1', heading: 63 }], { latLng: gustavoLatLng }),
+    gustavoDissolve3: createPano(
+      'gustavoDissolve3', [{ pano: 'gustavoDissolve4', heading: 63 }], { latLng: gustavoLatLng }),
+    gustavoDissolve2: createPano(
+      'gustavoDissolve2', [{ pano: 'gustavoDissolve3', heading: 63 }], { latLng: gustavoLatLng }),
+    gustavoDissolve1: createPano(
+      'gustavoDissolve1', [{ pano: 'gustavoDissolve2', heading: 63 }], { latLng: gustavoLatLng }),
+
+    limbo1: createPano(
+      'limbo1',
+      [{ pano: 'limbo2', heading: 260 }, { pano: 'limbo3', heading: 80 }],
+      { centerHeading: 260, latLng: new context.google.LatLng(0, 0.0001) },
+    ),
+    limbo2: createPano(
+      'limbo2',
+      [{ pano: 'limbo3', heading: 260 }, { pano: 'limbo1', heading: 80 }],
+      { centerHeading: 260, latLng: new context.google.LatLng(0, 0.0002) },
+    ),
+    limbo3: createPano(
+      'limbo3',
+      [{ pano: 'limbo1', heading: 260 }, { pano: 'limbo2', heading: 80 }],
+      { centerHeading: 260, latLng: new context.google.LatLng(0, 0.0003) },
+    ),
+
+    dds: createPano(
+      'dds', [{ pano: 'o9mETUVAgxbqquXFtBWFLw', heading: 260 }], { latLng: new context.google.LatLng(41.378310, 2.132984) }),
   };
 
   context.map.registerPanoProvider((name) => customPanoramas[name] ?? null);
