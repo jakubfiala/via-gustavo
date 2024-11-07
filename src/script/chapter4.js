@@ -53,7 +53,12 @@ export const pozoAlmonteMF = [
 ];
 
 export const difunta1 = [
-  { text: "Well, I hope you had fun down there." },
+  {
+    text: "Well, I hope you had fun down there.",
+    callback: (context) => {
+      context.score.circuito2.preload = 'auto';
+    },
+  },
   { text: "You probably expect me to share some profound wisdom, or tell some sort of deep story." },
   { text: "You know what? I'll tell you one." },
   { duration: 1 },
@@ -74,7 +79,10 @@ export const difunta1 = [
   { text: "What she's doing is pretty dumb, if you ask me." },
   {
     text: "Let's keep walking, get some fresh air outside of town.",
-    callback: () => setTask('Make your way out of Pozo Almonte'),
+    callback: () => {
+      setTask('Make your way out of Pozo Almonte');
+      context.score.circuito5.preload = 'auto';
+    },
   },
 ];
 
@@ -94,7 +102,10 @@ export const difunta2 = [
     callback: (context) => context.soundscape.set(context.soundscape.base),
   },
   {
-    callback: () => setTask("Continue walking to hear more of Deolinda's story"),
+    callback: () => {
+      context.score.circuito3.preload = 'auto';
+      setTask("Continue walking to hear more of Deolinda's story");
+    },
   }
 ];
 
@@ -109,7 +120,12 @@ export const difunta3 = [
   { text: "He calls to his companions, and they rush to investigate." },
   { text: "They gather around the poor Deolinda, who lays there on the ground," },
   { text: "babe on her chest, the light in her eyes long gone." },
-  { text: "Suddenly, the gauchos gasp." },
+  {
+    text: "Suddenly, the gauchos gasp.",
+    callback: (context) => {
+      context.score.circuito4.preload = 'auto';
+    },
+  },
   { text: "The little child moves, makes a sound, and presses its lips to the woman's breast." },
   { text: "It has been there for days, sustained from her limp body." },
   {
@@ -122,7 +138,12 @@ export const difunta3 = [
 ];
 
 export const difunta4 = [
-  { text: "I know, I know." },
+  {
+    text: "I know, I know.",
+    callback: (context) => {
+      context.score.circuito1.preload = 'auto';
+    },
+  },
   { text: "The story's not exactly a box office hit - but it's kind of a big deal here." },
   { text: "They now call her La Difunta Correa," },
   { text: "and it befits someone like you and I, the wanderers, the wayfinders and the vagabonds," },
@@ -151,7 +172,12 @@ export const afterDifunta = [
   { text: "before the town's people moved out and the ghosts moved in." },
   { text: "His father, whom Gustavo never knew, earned his living in the very salitrera you'll see to the west." },
   { duration: 0.5 },
-  { text: "So what? What do you care for one human in the desert, who you haven't even met?" },
+  {
+    text: "So what? What do you care for one human in the desert, who you haven't even met?",
+    callback: (context) => {
+      context.score.lithiumLoop.preload = 'auto';
+    },
+  },
 ];
 
 export const lithium = [
@@ -181,7 +207,10 @@ export const lithium = [
 
 export const geoglyphs = [
   {
-    callback:  () => journalMoment('🔎', 'Looked for Gustavo from the overpass. No luck.')
+    callback:  () => {
+      context.score.lithiumChorus.preload = 'auto';
+      journalMoment('🔎', 'Looked for Gustavo from the overpass. No luck.');
+    },
   },
   { text: "No luck finding him then?" },
   { text: "At least you can look at these sick geoglyphs on each side of the overpass." },
@@ -202,7 +231,10 @@ export const geoglyphs = [
   { text: "It's what Gustavo would have done." },
   { text: "Go, go, leave me alone, for Christ's sakes!" },
   {
-    callback: () => setTask('Visit the town of Humberstone to the north-west 🏭'),
+    callback: () => {
+      setTask('Visit the town of Humberstone to the north-west 🏭');
+      context.score.bachPiano5.preload = 'auto';
+    },
   },
 ];
 

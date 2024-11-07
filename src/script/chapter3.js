@@ -10,6 +10,7 @@ export const intro = [
       context.score.bachPiano3.play();
       context.soundscape.set(context.soundscape.highwayRight);
       context.sfx.setFootsteps('gravel');
+      context.score.dirtRoad1.preload = 'auto';
       flashStatus(`Chapter ${context.chapter.id} - ${context.chapter.title}`)(context);
     }
   },

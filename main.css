@@ -379,8 +379,8 @@ p.subtitle {
   translate: -0.25rem 0.5rem;
 }
 
-.gm-compass > img {
-  filter: invert(100%);
+.gm-compass > img:first-of-type {
+  filter: invert(100%) brightness(1.1);
 }
 
 .gm-compass::before,
@@ -394,7 +394,7 @@ p.subtitle {
 }
 
 .gm-compass::before {
-  color: red;
+  color: #c3131a;
   content: 'N';
   top: 0;
   z-index: 1;

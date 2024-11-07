@@ -76,6 +76,8 @@ export const gustavoSequence = async (context) => {
   context.map.setPano('gustavoDissolve1');
   context.map.setOptions({ linksControl: true });
 
+  context.score.lithiumAtmo.preload = 'auto';
+
   const helpTimeout = setTimeout(
     () => showHelpMessage('Click on the white arrow to move')(context),
     20_000,

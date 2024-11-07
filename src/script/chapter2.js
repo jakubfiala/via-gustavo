@@ -32,6 +32,7 @@ export const station1 = [
     callback: (context) => {
       removeTask();
       context.soundscape.set(context.soundscape.town2);
+      context.score.viaCrucis1.preload = 'auto';
     },
   },
   { text: "- they call it the 'Church of the Sanctuary'." },
@@ -66,7 +67,10 @@ export const mainRoad = [
   { text: "See that cross to the north?" },
   {
     text: "The next station is just a little further past it.",
-    callback: () => setTask('Continue to the next station'),
+    callback: () => {
+      setTask('Continue to the next station');
+      context.score.viaCrucis3.preload = 'auto';
+    },
   },
 ];
 
@@ -88,7 +92,10 @@ export const station2 = [
   { duration: 3 },
   { text: "Let's keep going northwest, and out of this town." },
   {
-    callback: () => journalMoment('✝️', "Found another Station of the Cross"),
+    callback: () => {
+      context.score.viaCrucis2.preload = 'auto';
+      journalMoment('✝️', "Found another Station of the Cross");
+    },
   }
 ];
 
@@ -112,7 +119,12 @@ export const station3 = [
 
 export const station4 = [
   // 4. nailed to the cross
-  { text: "He shifts into reverse, feels the transmission move underneath." },
+  {
+    text: "He shifts into reverse, feels the transmission move underneath.",
+    callback: (context) => {
+      context.score.viaCrucis5.preload = 'auto';
+    },
+  },
   { text: "Looks at the back seats to make sure his tools are there:" },
   { text: "a dusty notebook, two pencils, a map of Tarapacá" },
   { text: "and a beaten-up yellow device with a screen, some buttons and a gauge." },
@@ -128,7 +140,12 @@ export const station4 = [
 
 export const station5 = [
   // 5. division of the robes
-  { text: "He follows the long, straight road out of La Tirana." },
+  {
+    text: "He follows the long, straight road out of La Tirana.",
+    callback: (context) => {
+      context.score.viaCrucis6.preload = 'auto';
+    },
+  },
   { text: "That probably makes him think of his mother," },
   { text: "so he pulls out his phone and starts a voice note." },
   { text: "This time, he really lets it all out." },
@@ -159,7 +176,12 @@ export const station6 = [
   { text: "He gets up, throws his tools into a backpack" },
   { text: "and crosses the road near the bus stop" },
   { text: "A bird of prey flies out of a nearby tree" },
-  { text: "and a gust of wind howls past." },
+  {
+    text: "and a gust of wind howls past.",
+    callback: (context) => {
+      context.score.viaCrucis7.preload = 'auto';
+    },
+  },
 ];
 
 export const station7 = [
@@ -253,7 +275,12 @@ export const geigerCounterReply = [
 
 // 13. He takes up his Cross
 export const station13 = [
-  { text: "He can already hear the traffic on the Panamericana" },
+  {
+    text: "He can already hear the traffic on the Panamericana",
+    callback: (context) => {
+      context.score.viaCrucis4.preload = 'auto';
+    },
+  },
   { text: "the coastal mountain range towers over him." },
   { text: "He stops and takes a deep breath, tightens the straps on his backpack," },
   { text: "looks up at the sky one more time and sets off again." },
@@ -285,6 +312,7 @@ export const outro = [
   {
     callback: (context) => {
       enableJaywalk(context, { lat: -20.32047, lng: -69.75582 });
+      context.score.bachPiano3.preload = 'auto';
     },
   },
 ]

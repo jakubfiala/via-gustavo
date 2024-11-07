@@ -79,5 +79,10 @@ export const intro3 = [
   { text: "It has been days, maybe weeks, since he last drove towards La Tirana" },
   { text: "and vanished from my world." },
   { duration: 1 },
-  { callback: () => journalMoment('🛣️', 'Got to know my companion') },
+  {
+    callback: (context) => {
+      journalMoment('🛣️', 'Got to know my companion');
+      context.score.bachPiano.preload = 'auto';
+    },
+  },
 ];

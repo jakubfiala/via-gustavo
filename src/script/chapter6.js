@@ -8,6 +8,7 @@ export const intro = [
     callback: (context) => {
       context.soundscape.set(context.soundscape.townBigRoad);
       context.sfx.setFootsteps('normal');
+      context.score.bachPiano6.preload = 'auto';
     },
   },
   {
@@ -42,7 +43,10 @@ export const growingUp = [
 ];
 
 export const touchTheSky = [
-  { text: "He saw himself as one with the ground." },
+  {
+    text: "He saw himself as one with the ground.",
+    callback: (context) => { context.score.finalTheme1.preload = 'auto'; },
+  },
   { text: "with the precious water filling cavernous spaces under it, and with the endless void above." },
   { text: "That has always been the purpose of his search:" },
   { text: "to reach across the planetary divide, and touch the sky." },
@@ -70,7 +74,10 @@ export const evening = [
   { text: "Clothes torn, he's trembling in the evening breeze." },
   { text: "His eyes still scanning the ground, still searching for that unnamed Something." },
   { text: "The phone battery has died, he tries turning it on once more, then throws it towards the trees." },
-  { text: "I feel like he's trying not to weep." },
+  {
+    text: "I feel like he's trying not to weep.",
+    callback: (context) => { context.score.finalTheme3.preload = 'auto'; },
+  },
   { duration: 0.5 },
   { text: "I try to tell him it's not over yet, he can still go home, fight another day." },
   { text: "He won't listen." },
@@ -88,7 +95,10 @@ export const night = [
 ];
 
 export const end = [
-  { text: "Just as the lights from the campsite ahead get brighter, and I pray he finally gets some help," },
+  {
+    text: "Just as the lights from the campsite ahead get brighter, and I pray he finally gets some help,",
+    callback: (context) => { context.score.lobotomy.preload = 'auto'; },
+  },
   { text: "he spots something on the asphalt." },
   { text: "His face lights up with joy, he begins to laugh, tears running down his cheeks." },
   { text: "I shout his name as he kneels down in the left lane." },

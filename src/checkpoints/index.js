@@ -301,6 +301,7 @@ export const checkpoints = [
     lng: -69.769828449520617,
     async callback(context) {
       drone.flyBy(context);
+      context.score.dirtRoad2.preload = 'auto';
     },
   },
   {
@@ -309,6 +310,7 @@ export const checkpoints = [
     async callback(context) {
       journalMoment('🛩️', 'A drone flew past');
       context.score.dirtRoad2.play();
+      context.score.dirtRoad3.preload = 'auto';
     },
   },
   {
@@ -342,6 +344,7 @@ export const checkpoints = [
     lng: -69.78645,
     async callback(context) {
       context.soundscape.set(context.soundscape.trees);
+      context.score.dirtRoad4.preload = 'auto';
     },
   },
   {
@@ -355,6 +358,7 @@ export const checkpoints = [
     lat: -20.27244,
     lng: -69.78621,
     async callback(context) {
+      context.score.bachPiano4.preload = 'auto';
       return scheduleScript(chapter3.outro, context);
     },
   },
@@ -480,6 +484,7 @@ export const checkpoints = [
     async callback(context) {
       setTask('Climb up the hill behind the town');
       journalMoment('🏭', 'Discovered the old town of Humberstone');
+      context.score.circuitoFull.preload = 'auto';
     },
   },
   {

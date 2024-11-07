@@ -48,7 +48,10 @@ const thanks = [
   { text: "but the protocol is the protocol."},
   {
     duration: 2,
-    callback: () => setTask('Continue down the road.'),
+    callback: () => {
+      context.score.veniceMedium.preload = 'auto';
+      setTask('Continue down the road.');
+    },
   },
 ];
 
@@ -60,7 +63,10 @@ export const searching = [
   { text: "most of it was probably on the ocean floor." },
   { duration: 2 },
   { text: "Alas, it was not my role to talk him out of it." },
-  { text: "Best I could do is to keep him company, until he stepped out of the truck." },
+  {
+    text: "Best I could do is to keep him company, until he stepped out of the truck.",
+    callback: (context) => { context.score.veniceShort.preload = 'auto'; },
+  },
 ];
 
 export const hisLand = [
@@ -82,7 +88,10 @@ export const showYouSomething = [
   { text: "A bus stops there at the plaza with trees" },
   {
     text: "- we can ride it from there.",
-    callback: () => setTask('Continue into town.'),
+    callback: () => {
+      context.score.veniceLong.preload = 'auto';
+      setTask('Continue into town.');
+    },
   },
 ];
 
@@ -119,5 +128,10 @@ export const theresTheBus = [
   { duration: 1, callback: () => setTask('Travel to La Tirana') },
   { text: "It should be here any minute" },
   { text: "", callback: showHelpMessage("Click on the bus stop to start travelling") },
-  { text: "See you on the other side!" },
+  {
+    text: "See you on the other side!",
+    callback: () => {
+      context.score.bachPiano2.preload = 'auto';
+    },
+  },
 ];
