@@ -11,6 +11,7 @@ const setupDialog = ({ toggle, close, dialog }) => {
     }
   });
 
+  console.log(close);
   close.addEventListener('click', () => {
     dialog.close();
   })
@@ -38,11 +39,6 @@ export default () => {
       dialog: document.getElementById('about-dialog'),
       toggle: document.getElementById('about-button'),
       close: document.getElementById('about-close'),
-    },
-    {
-      dialog: document.getElementById('settings-dialog'),
-      toggle: document.getElementById('settings-button'),
-      close: document.getElementById('settings-close'),
     },
     {
       dialog: document.getElementById('bus-dialog'),

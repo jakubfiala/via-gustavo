@@ -142,7 +142,6 @@ a:hover {
 }
 
 .map-container {
-  border: solid 0.5rem white;
   height: calc(100vh - 1rem);
   animation: fade-in 3s var(--intro-darkness-duration) both;
   filter: brightness(0.95) contrast(1.2);
@@ -373,6 +372,37 @@ p.subtitle {
 
 .gm-style-iw-d {
   overflow: hidden !important;
+}
+
+.gm-compass {
+  scale: 1.1;
+  translate: -0.25rem 0.5rem;
+}
+
+.gm-compass > img {
+  filter: invert(100%);
+}
+
+.gm-compass::before,
+.gm-compass::after {
+  display: block;
+  color: var(--color-blue);
+  left: 50%;
+  translate: -50% 0;
+  position: absolute;
+  font-weight: bold;
+}
+
+.gm-compass::before {
+  color: red;
+  content: 'N';
+  top: 0;
+  z-index: 1;
+}
+
+.gm-compass::after {
+  content: 'S';
+  bottom: 0;
 }
 
 .hud {
