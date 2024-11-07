@@ -548,4 +548,22 @@ export default [
       return item;
     },
   },
+  {
+    name: 'Map with some markers on it',
+    position: {
+      lat: 0.00003,
+      lng: 0.0002,
+    },
+    async create(makers) {
+      return makers.threeObject('/assets/items/map/',
+        {
+          name: this.name,
+          onGround: true,
+          big: true,
+          cameraPosition: { x: -4, y: 1, z: -4 },
+          lightPosition: { x: -5, y: 5, z: -5 },
+        },
+      );
+    },
+  },
 ];
