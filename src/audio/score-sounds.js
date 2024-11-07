@@ -43,6 +43,6 @@ export default (context) => {
     circuitoFull: createScorePart(context, 'assets/audio/score/circuito-full.mp3', 0.4),
     lithiumLoop: createScorePart(context, 'assets/audio/score/lithium-loop.mp3', 0.4),
     lithiumChorus: createScorePart(context, 'assets/audio/score/lithium-chorus.mp3', 0.4),
-    lobotomy: createScorePart(context, 'assets/audio/score/lobotomy.mp3', 0.6),
+    lobotomy: createScorePart(context, 'assets/audio/score/lobotomy.mp3', 0.45),
   };
 };

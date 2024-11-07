@@ -21,7 +21,7 @@ export const intro = [
   { callback: () => journalMoment('🚗', "Hitched a ride to the Pampa del Tamarugal") },
   { text: "Okay, phew, there you are. I suppose we should get right to it." },
   {
-    text: "Let's walk and talk... from here it's just tamarugo trees for miles and miles.",
+    text: "Let's walk and talk... from here it's just rocks and tamarugo trees for miles and miles.",
     callback: (context) => enableClickToGoCB(context),
   },
   {

@@ -65,6 +65,7 @@ export default async (context) => {
   const footstepsSounds = {
     normal: footstepsNormal,
     gravel: footstepsGravel,
+    none: null,
   };
 
   let currentFootsteps = footstepsNormal;
@@ -76,7 +77,9 @@ export default async (context) => {
       localStorage.setItem(LOCALSTORAGE_FOOTSTEPS_KEY, name);
     },
     footsteps() {
-      playSFX(context, currentFootsteps, 2);
+      if (currentFootsteps) {
+        playSFX(context, currentFootsteps, 2);
+      }
     },
     chewing: () => playSFX(context, chewing),
     backpack: () => playSFX(context, backpack),

@@ -7,7 +7,7 @@ import { sleep } from '../utils.js';
 const thumb = document.getElementById('hitch-thumb');
 const truck = document.getElementById('coca-cola-truck');
 
-const destinationLatLng = { lat: -20.40103, lng: -69.71791 };
+const destinationLatLng = { lat: -20.37992, lng: -69.72742 };
 const destinationPov = { heading: 163.03, pitch: 0 };
 
 const cleanUp = (context) => {

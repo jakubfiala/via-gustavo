@@ -1,7 +1,7 @@
 import { hideHud, showHud } from '../hud/index.js';
 import { poem } from '../script/chapter6.js';
 import { scheduleScript } from '../script/index.js';
-import { disableClickToGoCB } from '../script/utils.js';
+import { disableClickToGoCB, showHelpMessage } from '../script/utils.js';
 import { removeTask } from '../task.js';
 import { sleep, enumerate } from '../utils.js';
 
@@ -48,7 +48,7 @@ export const gustavoSequence = async (context) => {
 
   context.container.animate([
     { filter: 'brightness(0.95) contrast(1.2) hue-rotate(0deg)' },
-    { filter: 'brightness(0.65) contrast(1.5) hue-rotate(-8deg)' },
+    { filter: 'brightness(0.75) contrast(1.6) hue-rotate(-8deg)' },
   ], { duration: JUMP_MS * 3, fill: 'forwards' });
 
   for (const [index, position] of enumerate(jumps)) {
@@ -61,8 +61,10 @@ export const gustavoSequence = async (context) => {
     }
   }
 
-  await sleep(PAN_MS + 2_000);
+  await sleep(PAN_MS + 3_000);
   await scheduleScript(poem, context);
+
+  await sleep(2_000);
 
   context.sfx.carCrash();
   context.soundscapeGain.gain.linearRampToValueAtTime(0, context.audioContext.currentTime + 3);
@@ -74,9 +76,17 @@ export const gustavoSequence = async (context) => {
   context.container.animate([
     { filter: 'brightness(3)' },
     { filter: 'brightness(1.1)' },
-  ], { duration: 5_000, fill: 'forwards' });
+  ], { duration: 10_000, fill: 'forwards' });
 
   context.map.setPano('gustavoDissolve1');
   context.map.setOptions({ linksControl: true });
+
+  const helpTimeout = setTimeout(
+    () => showHelpMessage('Click on the white arrow to move')(context),
+    15_000,
+  );
+
+  context.container.addEventListener('click', () => clearTimeout(helpTimeout), { once: true });
+
   showHud();
 };
