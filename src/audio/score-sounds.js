@@ -43,6 +43,8 @@ export default (context) => {
     circuitoFull: createScorePart(context, 'assets/audio/score/circuito-full.mp3', 0.4),
     lithiumLoop: createScorePart(context, 'assets/audio/score/lithium-loop.mp3', 0.4),
     lithiumChorus: createScorePart(context, 'assets/audio/score/lithium-chorus.mp3', 0.4),
-    lobotomy: createScorePart(context, 'assets/audio/score/lobotomy.mp3', 0.45),
+    lobotomy: createScorePart(context, 'assets/audio/score/lobotomy.mp3', 0.55),
+    finalTheme1: createScorePart(context, 'assets/audio/score/final-theme-1.mp3', 0.7),
+    finalTheme3: createScorePart(context, 'assets/audio/score/final-theme-3.mp3', 0.7),
   };
 };

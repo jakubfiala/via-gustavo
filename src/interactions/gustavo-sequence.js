@@ -46,11 +46,6 @@ export const gustavoSequence = async (context) => {
   context.map.setOptions({ linksControl: false });
   context.soundscape.set(context.soundscape.base);
 
-  context.container.animate([
-    { filter: 'brightness(0.95) contrast(1.2) hue-rotate(0deg)' },
-    { filter: 'brightness(0.75) contrast(1.6) hue-rotate(-8deg)' },
-  ], { duration: JUMP_MS * 3, fill: 'forwards' });
-
   for (const [index, position] of enumerate(jumps)) {
     context.map.setPosition(position);
 
@@ -76,7 +71,7 @@ export const gustavoSequence = async (context) => {
   context.container.animate([
     { filter: 'brightness(3)' },
     { filter: 'brightness(1.1)' },
-  ], { duration: 10_000, fill: 'forwards' });
+  ], { duration: 15_000, fill: 'forwards' });
 
   context.map.setPano('gustavoDissolve1');
   context.map.setOptions({ linksControl: true });

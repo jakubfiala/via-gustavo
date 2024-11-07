@@ -50,9 +50,19 @@ export const touchTheSky = [
 ];
 
 export const evening = [
+  { callback: (context) => {
+      context.score.finalTheme1.play();
+      context.container.animate([
+        { filter: 'brightness(0.95) contrast(1.2) hue-rotate(0deg)' },
+        { filter: 'brightness(0.75) contrast(1.6) hue-rotate(-8deg)' },
+      ], { duration: 15_000, fill: 'forwards' });
+    },
+  },
   {
     text: "It's getting dark as I see him reach the Pampa",
-    callback: (context) => context.soundscape.set(context.soundscape.townBigRoad),
+    callback: (context) => {
+      context.soundscape.set(context.soundscape.townBigRoad);
+    },
   },
   { text: "He must have walked from Humberstone on foot, for hours along the highway." },
   { text: "He should have been smart enough to hitch-hike like you did." },
@@ -66,6 +76,7 @@ export const evening = [
 ];
 
 export const night = [
+  { callback: (context) => context.score.finalTheme3.play() },
   { text: "He sometimes stops and stares at the stars, linking them with his fingers, forming constellations." },
   { text: "I gasp every time he wanders onto the asphalt, drivers cursing as they swerve past him." },
   { text: "He seems to pick up energy as the night closes in," },
@@ -115,7 +126,7 @@ export const poem = [
   { text: "the winds of time, may blow away your memory," },
   { text: "but today, it travels across the planet," },
   { text: "today, it's etched in semiconductors" },
-  { text: "in Quilicura, Canelones, in Douglas County, Inzai and Hanau." },
+  { text: "in Quilicura, Canelones, in Douglas County, Inzai and Hanau..." },
   { duration: 1 },
   { text: "May this strange moment" },
   { duration: 0.25 },
