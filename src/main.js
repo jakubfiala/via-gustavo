@@ -26,6 +26,7 @@ import createSoundscape from './audio/soundscapes.js';
 import { initJournal } from './journal/index.js';
 import { initCustomPanorama } from './custom-panorama/index.js';
 import { createDelayEffect } from './items/shrooms.js';
+import { LIMBO_LNG_STEP } from './custom-panorama/limbo.js';
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
@@ -64,7 +65,7 @@ const mapOptions = {
 if (initialPosition.lat === 0) {
   // we're in limbo
   delete mapOptions.position;
-  mapOptions.pano = 'limbo1';
+  mapOptions.pano = `limbo${Math.round(initialPosition.lng * LIMBO_LNG_STEP)}`;
   mapOptions.pov = { heading: 80, pitch: 0, zoom: 1 };
 }
 
