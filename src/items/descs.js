@@ -9,6 +9,7 @@ import { openLink, sleep } from '../utils.js';
 import { createCoke } from './coke.js';
 import { journalMoment } from '../journal/index.js';
 import { createStationOfTheCross } from './via-crucis.js';
+import { readIChing } from '../interactions/i-ching/index.js';
 
 export default [
   createBusStopItem({
@@ -493,6 +494,35 @@ export default [
       );
 
       item.activate = () => openLink('https://gnostic.technology/');
+
+      return item;
+    },
+  },
+  {
+    name: 'I-Ching vending machine',
+    position: {
+      lat: -20.25904,
+      lng: -69.78581,
+    },
+    canBeActivated: true,
+    async create(makers) {
+      const item = await makers.threeObject('/assets/items/i-ching/',
+        {
+          name: this.name,
+          big: true,
+          onGround: true,
+          // scale: 0.8,
+          cameraPosition: { x: 6, y: 1, z: 0 },
+          env: '/assets/img/difunta.env.jpg',
+          envIntensity: 1.5,
+        },
+      );
+
+      item.activate = async (context) => {
+        console.info('[i-ching]', 'reading');
+
+        return readIChing(context);
+      };
 
       return item;
     },
