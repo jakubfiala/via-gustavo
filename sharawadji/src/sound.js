@@ -45,13 +45,8 @@ class Sound {
     this.panner = new PannerNode(this.context);
     this.panner.panningModel = 'HRTF';
     this.panner.distanceModel = 'linear';
-
-    if (this.panner.positionX) {
-      this.panner.positionX.value = this.position.lat();
-      this.panner.positionY.value = this.position.lng();
-    } else {
-      this.panner.setPosition(this.position.lat(), this.position.lng());
-    }
+    this.panner.positionX.value = this.position.lat();
+    this.panner.positionY.value = this.position.lng();
 
     this.filter = new BiquadFilterNode(this.context);
     this.filter.type = 'lowpass';
