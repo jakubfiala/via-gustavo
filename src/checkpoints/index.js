@@ -17,7 +17,7 @@ import inventory from '../inventory/index.js';
 import { sleep } from '../utils.js';
 import { gustavoSequence } from '../interactions/gustavo-sequence.js';
 import { hideHud } from '../hud/index.js';
-import { DEFAULT_SCORE_GAIN } from '../audio/score-sounds.js';
+import { resetGame } from '../reset.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
@@ -604,7 +604,21 @@ export const checkpoints = [
 
       context.scoreGain.gain.cancelScheduledValues(context.audioContext.currentTime);
       context.scoreGain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 0.5);
-      context.score.lithiumES.play();
+
+      await context.score.lithiumES.play();
+      await sleep(5_000);
+
+      const iframe = document.getElementById('credits');
+      iframe.hidden = false;
+      iframe.contentWindow.addEventListener('message', () => {
+        iframe.hidden = true;
+      });
+
+      context.score.lithiumES.addEventListener('ended', async () => {
+        // resetGame();
+        await sleep(2_000);
+        location.reload();
+      });
     },
   }
 ];
