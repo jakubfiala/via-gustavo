@@ -32,7 +32,7 @@ export const changeOfMind = [
   { duration: 0.5 },
   { text: "Like I did for Gustavo." },
   { text: "Indeed, I know where he is right now." },
-  { text: "The Atacama is vast, but her people know to stick to certain paths." },
+  { text: "The desert is vast, but her people know to stick to certain paths." },
   { text: "I am so sorry I lied..." },
   { text: "I misjudged you, and thought it best to lead you away from him." },
   { text: "But now it's time I led you to Gustavo," },

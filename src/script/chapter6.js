@@ -34,7 +34,7 @@ export const intro = [
 export const growingUp = [
   { text: "See, it's weird growing up in a place people use as a Mars simulator." },
   { text: "It's not like the Sahara, where the sand quickly covers all traces of events." },
-  { text: "No, the Atacama remembers." },
+  { text: "No, this desert remembers." },
   { text: "Gustavo spent his childhood looking at the endless plains," },
   { text: "rugged ground sliced by perfectly straight roads, aligned with the cartesian axes we imposed on the planet." },
   { text: "In these things, I think, he saw a promise." },
@@ -118,7 +118,7 @@ export const poem = [
   { duration: 1 },
   { text: "Gustavo! Who are they?" },
   { text: "Those who keep pulling over in the evening" },
-  { text: "weeping or staring solemnly, leaving mark after mark at the place, where your last breath joined the Atacama air." },
+  { text: "weeping or staring solemnly, leaving mark after mark at the place, where your last breath joined the desert air." },
   { text: "Your offspring, friends or lovers," },
   { text: "I sense their broken hearts when their feet touch the asphalt." },
   { duration: 1 },

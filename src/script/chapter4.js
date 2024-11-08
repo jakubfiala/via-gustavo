@@ -191,7 +191,7 @@ export const lithium = [
   { text: "He'd talk about the precious groundwater, how it's pulled from beneath the desert," },
   { text: "and left to evaporate in the blazing sun." },
   { text: "He sounded proud when he talked about it." },
-  { text: "He'd clutch his phone slightly harder, aware of the piece of the Atacama inside." },
+  { text: "He'd clutch his phone slightly harder, aware of the piece of his land inside." },
   { text: "Inside his brother's phone, his mum's iPad and a billion other objects" },
   { text: "from Shenzen to Nevada, from Seoul to Brandenburg." },
   { duration: 1 },

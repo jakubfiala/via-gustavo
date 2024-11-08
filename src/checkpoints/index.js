@@ -15,7 +15,6 @@ import { journalChapter, journalMoment } from '../journal/index.js';
 import { removeTask, setTask } from '../task.js';
 import inventory from '../inventory/index.js';
 import { sleep } from '../utils.js';
-import { disableClickToGoCB } from '../script/utils.js';
 import { gustavoSequence } from '../interactions/gustavo-sequence.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
