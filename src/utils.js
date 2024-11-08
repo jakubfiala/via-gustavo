@@ -76,3 +76,41 @@ export const openLink = (href) => {
   link.rel = 'noopener';
   link.click();
 };
+
+export const approachPov = async (G, targetPov, durationMS, steps = 100) => {
+  const initialPov = G.map.getPov();
+
+  const pitchStep = (targetPov.pitch - initialPov.pitch) / steps;
+  const headingStep = (targetPov.heading - initialPov.heading) / steps;
+  const zoomStep = (targetPov.zoom - initialPov.zoom) / steps;
+
+  const stepMS = durationMS / steps;
+
+  const pov = initialPov;
+  for (let i = 0; i < steps; i++) {
+    pov.pitch += pitchStep;
+    pov.heading += headingStep;
+    pov.zoom += zoomStep;
+
+    G.map.setPov({ ...pov });
+
+    await sleep(stepMS);
+  }
+};
+
+
+export const approachLatLng = async (map, target, durationMS, steps = 10) => {
+  const initial = { lat: map.getCenter().lat(), lng: map.getCenter().lng() };
+  const latStep = (target.lat - initial.lat) / steps;
+  const lngStep = (target.lng - initial.lng) / steps;
+  const stepMS = durationMS / steps;
+
+  const center = initial;
+  for (let i = 0; i < steps; i++) {
+    center.lat += latStep;
+    center.lng += lngStep;
+
+    map.panTo(center);
+    await sleep(stepMS);
+  }
+};

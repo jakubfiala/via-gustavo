@@ -69,6 +69,10 @@
     <p>Jakub Fiala</p>
   </section>
   <section hidden>
+    <p>Voices</p>
+    <p>Joanna, Matthew &amp; Amy</p>
+  </section>
+  <section hidden>
     <p>Music</p>
     <p><em>after his lobotomy (it felt good)</em> - Theydon Boys</p>
     <p><em>Lithium | Adaptación Español</em> - D4ve</p>
@@ -76,6 +80,7 @@
   <section hidden>
     <p>Advisory Board</p>
     <p>Marta Handenawer</p>
+    <p>María Luisa Vergara</p>
   </section>
   <section hidden>
     <p>Gamepad Integration</p>
@@ -96,7 +101,7 @@
       const sections = Array.from(document.getElementsByTagName('section'));
       let currentSection = null;
 
-      await sleep(2_000);
+      await sleep(1_200);
 
       for (const section of sections) {
         if (currentSection) {
@@ -108,7 +113,7 @@
         section.hidden = false;
         currentSection = section;
 
-        await sleep(2_000);
+        await sleep(3_000);
       }
 
       window.parent.postMessage('done');

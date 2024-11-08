@@ -3,7 +3,7 @@ import { poem } from '../script/chapter6.js';
 import { scheduleScript } from '../script/index.js';
 import { disableClickToGoCB, showHelpMessage } from '../script/utils.js';
 import { removeTask } from '../task.js';
-import { sleep, enumerate } from '../utils.js';
+import { sleep, enumerate, approachPov } from '../utils.js';
 
 const JUMP_MS = 4_300;
 const PAN_MS = 5_000;
@@ -16,27 +16,6 @@ const jumps = [
   { lat: -20.43852, lng: -69.70106 },
   { lat: -20.4388734, lng: -69.7009038 },
 ];
-
-const approachPov = async (context, targetPov, durationMS, steps = 100) => {
-  const initialPov = context.map.getPov();
-
-  const pitchStep = (targetPov.pitch - initialPov.pitch) / steps;
-  const headingStep = (targetPov.heading - initialPov.heading) / steps;
-  const zoomStep = (targetPov.zoom - initialPov.zoom) / steps;
-
-  const stepMS = durationMS / steps;
-
-  const pov = initialPov;
-  for (let i = 0; i < steps; i++) {
-    pov.pitch += pitchStep;
-    pov.heading += headingStep;
-    pov.zoom += zoomStep;
-
-    context.map.setPov({ ...pov });
-
-    await sleep(stepMS);
-  }
-};
 
 export const gustavoSequence = async (context) => {
   disableClickToGoCB(context);

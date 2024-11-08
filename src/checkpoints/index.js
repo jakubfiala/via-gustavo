@@ -7,7 +7,7 @@ import * as chapter4 from '../script/chapter4.js';
 import * as chapter5 from '../script/chapter5.js';
 import * as chapter6 from '../script/chapter6.js';
 import * as epilogue from '../script/epilogue.js';
-import { latLngDist } from "../utils.js";
+import { approachLatLng, approachPov, latLngDist } from "../utils.js";
 import { showSkyImages } from '../sky-images.js';
 import * as drone from '../drone.js';
 import { intro2, intro3 } from '../script/intro.js';
@@ -18,6 +18,7 @@ import { sleep } from '../utils.js';
 import { gustavoSequence } from '../interactions/gustavo-sequence.js';
 import { hideHud } from '../hud/index.js';
 import { resetGame } from '../reset.js';
+import { START_POSITION } from '../constants.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
@@ -48,6 +49,13 @@ export const checkpoints = [
     }
   },
   {
+    lat: -20.4341,
+    lng: -69.55155,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.trees);
+    },
+  },
+  {
     lat: -20.43945,
     lng: -69.53325,
     callback(context) {
@@ -66,13 +74,6 @@ export const checkpoints = [
     lng: -69.54667,
     callback(context) {
       return scheduleScript(chapter1.showYouSomething, context);
-    },
-  },
-  {
-    lat: -20.4341,
-    lng: -69.55155,
-    async callback(context) {
-      context.soundscape.set(context.soundscape.trees);
     },
   },
   {
@@ -103,13 +104,6 @@ export const checkpoints = [
       return scheduleScript(chapter1.theresTheBus, context);
     },
   },
-  {
-    lat: -20.34114,
-    lng: -69.65651,
-    async callback(context) {
-      context.soundscape.set(context.soundscape.town2);
-    },
-  },
 
   // Chapter 2
   {
@@ -121,6 +115,13 @@ export const checkpoints = [
         ...context,
         chapter: this.chapter,
       });
+    },
+  },
+  {
+    lat: -20.34114,
+    lng: -69.65651,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.town2);
     },
   },
   {
@@ -215,17 +216,17 @@ export const checkpoints = [
     },
   },
   {
-    lat: -20.32843,
-    lng: -69.71013,
-    async callback(context) {
-      context.soundscape.set(context.soundscape.base);
-    },
-  },
-  {
     lat: -20.32901,
     lng: -69.70551,
     async callback(context) {
       return scheduleScript(chapter2.station8, context);
+    },
+  },
+  {
+    lat: -20.32843,
+    lng: -69.71013,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.base);
     },
   },
   {
@@ -594,27 +595,61 @@ export const checkpoints = [
   {
     lat: 1,
     lng: 1,
-    async callback(context) {
+    async callback(G) {
       hideHud();
 
-      context.container.animate([
+      approachPov(G, { heading: 260, pitch: 0, zoom: 3 }, 4_000, 100);
+
+      G.container.animate([
         { opacity: 1 },
         { opacity: 0 },
-      ], { duration: 3, fill: 'both' });
+      ], { duration: 3_000, fill: 'both' });
 
-      context.scoreGain.gain.cancelScheduledValues(context.audioContext.currentTime);
-      context.scoreGain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 0.5);
+      G.score.lithiumAtmo.pause();
+      G.scoreGain.gain.cancelScheduledValues(G.audioContext.currentTime);
+      G.scoreGain.gain.linearRampToValueAtTime(1, G.audioContext.currentTime + 0.5);
 
-      await context.score.lithiumES.play();
-      await sleep(5_000);
+      await G.score.lithiumES.play();
+      await sleep(5_500);
 
       const iframe = document.getElementById('credits');
       iframe.hidden = false;
-      iframe.contentWindow.addEventListener('message', () => {
-        iframe.hidden = true;
+
+      window.addEventListener('message', async (event) => {
+        if (event.data === 'done') {
+          console.info('[credits]', 'done', event);
+          iframe.hidden = true;
+
+          const creditsMapContainer = document.getElementById('credits-map');
+          const options = {
+            disableDefaultUI: true,
+            center: START_POSITION,
+            zoom: 30,
+            mapTypeId: G.google.MapTypeId.SATELLITE,
+          };
+
+
+          const map = new G.google.Map(creditsMapContainer, options);
+          G.container.style.display = 'none';
+          creditsMapContainer.hidden = false;
+          await sleep(2_000);
+
+          creditsMapContainer.animate([
+            { opacity: 0 },
+            { opacity: 1 },
+          ], { duration: 3_000, fill: 'both' });
+
+          for (const checkpoint of checkpoints) {
+            if (checkpoint.lat === 0 || checkpoint.lat === 1) {
+              continue;
+            }
+
+            await approachLatLng(map, checkpoint, 3_000, 40);
+          };
+        }
       });
 
-      context.score.lithiumES.addEventListener('ended', async () => {
+      G.score.lithiumES.addEventListener('ended', async () => {
         // resetGame();
         await sleep(2_000);
         location.reload();
@@ -623,8 +658,8 @@ export const checkpoints = [
   }
 ];
 
-export const checkForCheckpoints = context => () => {
-  const position = context.map.getPosition();
+export const checkForCheckpoints = G => () => {
+  const position = G.map.getPosition();
 
   for (const checkpoint of checkpoints) {
     if (checkpoint.passed) {
@@ -641,7 +676,7 @@ export const checkForCheckpoints = context => () => {
       checkpoint.passed = true;
 
       checkpoint
-        .callback(context)
+        .callback(G)
         .then(() => {
           if (checkpoint.chapter) {
             completeChapter(checkpoint.chapter);

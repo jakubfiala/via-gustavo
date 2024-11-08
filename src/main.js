@@ -105,7 +105,8 @@ const initialize = async () => {
 
   const { StreetViewPanorama, InfoWindow, StreetViewService } = await mapsLoader.importLibrary('streetView');
   const { event, ControlPosition, Size, LatLng } = await mapsLoader.importLibrary('core');
-  scriptContext.google = { event, StreetViewPanorama, StreetViewService, InfoWindow, Size, LatLng };
+  const { Map, MapTypeId } = await mapsLoader.importLibrary('maps');
+  scriptContext.google = { event, StreetViewPanorama, StreetViewService, InfoWindow, Size, LatLng, Map, MapTypeId };
 
   container.hidden = false;
 
@@ -140,7 +141,7 @@ const initialize = async () => {
 
   scriptContext.masterGain.gain.setValueAtTime(1, scriptContext.audioContext.currentTime);
 
-  scriptContext.localisedSounds = new Sharawadji(localisedSounds, map, {
+  scriptContext.localisedSounds = new Sharawadji(localisedSounds, scriptContext.map, {
     debug,
     compressor: true
   });

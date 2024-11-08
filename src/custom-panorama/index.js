@@ -67,7 +67,7 @@ export const initCustomPanorama = async (context) => {
     exitLimbo6: createPano(
       'exitLimbo6', [{ pano: 'end', heading: 260 }], { position: { lat: 1, lng: 0.0006 }, centerHeading: 260 }),
     end: createPano(
-      'end', [], { position: { lat: 1, lng: 1 }}),
+      'exitLimbo6', [], { position: { lat: 1, lng: 1 }, centerHeading: 260}),
   };
 
   context.map.registerPanoProvider((name) => {

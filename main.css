@@ -1250,3 +1250,15 @@ p.subtitle {
   height: 100vh;
   z-index: 1000;
 }
+
+#credits-map {
+  opacity: 0;
+}
+
+#finish-button:not([hidden]) {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  animation: fade-in 1s both;
+  z-index: 3;
+}
