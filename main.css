@@ -638,6 +638,7 @@ p.subtitle {
 }
 
 .intro__disclaimer {
+  display: none;
   font-size: 0.75rem;
   max-width: 700px;
 }
@@ -652,9 +653,7 @@ p.subtitle {
 }
 
 .intro__ctas {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
+  display: none;
 }
 
 .intro__cta {
@@ -672,7 +671,7 @@ p.subtitle {
   list-style-type: none;
   margin: 2rem auto;
   padding: 0;
-  display: flex;
+  display: none;
   gap: 1rem;
   font-size: 0.8em;
   justify-content: center;
@@ -690,6 +689,38 @@ p.subtitle {
 .intro__tips li+li {
   border-left: solid 1px var(--color-blue);
   padding-left: 1rem;
+}
+
+.intro__mobile p {
+  margin-top: 0;
+}
+
+.intro__mobile::before,
+.intro__mobile::after {
+  content: '~';
+  display: block;
+  margin: 0.5rem auto;
+  opacity: 0.5;
+}
+
+@media screen and (min-width: 1024px) {
+  .intro__disclaimer {
+    display: block;
+  }
+
+  .intro__tips {
+    display: flex;
+  }
+
+  .intro__ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .intro__mobile {
+    display: none;
+  }
 }
 
 .map-container .vg-item {
