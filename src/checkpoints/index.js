@@ -16,6 +16,8 @@ import { removeTask, setTask } from '../task.js';
 import inventory from '../inventory/index.js';
 import { sleep } from '../utils.js';
 import { gustavoSequence } from '../interactions/gustavo-sequence.js';
+import { hideHud } from '../hud/index.js';
+import { DEFAULT_SCORE_GAIN } from '../audio/score-sounds.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
@@ -577,6 +579,32 @@ export const checkpoints = [
     lng: 0.0001,
     async callback(context) {
       return scheduleScript(epilogue.intro, context);
+    },
+  },
+  {
+    lat: 1,
+    lng: 0.0004,
+    async callback(context) {
+      context.scoreGain.gain.linearRampToValueAtTime(0, context.audioContext.currentTime + 3);
+      context.soundscapeGain.gain.linearRampToValueAtTime(0, context.audioContext.currentTime + 3);
+      context.sfxGain.gain.linearRampToValueAtTime(0, context.audioContext.currentTime + 3);
+      context.score.lithiumES.preload = 'auto';
+    },
+  },
+  {
+    lat: 1,
+    lng: 1,
+    async callback(context) {
+      hideHud();
+
+      context.container.animate([
+        { opacity: 1 },
+        { opacity: 0 },
+      ], { duration: 3, fill: 'both' });
+
+      context.scoreGain.gain.cancelScheduledValues(context.audioContext.currentTime);
+      context.scoreGain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 0.5);
+      context.score.lithiumES.play();
     },
   }
 ];

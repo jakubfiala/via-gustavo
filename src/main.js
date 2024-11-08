@@ -68,6 +68,10 @@ if (initialPosition.lat === 0) {
   delete mapOptions.position;
   mapOptions.pano = `limbo${Math.round(initialPosition.lng * LIMBO_LNG_STEP)}`;
   mapOptions.pov = { heading: 80, pitch: 0, zoom: 1 };
+} else if (initialPosition.lat === 1) {
+  delete mapOptions.position;
+  mapOptions.pano = `exitLimbo${Math.round(initialPosition.lng * LIMBO_LNG_STEP)}`;
+  mapOptions.pov = { heading: 80, pitch: 0, zoom: 1 };
 }
 
 if (completedChapters.size > 0) {

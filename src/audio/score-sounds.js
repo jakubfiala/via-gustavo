@@ -50,5 +50,6 @@ export default (context) => {
     finalTheme1: createScorePart(context, 'assets/audio/score/final-theme-1.mp3', 0.7),
     finalTheme3: createScorePart(context, 'assets/audio/score/final-theme-3.mp3', 0.7),
     lithiumAtmo: createScorePart(context, 'assets/audio/score/lithium-atmo.mp3', 0.5, true),
+    lithiumES: createScorePart(context, 'assets/audio/score/lithium-es-by-d4ve.mp3'),
   };
 };

@@ -60,6 +60,14 @@ export const initCustomPanorama = async (context) => {
       'gustavoDissolve1', [{ pano: 'gustavoDissolve2', heading: 63 }], { position: gustavoPosition }),
     dds: createPano(
       'dds', [{ pano: 'o9mETUVAgxbqquXFtBWFLw', heading: 260 }], { position: { lat: 41.378310, lng: 2.132984 } }),
+    exitLimbo4: createPano(
+      'exitLimbo4', [{ pano: 'exitLimbo5', heading: 260 }], { position: { lat: 1, lng: 0.0004 } }),
+    exitLimbo5: createPano(
+      'exitLimbo5', [{ pano: 'exitLimbo6', heading: 260 }], { position: { lat: 1, lng: 0.0005 }, centerHeading: 260 }),
+    exitLimbo6: createPano(
+      'exitLimbo6', [{ pano: 'end', heading: 260 }], { position: { lat: 1, lng: 0.0006 }, centerHeading: 260 }),
+    end: createPano(
+      'end', [], { position: { lat: 1, lng: 1 }}),
   };
 
   context.map.registerPanoProvider((name) => {
