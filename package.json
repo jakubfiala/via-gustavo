@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "./generate-speech-archive.sh && rollup -c",
+    "build": "./scripts/generate-speech-archive.sh && rollup -c",
     "dev": "rollup -c --watch"
   },
   "repository": {
