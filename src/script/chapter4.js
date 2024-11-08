@@ -79,7 +79,7 @@ export const difunta1 = [
   { text: "What she's doing is pretty dumb, if you ask me." },
   {
     text: "Let's keep walking, get some fresh air outside of town.",
-    callback: () => {
+    callback: (context) => {
       setTask('Make your way out of Pozo Almonte');
       context.score.circuito5.preload = 'auto';
     },
@@ -102,7 +102,7 @@ export const difunta2 = [
     callback: (context) => context.soundscape.set(context.soundscape.base),
   },
   {
-    callback: () => {
+    callback: (context) => {
       context.score.circuito3.preload = 'auto';
       setTask("Continue walking to hear more of Deolinda's story");
     },
@@ -207,7 +207,7 @@ export const lithium = [
 
 export const geoglyphs = [
   {
-    callback:  () => {
+    callback:  (context) => {
       context.score.lithiumChorus.preload = 'auto';
       journalMoment('🔎', 'Looked for Gustavo from the overpass. No luck.');
     },
@@ -231,7 +231,7 @@ export const geoglyphs = [
   { text: "It's what Gustavo would have done." },
   { text: "Go, go, leave me alone, for Christ's sakes!" },
   {
-    callback: () => {
+    callback: (context) => {
       setTask('Visit the town of Humberstone to the north-west 🏭');
       context.score.bachPiano5.preload = 'auto';
     },

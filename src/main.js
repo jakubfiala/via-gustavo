@@ -27,6 +27,7 @@ import { initJournal } from './journal/index.js';
 import { initCustomPanorama } from './custom-panorama/index.js';
 import { createDelayEffect } from './items/shrooms.js';
 import { LIMBO_LNG_STEP } from './custom-panorama/limbo.js';
+import { checkSafari } from './safari.js';
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
@@ -76,6 +77,10 @@ if (completedChapters.size > 0) {
 }
 
 const initialize = async () => {
+  if (checkSafari()) {
+    return;
+  }
+
   if (!dev && !debug) {
     try {
       if (document.body.webkitRequestFullscreen) {

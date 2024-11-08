@@ -48,7 +48,7 @@ const thanks = [
   { text: "but the protocol is the protocol."},
   {
     duration: 2,
-    callback: () => {
+    callback: (context) => {
       context.score.veniceMedium.preload = 'auto';
       setTask('Continue down the road.');
     },
@@ -88,7 +88,7 @@ export const showYouSomething = [
   { text: "A bus stops there at the plaza with trees" },
   {
     text: "- we can ride it from there.",
-    callback: () => {
+    callback: (context) => {
       context.score.veniceLong.preload = 'auto';
       setTask('Continue into town.');
     },
@@ -130,7 +130,7 @@ export const theresTheBus = [
   { text: "", callback: showHelpMessage("Click on the bus stop to start travelling") },
   {
     text: "See you on the other side!",
-    callback: () => {
+    callback: (context) => {
       context.score.bachPiano2.preload = 'auto';
     },
   },

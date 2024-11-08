@@ -448,6 +448,11 @@ p.subtitle {
   opacity: 0;
 }
 
+.hud__dialog,
+.intro__content {
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+}
+
 .hud__dialog {
   background: #fffe;
   border: solid 1px var(--color-blue);
@@ -465,7 +470,6 @@ p.subtitle {
   height: 50vh;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
-  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
 }
 
 .hud__dialog--big {
@@ -1194,4 +1198,19 @@ p.subtitle {
   translate: 0 -50%;
   transition: filter 150ms;
   cursor: pointer;
+}
+
+#safari-dialog::backdrop {
+  background: #0005;
+  -webkit-backdrop-filter: blur(20px);
+}
+
+#safari-dialog {
+  width: 30vw;
+  height: 40vh;
+}
+
+#safari-ok {
+  display: block;
+  margin: 2rem auto;
 }

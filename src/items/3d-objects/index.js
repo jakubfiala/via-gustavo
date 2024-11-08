@@ -196,6 +196,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
         createRenderer();
       }
 
+      renderer.clear();
       renderer.render(scene, camera);
     },
     async reset() {
