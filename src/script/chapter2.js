@@ -67,7 +67,7 @@ export const mainRoad = [
   { text: "See that cross to the north?" },
   {
     text: "The next station is just a little further past it.",
-    callback: () => {
+    callback: (context) => {
       setTask('Continue to the next station');
       context.score.viaCrucis3.preload = 'auto';
     },
@@ -92,7 +92,7 @@ export const station2 = [
   { duration: 3 },
   { text: "Let's keep going northwest, and out of this town." },
   {
-    callback: () => {
+    callback: (context) => {
       context.score.viaCrucis2.preload = 'auto';
       journalMoment('✝️', "Found another Station of the Cross");
     },
