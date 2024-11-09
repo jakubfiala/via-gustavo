@@ -7,7 +7,7 @@ import * as chapter4 from '../script/chapter4.js';
 import * as chapter5 from '../script/chapter5.js';
 import * as chapter6 from '../script/chapter6.js';
 import * as epilogue from '../script/epilogue.js';
-import { approachLatLng, approachPov, latLngDist } from "../utils.js";
+import { latLngDist } from "../utils.js";
 import { showSkyImages } from '../sky-images.js';
 import * as drone from '../drone.js';
 import { intro2, intro3 } from '../script/intro.js';
@@ -16,9 +16,7 @@ import { removeTask, setTask } from '../task.js';
 import inventory from '../inventory/index.js';
 import { sleep } from '../utils.js';
 import { gustavoSequence } from '../interactions/gustavo-sequence.js';
-import { hideHud } from '../hud/index.js';
-import { resetGame } from '../reset.js';
-import { START_POSITION } from '../constants.js';
+import { finalSequence } from '../interactions/final-sequence.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
@@ -367,6 +365,13 @@ export const checkpoints = [
 
   // Chapter 4
   {
+    lat: -20.27143,
+    lng: -69.78607,
+    async callback(context) {
+      context.soundscape.set(context.soundscape.town3);
+    },
+  },
+  {
     lat: -20.27109,
     lng: -69.78599,
     chapter: chapters[3],
@@ -384,13 +389,6 @@ export const checkpoints = [
       if (inventory.hasItem('NASA Backpack')) {
         return scheduleScript(chapter4.niceBackpack, context);
       }
-    },
-  },
-  {
-    lat: -20.27143,
-    lng: -69.78607,
-    async callback(context) {
-      context.soundscape.set(context.soundscape.town3);
     },
   },
   {
@@ -596,67 +594,7 @@ export const checkpoints = [
     lat: 1,
     lng: 1,
     async callback(G) {
-      hideHud();
-
-      approachPov(G, { heading: 260, pitch: 0, zoom: 3 }, 4_000, 100);
-
-      G.container.animate([
-        { opacity: 1 },
-        { opacity: 0 },
-      ], { duration: 3_000, fill: 'both' });
-
-      G.score.lithiumAtmo.pause();
-      G.scoreGain.gain.cancelScheduledValues(G.audioContext.currentTime);
-      G.scoreGain.gain.linearRampToValueAtTime(1, G.audioContext.currentTime + 0.5);
-
-      await G.score.lithiumES.play();
-      await sleep(5_500);
-
-      const iframe = document.getElementById('credits');
-      iframe.hidden = false;
-
-      window.addEventListener('message', async (event) => {
-        if (event.data === 'done') {
-          console.info('[credits]', 'done', event);
-          iframe.hidden = true;
-
-          const creditsMapContainer = document.getElementById('credits-map');
-          const options = {
-            disableDefaultUI: true,
-            center: START_POSITION,
-            zoom: 20,
-            mapTypeId: G.google.MapTypeId.SATELLITE,
-          };
-
-
-          const map = new G.google.Map(creditsMapContainer, options);
-          G.container.style.display = 'none';
-          creditsMapContainer.hidden = false;
-          await sleep(2_000);
-
-          creditsMapContainer.animate([
-            { opacity: 0 },
-            { opacity: 1 },
-          ], { duration: 3_000, fill: 'both' });
-
-          for (const checkpoint of checkpoints) {
-            if (checkpoint.lat === 0 || checkpoint.lat === 1) {
-              continue;
-            }
-
-            await approachLatLng(map, checkpoint, 3_000, 40);
-          };
-
-          map.panTo({ lat: -20.4388, lng: -69.70093 });
-          map.setZoom(20);
-        }
-      });
-
-      G.score.lithiumES.addEventListener('ended', async () => {
-        // resetGame();
-        await sleep(2_000);
-        location.reload();
-      });
+      return finalSequence(G, checkpoints);
     },
   }
 ];

@@ -152,6 +152,11 @@ const initialize = async () => {
     revisitedSequence(scriptContext);
   }
 
+  if (!map.getPosition()) {
+    console.info('[main]', 'map does not have position');
+    map.setPosition(START_POSITION);
+  }
+
   scriptContext.items = await loadItems(InfoWindow, scriptContext);
   scriptContext.items.forEach((o) => o.update());
 

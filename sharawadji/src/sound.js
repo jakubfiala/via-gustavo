@@ -105,6 +105,10 @@ class Sound {
 
   playIfNear() {
     const userPosition = this.map.getPosition();
+    if (!userPosition) {
+      return false;
+    }
+
     // Calculate distance between user and sound
     const distance = latLngDist(this.position, userPosition);
 
