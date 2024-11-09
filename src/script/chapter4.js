@@ -140,8 +140,8 @@ export const difunta3 = [
 export const difunta4 = [
   {
     text: "I know, I know.",
-    callback: (context) => {
-      context.score.circuito1.preload = 'auto';
+    callback: (G) => {
+      G.score.circuito1.preload = 'auto';
     },
   },
   { text: "The story's not exactly a box office hit - but it's kind of a big deal here." },
@@ -149,19 +149,22 @@ export const difunta4 = [
   { text: "and it befits someone like you and I, the wanderers, the wayfinders and the vagabonds," },
   { text: "the gauchos, truck drivers and other travellers, to leave her an offering of water at the roadside." },
   {
-    callback: (context) => context.score.circuito1.play(),
+    callback: (G) => G.score.circuito1.play(),
   },
   { text: "Come, let's honor the brave Deolinda!" },
   { text: "May she guard us on the voyages to come." },
   {
-    callback: async (context) => {
+    callback: async (G) => {
       setTask('Leave an offering at the animita');
-      await askForDonation(context);
+      await askForDonation(G);
       setTask('Continue walking');
       await sleep(3000);
       journalMoment('💦', 'Gave an offering of water to the Difunta Correa');
     },
   },
+  { duration: 1 },
+  { text: "See? There's a nice folk story for your Internet game. Happy now?" },
+  { text: "Or are you still after your 'authentic local experience'?" },
 ];
 
 export const afterDifunta = [
