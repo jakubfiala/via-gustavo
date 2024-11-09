@@ -624,7 +624,7 @@ export const checkpoints = [
           const options = {
             disableDefaultUI: true,
             center: START_POSITION,
-            zoom: 30,
+            zoom: 20,
             mapTypeId: G.google.MapTypeId.SATELLITE,
           };
 
@@ -646,6 +646,9 @@ export const checkpoints = [
 
             await approachLatLng(map, checkpoint, 3_000, 40);
           };
+
+          map.panTo({ lat: -20.4388, lng: -69.70093 });
+          map.setZoom(20);
         }
       });
 
