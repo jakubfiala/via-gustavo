@@ -57,6 +57,10 @@ export const finalSequence = async (G, checkpoints) => {
           continue;
         }
 
+        if (checkpoint.finalCreditsHeading) {
+          map.setHeading(checkpoint.finalCreditsHeading);
+        }
+
         await approachLatLng(map, checkpoint, 3_000, 40);
       };
 

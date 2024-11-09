@@ -163,6 +163,46 @@ export default [
     position: { lat: -20.21257, lng: -69.7896 },
     rotation: { y: -1.3 },
   }),
+  createCoke({
+    name: 'Coca-Cola 30',
+    position: { lat: -20.20558, lng: -69.79672 },
+    rotation: { x: -Math.PI/2, y: 0.9 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 31',
+    position: { lat: -20.20596, lng: -69.79647 },
+    rotation: { x: -Math.PI/2, y: 0.9 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 32',
+    position: { lat: -20.20583, lng: -69.79633 },
+    rotation: { x: Math.PI/2, y: 0.1 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 33',
+    position: { lat: -20.20576, lng: -69.79627 },
+    rotation: { x: Math.PI/2, y: 0.8 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 34',
+    position: { lat: -20.20567, lng: -69.79609 },
+    rotation: { y: -0.1 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 35',
+    position: { lat: -20.2053, lng: -69.79575 },
+    rotation: { x: -Math.PI/2, y: -0.4 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 36',
+    position: { lat: -20.20523, lng: -69.79563 },
+    rotation: { x: Math.PI/2, y: 1.4 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 37',
+    position: { lat: -20.20521, lng: -69.79547 },
+    rotation: { y: 1.4 },
+  }),
 
   {
     name: 'Geiger Counter',
@@ -386,6 +426,14 @@ export default [
       );
 
       return item;
+    },
+  },
+  {
+    name: 'Humberstone Wikipedia',
+    collectible: false,
+    position: { lat: -20.20635, lng: -69.79717 },
+    create(makers) {
+      return makers.embed('https://en.wikipedia.org/wiki/Humberstone_and_Santa_Laura_Saltpeter_Works');
     },
   },
   {

@@ -488,8 +488,15 @@ export const checkpoints = [
     },
   },
   {
-    lat: -20.20521,
-    lng: -69.79559,
+    lat: -20.2073,
+    lng: -69.79675,
+    async callback(G) {
+      G.soundscape.set(G.soundscape.town4);
+    },
+  },
+  {
+    lat: -20.20519,
+    lng: -69.7955,
     async callback(context) {
       context.soundscape.set(context.soundscape.base);
       context.score.circuitoFull.play();
@@ -517,6 +524,14 @@ export const checkpoints = [
 
       journalMoment('🌠', 'Strange diagrams appeared in the sky, and my companion had a change of heart.');
     }
+  },
+  {
+    lat: -20.18714,
+    lng: -69.81611,
+    // this is just so the Humberstone geoglyph
+    // appears in the final credits
+    finalCreditsHeading: 180,
+    async callback() {},
   },
 
   // Chapter 6 - Finding Gustavo
