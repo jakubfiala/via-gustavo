@@ -1,4 +1,6 @@
 import { DEFAULT_SCORE_GAIN } from '../audio/score-sounds.js';
+import { journalMoment } from '../journal/index.js';
+import { removeTask } from '../task.js';
 import { scheduleScript } from './index.js';
 
 export const finish = [
@@ -13,13 +15,15 @@ export const finish = [
 
 export const intro = [
   {
-    callback: (context) => {
+    callback: (G) => {
       console.info('[epilogue]', 'starting');
-      context.speechPlaybackRate = 1.1;
-      context.score.lithiumAtmo.play();
-      context.soundscapeGain.gain.setValueAtTime(0, context.audioContext.currentTime);
-      context.scoreGain.gain.setValueAtTime(0, context.audioContext.currentTime);
-      context.scoreGain.gain.linearRampToValueAtTime(DEFAULT_SCORE_GAIN, context.audioContext.currentTime + 10);
+      removeTask();
+      G.speechPlaybackRate = 1.1;
+      G.score.lithiumAtmo.play();
+      G.soundscapeGain.gain.cancelScheduledValues(G.audioContext.currentTime);
+      G.soundscapeGain.gain.setValueAtTime(0, G.audioContext.currentTime);
+      G.scoreGain.gain.setValueAtTime(0, G.audioContext.currentTime);
+      G.scoreGain.gain.linearRampToValueAtTime(DEFAULT_SCORE_GAIN, G.audioContext.currentTime + 10);
     },
   },
   { duration: 2 },
@@ -28,7 +32,10 @@ export const intro = [
   { duration: 1 },
   { text: "I'm afraid I have to let you know it's over." },
   { text: "You are no longer in the desert." },
-  { duration: 0.75 },
+  {
+    duration: 0.75,
+    callback: () => journalMoment('☠️', 'I think I may have died? huh?'),
+  },
   { text: "I'm going to be your g-" },
   { text: "- oh wait, you've had a guide already, haven't you?" },
   { text: "Perhaps more than one." },

@@ -47,13 +47,6 @@ export const checkpoints = [
     }
   },
   {
-    lat: -20.4341,
-    lng: -69.55155,
-    async callback(context) {
-      context.soundscape.set(context.soundscape.trees);
-    },
-  },
-  {
     lat: -20.43945,
     lng: -69.53325,
     callback(context) {
@@ -72,6 +65,13 @@ export const checkpoints = [
     lng: -69.54667,
     callback(context) {
       return scheduleScript(chapter1.showYouSomething, context);
+    },
+  },
+  {
+    lat: -20.4341,
+    lng: -69.55155,
+    async callback(G) {
+      G.soundscape.set(G.soundscape.trees);
     },
   },
   {
@@ -331,20 +331,20 @@ export const checkpoints = [
     },
   },
   {
+    lat: -20.28189,
+    lng: -69.78645,
+    async callback(G) {
+      G.soundscape.set(G.soundscape.trees);
+      G.score.dirtRoad4.preload = 'auto';
+    },
+  },
+  {
     lat: -20.2812,
     lng: -69.78685,
     async callback(context) {
       context.droneHoveringBehindYou?.stopHovering(context);
       context.droneHoveringBehindYou = null;
       journalMoment('🛸', 'The drone finally left me alone')
-    },
-  },
-  {
-    lat: -20.28189,
-    lng: -69.78645,
-    async callback(context) {
-      context.soundscape.set(context.soundscape.trees);
-      context.score.dirtRoad4.preload = 'auto';
     },
   },
   {
@@ -524,14 +524,6 @@ export const checkpoints = [
 
       journalMoment('🌠', 'Strange diagrams appeared in the sky, and my companion had a change of heart.');
     }
-  },
-  {
-    lat: -20.18714,
-    lng: -69.81611,
-    // this is just so the Humberstone geoglyph
-    // appears in the final credits
-    finalCreditsHeading: 180,
-    async callback() {},
   },
 
   // Chapter 6 - Finding Gustavo
