@@ -76,3 +76,5 @@ export const toast = (text) => {
 
   setTimeout(() => toast.hidden = true, 5000);
 };
+
+export const persistenceToast = () => toast('💾  Your location is being saved continuously.');

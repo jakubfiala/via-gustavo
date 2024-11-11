@@ -18,7 +18,7 @@ import { initTask } from './task.js';
 import { initSpeech } from './script/speech.js';
 import { localisedSounds } from './audio/localised-sounds.js';
 import { FADE_OUT_DELAY_MS, playGatewaySound } from './audio/gateway-sound.js';
-import { enableClickToGoCB, enableSFX } from './script/utils.js';
+import { enableClickToGoCB, enableSFX, persistenceToast } from './script/utils.js';
 import { checkForCheckpoints } from './checkpoints/index.js';
 import createSFX from './audio/sfx.js';
 import createScore from './audio/score-sounds.js';
@@ -223,6 +223,7 @@ const revisitedSequence = (context) => {
 
   setTimeout(() => {
     enableSFX(context);
+    persistenceToast();
   }, 10000);
 
   enableClickToGoCB(context);

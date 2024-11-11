@@ -1037,25 +1037,27 @@ p.subtitle {
   z-index: 2;
 }
 
-@keyframes toast-slide-in {
-  from {
-    translate: -50% 5%;
-  }
+#toast {
+  transition: opacity 0.5s, translate 0.5s;
+  position: fixed;
+  font-weight: bold;
+  bottom: 4rem;
+  left: 50%;
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: var(--text-shadow);
+}
 
-  to {
-    translate: -50% 0%;
-  }
+#toast[hidden] {
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  translate: -50% 30%;
 }
 
 #toast:not([hidden]) {
-  animation: fade-in 500ms both, toast-slide-in 500ms both;
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  font-size: 1.5rem;
-  padding: 1rem;
-  background: #12548ed0;
-  color: white;
+  opacity: 1;
+  translate: -50% 0%;
 }
 
 #task:not([hidden]) {

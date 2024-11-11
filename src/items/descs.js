@@ -631,7 +631,25 @@ export default [
     },
   },
   {
+    name: 'a broken phone',
+    collectible: true,
+    position: {
+      lat: -20.41114,
+      lng: -69.71363,
+    },
+    async create(makers) {
+      return makers.threeObject('/assets/items/phone/',
+        {
+          name: this.name,
+          onGround: true,
+          cameraPosition: { x: 3, y: 1, z: 3 },
+        },
+      );
+    },
+  },
+  {
     name: 'Map with some markers on it',
+    thumbnailURL: '/assets/items/phone/thumb.webp',
     position: {
       lat: 0.00003,
       lng: 0.0002,

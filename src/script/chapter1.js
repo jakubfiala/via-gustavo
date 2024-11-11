@@ -1,4 +1,4 @@
-import { flashStatus, showFakeCaptcha, hideFakeCaptcha, showHelpMessage } from './utils.js';
+import { flashStatus, showFakeCaptcha, hideFakeCaptcha, showHelpMessage, persistenceToast } from './utils.js';
 import { scheduleScript } from './index.js';
 import { removeTask, setTask } from '../task.js';
 import { journalMoment } from '../journal/index.js';
@@ -51,6 +51,7 @@ const thanks = [
     callback: (context) => {
       context.score.veniceMedium.preload = 'auto';
       setTask('Continue down the road.');
+      setTimeout(() => persistenceToast(), 2_000);
     },
   },
 ];
