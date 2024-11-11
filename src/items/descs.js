@@ -703,6 +703,13 @@ export default [
 
   // Epilogue
   {
+    name: 'Success through smallness. Perseverance brings good fortune to the wanderer.',
+    position: { lat: -0.00006, lng: 0.0002 },
+    async create(makers) {
+      return makers.simpleImage({ src: '/assets/img/lu/full.svg', name: this.name, fade: true });
+    },
+  },
+  {
     name: 'Map with some markers on it',
     thumbnailURL: '/assets/items/phone/thumb.webp',
     position: {
