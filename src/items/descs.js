@@ -12,6 +12,14 @@ import { createStationOfTheCross } from './via-crucis.js';
 import { readIChing } from '../interactions/i-ching/index.js';
 
 export default [
+  // Chapter 1
+  {
+    name: 'If the wanderer busies himself with trivial things, he draws down misfortune upon himself.',
+    position: { lat: -20.44193, lng: -69.52603 },
+    async create(makers) {
+      return makers.simpleImage({ src: '/assets/img/lu/1.svg', name: this.name, fade: true });
+    },
+  },
   createBusStopItem({
     position: { lat: -20.43098, lng: -69.56023 },
     destination: {
@@ -26,6 +34,15 @@ export default [
     cameraPosition: { x: -8, y: 3.5 },
     scale: 0.8,
   }),
+
+  // Chapter 2
+  {
+    name: 'The wanderer comes to and inn. He has his property with him. He wins the steadfastness of a young servant.',
+    position: { lat: -20.34092, lng: -69.6564 },
+    async create(makers) {
+      return makers.simpleImage({ src: '/assets/img/lu/2.svg', name: this.name, fade: true });
+    },
+  },
   createCoke({
     name: 'Coca-Cola 1',
     position: { lat: -20.34075, lng: -69.65655 },
@@ -326,6 +343,15 @@ export default [
     lat: -20.43526,
     lng: -69.54645,
   }),
+
+  // Chapter 3
+  {
+    name: 'The wanderer\'s inn burns down. He loses the steadfastness of his young servant. Danger.',
+    position: { lat: -20.31979, lng: -69.75603 },
+    async create(makers) {
+      return makers.simpleImage({ src: '/assets/img/lu/3.svg', name: this.name, fade: true });
+    },
+  },
   {
     name: 'Hovering drone',
     collectible: false,
@@ -384,6 +410,15 @@ export default [
       return makers.embed('https://en.wikipedia.org/wiki/Mars_96');
     },
   },
+
+  // Chapter 4
+  {
+    name: 'The wanderer rests in a shelter. He obtains his property and an ax. My heart is not glad.',
+    position: { lat: -20.27068, lng: -69.78616 },
+    async create(makers) {
+      return makers.simpleImage({ src: '/assets/img/lu/4.svg', name: this.name, fade: true });
+    },
+  },
   {
     name: 'Bottles',
     collectible: false,
@@ -426,6 +461,15 @@ export default [
       );
 
       return item;
+    },
+  },
+
+  // Chapter 5
+  {
+    name: 'He shoots a pheasant. It drops with the first arrow. In the end this brings both praise and office.',
+    position: { lat: -20.21041, lng: -69.79597 },
+    async create(makers) {
+      return makers.simpleImage({ src: '/assets/img/lu/5.svg', name: this.name, fade: true });
     },
   },
   {
@@ -630,6 +674,15 @@ export default [
       return item;
     },
   },
+
+  // Chapter 6
+  {
+    name: 'The bird\'s nest burns up. The wanderer laughs at first, Then must needs lament and weep. Through carelessness he loses his cow. Misfortune.',
+    position: { lat: -20.38006, lng: -69.72714 },
+    async create(makers) {
+      return makers.simpleImage({ src: '/assets/img/lu/6.svg', name: this.name, fade: true });
+    },
+  },
   {
     name: 'a broken phone',
     collectible: true,
@@ -647,6 +700,8 @@ export default [
       );
     },
   },
+
+  // Epilogue
   {
     name: 'Map with some markers on it',
     thumbnailURL: '/assets/items/phone/thumb.webp',
