@@ -443,7 +443,8 @@ p.subtitle {
   width: calc(100% - 6.8rem);
 }
 
-.hud[hidden] {
+.hud[hidden],
+.cinema .hud {
   animation: none;
   opacity: 0;
 }

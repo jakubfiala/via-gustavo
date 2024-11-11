@@ -51,8 +51,11 @@ const scriptContext = {
 const currentURL = new URL(location.href);
 const debug = currentURL.searchParams.get('debug') === 'true';
 const dev = currentURL.searchParams.get('dev') === 'true';
+const cinema = currentURL.searchParams.get('cinema') === 'true';
+
 document.body.classList.toggle('debug', debug);
 document.body.classList.toggle('dev', dev);
+document.body.classList.toggle('cinema', cinema);
 
 const initialPosition = JSON.parse(localStorage.getItem(LOCALSTORAGE_POSITION_KEY)) || START_POSITION;
 const mapOptions = {

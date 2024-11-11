@@ -47,6 +47,8 @@ const playSFX = async (context, sound, dur = 0, ramp = 0.05) => {
   return sound.source;
 };
 
+export const clear = () => localStorage.removeItem(LOCALSTORAGE_FOOTSTEPS_KEY);
+
 export default async (context) => {
   context.sfxGain = new GainNode(context.audioContext, { gain: 0 });
   context.sfxGain.connect(context.masterGain);
