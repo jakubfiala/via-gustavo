@@ -1,9 +1,11 @@
-import inventory from '../inventory';
+import inventory from '../../inventory';
+import { makeAnimita } from './item';
 
 const editor = document.getElementById('animita-editor');
 const dialog = document.getElementById('animita-dialog');
 const itemsContainer = document.getElementById('animita-dialog-items');
 const editButton = document.getElementById('edit-button');
+const form = document.getElementById('animita-dialog-form');
 const itemTemplate = document.getElementById('animita-item-template');
 
 const openEditor = (G) => {
@@ -17,8 +19,6 @@ const renderItems = (G) => {
     if (!collectible) {
       return;
     }
-
-    console.log('thumb', thumbnailURL);
 
     const item = itemTemplate.content.cloneNode(true);
     const container = item.firstElementChild;
@@ -43,4 +43,8 @@ export const initAnimitaEditor = (G, { onFinish = () => {} }) => {
   });
 
   dialog.addEventListener('close', () => onFinish(G), { once: true });
+  form.addEventListener('submit', async () => {
+    const answers = Object.fromEntries(new FormData(form));
+    await makeAnimita(G, answers);
+  });
 }

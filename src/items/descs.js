@@ -713,7 +713,7 @@ export default [
   {
     name: 'Map with some markers on it',
     position: {
-      lat: 0.00003,
+      lat: 0.00005,
       lng: 0.0002,
     },
     async create(makers) {

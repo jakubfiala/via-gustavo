@@ -59,7 +59,21 @@ const loadEnv = (path, name) => new Promise((resolve, reject) => {
   }, () => {}, reject);
 });
 
-export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName, cameraPosition, scale, rotation = {}, lightPosition = {}, onGround = false, big = false, env = null, envIntensity = 1 } = {}) => {
+export const THREEObjectMaker = (InfoWindow) => async (url, options = {}) => {
+  const {
+    name,
+    displayName,
+    cameraPosition,
+    scale,
+    rotation = {},
+    lightPosition = {},
+    onGround = false,
+    big = false,
+    env = null,
+    envIntensity = 1,
+    objectLoader = loadGLTF,
+  } = options;
+
   const cameraInitX = cameraPosition?.x ?? CAMERA_DEFAULT_X;
   const cameraInitY = cameraPosition?.y ?? CAMERA_DEFAULT_Y;
   const cameraInitZ = cameraPosition?.z ?? CAMERA_DEFAULT_Z;
@@ -111,7 +125,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
   }
 
   const loadObject = async () => {
-    object = await loadGLTF(url);
+    object = await objectLoader(url);
 
     const hoverHelper = object.getObjectByName(HOVER_HELPER_NAME);
     if (hoverHelper) {
@@ -173,7 +187,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, { name, displayName,
   }
 
   return {
-    name, scene, camera, canvas, container,
+    name, scene, camera, canvas, container, loadObject,
     insert(map, position) {
       this.map = map;
 

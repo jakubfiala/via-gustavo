@@ -2,7 +2,7 @@ import { DEFAULT_SCORE_GAIN } from '../audio/score-sounds.js';
 import { journalMoment } from '../journal/index.js';
 import { removeTask } from '../task.js';
 import { scheduleScript } from './index.js';
-import { initAnimitaEditor } from '../interactions/animita.js';
+import { initAnimitaEditor } from '../interactions/animita/index.js';
 
 export const finish = [
   {
@@ -32,7 +32,7 @@ export const intro = [
     text: "Oh, it's you! I knew you'd make it.",
     callback: (G) => {
       initAnimitaEditor(G, {
-        onFinish: () => scheduleScript(finish, G),
+        // onFinish: () => scheduleScript(finish, G),
       });
     },
   },
