@@ -38,6 +38,11 @@
 				0,
 				0,
 				0.7071066498756409
+			],
+			"scale":[
+				0.25,
+				0.2499999850988388,
+				0.2499999850988388
 			]
 		}
 	],
@@ -92,17 +97,17 @@
 	"images":[
 		{
 			"mimeType":"image/png",
-			"name":"Low_Poly_normal.png",
+			"name":"normal",
 			"uri":"textures/normal.png"
 		},
 		{
 			"mimeType":"image/png",
-			"name":"Low_Poly_baseColor.png",
+			"name":"diffuse",
 			"uri":"textures/diffuse.png"
 		},
 		{
 			"mimeType":"image/png",
-			"name":"Low_Poly_metallicRoughness.png",
+			"name":"metallic_roughness",
 			"uri":"textures/metallic_roughness.png"
 		}
 	],

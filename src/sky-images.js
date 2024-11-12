@@ -17,10 +17,10 @@ const createUpdater = (map) => () => {
   marsSky.style.translate = `${tx}vw ${ty}vh`;
 };
 
-export const showSkyImages = (context) => {
+export const showSkyImages = (G) => {
   skyImages.hidden = false;
 
-  const { google: { event }, map } = context;
+  const { google: { event }, map } = G;
   const opacities = Array.from({ length: 30 }).map(() => Math.random() * 0.1 + 0.3);
   const keyframes = opacities.map((o) => ({ opacity: o }));
   marsSky.animate(keyframes, { duration: 2000, easing: 'ease-in-out', iterations: Infinity });
@@ -34,7 +34,7 @@ export const showSkyImages = (context) => {
     update,
   );
 
-  context.skyImages = {
+  G.skyImages = {
     hide: () => {
       () => listener.remove();
       skyImages.hidden = true;

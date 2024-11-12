@@ -39,7 +39,6 @@ export const simpleImageMaker = (InfoWindow) => ({ src, name, id, fade = false, 
 
       if (!this.info.isOpen) {
         if (dist < OBJECT_APPEAR_THRESHOLD) {
-          console.log('opening', src);
           this.info.open({ map: this.map });
         } else {
           return;

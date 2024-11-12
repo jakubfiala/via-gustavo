@@ -5,6 +5,7 @@ const editor = document.getElementById('animita-editor');
 const dialog = document.getElementById('animita-dialog');
 const itemsContainer = document.getElementById('animita-dialog-items');
 const editButton = document.getElementById('edit-button');
+const finishButton = document.getElementById('finish-button');
 const form = document.getElementById('animita-dialog-form');
 const itemTemplate = document.getElementById('animita-item-template');
 
@@ -42,9 +43,17 @@ export const initAnimitaEditor = (G, { onFinish = () => {} }) => {
     openEditor(G);
   });
 
+  finishButton.addEventListener('click', () => {
+    finishButton.hidden = true;
+    G.map.setPano('exitLimbo4');
+  });
+
   dialog.addEventListener('close', () => onFinish(G), { once: true });
   form.addEventListener('submit', async () => {
     const answers = Object.fromEntries(new FormData(form));
     await makeAnimita(G, answers);
+
+    editButton.hidden = true;
+    finishButton.hidden = false;
   });
 }

@@ -480,7 +480,7 @@ p.subtitle {
 }
 
 .hud__dialog--bigger {
-  max-height: 90vh;
+  height: 90vh;
 }
 
 .hud__dialog[open] {
@@ -523,6 +523,10 @@ p.subtitle {
   align-items: center;
   display: flex;
   gap: 0.5rem;
+}
+
+.hud__button[hidden] {
+  display: none;
 }
 
 .hud__button svg {
@@ -1295,8 +1299,14 @@ p.subtitle {
   font-size: 1.25rem;
 }
 
+#animita-dialog-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 #animita-dialog-items label {
   display: flex;
   gap: 0.5rem;
   align-items: center;
 }
+

@@ -12,6 +12,7 @@ export const createShrooms = (label, position) => ({
   collectText: 'Ate some',
   pickUpSFX: 'chewing',
   displayName: 'magic mushrooms',
+  gltf: '/assets/items/magic-mushrooms/',
   async create(makers) {
     const item = await makers.threeObject('/assets/items/magic-mushrooms/', {
       name: this.name,

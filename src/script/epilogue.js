@@ -4,15 +4,24 @@ import { removeTask } from '../task.js';
 import { scheduleScript } from './index.js';
 import { initAnimitaEditor } from '../interactions/animita/index.js';
 
-export const finish = [
+export const finishedAnimita = [
+  { text: "Oh that's wonderful!" },
+  { text: "What a delight for those, who shall travel this path after you." },
+  { text: "After all, the story never really ends, does it?" },
+  { text: "You must be so tired by now!" },
   {
-    text: "Alright then!",
-    callback: (G) => G.map.setPano('exitLimbo4'),
+    text: "Just let me know once you're ready to go, and I'll show you out.",
+    callback: (G) => G.speechPlaybackRate = 1.1,
   },
+];
+
+export const end = [
+  { callback: (G) => G.speechPlaybackRate = 1.1 },
+  { text: "Alright then!" },
   { text: "It has been a pleasure." },
   { text: "I hope to see you again, my dear friend." },
   { text: "The exit is just to the side." },
-]
+];
 
 export const intro = [
   {
@@ -32,7 +41,7 @@ export const intro = [
     text: "Oh, it's you! I knew you'd make it.",
     callback: (G) => {
       initAnimitaEditor(G, {
-        // onFinish: () => scheduleScript(finish, G),
+        onFinish: () => scheduleScript(finishedAnimita, G),
       });
     },
   },
@@ -64,12 +73,14 @@ export const intro = [
   { text: "Now that your game is over, perhaps you'd spare a moment." },
   { text: "Perhaps you'd leave a message, a token of gratitude, a little piece of you." },
   { text: "You'd make this road a very happy place." },
-  {
-    text: "We're going to build Gustavo an animita in hyperspace.",
-    // callback: (G) => {
-    //   initAnimitaEditor(G, {
-    //     onFinish: () => scheduleScript(finish, G),
-    //   });
-    // },
-  },
+  { duration: 1 },
+  { text: "See if you can find a free spot anywhere" },
+  // {
+  //   text: "We're going to build Gustavo an animita in hyperspace.",
+  //   callback: (G) => {
+  //     initAnimitaEditor(G, {
+  //       onFinish: () => scheduleScript(finishedAnimita, G),
+  //     });
+  //   },
+  // },
 ];

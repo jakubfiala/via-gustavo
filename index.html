@@ -173,7 +173,8 @@
       </form>
     </dialog>
     <div id="animita-editor" hidden>
-      <button id="edit-button" hidden class="hud__button">Create animita here</button>
+      <button id="edit-button" class="hud__button">Create animita here</button>
+      <button id="finish-button" hidden class="hud__button">I'm ready</button>
       <dialog id="animita-dialog" class="hud__dialog hud__dialog--modal hud__dialog--big hud__dialog--bigger">
         <header class="hud__dialog-header">Create an animita</header>
         <form id="animita-dialog-form" class="hud__form" method="dialog">
@@ -194,15 +195,17 @@
               Please do not share any personally identifiable information.
             </em>
           </p>
-          <fieldset id="animita-dialog-items">
+          <fieldset>
             <legend>Add items to the offering</legend>
-            <template id="animita-item-template">
-              <label>
-                <img aria-hidden="true">
-                <input type="checkbox">
-                <span></span>
-              </label>
-            </template>
+            <div id="animita-dialog-items">
+              <template id="animita-item-template">
+                <label>
+                  <img aria-hidden="true">
+                  <input type="checkbox">
+                  <span></span>
+                </label>
+              </template>
+            </div>
           </fieldset>
           <label>
             <input type="checkbox" name="consent" required>

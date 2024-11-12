@@ -54,6 +54,7 @@ export const gustavoSequence = async (context) => {
 
   context.map.setPano('gustavoDissolve1');
   context.map.setOptions({ linksControl: true });
+  context.skyImages.hide();
 
   context.score.lithiumAtmo.preload = 'auto';
 

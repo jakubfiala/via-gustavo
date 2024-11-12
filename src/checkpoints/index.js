@@ -583,18 +583,19 @@ export const checkpoints = [
   {
     lat: 0,
     lng: 0.0001,
-    async callback(context) {
-      return scheduleScript(epilogue.intro, context);
+    async callback(G) {
+      return scheduleScript(epilogue.intro, G);
     },
   },
   {
     lat: 1,
     lng: 0.0004,
-    async callback(context) {
-      context.scoreGain.gain.linearRampToValueAtTime(0, context.audioContext.currentTime + 3);
-      context.soundscapeGain.gain.linearRampToValueAtTime(0, context.audioContext.currentTime + 3);
-      context.sfxGain.gain.linearRampToValueAtTime(0, context.audioContext.currentTime + 3);
-      context.score.lithiumES.preload = 'auto';
+    async callback(G) {
+      G.scoreGain.gain.linearRampToValueAtTime(0, G.audioContext.currentTime + 3);
+      G.soundscapeGain.gain.linearRampToValueAtTime(0, G.audioContext.currentTime + 3);
+      G.sfxGain.gain.linearRampToValueAtTime(0, G.audioContext.currentTime + 3);
+      G.score.lithiumES.preload = 'auto';
+      return scheduleScript(epilogue.end, G);
     },
   },
   {

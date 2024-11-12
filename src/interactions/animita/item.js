@@ -6,6 +6,7 @@ import { loadGLTF } from '../../items/3d-objects/gltf.js';
 const MAX_EV_LINES = 3;
 const EV_FONT_SIZE = 80;
 const CANVAS_SIZE = 500;
+const ITEM_SPACING = 1;
 
 const specialAnswerKeys = ['ex-voto', 'consent'];
 
@@ -46,6 +47,23 @@ const writeExVoto = (item, answers) => {
   object.material = new MeshBasicMaterial({ map, transparent: true });
 };
 
+const scaleObject = (o) => {
+  let maxRadius = 1;
+  o.traverse((descendant) => {
+    if (descendant.geometry) {
+      descendant.geometry?.computeBoundingSphere();
+      maxRadius = Math.max(maxRadius, descendant.geometry.boundingSphere.radius);
+    }
+  });
+
+  const factor = 1 / maxRadius;
+  console.info('[animita]', 'scaling', o.name, 'by', factor);
+
+  o.scale.x = factor;
+  o.scale.y = factor;
+  o.scale.z = factor;
+};
+
 const createInventoryItems = async (G, answers) => {
   const names = Object.keys(answers)
     .filter((name) => !specialAnswerKeys.includes(name) && answers[name] === 'on');
@@ -65,7 +83,13 @@ const createInventoryItems = async (G, answers) => {
 
   objects
     .filter((o) => !!o)
-    .forEach((o) => group.add(o));
+    .forEach((o, index) => {
+      scaleObject(o);
+      o.position.x = ITEM_SPACING * (index % 3);
+      o.position.z = ITEM_SPACING * (Math.floor(index / 3));
+
+      group.add(o);
+    });
 
   return group;
 }
@@ -78,6 +102,7 @@ export const makeAnimita = async (G, answers) => {
     name: 'Custom Animita',
     cameraPosition: { x: -2.7, y: 0.8, z: 3.5 },
     lightPosition: { x: -5, y: 5, z: 5 },
+    env: '/assets/img/limbo.env.jpg',
     onGround: true,
     big: true,
   });
