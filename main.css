@@ -479,6 +479,10 @@ p.subtitle {
   max-height: 75vh;
 }
 
+.hud__dialog--bigger {
+  max-height: 90vh;
+}
+
 .hud__dialog[open] {
   display: grid;
 }
@@ -1009,11 +1013,6 @@ p.subtitle {
   translate: 0 0;
 }
 
-#bus-dialog::backdrop {
-  animation: fade-in 1s both;
-  background: rgba(0, 0, 0, 0.5);
-}
-
 #bus-dialog-form {
   font-size: 1.5rem;
   padding: 1rem;
@@ -1135,7 +1134,8 @@ p.subtitle {
   align-items: center;
 }
 
-.journal__entry img {
+.journal__entry img,
+#animita-dialog-form img {
   height: 4rem;
 }
 
@@ -1203,10 +1203,11 @@ p.subtitle {
   cursor: pointer;
 }
 
-#safari-dialog::backdrop,
-#iching-dialog::backdrop {
+.hud__dialog--modal::backdrop {
+  animation: fade-in 1s both;
   background: #0005;
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
 }
 
 #safari-dialog {
@@ -1224,13 +1225,29 @@ p.subtitle {
   width: 30vw;
 }
 
-#iching-form {
+.hud__form {
   position: relative;
   width: 100%;
   margin-top: 1rem;
+  box-sizing: border-box;
+  padding: 1rem;
 }
 
-#iching-form input {
+.hud__form fieldset {
+  border-color: var(--color-blue);
+  border-width: 1px;
+  margin-bottom: 1rem;
+}
+
+.hud__form legend {
+  font-weight: bold;
+}
+
+.hud__form button[type="submit"] {
+  margin: 2rem auto 0;
+}
+
+.hud__form input[type="text"] {
   appearance: none;
   border: solid 1px var(--color-blue);
   border-radius: 0;
@@ -1239,9 +1256,17 @@ p.subtitle {
   display: block;
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 1rem;
+  margin: 0.5rem 0 1rem;
   background: white;
   color: inherit;
+}
+
+.hud__form p {
+  margin: 1rem 0 2rem;
+}
+
+.hud__form label {
+  cursor: pointer;
 }
 
 #credits:not([hidden]) {
@@ -1258,10 +1283,20 @@ p.subtitle {
   opacity: 0;
 }
 
-#finish-button:not([hidden]) {
+#animita-editor:not([hidden]) {
   position: fixed;
   top: 1rem;
   left: 1rem;
   animation: fade-in 1s both;
   z-index: 3;
+}
+
+#animita-dialog-form {
+  font-size: 1.25rem;
+}
+
+#animita-dialog-items label {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }

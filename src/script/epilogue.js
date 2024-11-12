@@ -2,6 +2,7 @@ import { DEFAULT_SCORE_GAIN } from '../audio/score-sounds.js';
 import { journalMoment } from '../journal/index.js';
 import { removeTask } from '../task.js';
 import { scheduleScript } from './index.js';
+import { initAnimitaEditor } from '../interactions/animita.js';
 
 export const finish = [
   {
@@ -27,7 +28,14 @@ export const intro = [
     },
   },
   { duration: 2 },
-  { text: "Oh, it's you! I knew you'd make it." },
+  {
+    text: "Oh, it's you! I knew you'd make it.",
+    callback: (G) => {
+      initAnimitaEditor(G, {
+        onFinish: () => scheduleScript(finish, G),
+      });
+    },
+  },
   { text: "You must be wondering what happened." },
   { duration: 1 },
   { text: "I'm afraid I have to let you know it's over." },
@@ -58,13 +66,10 @@ export const intro = [
   { text: "You'd make this road a very happy place." },
   {
     text: "We're going to build Gustavo an animita in hyperspace.",
-    callback: (G) => {
-      const button = document.getElementById('finish-button');
-      button.hidden = false;
-      button.addEventListener('click', () => {
-        button.style.display = 'none';
-        scheduleScript(finish, G);
-      }, { once: true });
-    },
+    // callback: (G) => {
+    //   initAnimitaEditor(G, {
+    //     onFinish: () => scheduleScript(finish, G),
+    //   });
+    // },
   },
 ];

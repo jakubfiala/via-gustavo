@@ -685,6 +685,7 @@ export default [
   },
   {
     name: 'a broken phone',
+    thumbnailURL: '/assets/items/phone/thumb.webp',
     collectible: true,
     position: {
       lat: -20.41114,
@@ -711,7 +712,6 @@ export default [
   },
   {
     name: 'Map with some markers on it',
-    thumbnailURL: '/assets/items/phone/thumb.webp',
     position: {
       lat: 0.00003,
       lng: 0.0002,
