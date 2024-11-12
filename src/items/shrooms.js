@@ -44,3 +44,14 @@ export const createDelayEffect = (context) => {
 
   return feedbackGain;
 };
+
+export const shrooms = [
+  createShrooms('1', {
+    lat: -20.43544,
+    lng: -69.54638,
+  }),
+  createShrooms('2', {
+    lat: -20.43526,
+    lng: -69.54645,
+  }),
+];

@@ -53,3 +53,12 @@ export const hoverBehind = async (context) => {
     },
   };
 };
+
+export const itemDesc = {
+  name: 'Hovering drone',
+  collectible: false,
+  position: { lat: -20.29203, lng: -69.78111 },
+  create(makers) {
+    return makers.simpleImage({ name: this.name, src: '/assets/img/drone.webp', id: 'drone-hovering', correctZ: false });
+  },
+};

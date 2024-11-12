@@ -42,3 +42,17 @@ export const createBusStopItem = ({ position, destination: { locationName, latLn
     });
   },
 });
+
+export const itemDesc = createBusStopItem({
+  position: { lat: -20.43098, lng: -69.56023 },
+  destination: {
+    locationName: 'La Tirana',
+    latLng: {
+      lat: -20.3412425,
+      lng: -69.6565267,
+    },
+    pov: { heading: 0, pitch: 0 },
+  },
+  cameraPosition: { x: -8, y: 3.5 },
+  scale: 0.8,
+});

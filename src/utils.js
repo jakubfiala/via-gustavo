@@ -59,7 +59,6 @@ export const documentVisible = () => new Promise((resolve) => {
   } else {
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') {
-        console.debug('document became visible, continuing');
         resolve();
       }
     });

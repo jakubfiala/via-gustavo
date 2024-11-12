@@ -1,226 +1,26 @@
-import { createBusStopItem } from './bus.js';
+import { itemDesc as busStop } from './bus.js';
 import { initGeigerCounterDetection } from '../../assets/items/geiger-counter/detection.js';
-import { createShrooms } from './shrooms.js';
+import { shrooms } from './shrooms.js';
 import { scheduleScript } from '../script/index.js';
 import { geigerCounterReply } from '../script/chapter2.js';
-import { hover } from '../drone.js';
+import { hover, itemDesc as drone } from '../drone.js';
 import inventory from '../inventory/index.js';
 import { openLink, sleep } from '../utils.js';
-import { createCoke } from './coke.js';
+import { cokeCans } from './coke.js';
 import { journalMoment } from '../journal/index.js';
-import { createStationOfTheCross } from './via-crucis.js';
+import { stationsOfTheCross } from './via-crucis.js';
 import { readIChing } from '../interactions/i-ching/index.js';
+import { iching } from './i-ching.js';
+import { embeds } from './embeds/descs.js';
 
 export default [
-  // Chapter 1
-  {
-    name: 'If the wanderer busies himself with trivial things, he draws down misfortune upon himself.',
-    position: { lat: -20.44193, lng: -69.52603 },
-    async create(makers) {
-      return makers.simpleImage({ src: '/assets/img/lu/1.svg', name: this.name, fade: true });
-    },
-  },
-  createBusStopItem({
-    position: { lat: -20.43098, lng: -69.56023 },
-    destination: {
-      locationName: 'La Tirana',
-      // -20.3412425,-69.6565267,3a,75y,352.81h,85.98t
-      latLng: {
-        lat: -20.3412425,
-        lng: -69.6565267,
-      },
-      pov: { heading: 0, pitch: 0 },
-    },
-    cameraPosition: { x: -8, y: 3.5 },
-    scale: 0.8,
-  }),
-
-  // Chapter 2
-  {
-    name: 'The wanderer comes to and inn. He has his property with him. He wins the steadfastness of a young servant.',
-    position: { lat: -20.34092, lng: -69.6564 },
-    async create(makers) {
-      return makers.simpleImage({ src: '/assets/img/lu/2.svg', name: this.name, fade: true });
-    },
-  },
-  createCoke({
-    name: 'Coca-Cola 1',
-    position: { lat: -20.34075, lng: -69.65655 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 2',
-    position: { lat: -20.34053, lng: -69.65618 },
-    rotation: { x: Math.PI/2 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 3',
-    position: { lat: -20.34023, lng: -69.65606 },
-    rotation: { x: Math.PI/2, y: Math.PI*0.8 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 4',
-    position: { lat: -20.33934, lng: -69.65608 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 5',
-    position: { lat: -20.339, lng: -69.65591 },
-    rotation: { x: Math.PI/2, y: Math.PI*0.3 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 6',
-    position: { lat: -20.33773, lng: -69.65601 },
-    rotation: { x: Math.PI/2, y: Math.PI*0.1 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 7',
-    position: { lat: -20.33692, lng: -69.65623 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 8',
-    position: { lat: -20.33678, lng: -69.65673 },
-    rotation: { x: Math.PI/2 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 9',
-    position: { lat: -20.33698, lng: -69.65759 },
-    rotation: { x: Math.PI/2, y: 0.15 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 10',
-    position: { lat: -20.33706, lng: -69.65872 },
-    rotation: { x: Math.PI/2, y: 0.9 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 11',
-    position: { lat: -20.33652, lng: -69.65927 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 12',
-    position: { lat: -20.33609, lng: -69.65923 },
-    rotation: { x: Math.PI/2, y: -0.45 },
-  }),
-  // overpass
-  createCoke({
-    name: 'Coca-Cola 13',
-    position: { lat: -20.21385, lng: -69.78926 },
-    rotation: { x: Math.PI/2, y: -0.45 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 14',
-    position: { lat: -20.21386, lng: -69.78931 },
-    rotation: { y: -0.45 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 15',
-    position: { lat: -20.2138, lng: -69.78931 },
-    rotation: { x: -Math.PI/2, y: 0.9 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 16',
-    position: { lat: -20.34049, lng: -69.65623 },
-    rotation: { x: -Math.PI/2, y: 0.3 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 17',
-    position: { lat: -20.3391, lng: -69.65599 },
-    rotation: { y: -1.7 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 19',
-    position: { lat: -20.33866, lng: -69.65596 },
-    rotation: { x: Math.PI/2, y: -0.45 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 20',
-    position: { lat: -20.33783, lng: -69.65596 },
-    rotation: { y: -0.45 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 21',
-    position: { lat: -20.33688, lng: -69.65613 },
-    rotation: { x: Math.PI/2, y: 2 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 22',
-    position: { lat: -20.337, lng: -69.65728 },
-    rotation: { y: -0.63 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 23',
-    position: { lat: -20.33703, lng: -69.65821 },
-    rotation: { x: -Math.PI/2, y: 0.3 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 24',
-    position: { lat: -20.33524, lng: -69.65935 },
-    rotation: { y: 0.3 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 25',
-    position: { lat: -20.33477, lng: -69.6596 },
-    rotation: { x: Math.PI/2, y: -0.45 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 26',
-    position: { lat: -20.21321, lng: -69.78962 },
-    rotation: { x: Math.PI/2, y: -0.45 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 27',
-    position: { lat: -20.21266, lng: -69.79059 },
-    rotation: { x: Math.PI/2, y: -0.45 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 28',
-    position: { lat: -20.21311, lng: -69.79841 },
-    rotation: { x: -Math.PI/2, y: 0.9 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 29',
-    position: { lat: -20.21257, lng: -69.7896 },
-    rotation: { y: -1.3 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 30',
-    position: { lat: -20.20558, lng: -69.79672 },
-    rotation: { x: -Math.PI/2, y: 0.9 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 31',
-    position: { lat: -20.20596, lng: -69.79647 },
-    rotation: { x: -Math.PI/2, y: 0.9 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 32',
-    position: { lat: -20.20583, lng: -69.79633 },
-    rotation: { x: Math.PI/2, y: 0.1 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 33',
-    position: { lat: -20.20576, lng: -69.79627 },
-    rotation: { x: Math.PI/2, y: 0.8 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 34',
-    position: { lat: -20.20567, lng: -69.79609 },
-    rotation: { y: -0.1 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 35',
-    position: { lat: -20.2053, lng: -69.79575 },
-    rotation: { x: -Math.PI/2, y: -0.4 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 36',
-    position: { lat: -20.20523, lng: -69.79563 },
-    rotation: { x: Math.PI/2, y: 1.4 },
-  }),
-  createCoke({
-    name: 'Coca-Cola 37',
-    position: { lat: -20.20521, lng: -69.79547 },
-    rotation: { y: 1.4 },
-  }),
-
+  ...cokeCans,
+  ...stationsOfTheCross,
+  ...shrooms,
+  ...iching,
+  ...embeds,
+  drone,
+  busStop,
   {
     name: 'Geiger Counter',
     thumbnailURL: '/assets/items/geiger-counter/thumb.webp',
@@ -231,8 +31,9 @@ export default [
       lat: -20.3252,
       lng: -69.7392,
     },
+    gltf: '/assets/items/geiger-counter/',
     async create(makers) {
-      const item = await makers.threeObject('/assets/items/geiger-counter/',
+      const item = await makers.threeObject(this.gltf,
         {
           name: this.name,
           cameraPosition: { x: 6, y: 2.5, z: -3 },
@@ -267,8 +68,9 @@ export default [
     name: 'Gustavo\'s truck',
     collectible: false,
     position: { lat: -20.33167, lng: -69.68165 },
+    gltf: '/assets/items/truck/',
     async create(makers) {
-      return makers.threeObject('/assets/items/truck/',
+      return makers.threeObject(this.gltf,
         {
           name: this.name,
           big: true,
@@ -279,87 +81,7 @@ export default [
       );
     },
   },
-  createStationOfTheCross({
-    index: '14', name: 'XIV - Laid in his tomb',
-    position: { lat: -20.33616, lng: -69.65654 }
-  }),
-  createStationOfTheCross({
-    index: '13', name: 'XIII - Taken down from the cross',
-    position: { lat: -20.33545, lng: -69.65917 }
-  }),
-  createStationOfTheCross({
-    index: '12', name: 'XII - Dies on the cross',
-    position: { lat: -20.33343, lng: -69.66675 }
-  }),
-  createStationOfTheCross({
-    index: '11', name: 'XI - Nailed to the cross',
-    position: { lat: -20.33253, lng: -69.6745 }
-  }),
-  createStationOfTheCross({
-    index: '10', name: 'X - His clothes are torn',
-    position: { lat: -20.33175, lng: -69.68088 }
-  }),
-  createStationOfTheCross({
-    index: '09', name: 'IX - Fails the third time',
-    position: { lat: -20.33083, lng: -69.68898 }
-  }),
-  createStationOfTheCross({
-    index: '08', name: 'VIII - Meets the women of Jerusalem',
-    position: { lat: -20.32995, lng: -69.69689 }
-  }),
-  createStationOfTheCross({
-    index: '07', name: 'VII - Fails the second time',
-    position: { lat: -20.32892, lng: -69.70551 }
-  }),
-  createStationOfTheCross({
-    index: '06', name: 'VI - Veronica wipes his face',
-    position: { lat: -20.3278, lng: -69.71511 }
-  }),
-  createStationOfTheCross({
-    index: '05', name: 'V - Simon of Cyrene helps him carry the cross',
-    position: { lat: -20.32682, lng: -69.72382 }
-  }),
-  createStationOfTheCross({
-    index: '04', name: 'IV - Meets his mother',
-    position: { lat: -20.32598, lng: -69.73172 }
-  }),
-  createStationOfTheCross({
-    index: '03', name: 'III - Fails the first time',
-    position: { lat: -20.32522, lng: -69.73902 }
-  }),
-  createStationOfTheCross({
-    index: '02', name: 'II - Takes up his cross',
-    position: { lat: -20.32459, lng: -69.74547 }
-  }),
-  createStationOfTheCross({
-    index: '01', name: 'I - Is sentenced to death',
-    position: { lat: -20.32403, lng: -69.75158 }
-  }),
-  createShrooms('1', {
-    lat: -20.43544,
-    lng: -69.54638,
-  }),
-  createShrooms('2', {
-    lat: -20.43526,
-    lng: -69.54645,
-  }),
 
-  // Chapter 3
-  {
-    name: 'The wanderer\'s inn burns down. He loses the steadfastness of his young servant. Danger.',
-    position: { lat: -20.31979, lng: -69.75603 },
-    async create(makers) {
-      return makers.simpleImage({ src: '/assets/img/lu/3.svg', name: this.name, fade: true });
-    },
-  },
-  {
-    name: 'Hovering drone',
-    collectible: false,
-    position: { lat: -20.29203, lng: -69.78111 },
-    create(makers) {
-      return makers.simpleImage({ name: this.name, src: '/assets/img/drone.webp', id: 'drone-hovering', correctZ: false });
-    },
-  },
   {
     name: 'NASA Backpack',
     thumbnailURL: '/assets/items/backpack/thumb.webp',
@@ -369,8 +91,9 @@ export default [
       lat: -20.29224,
       lng: -69.78133,
     },
+    gltf: '/assets/items/backpack/',
     async create(makers) {
-      const item = await makers.threeObject('/assets/items/backpack/',
+      const item = await makers.threeObject(this.gltf,
         {
           name: this.name,
           onGround: true,
@@ -403,31 +126,15 @@ export default [
     },
   },
   {
-    name: 'Mars96',
-    collectible: false,
-    position: { lat: -20.28906, lng: -69.78257 },
-    create(makers) {
-      return makers.embed('https://en.wikipedia.org/wiki/Mars_96');
-    },
-  },
-
-  // Chapter 4
-  {
-    name: 'The wanderer rests in a shelter. He obtains his property and an ax. My heart is not glad.',
-    position: { lat: -20.27068, lng: -69.78616 },
-    async create(makers) {
-      return makers.simpleImage({ src: '/assets/img/lu/4.svg', name: this.name, fade: true });
-    },
-  },
-  {
     name: 'Bottles',
     collectible: false,
     position: {
       lat: -20.22333,
       lng: -69.78822,
     },
+    gltf: '/assets/items/bottles/',
     async create(makers) {
-      const item = await makers.threeObject('/assets/items/bottles/',
+      const item = await makers.threeObject(this.gltf,
         {
           name: this.name,
           onGround: true,
@@ -450,8 +157,9 @@ export default [
       lat: -20.21253,
       lng: -69.78882,
     },
+    gltf: '/assets/items/broken-drone/',
     async create(makers) {
-      const item = await makers.threeObject('/assets/items/broken-drone/',
+      const item = await makers.threeObject(this.gltf,
         {
           name: this.name,
           onGround: true,
@@ -463,31 +171,6 @@ export default [
       return item;
     },
   },
-
-  // Chapter 5
-  {
-    name: 'He shoots a pheasant. It drops with the first arrow. In the end this brings both praise and office.',
-    position: { lat: -20.21041, lng: -69.79597 },
-    async create(makers) {
-      return makers.simpleImage({ src: '/assets/img/lu/5.svg', name: this.name, fade: true });
-    },
-  },
-  {
-    name: 'La Voz del Hombre Muerto',
-    collectible: false,
-    position: { lat: -20.20467, lng: -69.798 },
-    create(makers) {
-      return makers.embed('https://www.youtube.com/embed/videoseries?si=BF5VloQj6h6x37CR&amp;list=PL_KxaQOvvGcCrqyd5bWfnUEqnkVJVjFhQ');
-    },
-  },
-  {
-    name: 'Humberstone Wikipedia',
-    collectible: false,
-    position: { lat: -20.20635, lng: -69.79717 },
-    create(makers) {
-      return makers.embed('https://en.wikipedia.org/wiki/Humberstone_and_Santa_Laura_Saltpeter_Works');
-    },
-  },
   {
     name: 'NASA baseball cap',
     thumbnailURL: '/assets/items/baseball-cap/thumb.webp',
@@ -496,8 +179,9 @@ export default [
       lat: -20.20549,
       lng: -69.79511,
     },
+    gltf: '/assets/items/baseball-cap/',
     async create(makers) {
-      const item = await makers.threeObject('/assets/items/baseball-cap/',
+      const item = await makers.threeObject(this.gltf,
         {
           name: this.name,
           onGround: true,
@@ -514,8 +198,9 @@ export default [
       lat: -20.21404,
       lng: -69.78924,
     },
+    gltf: '/assets/items/cybertruck/',
     async create(makers) {
-      const item = await makers.threeObject('/assets/items/cybertruck/',
+      const item = await makers.threeObject(this.gltf,
         {
           name: this.name,
           big: true,
@@ -536,8 +221,9 @@ export default [
       lat: -20.31434,
       lng: -69.76132,
     },
+    gltf: '/assets/items/mirror/',
     async create(makers) {
-      const item = await makers.threeObject('/assets/items/mirror/',
+      const item = await makers.threeObject(this.gltf,
         {
           name: this.name,
           big: true,
@@ -558,8 +244,9 @@ export default [
       lng: -69.78619,
     },
     canBeActivated: true,
+    gltf: '/assets/items/jbl/',nBeActivated: true,
     async create(makers) {
-      const item = await makers.threeObject('/assets/items/jbl/',
+      const item = await makers.threeObject(this.gltf,
         {
           name: this.name,
           onGround: true,
@@ -580,8 +267,9 @@ export default [
       lng: -69.78564,
     },
     canBeActivated: true,
+    gltf: '/assets/items/gnostic-stall/',nBeActivated: true,
     async create(makers) {
-      const item = await makers.threeObject('/assets/items/gnostic-stall/',
+      const item = await makers.threeObject(this.gltf,
         {
           name: this.name,
           big: true,
@@ -605,8 +293,9 @@ export default [
       lng: -69.78581,
     },
     canBeActivated: true,
+    gltf: '/assets/items/i-ching/',nBeActivated: true,
     async create(makers) {
-      const item = await makers.threeObject('/assets/items/i-ching/',
+      const item = await makers.threeObject(this.gltf,
         {
           name: this.name,
           big: true,
@@ -633,8 +322,9 @@ export default [
       lat: -20.21207,
       lng: -69.79832,
     },
+    gltf: '/assets/items/mirror/',
     async create(makers) {
-      const item = await makers.threeObject('/assets/items/mirror/',
+      const item = await makers.threeObject(this.gltf,
         {
           name: this.name,
           big: true,
@@ -655,8 +345,9 @@ export default [
       lng: -69.79646,
     },
     canBeActivated: true,
+    gltf: '/assets/items/world-exit/',nBeActivated: true,
     async create(makers) {
-      const item = await makers.threeObject('/assets/items/world-exit/',
+      const item = await makers.threeObject(this.gltf,
         {
           name: this.name,
           big: true,
@@ -674,15 +365,6 @@ export default [
       return item;
     },
   },
-
-  // Chapter 6
-  {
-    name: 'The bird\'s nest burns up. The wanderer laughs at first, Then must needs lament and weep. Through carelessness he loses his cow. Misfortune.',
-    position: { lat: -20.38006, lng: -69.72714 },
-    async create(makers) {
-      return makers.simpleImage({ src: '/assets/img/lu/6.svg', name: this.name, fade: true });
-    },
-  },
   {
     name: 'a broken phone',
     thumbnailURL: '/assets/items/phone/thumb.webp',
@@ -691,8 +373,9 @@ export default [
       lat: -20.41114,
       lng: -69.71363,
     },
+    gltf: '/assets/items/phone/',
     async create(makers) {
-      return makers.threeObject('/assets/items/phone/',
+      return makers.threeObject(this.gltf,
         {
           name: this.name,
           onGround: true,
@@ -701,23 +384,15 @@ export default [
       );
     },
   },
-
-  // Epilogue
-  {
-    name: 'Success through smallness. Perseverance brings good fortune to the wanderer.',
-    position: { lat: -0.00006, lng: 0.0002 },
-    async create(makers) {
-      return makers.simpleImage({ src: '/assets/img/lu/full.svg', name: this.name, fade: true });
-    },
-  },
   {
     name: 'Map with some markers on it',
     position: {
       lat: 0.00005,
       lng: 0.0002,
     },
+    gltf: '/assets/items/map/',
     async create(makers) {
-      return makers.threeObject('/assets/items/map/',
+      return makers.threeObject(this.gltf,
         {
           name: this.name,
           onGround: true,
