@@ -17,53 +17,61 @@ const jumps = [
   { lat: -20.4388734, lng: -69.7009038 },
 ];
 
-export const gustavoSequence = async (context) => {
-  disableClickToGoCB(context);
-  context.score.lobotomy.play();
+export const gustavoSequence = async (G) => {
+  disableClickToGoCB(G);
+  G.score.lobotomy.play();
   removeTask();
   hideHud();
-  context.map.setOptions({ linksControl: false });
-  context.soundscape.set(context.soundscape.base);
+  G.map.setOptions({ linksControl: false });
+  G.soundscape.set(G.soundscape.base);
 
   for (const [index, position] of enumerate(jumps)) {
-    context.map.setPosition(position);
+    G.map.setPosition(position);
 
     if (index < jumps.length - 1) {
       await sleep(JUMP_MS);
     } else {
-      approachPov(context, gustavoPov, PAN_MS, 200);
+      approachPov(G, gustavoPov, PAN_MS, 200);
     }
   }
 
   await sleep(PAN_MS + 3_000);
-  await scheduleScript(poem, context);
+  await scheduleScript(poem, G);
 
   await sleep(2_000);
 
-  context.sfx.carCrash();
-  context.soundscapeGain.gain.linearRampToValueAtTime(0, context.audioContext.currentTime + 6);
+  G.sfx.carCrash();
+  G.soundscapeGain.gain.linearRampToValueAtTime(0, G.audioContext.currentTime + 6);
   await sleep(5_550);
 
-  approachPov(context, crashPov, 300, 50);
+  approachPov(G, crashPov, 300, 50);
 
-  context.scoreGain.gain.setValueAtTime(0, context.audioContext.currentTime);
-  context.container.animate([
+  G.scoreGain.gain.setValueAtTime(0, G.audioContext.currentTime);
+  G.container.animate([
     { filter: 'brightness(3)' },
     { filter: 'brightness(1.1)' },
   ], { duration: 15_000, fill: 'forwards' });
 
-  context.map.setPano('gustavoDissolve1');
-  context.map.setOptions({ linksControl: true });
-  context.skyImages.hide();
+  G.map.setPano('gustavoDissolve1');
+  G.map.setOptions({ linksControl: true });
+  G.skyImages?.hide();
 
-  context.score.lithiumAtmo.preload = 'auto';
+  G.score.lithiumAtmo.preload = 'auto';
+
+  let helpListener;
 
   const helpTimeout = setTimeout(
-    () => showHelpMessage('Click on the white arrow to move')(context),
+    () => {
+      showHelpMessage('Click on the white arrow to move', [], 7)(G);
+      helpListener?.remove();
+    },
     20_000,
   );
 
-  context.container.addEventListener('click', () => clearTimeout(helpTimeout), { once: true });
+  helpListener = G.google.event.addListener(G.map, 'pano_changed', () => {
+    clearTimeout(helpTimeout);
+    helpListener?.remove();
+  });
 
   showHud();
 };
