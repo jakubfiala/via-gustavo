@@ -6,6 +6,7 @@
 
 // FDVGJ2MUKTs1ZWOW9Wko9Q (mirror location)
 // UaKCGfhkFtU072sRS_sQ8A (mirror 2 location)
+// cPomnYUEZP_38gHYrgNj3g (mirror 3 location)
 
 // REjdyk2fgnf3LWBQudZiGg (outside Humberstone)
 

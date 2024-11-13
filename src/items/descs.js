@@ -366,6 +366,25 @@ export default [
     },
   },
   {
+    name: 'Mirror 3',
+    position: { lat: -20.40091, lng: -69.71762 },
+    gltf: '/assets/items/mirror/',
+    async create(makers) {
+      const item = await makers.threeObject(this.gltf,
+        {
+          name: this.name,
+          big: true,
+          onGround: true,
+          env: '/assets/img/mirror3.env.jpg',
+          envIntensity: 1.2,
+          cameraPosition: { x: 3, y: 1, z: 2.5 },
+        },
+      );
+
+      return item;
+    },
+  },
+  {
     name: 'a broken phone',
     thumbnailURL: '/assets/items/phone/thumb.webp',
     collectible: true,
