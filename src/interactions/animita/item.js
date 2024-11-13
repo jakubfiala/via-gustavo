@@ -6,7 +6,7 @@ import { loadGLTF } from '../../items/3d-objects/gltf.js';
 const MAX_EV_LINES = 3;
 const EV_FONT_SIZE = 80;
 const CANVAS_SIZE = 500;
-const ITEM_SPACING = 1;
+const ITEM_SPACING = 0.75;
 
 const specialAnswerKeys = ['ex-voto', 'consent'];
 
@@ -100,7 +100,7 @@ export const makeAnimita = async (G, answers) => {
   const make = THREEObjectMaker(G.google.InfoWindow);
   const item = await make('/assets/items/animita/', {
     name: 'Custom Animita',
-    cameraPosition: { x: -2.7, y: 0.8, z: 3.5 },
+    cameraPosition: { x: -3.7, y: 1.2, z: -1.5 },
     lightPosition: { x: -5, y: 5, z: 5 },
     env: '/assets/img/limbo.env.jpg',
     onGround: true,

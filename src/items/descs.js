@@ -379,7 +379,7 @@ export default [
         {
           name: this.name,
           onGround: true,
-          cameraPosition: { x: 3, y: 1, z: 3 },
+          cameraPosition: { x: 0.5, y: 0.15, z: 0.5 },
         },
       );
     },

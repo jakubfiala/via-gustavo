@@ -34,6 +34,7 @@ export const intro = [
       G.soundscapeGain.gain.setValueAtTime(0, G.audioContext.currentTime);
       G.scoreGain.gain.setValueAtTime(0, G.audioContext.currentTime);
       G.scoreGain.gain.linearRampToValueAtTime(DEFAULT_SCORE_GAIN, G.audioContext.currentTime + 10);
+      G.sfx.setFootsteps('hall');
     },
   },
   { duration: 2 },
@@ -75,12 +76,12 @@ export const intro = [
   { text: "You'd make this road a very happy place." },
   { duration: 1 },
   { text: "See if you can find a free spot anywhere" },
-  // {
-  //   text: "We're going to build Gustavo an animita in hyperspace.",
-  //   callback: (G) => {
-  //     initAnimitaEditor(G, {
-  //       onFinish: () => scheduleScript(finishedAnimita, G),
-  //     });
-  //   },
-  // },
+  {
+    text: "We're going to build Gustavo an animita in hyperspace.",
+    // callback: (G) => {
+    //   initAnimitaEditor(G, {
+    //     onFinish: () => scheduleScript(finishedAnimita, G),
+    //   });
+    // },
+  },
 ];

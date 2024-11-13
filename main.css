@@ -1289,8 +1289,9 @@ p.subtitle {
 
 #animita-editor:not([hidden]) {
   position: fixed;
-  top: 1rem;
-  left: 1rem;
+  bottom: 3rem;
+  left: 50%;
+  translate: -50% 0;
   animation: fade-in 1s both;
   z-index: 3;
 }

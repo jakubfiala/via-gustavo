@@ -2,6 +2,7 @@ import { LOCALSTORAGE_FOOTSTEPS_KEY } from '../constants.js';
 
 const FOOTSTEPS_URL = '/assets/audio/footsteps.mp3';
 const FOOTSTEPS_GRAVEL_URL = '/assets/audio/footsteps-gravel.mp3';
+const FOOTSTEPS_HALL_URL = 'assets/audio/footsteps-hall.mp3';
 const CHEWING_URL = '/assets/audio/chewing.mp3';
 const BACKPACK_URL = '/assets/audio/backpack.mp3';
 const DRONE_FLYBY_URL = '/assets/audio/drone-flyby.mp3';
@@ -55,6 +56,7 @@ export default async (context) => {
 
   const footstepsNormal = await getNodes(context, FOOTSTEPS_URL);
   const footstepsGravel = await getNodes(context, FOOTSTEPS_GRAVEL_URL);
+  const footstepsHall = await getNodes(context, FOOTSTEPS_HALL_URL);
   const chewing = await getNodes(context, CHEWING_URL);
   const backpack = await getNodes(context, BACKPACK_URL);
   const droneFlyBy = await getNodes(context, DRONE_FLYBY_URL, true);
@@ -67,6 +69,7 @@ export default async (context) => {
   const footstepsSounds = {
     normal: footstepsNormal,
     gravel: footstepsGravel,
+    hall: footstepsHall,
     none: null,
   };
 
