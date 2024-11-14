@@ -64,7 +64,7 @@ export const initAnimitaEditor = (G, handlers) => {
     G.map.setPano('exitLimbo4');
   });
 
-  // dialog.addEventListener('close', () => onFinish(G), { once: true });
+  dialog.addEventListener('close', () => onFinish(G), { once: true });
 
   form.addEventListener('submit', async () => {
     const answers = Object.fromEntries(new FormData(form));

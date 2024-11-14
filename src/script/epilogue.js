@@ -59,13 +59,13 @@ export const intro = [
   { duration: 2 },
   {
     text: "Oh, it's you! I knew you'd make it.",
-    callback: (G) => {
-      initAnimitaEditor(G, {
-        onFinish: () => scheduleScript(finishedAnimita, G),
-        onOccupied: () => scheduleScript(occupied, G),
-        onError: () => scheduleScript(error, G),
-      });
-    },
+    // callback: (G) => {
+    //   initAnimitaEditor(G, {
+    //     onFinish: () => scheduleScript(finishedAnimita, G),
+    //     onOccupied: () => scheduleScript(occupied, G),
+    //     onError: () => scheduleScript(error, G),
+    //   });
+    // },
   },
   { text: "You must be wondering what happened." },
   { duration: 1 },
@@ -99,12 +99,12 @@ export const intro = [
   { text: "See if you can find a free spot anywhere" },
   {
     text: "We're going to build Gustavo an animita in hyperspace.",
-    // callback: (G) => {
-    //   initAnimitaEditor(G, {
-    //     onFinish: () => scheduleScript(finishedAnimita, G),
-    //     onOccupied: () => scheduleScript(occupied, G),
-    //     onError: () => scheduleScript(error, G),
-    //   });
-    // },
+    callback: (G) => {
+      initAnimitaEditor(G, {
+        onFinish: () => scheduleScript(finishedAnimita, G),
+        onOccupied: () => scheduleScript(occupied, G),
+        onError: () => scheduleScript(error, G),
+      });
+    },
   },
 ];
