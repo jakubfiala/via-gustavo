@@ -100,6 +100,7 @@ export const intro = [
   {
     text: "We're going to build Gustavo an animita in hyperspace.",
     callback: (G) => {
+      setTask("Find a suitable spot to place your animita");
       initAnimitaEditor(G, {
         onFinish: () => scheduleScript(finishedAnimita, G),
         onOccupied: () => scheduleScript(occupied, G),
