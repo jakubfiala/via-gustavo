@@ -1,5 +1,7 @@
-import inventory from '../../inventory';
-import { makeAnimita } from './item';
+import inventory from '../../inventory/index.js';
+import { makeAnimita } from './item.js';
+import { LIMBO_LNG_STEP } from '../../custom-panorama/limbo.js';
+import { loadAnimitas, loadedAnimitas, saveAnimita } from './api.js';
 
 const editor = document.getElementById('animita-editor');
 const dialog = document.getElementById('animita-dialog');
@@ -8,6 +10,8 @@ const editButton = document.getElementById('edit-button');
 const finishButton = document.getElementById('finish-button');
 const form = document.getElementById('animita-dialog-form');
 const itemTemplate = document.getElementById('animita-item-template');
+
+const specialAnswerKeys = ['ex-voto', 'consent'];
 
 const openEditor = (G) => {
   console.info('[animita]', 'opening editor');
@@ -34,12 +38,24 @@ const renderItems = (G) => {
   return fragment;
 };
 
-export const initAnimitaEditor = (G, { onFinish = () => {} }) => {
+export const initAnimitaEditor = (G, handlers) => {
+  const {
+    onFinish = () => {},
+    onOccupied = () => {},
+    onError = () => {},
+  } = handlers;
+
   editor.hidden = false;
 
   itemsContainer.appendChild(renderItems(G));
 
   editButton.addEventListener('click', () => {
+    const position = G.map.getPosition().lng() * LIMBO_LNG_STEP;
+    if (loadedAnimitas.has(position)) {
+      onOccupied(G);
+      return;
+    }
+
     openEditor(G);
   });
 
@@ -48,12 +64,35 @@ export const initAnimitaEditor = (G, { onFinish = () => {} }) => {
     G.map.setPano('exitLimbo4');
   });
 
-  dialog.addEventListener('close', () => onFinish(G), { once: true });
+  // dialog.addEventListener('close', () => onFinish(G), { once: true });
+
   form.addEventListener('submit', async () => {
     const answers = Object.fromEntries(new FormData(form));
-    await makeAnimita(G, answers);
+    const exVoto = answers['ex-voto'];
+    // get checked checkbox names from FormData
+    const items = Object.keys(answers)
+      .filter((name) => !specialAnswerKeys.includes(name) && answers[name] === 'on');
+
+    try {
+      const animita = { exVoto, items, position: G.map.getPosition() };
+      await makeAnimita(G, animita);
+      await saveAnimita(animita);
+    } catch (error) {
+      console.warn('[animitas]', 'error saving animita', error);
+      onError(G);
+    }
 
     editButton.hidden = true;
     finishButton.hidden = false;
   });
 }
+
+export const initAnimitas = async (G) => {
+  loadAnimitas(G, true);
+
+  const listener = G.google.event.addListener(G.map, 'pano_changed', () => loadAnimitas(G));
+
+  return {
+    cleanUp: () => listener.remove(),
+  };
+};

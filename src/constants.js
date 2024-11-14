@@ -18,3 +18,7 @@ export const OBJECT_LOAD_THRESHOLD = 100;
 export const DEFAULT_COLLECT_TEXT = 'Collected';
 
 export const HITCHHIKE_PANO = 'REjdyk2fgnf3LWBQudZiGg';
+
+export const ANIMITAS_ENDPOINT = process.env.NODE_ENV === 'dev'
+  ? 'http://localhost:8787'
+  : 'https://animitas.finding-gustavo-quest';

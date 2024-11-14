@@ -8,9 +8,7 @@ const EV_FONT_SIZE = 80;
 const CANVAS_SIZE = 500;
 const ITEM_SPACING = 0.75;
 
-const specialAnswerKeys = ['ex-voto', 'consent'];
-
-const writeExVoto = (item, answers) => {
+const writeExVoto = (item, { exVoto }) => {
   const canvas = document.createElement('canvas');
   canvas.width = CANVAS_SIZE;
   canvas.height = CANVAS_SIZE;
@@ -21,7 +19,7 @@ const writeExVoto = (item, answers) => {
   context.textAlign = 'center';
   context.scale(1, 2);
 
-  const text = answers['ex-voto'].toUpperCase();
+  const text = exVoto.toUpperCase();
   const { width } = context.measureText(text);
   console.info('[animita]', 'writing ex-voto', text, width);
 
@@ -64,15 +62,12 @@ const scaleObject = (o) => {
   o.scale.z = factor;
 };
 
-const createInventoryItems = async (G, answers) => {
-  const names = Object.keys(answers)
-    .filter((name) => !specialAnswerKeys.includes(name) && answers[name] === 'on');
-
-  console.info('[animita]', 'adding inventory items', names);
+const createInventoryItems = async (G, { items }) => {
+  console.info('[animita]', 'adding inventory items', items);
 
   const group = new Group();
 
-  const objects = await Promise.all(names.map(async (n) => {
+  const objects = await Promise.all(items.map(async (n) => {
     const desc = descs.find(({ name }) => name === n);
     if (!desc?.gltf) {
       return null;
@@ -94,12 +89,12 @@ const createInventoryItems = async (G, answers) => {
   return group;
 }
 
-export const makeAnimita = async (G, answers) => {
+export const makeAnimita = async (G, config) => {
   console.info('[animita]', 'creating item');
 
   const make = THREEObjectMaker(G.google.InfoWindow);
   const item = await make('/assets/items/animita/', {
-    name: 'Custom Animita',
+    name: `Animita at ${config.position.lng()}`,
     cameraPosition: { x: -3.7, y: 1.2, z: -1.5 },
     lightPosition: { x: -5, y: 5, z: 5 },
     env: '/assets/img/limbo.env.jpg',
@@ -109,13 +104,12 @@ export const makeAnimita = async (G, answers) => {
   // ensure the object is loaded before inserting
   await item.loadObject();
 
-  writeExVoto(item, answers);
+  writeExVoto(item, config);
 
-  item.scene.add(await createInventoryItems(G, answers));
+  item.scene.add(await createInventoryItems(G, config));
   item.container.classList.add('gustavo-item--noninteractive');
 
-  const position = G.map.getPosition();
-  item.insert(G.map, { lat: position.lat() + 0.00006, lng: position.lng() + 0.00005 });
+  item.insert(G.map, { lat: config.position.lat() + 0.00006, lng: config.position.lng() + 0.00005 });
   item.update();
   item.povUpdate();
 

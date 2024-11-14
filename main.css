@@ -363,7 +363,10 @@ p.subtitle {
   background: none;
   box-shadow: none;
   overflow: visible !important;
-  /* pointer-events: none; */
+}
+
+.gm-style .gm-style-iw-c:has(.gustavo-item--noninteractive) {
+  pointer-events: none;
 }
 
 .gm-style-iw-tc {

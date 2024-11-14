@@ -2,7 +2,16 @@ import { DEFAULT_SCORE_GAIN } from '../audio/score-sounds.js';
 import { journalMoment } from '../journal/index.js';
 import { removeTask } from '../task.js';
 import { scheduleScript } from './index.js';
-import { initAnimitaEditor } from '../interactions/animita/index.js';
+import { initAnimitaEditor, initAnimitas } from '../interactions/animita/index.js';
+
+export const occupied = [
+  { text: "There's already an animita here! Try to find an empty spot." },
+];
+
+export const error = [
+  { text: "Something went wrong storing your animita in the data center." },
+  { text: "Try again in a minute, perhaps at another spot!" },
+];
 
 export const finishedAnimita = [
   { text: "Oh that's wonderful!" },
@@ -16,7 +25,15 @@ export const finishedAnimita = [
 ];
 
 export const end = [
-  { callback: (G) => G.speechPlaybackRate = 1.1 },
+  {
+    callback: (G) => {
+      if (G.animitas) {
+        G.animitas.cleanUp();
+      }
+
+      G.speechPlaybackRate = 1.1;
+    },
+  },
   { text: "Alright then!" },
   { text: "It has been a pleasure." },
   { text: "I hope to see you again, my dear friend." },
@@ -25,7 +42,7 @@ export const end = [
 
 export const intro = [
   {
-    callback: (G) => {
+    callback: async (G) => {
       console.info('[epilogue]', 'starting');
       removeTask();
       G.speechPlaybackRate = 1.1;
@@ -35,16 +52,20 @@ export const intro = [
       G.scoreGain.gain.setValueAtTime(0, G.audioContext.currentTime);
       G.scoreGain.gain.linearRampToValueAtTime(DEFAULT_SCORE_GAIN, G.audioContext.currentTime + 10);
       G.sfx.setFootsteps('hall');
+      initAnimitas(G)
+        .then((animitas) => G.animitas = animitas);
     },
   },
   { duration: 2 },
   {
     text: "Oh, it's you! I knew you'd make it.",
-    // callback: (G) => {
-    //   initAnimitaEditor(G, {
-    //     onFinish: () => scheduleScript(finishedAnimita, G),
-    //   });
-    // },
+    callback: (G) => {
+      initAnimitaEditor(G, {
+        onFinish: () => scheduleScript(finishedAnimita, G),
+        onOccupied: () => scheduleScript(occupied, G),
+        onError: () => scheduleScript(error, G),
+      });
+    },
   },
   { text: "You must be wondering what happened." },
   { duration: 1 },
@@ -78,10 +99,12 @@ export const intro = [
   { text: "See if you can find a free spot anywhere" },
   {
     text: "We're going to build Gustavo an animita in hyperspace.",
-    callback: (G) => {
-      initAnimitaEditor(G, {
-        onFinish: () => scheduleScript(finishedAnimita, G),
-      });
-    },
+    // callback: (G) => {
+    //   initAnimitaEditor(G, {
+    //     onFinish: () => scheduleScript(finishedAnimita, G),
+    //     onOccupied: () => scheduleScript(occupied, G),
+    //     onError: () => scheduleScript(error, G),
+    //   });
+    // },
   },
 ];
