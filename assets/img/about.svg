@@ -1,0 +1,5 @@
+<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <circle cx="16" cy="16" r="11" fill="none" stroke-width="2" stroke="currentColor"></circle>
+  <path d="M16 14C16.5523 14 17 14.4477 17 15L17 21C17 21.5523 16.5523 22 16 22V22C15.4477 22 15 21.5523 15 21L15 15C15 14.4477 15.4477 14 16 14V14Z" fill="currentColor"/>
+  <path d="M16 10C16.5523 10 17 10.4477 17 11V11C17 11.5523 16.5523 12 16 12V12C15.4477 12 15 11.5523 15 11V11C15 10.4477 15.4477 10 16 10V10Z" fill="currentColor"/>
+</svg>

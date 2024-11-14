@@ -1,0 +1,36 @@
+{
+  "name": "via-gustavo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "./scripts/generate-speech-archive.sh && rollup -c",
+    "dev": "rollup -c --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakubfiala/via-gustavo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakubfiala/via-gustavo/issues"
+  },
+  "homepage": "https://github.com/jakubfiala/via-gustavo#readme",
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.8",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "nanotar": "^0.1.1",
+    "rollup": "^4.21.3",
+    "slug": "^10.0.0",
+    "three": "^0.168.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-replace": "^6.0.1",
+    "lodash": "^4.17.21",
+    "seedrandom": "^3.0.5"
+  }
+}

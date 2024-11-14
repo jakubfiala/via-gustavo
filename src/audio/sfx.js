@@ -1,0 +1,104 @@
+import { LOCALSTORAGE_FOOTSTEPS_KEY } from '../constants.js';
+
+const FOOTSTEPS_URL = '/assets/audio/footsteps.mp3';
+const FOOTSTEPS_GRAVEL_URL = '/assets/audio/footsteps-gravel.mp3';
+const FOOTSTEPS_HALL_URL = 'assets/audio/footsteps-hall.mp3';
+const CHEWING_URL = '/assets/audio/chewing.mp3';
+const BACKPACK_URL = '/assets/audio/backpack.mp3';
+const DRONE_FLYBY_URL = '/assets/audio/drone-flyby.mp3';
+const EXPLOSION_URL = '/assets/audio/explosion.mp3';
+const BUS_URL = 'assets/audio/bus.mp3';
+const DONATING_WATER_URL = 'assets/audio/donating-water.mp3';
+const CAR_APPROACH_URL = 'assets/audio/car-approach.mp3';
+const CAR_CRASH_URL = 'assets/audio/crash.mp3';
+
+const getBuffer = async (audioContext, url) => {
+  const response = await fetch(url);
+  return audioContext.decodeAudioData(await response.arrayBuffer());
+};
+
+const getNodes = async (context, url, oneoff = false) => {
+  const source = new AudioBufferSourceNode(context.audioContext, { buffer: await getBuffer(context.audioContext, url) });
+  const gain = new GainNode(context.audioContext, { gain: 0 });
+
+  source.connect(gain).connect(context.sfxGain);
+  source.loop = !oneoff;
+  if (!oneoff) {
+    source.start();
+  }
+
+  return { source, gain, oneoff };
+};
+
+const playSFX = async (context, sound, dur = 0, ramp = 0.05) => {
+  sound.gain.gain.cancelScheduledValues(context.audioContext.currentTime);
+
+  if (sound.oneoff) {
+    sound.gain.gain.setValueAtTime(1, context.audioContext.currentTime);
+    sound.source.start(0);
+    return sound.source;
+  }
+
+  const duration = dur || sound.source.buffer.duration;
+  sound.gain.gain.setValueAtTime(0, context.audioContext.currentTime);
+  sound.gain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + ramp);
+  sound.gain.gain.setValueAtTime(1, context.audioContext.currentTime + duration);
+  sound.gain.gain.linearRampToValueAtTime(0, context.audioContext.currentTime + duration + ramp);
+
+  return sound.source;
+};
+
+export const clear = () => localStorage.removeItem(LOCALSTORAGE_FOOTSTEPS_KEY);
+
+export default async (context) => {
+  context.sfxGain = new GainNode(context.audioContext, { gain: 0 });
+  context.sfxGain.connect(context.masterGain);
+
+  const footstepsNormal = await getNodes(context, FOOTSTEPS_URL);
+  const footstepsGravel = await getNodes(context, FOOTSTEPS_GRAVEL_URL);
+  const footstepsHall = await getNodes(context, FOOTSTEPS_HALL_URL);
+  const chewing = await getNodes(context, CHEWING_URL);
+  const backpack = await getNodes(context, BACKPACK_URL);
+  const droneFlyBy = await getNodes(context, DRONE_FLYBY_URL, true);
+  const explosion = await getNodes(context, EXPLOSION_URL, true);
+  const bus = await getNodes(context, BUS_URL, true);
+  const donatingWater = await getNodes(context, DONATING_WATER_URL, true);
+  const carApproach = await getNodes(context, CAR_APPROACH_URL, true);
+  const carCrash = await getNodes(context, CAR_CRASH_URL, true);
+
+  const footstepsSounds = {
+    normal: footstepsNormal,
+    gravel: footstepsGravel,
+    hall: footstepsHall,
+    none: null,
+  };
+
+  let currentFootsteps = footstepsNormal;
+
+  const controller = {
+    setFootsteps(name) {
+      console.info('[sfx]', 'setting footsteps sound to', name);
+      currentFootsteps = footstepsSounds[name];
+      localStorage.setItem(LOCALSTORAGE_FOOTSTEPS_KEY, name);
+    },
+    footsteps() {
+      if (currentFootsteps) {
+        playSFX(context, currentFootsteps, 2);
+      }
+    },
+    chewing: () => playSFX(context, chewing),
+    backpack: () => playSFX(context, backpack),
+    droneFlyBy: () => playSFX(context, droneFlyBy),
+    explosion: () => playSFX(context, explosion),
+    bus: () => playSFX(context, bus),
+    donatingWater: () => playSFX(context, donatingWater),
+    carApproach: () => playSFX(context, carApproach),
+    carCrash: () => playSFX(context, carCrash),
+  };
+
+  controller.setFootsteps(localStorage.getItem(LOCALSTORAGE_FOOTSTEPS_KEY) || 'normal');
+
+  return controller;
+};
+
+
