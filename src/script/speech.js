@@ -1,9 +1,9 @@
 import slug from 'slug';
-import { parseTar } from 'nanotar';
+import { parseTarGzip } from 'nanotar';
 
 import { sleep } from '../utils.js';
 
-const ARCHIVE_URL = '/assets/audio/speech.tar';
+const ARCHIVE_URL = '/assets/audio/speech.tar.gz';
 const PAUSE_MS = 750;
 const WAIT_FOR_ARCHIVE_MS = 2000;
 
@@ -23,7 +23,9 @@ export const initSpeech = async (context) => {
     console.info('[speech]', 'loadin speech parts archive', ARCHIVE_URL);
     const response = await fetch(ARCHIVE_URL);
     const buffer = await response.arrayBuffer();
-    const entries = parseTar(buffer).map(({ name, data }) => [
+    const extracted = await parseTarGzip(buffer);
+
+    const entries = extracted.map(({ name, data }) => [
       // strip the file extension (even if truncated)
       name.replace(/\.[a-z0-9]+/, ''),
       data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength),
