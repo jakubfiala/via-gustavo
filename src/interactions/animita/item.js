@@ -2,6 +2,7 @@ import { CanvasTexture, Group, MeshBasicMaterial } from 'three';
 import { THREEObjectMaker } from '../../items/3d-objects/index.js';
 import descs from '../../items/descs.js';
 import { loadGLTF } from '../../items/3d-objects/gltf.js';
+import { choose } from '../../utils.js';
 
 const MAX_EV_LINES = 3;
 const EV_FONT_SIZE = 80;
@@ -93,14 +94,17 @@ export const makeAnimita = async (G, config) => {
   console.info('[animita]', 'creating item');
 
   const make = THREEObjectMaker(G.google.InfoWindow);
+  const side = choose([-1, 1]);
   const item = await make('/assets/items/animita/', {
     name: `Animita at ${config.position.lng()}`,
-    cameraPosition: { x: -3.7, y: 1.2, z: -1.5 },
+    cameraPosition: { x: (-side) * 3.7, y: 1.2, z: (-side) * 1.5 },
     lightPosition: { x: -5, y: 5, z: 5 },
     env: '/assets/img/limbo.env.jpg',
     onGround: true,
     big: true,
   });
+
+  item.container.classList.add('gustavo-item--animita');
   // ensure the object is loaded before inserting
   await item.loadObject();
 
@@ -109,9 +113,16 @@ export const makeAnimita = async (G, config) => {
   item.scene.add(await createInventoryItems(G, config));
   item.container.classList.add('gustavo-item--noninteractive');
 
-  item.insert(G.map, { lat: config.position.lat() + 0.00006, lng: config.position.lng() + 0.00005 });
+  const actualPosition = {
+    lat: config.position.lat() + side * (0.00006 + Math.random() * 0.00003),
+    lng: config.position.lng() + 0.00005 + choose([-1, 1]) * (Math.random() * 0.00002),
+  };
+
+  item.insert(G.map, actualPosition);
   item.update();
   item.povUpdate();
 
   G.items.push(item);
+
+  return actualPosition;
 };

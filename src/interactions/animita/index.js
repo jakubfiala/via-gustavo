@@ -2,6 +2,7 @@ import inventory from '../../inventory/index.js';
 import { makeAnimita } from './item.js';
 import { LIMBO_LNG_STEP } from '../../custom-panorama/limbo.js';
 import { loadAnimitas, loadedAnimitas, saveAnimita } from './api.js';
+import { approachPov, headingFromPoints } from '../../utils.js';
 
 const editor = document.getElementById('animita-editor');
 const dialog = document.getElementById('animita-dialog');
@@ -75,8 +76,15 @@ export const initAnimitaEditor = (G, handlers) => {
 
     try {
       const animita = { exVoto, items, position: G.map.getPosition() };
-      await makeAnimita(G, animita);
+      const actualPosition = await makeAnimita(G, animita);
+
       await saveAnimita(animita);
+
+      approachPov(G,
+        { heading: headingFromPoints(G.map.getPosition(), new G.google.LatLng(actualPosition)), pitch: -15, zoom: 3 },
+        3000,
+        180,
+      );
     } catch (error) {
       console.warn('[animitas]', 'error saving animita', error);
       onError(G);

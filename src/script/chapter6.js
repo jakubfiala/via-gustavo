@@ -134,7 +134,7 @@ export const poem = [
   { text: "to honour you." },
   { duration: 1 },
   { text: "Oh Gustavo! Ages may pass," },
-  { text: "the winds of time, may blow away your memory," },
+  { text: "the winds of time may blow away your memory," },
   { text: "but today, it travels across the planet," },
   { text: "today, it's etched in semiconductors" },
   { text: "in Quilicura, Canelones, in Douglas County, Inzai and Hanau..." },

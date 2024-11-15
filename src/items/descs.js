@@ -1,6 +1,6 @@
 import { itemDesc as busStop } from './bus.js';
 import { initGeigerCounterDetection } from '../../assets/items/geiger-counter/detection.js';
-import { shrooms } from './shrooms.js';
+import { eatenShrooms, shrooms } from './shrooms.js';
 import { scheduleScript } from '../script/index.js';
 import { geigerCounterReply } from '../script/chapter2.js';
 import { itemDesc as drone } from '../drone.js';
@@ -10,7 +10,7 @@ import { stationsOfTheCross } from './via-crucis.js';
 import { readIChing } from '../interactions/i-ching/index.js';
 import { iching } from './i-ching.js';
 import { embeds } from './embeds/descs.js';
-import { backpackSequence } from '../interactions/backpack-sequence.js';
+import { backpackSequence, brokenGeigerCounter } from '../interactions/backpack-sequence.js';
 
 export default [
   ...cokeCans,
@@ -18,6 +18,8 @@ export default [
   ...shrooms,
   ...iching,
   ...embeds,
+  eatenShrooms,
+  brokenGeigerCounter,
   drone,
   busStop,
   {

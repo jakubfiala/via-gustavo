@@ -3,7 +3,7 @@ import inventory from '../inventory';
 const TRIP_DURATION = 5 * 60 * 1000;
 const DELAY_FEEDBACK = 0.4;
 
-const eatenShrooms = {
+export const eatenShrooms = {
   name: 'Eaten Magic Mushrooms',
   thumbnailURL: '/assets/items/magic-mushrooms/thumb.webp',
   collectible: true,
@@ -18,6 +18,7 @@ const eatenShrooms = {
       name: this.name,
       displayName: this.displayName,
     });
+    return item;
   },
 };
 

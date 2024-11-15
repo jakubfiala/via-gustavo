@@ -3,13 +3,9 @@
     opacity: 0;
   }
 
-  ;
-
   to {
     opacity: 1
   }
-
-  ;
 }
 
 @keyframes slide-in {
@@ -17,13 +13,9 @@
     translate: 0 5%;
   }
 
-  ;
-
   to {
     translate: 0 0;
   }
-
-  ;
 }
 
 @keyframes slide-in-full {
@@ -31,13 +23,9 @@
     translate: 0 100%;
   }
 
-  ;
-
   to {
     translate: 0 0;
   }
-
-  ;
 }
 
 @keyframes handheld {
@@ -787,6 +775,10 @@ p.subtitle {
 
 .gm-style-iw-d:has(.gustavo-item--on-ground) {
   translate: 0 15vh;
+}
+
+.gm-style-iw-d:has(.gustavo-item--animita) {
+  translate: 0 20vh;
 }
 
 .gm-style-iw-d:has(.gustavo-item--noninteractive) {

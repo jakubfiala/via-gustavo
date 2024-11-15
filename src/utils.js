@@ -67,6 +67,7 @@ export const documentVisible = () => new Promise((resolve) => {
 
 export const scale = (value, smin, smax, tmin, tmax) => (value - smin) * (tmax - tmin) / (smax - smin) + tmin;
 
+export const choose = list => list[Math.floor(Math.random() * list.length)];
 
 export const openLink = (href) => {
   const link = document.createElement('a');

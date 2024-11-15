@@ -3,7 +3,7 @@ import { hover } from '../drone.js';
 import { journalMoment } from '../journal/index.js';
 import { sleep } from '../utils.js';
 
-const brokenGeigerCounterDesc = {
+export const brokenGeigerCounter = {
   name: 'Broken Geiger Counter',
   thumbnailURL: '/assets/items/geiger-counter/thumb.webp',
   collectible: true,
@@ -37,5 +37,5 @@ export const backpackSequence = async (G) => {
   hover(G, { lat: -20.29203, lng: -69.78111 });
 
   await sleep(2000);
-  inventory.addItem(brokenGeigerCounterDesc);
+  inventory.addItem(brokenGeigerCounter);
 };

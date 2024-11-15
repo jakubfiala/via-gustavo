@@ -1,6 +1,6 @@
 import { DEFAULT_SCORE_GAIN } from '../audio/score-sounds.js';
 import { journalMoment } from '../journal/index.js';
-import { removeTask } from '../task.js';
+import { removeTask, setTask } from '../task.js';
 import { scheduleScript } from './index.js';
 import { initAnimitaEditor, initAnimitas } from '../interactions/animita/index.js';
 
