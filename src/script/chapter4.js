@@ -80,7 +80,7 @@ export const difunta1 = [
   {
     text: "Let's keep walking, get some fresh air outside of town.",
     callback: (context) => {
-      setTask('Make your way out of Pozo Almonte');
+      setTask('Make your way north, out of Pozo Almonte');
       context.score.circuito5.preload = 'auto';
     },
   },
@@ -114,7 +114,7 @@ export const difunta3 = [
     callback: (context) => context.score.circuito3.play(),
   },
   { text: "Days later, a group of gauchos ride across the plains with their cattle." },
-  { text: "One of them, a young lad, keen to prove himself, keeps circling around the herd" },
+  { text: "One of them, a young lad keen to prove himself, keeps circling around the herd" },
   { text: "avoiding the thorny bushes by millimeters." },
   { text: "Suddenly, he spots vibrant red cloth among the rocks to the side." },
   { text: "He calls to his companions, and they rush to investigate." },
@@ -138,6 +138,7 @@ export const difunta3 = [
 ];
 
 export const difunta4 = [
+  { text: "Okay, let's stop here for a second." },
   {
     text: "I know, I know.",
     callback: (G) => {
@@ -187,16 +188,12 @@ export const lithium = [
   {
     callback: (context) => context.score.lithiumLoop.play(),
   },
-  { text: "Yes, I have seen Gustavo." },
+  { text: "Ah, look at that beautiful salt mine... yes, I have seen Gustavo." },
   { text: "I've seen the azure pools of lithium water reflect in his sunglasses as he drove home from work." },
-  { text: "He would take out his phone while driving to call his brother," },
-  { text: "and talk about his day." },
-  { text: "He'd talk about the precious groundwater, how it's pulled from beneath the desert," },
-  { text: "and left to evaporate in the blazing sun." },
-  { text: "He sounded proud when he talked about it." },
-  { text: "He'd clutch his phone slightly harder, aware of the piece of his land inside." },
-  { text: "Inside his brother's phone, his mum's iPad and a billion other objects" },
-  { text: "from Shenzen to Nevada, from Seoul to Brandenburg." },
+  { text: "He would take out his phone while driving to call his brother, and talk about his day." },
+  { text: "He'd talk about the precious groundwater, how it's pulled from beneath the desert and left to evaporate in the blazing sun." },
+  { text: "He sounded proud when he talked about it; clutching his phone, aware of the piece of his land inside." },
+  { text: "Inside his brother's phone, his mum's iPad and a billion other objects from Shenzen to Nevada, from Seoul to Brandenburg." },
   { duration: 1 },
   { text: "He'd smile when he left the gates of the mine" },
   { text: "passing the dying trees and flamingo carcasses." },

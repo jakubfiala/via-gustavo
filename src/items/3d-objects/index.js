@@ -214,6 +214,11 @@ export const THREEObjectMaker = (InfoWindow) => async (url, options = {}) => {
       renderer.render(scene, camera);
     },
     async reset() {
+      if (!object) {
+        console.info('[3d-objects]', 'no object yet for', name);
+        await loadObject();
+      }
+
       object.rotation.x = 0;
       object.rotation.y = 0;
       object.rotation.z = 0;

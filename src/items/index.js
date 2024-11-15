@@ -9,10 +9,10 @@ const DEFAULT_PICK_UP_SFX = 'backpack';
 
 const handheldContainer = document.getElementById('handheld-item');
 
-const setHandheldItem = (item) => {
+const setHandheldItem = async (item) => {
   if (item.canvas) {
     handheldContainer.appendChild(item.canvas);
-    item.reset();
+    await item.reset();
     item.isBeingHeld = true;
   }
 
@@ -41,16 +41,19 @@ const initItem = (makers) => async (desc, context) => {
   }
 
   if (desc.collectible || desc.canBeActivated) {
-    const handler = () => {
+    const handler = async () => {
       if (desc.collectible) {
         item.taken = true;
 
         Inventory.addItem(desc);
-        const pickUpSound = context.sfx[desc.pickUpSFX || DEFAULT_PICK_UP_SFX];
-        pickUpSound();
+
+        if (desc.pickUpSFX !== 'none') {
+          const pickUpSound = context.sfx[desc.pickUpSFX || DEFAULT_PICK_UP_SFX];
+          pickUpSound();
+        }
 
         if (desc.handheld) {
-          context.handheldItem = setHandheldItem(item);
+          context.handheldItem = await setHandheldItem(item);
         }
 
         item.info.close();
@@ -92,7 +95,7 @@ export default async (InfoWindow, context) => {
         item.taken = true;
 
         if (desc.handheld) {
-          context.handheldItem = setHandheldItem(item);
+          context.handheldItem = await setHandheldItem(item);
         }
 
         if (desc.canBeActivated) {

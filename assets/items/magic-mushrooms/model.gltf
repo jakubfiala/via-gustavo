@@ -8,8 +8,7 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				0,
-				1
+				0
 			]
 		}
 	],
@@ -21,21 +20,17 @@
 				0,
 				0.9676632285118103,
 				0,
-				0.25224569439888
+				0.2522456645965576
+			],
+			"scale":[
+				0.06000000610947609,
+				0.06000000238418579,
+				0.06000000610947609
 			],
 			"translation":[
 				0,
-				-3.669501781463623,
+				-0.11075234413146973,
 				0
-			]
-		},
-		{
-			"mesh":1,
-			"name":"hover-helper",
-			"scale":[
-				4.758359909057617,
-				4.758359909057617,
-				4.758359909057617
 			]
 		}
 	],
@@ -64,19 +59,6 @@
 					},
 					"indices":3,
 					"material":0
-				}
-			]
-		},
-		{
-			"name":"Cube",
-			"primitives":[
-				{
-					"attributes":{
-						"POSITION":4,
-						"NORMAL":5,
-						"TEXCOORD_0":6
-					},
-					"indices":7
 				}
 			]
 		}
@@ -128,40 +110,6 @@
 			"componentType":5123,
 			"count":3024,
 			"type":"SCALAR"
-		},
-		{
-			"bufferView":4,
-			"componentType":5126,
-			"count":24,
-			"max":[
-				1,
-				1,
-				1
-			],
-			"min":[
-				-1,
-				-1,
-				-1
-			],
-			"type":"VEC3"
-		},
-		{
-			"bufferView":5,
-			"componentType":5126,
-			"count":24,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":6,
-			"componentType":5126,
-			"count":24,
-			"type":"VEC2"
-		},
-		{
-			"bufferView":7,
-			"componentType":5123,
-			"count":36,
-			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
@@ -188,30 +136,6 @@
 			"byteLength":6048,
 			"byteOffset":27200,
 			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":288,
-			"byteOffset":33248,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":288,
-			"byteOffset":33536,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":192,
-			"byteOffset":33824,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":72,
-			"byteOffset":34016,
-			"target":34963
 		}
 	],
 	"samplers":[
@@ -222,7 +146,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":34088,
+			"byteLength":33248,
 			"uri":"model.bin"
 		}
 	]

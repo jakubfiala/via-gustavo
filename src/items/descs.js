@@ -3,15 +3,14 @@ import { initGeigerCounterDetection } from '../../assets/items/geiger-counter/de
 import { shrooms } from './shrooms.js';
 import { scheduleScript } from '../script/index.js';
 import { geigerCounterReply } from '../script/chapter2.js';
-import { hover, itemDesc as drone } from '../drone.js';
-import inventory from '../inventory/index.js';
-import { openLink, sleep } from '../utils.js';
+import { itemDesc as drone } from '../drone.js';
+import { openLink } from '../utils.js';
 import { cokeCans } from './coke.js';
-import { journalMoment } from '../journal/index.js';
 import { stationsOfTheCross } from './via-crucis.js';
 import { readIChing } from '../interactions/i-ching/index.js';
 import { iching } from './i-ching.js';
 import { embeds } from './embeds/descs.js';
+import { backpackSequence } from '../interactions/backpack-sequence.js';
 
 export default [
   ...cokeCans,
@@ -101,26 +100,7 @@ export default [
           cameraPosition: { y: 0.8 },
         },
       );
-      item.activate = async (context) => {
-        console.info('[backpack]', 'activated');
-        if (!inventory.hasItem('Geiger Counter')) {
-          return;
-        }
-
-        context.handheldItem?.item.detection?.overheat();
-
-        await sleep(2000);
-        document.getElementById('handheld-explosion').hidden = false;
-        context.sfx.explosion();
-
-        await sleep(800);
-        await context.handheldItem?.drop(context);
-        document.getElementById('handheld-explosion').hidden = true;
-        journalMoment('💥', 'The Geiger counter exploded');
-
-        await sleep(2000);
-        hover(context, { lat: -20.29203, lng: -69.78111 });
-      };
+      item.activate = (G) => backpackSequence(G);
 
       return item;
     },
@@ -195,8 +175,8 @@ export default [
   {
     name: 'Cybertruck',
     position: {
-      lat: -20.21404,
-      lng: -69.78924,
+      lat: -20.21408,
+      lng: -69.7893,
     },
     gltf: '/assets/items/cybertruck/',
     async create(makers) {
@@ -290,7 +270,7 @@ export default [
     name: 'I-Ching vending machine',
     position: {
       lat: -20.25904,
-      lng: -69.78581,
+      lng: -69.78586,
     },
     canBeActivated: true,
     gltf: '/assets/items/i-ching/',nBeActivated: true,

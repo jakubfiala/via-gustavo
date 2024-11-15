@@ -14,7 +14,7 @@ export default {
 
     console.log('item collecting', item);
 
-    toast(`${item.collectText || DEFAULT_COLLECT_TEXT} ${item.name}.`)
+    toast(`${item.collectText || DEFAULT_COLLECT_TEXT} ${item.displayName ?? item.name}.`)
 
     this.items.push(item);
     journalItem(item);
