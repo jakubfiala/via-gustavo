@@ -190,4 +190,19 @@ export const cokeCans = [
     position: { lat: -20.20521, lng: -69.79547 },
     rotation: { y: 1.4 },
   }),
+  createCoke({
+    name: 'Coca-Cola 38',
+    position: { lat: -20.27125, lng: -69.78595 },
+    rotation: { x: Math.PI/2, y: 1.4 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 39',
+    position: { lat: -20.26453, lng: -69.78529 },
+    rotation: { x: Math.PI/2, y: 0.4 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 40',
+    position: { lat: -20.26893, lng: -69.78565 },
+    rotation: { x: -Math.PI/2, y: 0.1 },
+  }),
 ];

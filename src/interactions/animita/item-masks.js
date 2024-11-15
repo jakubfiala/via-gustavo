@@ -11,4 +11,11 @@ const map = {
 export const getItemNamesForMask = (mask) => Object.entries(map)
   .reduce((names, [name, item]) => mask & item ? names.concat(name) : names, []);
 
-export const getMaskForItemNames = (names) => names.reduce((mask, name) => mask | (map[name] ?? 0), 0);
+export const getMaskForItemNames = (names) => names.reduce((mask, name) => {
+  let itemMask = map[name] ?? 0;
+  if (name.startsWith('Coca-Cola')) {
+    itemMask = 0b00000001;
+  }
+
+  return mask | itemMask;
+}, 0);
