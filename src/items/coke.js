@@ -7,7 +7,7 @@ export const createCoke = ({ name, position, rotation = {} }) => ({
   gltf: '/assets/items/coke/',
   async create(makers) {
     return makers.threeObject('/assets/items/coke/',
-      { name: this.name, onGround: true, rotation, cameraPosition: { x: 0, y: 0.5, z: 1 } },
+      { name: this.name, displayName: this.displayName, onGround: true, rotation, cameraPosition: { x: 0, y: 0.5, z: 1 } },
     );
   },
 });
@@ -68,6 +68,11 @@ export const cokeCans = [
     name: 'Coca-Cola 12',
     position: { lat: -20.33609, lng: -69.65923 },
     rotation: { x: Math.PI/2, y: -0.45 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 41',
+    position: { lat: -20.33984, lng: -69.65605 },
+    rotation: { y: 9 },
   }),
   // overpass
   createCoke({

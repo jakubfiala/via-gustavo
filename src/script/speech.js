@@ -26,8 +26,8 @@ export const initSpeech = async (context) => {
     const extracted = await parseTarGzip(buffer);
 
     const entries = extracted.map(({ name, data }) => [
-      // strip the file extension (even if truncated)
-      name.replace(/\.[a-z0-9]+/, ''),
+      // strip the file extension (even if truncated or just the dot)
+      name.replace(/\.([a-z0-9]+)?/, ''),
       data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength),
     ]);
     const parts = Object.fromEntries(entries);
@@ -40,6 +40,7 @@ export const initSpeech = async (context) => {
 const loadFromArchive = async (context, text) => {
   const key = slug(text)
     .slice(0, 99); // tar truncates file names to 99
+  console.log('key', key);
   const buffer = await context.audioContext.decodeAudioData(context.speech.parts[key]);
   const source = new AudioBufferSourceNode(context.audioContext, { buffer });
   source.playbackRate.value = context.speechPlaybackRate || 1;

@@ -22,12 +22,14 @@ export const intro = [
   { duration: 5 },
   { text: "Do you know what it feels like? Can you even imagine?"},
   { text: "In fact, I should really test you to find out,"},
-  { text: "before I take you anywhere... more important." },
+  {
+    text: "before I take you anywhere... more important.",
+    callback: () => setTask('Pass the challenge.'),
+  },
   {
     text: "",
     duration: 2,
     callback: showFakeCaptcha((e, context) => {
-      setTask('Pass the challenge.');
       setTimeout(() => {
         hideFakeCaptcha(context);
         scheduleScript(thanks, context);

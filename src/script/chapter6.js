@@ -85,7 +85,7 @@ export const evening = [
 
 export const night = [
   { callback: (context) => context.score.finalTheme3.play() },
-  { text: "He sometimes stops and stares at the stars, linking them with his fingers, forming constellations." },
+  { text: "He sometimes stops, stares at the stars, linking them with his fingers, forming constellations." },
   { text: "I gasp every time he wanders onto the asphalt, drivers cursing as they swerve past him." },
   { text: "He seems to pick up energy as the night closes in," },
   { text: "soon he's practically running." },
