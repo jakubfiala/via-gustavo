@@ -3,7 +3,7 @@ import { initGeigerCounterDetection } from '../../assets/items/geiger-counter/de
 import { eatenShrooms, shrooms } from './shrooms.js';
 import { scheduleScript } from '../script/index.js';
 import { geigerCounterReply } from '../script/chapter2.js';
-import { itemDesc as drone } from '../drone.js';
+import { itemDesc as drone } from '../interactions/drone.js';
 import { openLink } from '../utils.js';
 import { cokeCans } from './coke.js';
 import { stationsOfTheCross } from './via-crucis.js';

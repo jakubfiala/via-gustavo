@@ -28,6 +28,7 @@ import { initCustomPanorama } from './custom-panorama/index.js';
 import { createDelayEffect } from './items/shrooms.js';
 import { LIMBO_LNG_STEP } from './custom-panorama/limbo.js';
 import { checkSafari } from './safari.js';
+import { button as cruiseControlButton } from './cruise-control.js';
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
@@ -221,6 +222,7 @@ const revisitedSequence = (context) => {
   enableClickToGoCB(context);
   context.soundscapeGain.gain.setValueAtTime(0, context.audioContext.currentTime);
   context.soundscapeGain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 2);
+  cruiseControlButton.hidden = false;
 };
 
 introCTAFromScratch.addEventListener('click', () => {

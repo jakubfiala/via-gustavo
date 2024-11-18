@@ -1,6 +1,7 @@
 import { journalMoment } from '../journal/index.js';
 import { setTask } from '../task.js';
 import { showHelpMessage, enableClickToGoCB, enableSFX } from './utils.js';
+import { button as cruiseControlButton } from '../cruise-control.js';
 
 export const intro1 = [
   { duration: 10 },
@@ -86,3 +87,12 @@ export const intro3 = [
     },
   },
 ];
+
+export const tiredOfClicking = [
+  {
+    callback: (G) => {
+      showHelpMessage('Tired of clicking? Enable Cruise Control in the top right corner')(G);
+      cruiseControlButton.hidden = false;
+    },
+  },
+]

@@ -231,7 +231,7 @@ p.subtitle {
 }
 
 #help-display {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: normal;
   color: white;
   text-shadow: var(--text-shadow);
@@ -424,7 +424,7 @@ p.subtitle {
 .hud {
   animation: fade-in 3s var(--intro-darkness-duration) both;
   position: fixed;
-  top: 1.1rem;
+  top: 1.25rem;
   left: 2rem;
   z-index: 1;
   display: flex;
@@ -548,6 +548,10 @@ p.subtitle {
   text-decoration: underline;
   text-decoration-thickness: 3px;
   text-decoration-color: red;
+}
+
+.hud__button--on {
+  color: #0eac0e;
 }
 
 .hud__title {

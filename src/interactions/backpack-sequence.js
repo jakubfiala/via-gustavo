@@ -1,5 +1,5 @@
 import inventory from '../inventory/index.js';
-import { hover } from '../drone.js';
+import { hover } from '../interactions/drone.js';
 import { journalMoment } from '../journal/index.js';
 import { sleep } from '../utils.js';
 

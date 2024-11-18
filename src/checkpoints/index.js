@@ -9,14 +9,15 @@ import * as chapter6 from '../script/chapter6.js';
 import * as epilogue from '../script/epilogue.js';
 import { latLngDist } from "../utils.js";
 import { showSkyImages } from '../sky-images.js';
-import * as drone from '../drone.js';
-import { intro2, intro3 } from '../script/intro.js';
+import * as drone from '../interactions/drone.js';
+import { intro2, intro3, tiredOfClicking } from '../script/intro.js';
 import { journalChapter, journalMoment } from '../journal/index.js';
 import { removeTask, setTask } from '../task.js';
 import inventory from '../inventory/index.js';
 import { sleep } from '../utils.js';
 import { gustavoSequence } from '../interactions/gustavo-sequence.js';
 import { finalSequence } from '../interactions/final-sequence.js';
+import { disableCruiseControl } from '../cruise-control.js';
 
 const CHECKPOINT_DISTANCE_THRESHOLD = 30;
 
@@ -35,6 +36,15 @@ export const checkpoints = [
       return scheduleScript(intro3, context);
     },
   },
+  {
+    lat: -20.44321,
+    lng: -69.523,
+    async callback(G) {
+      return scheduleScript(tiredOfClicking, G);
+    },
+  },
+
+  // Chapter 1
   {
     lat: -20.442087695890653,
     lng: -69.525976864376787,
@@ -623,6 +633,8 @@ export const checkForCheckpoints = G => () => {
     if (distanceFromCheckpoint < CHECKPOINT_DISTANCE_THRESHOLD) {
       console.info('[checkpoints]', 'triggering', checkpoint);
       checkpoint.passed = true;
+
+      disableCruiseControl(G);
 
       checkpoint
         .callback(G)

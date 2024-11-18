@@ -1,3 +1,5 @@
+import { initCruiseControl } from '../cruise-control';
+
 const latLngDisplay = document.getElementById('latlng-display');
 const povDisplay = document.getElementById('pov-display');
 const hud = document.getElementById('hud');
@@ -64,10 +66,11 @@ export const initFullscreenButton = () => {
   });
 };
 
-export default () => {
+export default (G) => {
   hud.hidden = false;
 
   initFullscreenButton();
+  initCruiseControl(G);
 
   [
     {
