@@ -17,6 +17,30 @@
     <style>
       #intro-video {
         margin-top: 2rem;
+        flex-basis: 100%;
+      }
+
+      .ml-embedded {
+        animation: fade-in 1s both;
+        flex-basis: 100%;
+        border-top: solid 1px currentColor;
+        margin: 1rem 0;
+        border-bottom: solid 1px currentColor;
+        padding: 1rem 0;
+      }
+
+      .ml-embedded .ml-form-embedWrapper.embedForm {
+        max-width: 100% !important;
+      }
+
+      .intro__content {
+        max-height: 90vh;
+        max-width: 90vw;
+        overflow-y: auto;
+      }
+
+      .intro__ctas {
+        flex-wrap: wrap;
       }
     </style>
   </head>
@@ -48,12 +72,26 @@
           <iframe id="intro-video" hidden loading="lazy" width="1120" height="630" src="https://www.youtube.com/embed/saAPIWdl_IY?si=T1PhHmrkek56Q0GS"
             frameborder="0"
             referrerpolicy="strict-origin-when-cross-origin"
-            allow="autoplay"
             allowfullscreen
           ></iframe>
+          <button id="newsletter-cta" class="intro__cta"><strong>Sign up for updates</strong></button>
+          <template id="newsletter-signup">
+            <!-- MailerLite Universal -->
+            <div class="ml-embedded" data-form="fVMB2D"></div>
+            <script>
+              (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+              .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+              n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+              (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+              ml('account', '1193603');
+            </script>
+            <!-- End MailerLite Universal -->
+          </template>
         </div>
 
         <p class="intro__links">
+          <a href="/about.html">About</a>
+          &nbsp;·&nbsp;
           <a href="/privacy-policy.html">Privacy Policy</a>
           &nbsp;·&nbsp;
           <a href="/impressum.html">Imprint</a>
@@ -62,12 +100,22 @@
     </div>
 
     <script>
-      const cta = document.getElementById('intro-cta-trailer');
+      const videoCTA = document.getElementById('intro-cta-trailer');
       const video = document.getElementById('intro-video');
 
-      cta.addEventListener('click', () => {
-        cta.hidden = true;
+      videoCTA.addEventListener('click', () => {
+        videoCTA.hidden = true;
         video.hidden = false;
+      });
+
+      const newsletterCTA = document.getElementById('newsletter-cta');
+      const signup = document.getElementById('newsletter-signup');
+
+      newsletterCTA.addEventListener('click', () => {
+        newsletterCTA.hidden = true;
+
+        const fragment = signup.content.cloneNode(true);
+        signup.parentElement.insertBefore(fragment, signup);
       });
     </script>
   </body>
