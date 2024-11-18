@@ -91,8 +91,9 @@ export const intro3 = [
 export const tiredOfClicking = [
   {
     callback: (G) => {
-      showHelpMessage('Tired of clicking? Enable Cruise Control in the top right corner')(G);
+      showHelpMessage('Tired of clicking? Use the Cruise Control button in the top right corner')(G);
       cruiseControlButton.hidden = false;
+      setTimeout(() => showHelpMessage('Or toggle it by pressing the space bar')(G), 5_000);
     },
   },
 ]

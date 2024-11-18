@@ -28,7 +28,10 @@ const move = (G) => {
 export const enableCruiseControl = (G) => {
   console.info('[cruise-control]', 'enabling');
   clearInterval(cruiseControl);
+
+  move(G);
   cruiseControl = setInterval(() => move(G), MOVE_INTERVAL);
+
   button.classList.add(BUTTON_ON_CLASS);
   button.title = 'Disable Cruise Control';
 };
@@ -44,11 +47,19 @@ export const disableCruiseControl = (G) => {
 export const initCruiseControl = (G) => {
   console.info('[cruise-control]', 'initialising');
 
-  button.addEventListener('click', () => {
+  const toggle = () => {
     if (cruiseControl) {
       disableCruiseControl(G);
     } else {
       enableCruiseControl(G);
     }
+  };
+
+  document.addEventListener('keypress', (event) => {
+    if (event.key === ' ') {
+      toggle();
+    }
   });
+
+  button.addEventListener('click', toggle);
 };
