@@ -8,7 +8,7 @@ import { intro1 } from './script/intro.js';
 
 import { Sharawadji } from "../sharawadji/src/index.js";
 import { fakeCaptcha } from "./interactions/fakeCaptcha.js";
-import initHUD, { setLatLngDisplay, setPovDisplay } from './hud/index.js';
+import initHUD, { enterFullscreen, setLatLngDisplay, setPovDisplay } from './hud/index.js';
 import { resetGame } from './reset.js';
 import { LOCALSTORAGE_POSITION_KEY, START_POSITION, START_POV, MAPS_API_KEY } from './constants.js';
 import loadItems from './items/index.js';
@@ -89,15 +89,7 @@ const initialize = async () => {
   }
 
   if (!dev && !debug) {
-    try {
-      if (document.body.webkitRequestFullscreen) {
-        await document.body.webkitRequestFullscreen();
-      } else {
-        await document.body.requestFullscreen();
-      }
-    } catch (err) {
-      console.warn('Fullscreen not available', err);
-    }
+    enterFullscreen();
   }
 
   const mapsLoader = new MapsAPILoader({
