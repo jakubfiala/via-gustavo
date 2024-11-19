@@ -7,7 +7,6 @@ export const eatenShrooms = {
   name: 'Eaten Magic Mushrooms',
   thumbnailURL: '/assets/items/magic-mushrooms/thumb.webp',
   collectible: true,
-  canBeActivated: true,
   position: { lat: 2, lng: 2 }, // fake
   collectText: 'Was left with some',
   pickUpSFX: 'none',

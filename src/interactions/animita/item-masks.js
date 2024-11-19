@@ -6,6 +6,7 @@ const map = {
   'Broken drone': 0b00010000,
   'Broken Geiger Counter': 0b00100000,
   'Eaten Magic Mushrooms': 0b01000000,
+  'Pencils': 0b10000000,
 };
 
 export const getItemNamesForMask = (mask) => Object.entries(map)

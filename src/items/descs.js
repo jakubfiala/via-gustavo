@@ -11,6 +11,7 @@ import { readIChing } from '../interactions/i-ching/index.js';
 import { iching } from './i-ching.js';
 import { embeds } from './embeds/descs.js';
 import { backpackSequence, brokenGeigerCounter } from '../interactions/backpack-sequence.js';
+import { inspectTruck } from '../interactions/truck.js';
 
 export default [
   ...cokeCans,
@@ -67,11 +68,11 @@ export default [
   },
   {
     name: 'Gustavo\'s truck',
-    collectible: false,
+    canBeActivated: true,
     position: { lat: -20.33167, lng: -69.68165 },
     gltf: '/assets/items/truck/',
     async create(makers) {
-      return makers.threeObject(this.gltf,
+      const item = await makers.threeObject(this.gltf,
         {
           name: this.name,
           big: true,
@@ -80,6 +81,16 @@ export default [
           lightPosition: { x: 0, y: 10, z: 0 },
         },
       );
+
+      item.activate = (G, { firstTime }) => {
+        if (!firstTime) {
+          return;
+        }
+
+        inspectTruck(G);
+      };
+
+      return item;
     },
   },
 
