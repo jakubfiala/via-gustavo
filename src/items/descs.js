@@ -24,6 +24,25 @@ export default [
   drone,
   busStop,
   {
+    name: 'Football',
+    thumbnailURL: '/assets/items/football/thumb.webp',
+    collectible: true,
+    position: {
+      lat: -20.43801,
+      lng: -69.53763,
+    },
+    gltf: '/assets/items/football/',
+    async create(makers) {
+      return makers.threeObject(this.gltf,
+        {
+          name: this.name,
+          lightPosition: { y: 5 },
+          onGround: true,
+        },
+      );
+    },
+  },
+  {
     name: 'Geiger Counter',
     thumbnailURL: '/assets/items/geiger-counter/thumb.webp',
     collectible: true,

@@ -59,7 +59,7 @@ export const evening = [
       context.score.finalTheme1.play();
       context.container.animate([
         { filter: 'brightness(0.95) contrast(1.2) hue-rotate(0deg)' },
-        { filter: 'brightness(0.75) contrast(1.6) hue-rotate(-8deg)' },
+        { filter: 'brightness(0.7) contrast(1.6) hue-rotate(-8deg)' },
       ], { duration: 15_000, fill: 'forwards' });
     },
   },
