@@ -8,10 +8,19 @@ export const brokenGeigerCounter = {
   thumbnailURL: '/assets/items/geiger-counter/thumb.webp',
   collectible: true,
   position: { lat: 2, lng: 2 }, // fake
-  pickUpSFX: 'none',
   gltf: '/assets/items/geiger-counter/',
   async create(makers) {
-    const item = await makers.threeObject(this.gltf, { name: this.name });
+    const item = await makers.threeObject(
+      this.gltf,
+      {
+        name: this.name,
+        cameraPosition: { x: 6, y: 2.5, z: -3 },
+        rotation: { x: 0.6, y: -0.95, z: -1.25 },
+        lightPosition: { z: -0.7 },
+        scale: 0.9,
+        onGround: true,
+      },
+    );
     return item;
   },
 };
@@ -37,5 +46,11 @@ export const backpackSequence = async (G) => {
   hover(G, { lat: -20.29203, lng: -69.78111 });
 
   await sleep(2000);
-  inventory.addItem(brokenGeigerCounter);
+
+  const item = G.items.find((item) => item.name === brokenGeigerCounter.name);
+
+  if (item) {
+    item.info.setPosition({ lat: -20.29216, lng: -69.7813 });
+    await item.update();
+  }
 };
