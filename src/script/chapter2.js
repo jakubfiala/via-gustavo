@@ -176,11 +176,9 @@ export const station7 = [
   { text: "He takes the pedestrian path." },
   { text: "They've only built it recently.", callback: (context) => context.score.viaCrucis7.play() },
   { text: "He still remembers when they walked ten kilometres in a single file along the main road" },
-  { text: "- cars whizzing past at illegal speeds -" },
-  { text: "every year on the way to the big Fiesta." },
+  { text: "- cars whizzing past at illegal speeds - every year on the way to the big Fiesta." },
   { text: "He meets a group of mothers pushing buggies." },
-  { text: "They look at him, and note he's underdressed for the night." },
-  { text: "He frowns and yells back." },
+  { text: "They look at him, and note he's underdressed for the night. He frowns and yells back." },
   { text: "They should look after their own kids." },
   { text: "Not him, a grown-ass man." },
   { duration: 5 },
@@ -262,15 +260,14 @@ export const geigerCounterReply = [
 // 13. He takes up his Cross
 export const station13 = [
   {
-    text: "He can already hear the traffic on the Panamericana",
+    text: "He can already hear the traffic on the Panamericana.",
     callback: (context) => {
       context.score.viaCrucis4.preload = 'auto';
     },
   },
-  { text: "the coastal mountain range towers over him." },
-  { text: "He stops and takes a deep breath, tightens the straps on his backpack," },
-  { text: "looks up at the sky one more time and sets off again." },
-  { text: "The journey is nearing its end." },
+  { text: "The coastal mountain range towers over him." },
+  { text: "He stops and takes a deep breath, tightens the straps on his backpack and sets off again." },
+  { text: "The pilgrimage is nearing its end." },
   { callback: (context) => context.score.viaCrucis4.play() },
 ];
 
