@@ -94,6 +94,13 @@ export const night = [
   { text: "There is no stopping him." },
 ];
 
+export const pause = [
+  { text: "Are... are you sure you want to see him?" },
+  { duration: 1 },
+  { text: "This would be your last chance to leave, turn at the intersection, run across the Pampa..." },
+  { text: "But if you really want me to, continue straight ahead, and I will finish the story." },
+];
+
 export const end = [
   {
     text: "Just as the lights from the campsite ahead get brighter, and I pray he finally gets some help,",

@@ -575,8 +575,15 @@ export const checkpoints = [
     }
   },
   {
-    lat: -20.42766,
-    lng: -69.70583,
+    lat: -20.42717,
+    lng: -69.7061,
+    async callback(context) {
+      return scheduleScript(chapter6.pause, context);
+    }
+  },
+  {
+    lat: -20.42815,
+    lng: -69.70565,
     async callback(context) {
       return scheduleScript(chapter6.end, context);
     }
