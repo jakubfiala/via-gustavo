@@ -1,14 +1,30 @@
+import inventory from '../inventory/index.js';
+import { journalMoment } from '../journal/index.js';
+
 export const createCoke = ({ name, position, rotation = {} }) => ({
   name,
   thumbnailURL: '/assets/items/coke/thumb.webp',
   collectible: true,
+  canBeActivated: true,
   position,
   displayName: 'Coca-Cola can',
   gltf: '/assets/items/coke/',
   async create(makers) {
-    return makers.threeObject('/assets/items/coke/',
+    const item = await makers.threeObject('/assets/items/coke/',
       { name: this.name, displayName: this.displayName, onGround: true, rotation, cameraPosition: { x: 0, y: 0.5, z: 1 } },
     );
+
+    item.activate = (G) => {
+      const collected = inventory.items.filter(({ name }) => name.startsWith('Coca-Cola'));
+      if (collected.length >= cokeCans.length) {
+        console.log('[coke]', 'caught \'em all!');
+        journalMoment('🩸', 'Achievement unlocked: collected all Coca-Cola cans. Enjoy the sugary goodness!');
+      } else {
+        console.log('[coke]', 'got', collected.length, 'out of', cokeCans.length, 'coke cans so far');
+      }
+    };
+
+    return item;
   },
 });
 
