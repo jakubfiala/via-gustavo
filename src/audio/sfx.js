@@ -18,7 +18,7 @@ const getNodes = async (G, url, oneoff = false) => {
   return { source, gain, oneoff };
 };
 
-const createSFX = async (G, sound, dur = 0, ramp = 0.05) => () => {
+const createSFX = (G, sound, dur = 0, ramp = 0.05) => () => {
   sound.gain.gain.cancelScheduledValues(G.audioContext.currentTime);
 
   if (sound.oneoff) {
