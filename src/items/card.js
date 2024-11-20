@@ -34,7 +34,6 @@ export const cardMaker = (InfoWindow) => ({ src, name }) => {
 
       if (!this.info.isOpen) {
         if (dist < OBJECT_APPEAR_THRESHOLD) {
-          console.log('opening', img.src);
           this.info.open({ map: this.map });
         } else {
           return;

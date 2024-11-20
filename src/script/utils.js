@@ -61,7 +61,6 @@ export const hideFakeCaptcha = context => {
 }
 
 export const updateSoundTrackVolume = volume => context => {
-  console.log('sound', volume);
   const { masterGain, audioContext } = context;
   masterGain.gain.linearRampToValueAtTime(volume, audioContext.currentTime + 7);
 }

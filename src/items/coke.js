@@ -17,10 +17,10 @@ export const createCoke = ({ name, position, rotation = {} }) => ({
     item.activate = (G) => {
       const collected = inventory.items.filter(({ name }) => name.startsWith('Coca-Cola'));
       if (collected.length >= cokeCans.length) {
-        console.log('[coke]', 'caught \'em all!');
+        console.info('[coke]', 'caught \'em all!');
         journalMoment('🩸', 'Achievement unlocked: collected all Coca-Cola cans. Enjoy the sugary goodness!');
       } else {
-        console.log('[coke]', 'got', collected.length, 'out of', cokeCans.length, 'coke cans so far');
+        console.info('[coke]', 'got', collected.length, 'out of', cokeCans.length, 'coke cans so far');
       }
     };
 

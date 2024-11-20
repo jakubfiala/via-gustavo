@@ -38,7 +38,6 @@ export const embedMaker = (InfoWindow) => (url) => {
 
       if (!this.info.isOpen) {
         if (this.dist < OBJECT_APPEAR_THRESHOLD) {
-          console.log('opening', url);
           this.info.open({ map: this.map });
         } else {
           return;

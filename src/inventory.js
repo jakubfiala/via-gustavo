@@ -12,7 +12,7 @@ export default {
       return;
     }
 
-    console.log('[inventory]', 'item collecting', item);
+    console.info('[inventory]', 'item collecting', item);
 
     toast(`${item.collectText || DEFAULT_COLLECT_TEXT} ${item.displayName ?? item.name}.`)
 

@@ -9,7 +9,7 @@ const roundFloat = (x, y) => Math.round (x / y) * y;
 export default (map) => {
   window.addEventListener("gamepadconnected", function(e) {
     const gamepad = navigator.getGamepads()[e.gamepad.index];
-    console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
+    console.info('[gamepad]', 'connected at index %d: %s. %d buttons, %d axes.',
                 gamepad.index, gamepad.id,
                 gamepad.buttons.length, gamepad.axes.length);
 
