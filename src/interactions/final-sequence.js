@@ -1,4 +1,4 @@
-import { hideHud } from '../hud/index.js';
+import { hideHud } from '../hud.js';
 import { resetGame } from '../reset.js';
 import { START_POSITION } from '../constants.js';
 import { approachLatLng, approachPov, sleep } from "../utils.js";

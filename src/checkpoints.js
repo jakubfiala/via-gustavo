@@ -13,7 +13,7 @@ import * as drone from './interactions/drone.js';
 import { intro2, intro3, tiredOfClicking } from './script/intro.js';
 import { journalChapter, journalMoment } from './journal/index.js';
 import { removeTask, setTask } from './task.js';
-import inventory from './inventory/index.js';
+import inventory from './inventory.js';
 import { sleep } from './utils.js';
 import { gustavoSequence } from './interactions/gustavo-sequence.js';
 import { finalSequence } from './interactions/final-sequence.js';

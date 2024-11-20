@@ -1,4 +1,4 @@
-import Inventory from '../inventory/index.js';
+import Inventory from '../inventory.js';
 import { THREEObjectMaker } from './3d-objects/index.js';
 import { embedMaker } from './embeds/index.js';
 import { cardMaker } from './card.js';

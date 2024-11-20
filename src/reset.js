@@ -1,4 +1,4 @@
-import Inventory from './inventory/index.js';
+import Inventory from './inventory.js';
 import { LOCALSTORAGE_POSITION_KEY } from './constants.js';
 import * as chapters from './chapters.js';
 import { clearTask } from './task.js';

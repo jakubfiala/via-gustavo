@@ -1,4 +1,4 @@
-import { hideHud, showHud } from '../hud/index.js';
+import { hideHud, showHud } from '../hud.js';
 import { poem } from '../script/chapter6.js';
 import { scheduleScript } from '../script/index.js';
 import { disableClickToGoCB, showHelpMessage } from '../script/utils.js';

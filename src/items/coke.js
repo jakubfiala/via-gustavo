@@ -1,4 +1,4 @@
-import inventory from '../inventory/index.js';
+import inventory from '../inventory.js';
 import { journalMoment } from '../journal/index.js';
 
 export const createCoke = ({ name, position, rotation = {} }) => ({

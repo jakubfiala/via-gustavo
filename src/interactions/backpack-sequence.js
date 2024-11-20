@@ -1,4 +1,4 @@
-import inventory from '../inventory/index.js';
+import inventory from '../inventory.js';
 import { hover } from '../interactions/drone.js';
 import { journalMoment } from '../journal/index.js';
 import { sleep } from '../utils.js';

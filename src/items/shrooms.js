@@ -1,4 +1,4 @@
-import inventory from '../inventory';
+import inventory from '../inventory.js';
 
 const TRIP_DURATION = 5 * 60 * 1000;
 const DELAY_FEEDBACK = 0.4;

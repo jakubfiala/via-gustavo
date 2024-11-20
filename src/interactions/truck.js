@@ -1,5 +1,5 @@
 import { sleep } from '../utils.js';
-import inventory from '../inventory/index.js';
+import inventory from '../inventory.js';
 
 const pencils = {
   name: 'Pencils',

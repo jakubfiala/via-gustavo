@@ -1,4 +1,4 @@
-import { initCruiseControl } from '../cruise-control';
+import { initCruiseControl } from './cruise-control.js';
 
 const latLngDisplay = document.getElementById('latlng-display');
 const povDisplay = document.getElementById('pov-display');

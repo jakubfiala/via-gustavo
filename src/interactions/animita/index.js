@@ -1,4 +1,4 @@
-import inventory from '../../inventory/index.js';
+import inventory from '../../inventory.js';
 import { makeAnimita } from './item.js';
 import { LIMBO_LNG_STEP } from '../../custom-panorama/limbo.js';
 import { loadAnimitas, loadedAnimitas, saveAnimita } from './api.js';

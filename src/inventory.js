@@ -1,7 +1,7 @@
-import { LOCALSTORAGE_INVENTORY_KEY } from '../constants.js';
-import { journalItem } from '../journal/index.js';
-import { toast } from '../script/utils.js';
-import { DEFAULT_COLLECT_TEXT } from '../constants.js';
+import { LOCALSTORAGE_INVENTORY_KEY } from './constants.js';
+import { journalItem } from './journal/index.js';
+import { toast } from './script/utils.js';
+import { DEFAULT_COLLECT_TEXT } from './constants.js';
 
 const initialItems = JSON.parse(localStorage.getItem(LOCALSTORAGE_INVENTORY_KEY)) ?? [];
 
