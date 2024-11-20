@@ -6,7 +6,7 @@ import {
 } from "./script/index.js";
 import { intro1 } from './script/intro.js';
 
-import { Sharawadji } from "../sharawadji/src/index.js";
+import { Sharawadji } from "./sharawadji/index.js";
 import { fakeCaptcha } from "./interactions/fakeCaptcha.js";
 import initHUD, { enterFullscreen, setLatLngDisplay, setPovDisplay } from './hud.js';
 import { resetGame } from './reset.js';
