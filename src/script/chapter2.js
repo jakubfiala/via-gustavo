@@ -48,7 +48,7 @@ export const station1 = [
   { text: "You'd almost want to put a bouquet in his hands, so he can smell the flowers." },
   { text: "That's not a good idea - he'd probably wake up and get mad at you." },
   { text: "«What do you think I am, a fucking corpse?»" },
-  { text: "He'd sit up, the mattress moaning under his weight, and look you in the eyes." },
+  { text: "In any case - he sits up, the mattress moaning under his weight, and looks you in the eyes." },
   { duration: 4 },
   { text: "So his long pilgrimage begins that day, and so does ours." },
   { text: "I'd like to retrace his steps with you as far as I can - though it will take a while." },
@@ -74,9 +74,9 @@ export const mainRoad = [
 export const station2 = [
   // 2. taken down from the cross
   { duration: 2, callback: (context) => context.score.viaCrucis3.play() },
-  { text: "He'd shake his head and slowly stand up, straighten his shirt" },
-  { text: "- or attempt to, there's no time to look for the iron." },
-  { text: "He'd go to the living room - no, he'd first make it for the kitchen." },
+  { text: "He shakes his head and slowly stands up, straightens his shirt." },
+  { text: "Well, he attempts to - there's no time to look for the iron." },
+  { text: "He goes to the living room - no, he first makes it for the kitchen." },
   { text: "A quick espresso from the fancy capsule machine he was probably given by a relative." },
   { text: "Now he's really awake." },
   { text: "Now the only thing between him and the task at hand is a smoke in the driveway." },
