@@ -19,7 +19,7 @@ import { initSpeech } from './script/speech.js';
 import { localisedSounds } from './audio/localised-sounds.js';
 import { FADE_OUT_DELAY_MS, playGatewaySound } from './audio/gateway-sound.js';
 import { enableClickToGoCB, enableSFX, persistenceToast } from './script/utils.js';
-import { checkForCheckpoints } from './checkpoints/index.js';
+import { checkForCheckpoints } from './checkpoints.js';
 import createSFX from './audio/sfx.js';
 import createScore from './audio/score-sounds.js';
 import createSoundscape from './audio/soundscapes.js';

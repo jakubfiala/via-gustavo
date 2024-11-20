@@ -69,9 +69,9 @@ export const intro2 = [
 ];
 
 export const intro3 = [
-  { duration: 5 },
-  { text: "Sorry, that wasn't too kind..." },
-  { duration: 2 },
+  { duration: 4 },
+  { text: "Sorry, that wasn't too kind... and I'm just rambling." },
+  { duration: 1 },
   { text: "What I meant to tell you is that I could use your help." },
   { text: "Thing is, from your vantage point, you see many things I don't," },
   { text: "and I've been looking for someone." },
