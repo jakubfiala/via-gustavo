@@ -1,17 +1,17 @@
 import { itemDesc as busStop } from './bus.js';
 import { initGeigerCounterDetection } from '../../assets/items/geiger-counter/detection.js';
-import { shrooms } from './shrooms.js';
+import { eatenShrooms, shrooms } from './shrooms.js';
 import { scheduleScript } from '../script/index.js';
 import { geigerCounterReply } from '../script/chapter2.js';
-import { hover, itemDesc as drone } from '../drone.js';
-import inventory from '../inventory/index.js';
-import { openLink, sleep } from '../utils.js';
+import { itemDesc as drone } from '../interactions/drone.js';
+import { openLink } from '../utils.js';
 import { cokeCans } from './coke.js';
-import { journalMoment } from '../journal/index.js';
 import { stationsOfTheCross } from './via-crucis.js';
 import { readIChing } from '../interactions/i-ching/index.js';
 import { iching } from './i-ching.js';
 import { embeds } from './embeds/descs.js';
+import { backpackSequence, brokenGeigerCounter } from '../interactions/backpack-sequence.js';
+import { inspectTruck } from '../interactions/truck.js';
 
 export default [
   ...cokeCans,
@@ -19,8 +19,29 @@ export default [
   ...shrooms,
   ...iching,
   ...embeds,
+  eatenShrooms,
+  brokenGeigerCounter,
   drone,
   busStop,
+  {
+    name: 'Football',
+    thumbnailURL: '/assets/items/football/thumb.webp',
+    collectible: true,
+    position: {
+      lat: -20.43801,
+      lng: -69.53763,
+    },
+    gltf: '/assets/items/football/',
+    async create(makers) {
+      return makers.threeObject(this.gltf,
+        {
+          name: this.name,
+          lightPosition: { y: 5 },
+          onGround: true,
+        },
+      );
+    },
+  },
   {
     name: 'Geiger Counter',
     thumbnailURL: '/assets/items/geiger-counter/thumb.webp',
@@ -66,11 +87,11 @@ export default [
   },
   {
     name: 'Gustavo\'s truck',
-    collectible: false,
+    canBeActivated: true,
     position: { lat: -20.33167, lng: -69.68165 },
     gltf: '/assets/items/truck/',
     async create(makers) {
-      return makers.threeObject(this.gltf,
+      const item = await makers.threeObject(this.gltf,
         {
           name: this.name,
           big: true,
@@ -79,6 +100,16 @@ export default [
           lightPosition: { x: 0, y: 10, z: 0 },
         },
       );
+
+      item.activate = (G, { firstTime }) => {
+        if (!firstTime) {
+          return;
+        }
+
+        inspectTruck(G);
+      };
+
+      return item;
     },
   },
 
@@ -101,26 +132,7 @@ export default [
           cameraPosition: { y: 0.8 },
         },
       );
-      item.activate = async (context) => {
-        console.info('[backpack]', 'activated');
-        if (!inventory.hasItem('Geiger Counter')) {
-          return;
-        }
-
-        context.handheldItem?.item.detection?.overheat();
-
-        await sleep(2000);
-        document.getElementById('handheld-explosion').hidden = false;
-        context.sfx.explosion();
-
-        await sleep(800);
-        await context.handheldItem?.drop(context);
-        document.getElementById('handheld-explosion').hidden = true;
-        journalMoment('💥', 'The Geiger counter exploded');
-
-        await sleep(2000);
-        hover(context, { lat: -20.29203, lng: -69.78111 });
-      };
+      item.activate = (G) => backpackSequence(G);
 
       return item;
     },
@@ -195,8 +207,8 @@ export default [
   {
     name: 'Cybertruck',
     position: {
-      lat: -20.21404,
-      lng: -69.78924,
+      lat: -20.21408,
+      lng: -69.7893,
     },
     gltf: '/assets/items/cybertruck/',
     async create(makers) {
@@ -290,7 +302,7 @@ export default [
     name: 'I-Ching vending machine',
     position: {
       lat: -20.25904,
-      lng: -69.78581,
+      lng: -69.78586,
     },
     canBeActivated: true,
     gltf: '/assets/items/i-ching/',nBeActivated: true,

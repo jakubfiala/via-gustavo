@@ -1,14 +1,30 @@
+import inventory from '../inventory.js';
+import { journalMoment } from '../journal/index.js';
+
 export const createCoke = ({ name, position, rotation = {} }) => ({
   name,
   thumbnailURL: '/assets/items/coke/thumb.webp',
   collectible: true,
+  canBeActivated: true,
   position,
   displayName: 'Coca-Cola can',
   gltf: '/assets/items/coke/',
   async create(makers) {
-    return makers.threeObject('/assets/items/coke/',
-      { name: this.name, onGround: true, rotation, cameraPosition: { x: 0, y: 0.5, z: 1 } },
+    const item = await makers.threeObject('/assets/items/coke/',
+      { name: this.name, displayName: this.displayName, onGround: true, rotation, cameraPosition: { x: 0, y: 0.5, z: 1 } },
     );
+
+    item.activate = (G) => {
+      const collected = inventory.items.filter(({ name }) => name.startsWith('Coca-Cola'));
+      if (collected.length >= cokeCans.length) {
+        console.info('[coke]', 'caught \'em all!');
+        journalMoment('🩸', 'Achievement unlocked: collected all Coca-Cola cans. Enjoy the sugary goodness!');
+      } else {
+        console.info('[coke]', 'got', collected.length, 'out of', cokeCans.length, 'coke cans so far');
+      }
+    };
+
+    return item;
   },
 });
 
@@ -68,6 +84,11 @@ export const cokeCans = [
     name: 'Coca-Cola 12',
     position: { lat: -20.33609, lng: -69.65923 },
     rotation: { x: Math.PI/2, y: -0.45 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 41',
+    position: { lat: -20.33984, lng: -69.65605 },
+    rotation: { y: 9 },
   }),
   // overpass
   createCoke({
@@ -189,5 +210,20 @@ export const cokeCans = [
     name: 'Coca-Cola 37',
     position: { lat: -20.20521, lng: -69.79547 },
     rotation: { y: 1.4 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 38',
+    position: { lat: -20.27125, lng: -69.78595 },
+    rotation: { x: Math.PI/2, y: 1.4 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 39',
+    position: { lat: -20.26453, lng: -69.78529 },
+    rotation: { x: Math.PI/2, y: 0.4 },
+  }),
+  createCoke({
+    name: 'Coca-Cola 40',
+    position: { lat: -20.26893, lng: -69.78565 },
+    rotation: { x: -Math.PI/2, y: 0.1 },
   }),
 ];

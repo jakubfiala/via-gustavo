@@ -5,7 +5,6 @@ const FADE_OUT_OFFSET = SOUNDSCAPE_FADE_DURATION_S / 4;
 
 const createSoundscape = (context, src, name, volume = 1) => {
   const mediaElement = new Audio();
-  mediaElement.setAttribute('playsinline', true);
   mediaElement.loop = true;
   mediaElement.preload = 'none';
   mediaElement.src = src;

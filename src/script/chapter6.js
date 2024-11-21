@@ -59,7 +59,7 @@ export const evening = [
       context.score.finalTheme1.play();
       context.container.animate([
         { filter: 'brightness(0.95) contrast(1.2) hue-rotate(0deg)' },
-        { filter: 'brightness(0.75) contrast(1.6) hue-rotate(-8deg)' },
+        { filter: 'brightness(0.7) contrast(1.6) hue-rotate(-8deg)' },
       ], { duration: 15_000, fill: 'forwards' });
     },
   },
@@ -85,13 +85,20 @@ export const evening = [
 
 export const night = [
   { callback: (context) => context.score.finalTheme3.play() },
-  { text: "He sometimes stops and stares at the stars, linking them with his fingers, forming constellations." },
+  { text: "He sometimes stops, stares at the stars, linking them with his fingers, forming constellations." },
   { text: "I gasp every time he wanders onto the asphalt, drivers cursing as they swerve past him." },
   { text: "He seems to pick up energy as the night closes in," },
   { text: "soon he's practically running." },
   { text: "He crosses the diagonal road that would lead him back home, to Matilla." },
   { text: "From there, he walks dead in the middle of the road." },
   { text: "There is no stopping him." },
+];
+
+export const pause = [
+  { text: "Are... are you sure you want to see him?" },
+  { duration: 1 },
+  { text: "This would be your last chance to leave, turn at the intersection, run across the Pampa..." },
+  { text: "But if you really want me to, continue straight ahead, and I will finish the story." },
 ];
 
 export const end = [
@@ -134,7 +141,7 @@ export const poem = [
   { text: "to honour you." },
   { duration: 1 },
   { text: "Oh Gustavo! Ages may pass," },
-  { text: "the winds of time, may blow away your memory," },
+  { text: "the winds of time may blow away your memory," },
   { text: "but today, it travels across the planet," },
   { text: "today, it's etched in semiconductors" },
   { text: "in Quilicura, Canelones, in Douglas County, Inzai and Hanau..." },

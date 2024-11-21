@@ -3,13 +3,9 @@
     opacity: 0;
   }
 
-  ;
-
   to {
     opacity: 1
   }
-
-  ;
 }
 
 @keyframes slide-in {
@@ -17,13 +13,9 @@
     translate: 0 5%;
   }
 
-  ;
-
   to {
     translate: 0 0;
   }
-
-  ;
 }
 
 @keyframes slide-in-full {
@@ -31,13 +23,9 @@
     translate: 0 100%;
   }
 
-  ;
-
   to {
     translate: 0 0;
   }
-
-  ;
 }
 
 @keyframes handheld {
@@ -132,13 +120,14 @@ a {
   text-decoration: none;
 }
 
-a:visited {
-  color: rgb(143, 0, 0);
-}
-
 a:hover {
   text-decoration: underline;
   text-decoration-color: #f00a;
+}
+
+a:visited, a:visited:hover {
+  color: rgb(143, 0, 0);
+  text-decoration-color: rgb(143, 0, 0);
 }
 
 .map-container {
@@ -180,10 +169,6 @@ a:hover {
 .overlay--full {
   background: black;
   transition: opacity 2s linear;
-}
-
-.overlay p {
-  margin: 1.618rem auto 0;
 }
 
 #golden-ratio {
@@ -243,7 +228,7 @@ p.subtitle {
 }
 
 #help-display {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: normal;
   color: white;
   text-shadow: var(--text-shadow);
@@ -436,7 +421,7 @@ p.subtitle {
 .hud {
   animation: fade-in 3s var(--intro-darkness-duration) both;
   position: fixed;
-  top: 1.1rem;
+  top: 1.25rem;
   left: 2rem;
   z-index: 1;
   display: flex;
@@ -523,12 +508,17 @@ p.subtitle {
 }
 
 .hud__button {
+  justify-content: center;
   align-items: center;
   display: flex;
   gap: 0.5rem;
 }
 
 .hud__button[hidden] {
+  display: none;
+}
+
+.hud__button svg[hidden="true"] {
   display: none;
 }
 
@@ -543,7 +533,7 @@ p.subtitle {
   background: white;
   border: solid 1px var(--color-blue);
   font-family: inherit;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: bold;
   padding: 0.5rem;
   line-height: 1;
@@ -556,6 +546,10 @@ p.subtitle {
   text-decoration: underline;
   text-decoration-thickness: 3px;
   text-decoration-color: red;
+}
+
+.hud__button--on {
+  color: #0eac0e;
 }
 
 .hud__title {
@@ -647,10 +641,13 @@ p.subtitle {
   background: white;
   border: solid 1px var(--color-blue);
   color: var(--color-blue);
-  padding: 2rem;
+  padding: 2rem 2rem 1.5rem;
   position: relative;
   z-index: 1;
   text-align: center;
+  max-height: 90vh;
+  max-width: 90vw;
+  overflow-y: auto;
 }
 
 .intro__disclaimer {
@@ -659,13 +656,13 @@ p.subtitle {
   max-width: 700px;
 }
 
-.intro__links {
-  margin: 0;
-  font-size: 1rem;
+p.intro__links {
+  margin: 2rem 0 0;
+  font-size: 1.15rem;
 }
 
 .intro__links a:hover {
-  text-decoration: solid underline 2px red;
+  text-decoration: solid underline 2px;
 }
 
 .intro__ctas {
@@ -680,12 +677,17 @@ p.subtitle {
   cursor: pointer;
   font: inherit;
   padding: 1rem;
-  margin-top: 2rem;
+  flex-basis: 15ch;
+}
+
+.intro__cta:first-of-type,
+.intro__cta:first-of-type[hidden] + .intro__cta {
+  border-width: 3px;
 }
 
 .intro__tips {
   list-style-type: none;
-  margin: 2rem auto;
+  margin: 2rem auto 1rem;
   padding: 0;
   display: none;
   gap: 1rem;
@@ -700,6 +702,7 @@ p.subtitle {
   align-items: center;
   padding: 1rem 0;
   max-width: 300px;
+  text-wrap: balance;
 }
 
 .intro__tips li+li {
@@ -787,6 +790,10 @@ p.subtitle {
 
 .gm-style-iw-d:has(.gustavo-item--on-ground) {
   translate: 0 15vh;
+}
+
+.gm-style-iw-d:has(.gustavo-item--animita) {
+  translate: 0 20vh;
 }
 
 .gm-style-iw-d:has(.gustavo-item--noninteractive) {
@@ -1312,5 +1319,14 @@ p.subtitle {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+}
+
+.promo {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
 }
 

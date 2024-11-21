@@ -110,6 +110,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, options = {}) => {
 
   let renderer = null;
   let object = null;
+  let objectLoading = false;
   let isBeingHovered = false;
   let debugObject = null;
 
@@ -125,6 +126,13 @@ export const THREEObjectMaker = (InfoWindow) => async (url, options = {}) => {
   }
 
   const loadObject = async () => {
+    // advanced race condition prevention (tm) lol, i'm sorry
+    if (objectLoading) {
+      console.info('[3d-objects]', 'already loading', name, 'returning');
+      return;
+    }
+
+    objectLoading = true;
     object = await objectLoader(url);
 
     const hoverHelper = object.getObjectByName(HOVER_HELPER_NAME);
@@ -183,6 +191,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, options = {}) => {
       move: null,
     };
 
+    objectLoading = false;
     console.info('[3d-objects]', 'loaded', name, debugObject);
   }
 
@@ -214,6 +223,11 @@ export const THREEObjectMaker = (InfoWindow) => async (url, options = {}) => {
       renderer.render(scene, camera);
     },
     async reset() {
+      if (!object) {
+        console.info('[3d-objects]', 'no object yet for', name);
+        await loadObject();
+      }
+
       object.rotation.x = 0;
       object.rotation.y = 0;
       object.rotation.z = 0;

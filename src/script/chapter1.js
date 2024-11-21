@@ -22,12 +22,14 @@ export const intro = [
   { duration: 5 },
   { text: "Do you know what it feels like? Can you even imagine?"},
   { text: "In fact, I should really test you to find out,"},
-  { text: "before I take you anywhere... more important." },
+  {
+    text: "before I take you anywhere... more important.",
+    callback: () => setTask('Pass the challenge.'),
+  },
   {
     text: "",
     duration: 2,
     callback: showFakeCaptcha((e, context) => {
-      setTask('Pass the challenge.');
       setTimeout(() => {
         hideFakeCaptcha(context);
         scheduleScript(thanks, context);
@@ -78,9 +80,10 @@ export const hisLand = [
       context.soundscape.set(context.soundscape.base);
     },
   },
-  { text: "chasing after animals and kicking a ball among the rocks." },
-  { text: "Must have seen dozens of tourist cabañas crop up on the town's edge." },
-  { text: "The merciless sun and bone-dry wind, seem to draw crowds from far and wide." },
+  { text: "chasing after animals, playing astronaut among the rocks." },
+  { text: "That's how I first saw him - descending slo-mo from his mum's car onto a dusty field," },
+  { text: "the whole world watching as his feet touched the ground." },
+  { text: "It was a small step for Gustavo, but a giant leap for mankind." },
 ];
 
 export const showYouSomething = [

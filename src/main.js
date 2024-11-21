@@ -6,9 +6,9 @@ import {
 } from "./script/index.js";
 import { intro1 } from './script/intro.js';
 
-import { Sharawadji } from "../sharawadji/src/index.js";
+import { Sharawadji } from "./sharawadji/index.js";
 import { fakeCaptcha } from "./interactions/fakeCaptcha.js";
-import initHUD, { setLatLngDisplay, setPovDisplay } from './hud/index.js';
+import initHUD, { enterFullscreen, setLatLngDisplay, setPovDisplay } from './hud.js';
 import { resetGame } from './reset.js';
 import { LOCALSTORAGE_POSITION_KEY, START_POSITION, START_POV, MAPS_API_KEY } from './constants.js';
 import loadItems from './items/index.js';
@@ -19,7 +19,7 @@ import { initSpeech } from './script/speech.js';
 import { localisedSounds } from './audio/localised-sounds.js';
 import { FADE_OUT_DELAY_MS, playGatewaySound } from './audio/gateway-sound.js';
 import { enableClickToGoCB, enableSFX, persistenceToast } from './script/utils.js';
-import { checkForCheckpoints } from './checkpoints/index.js';
+import { checkForCheckpoints } from './checkpoints.js';
 import createSFX from './audio/sfx.js';
 import createScore from './audio/score-sounds.js';
 import createSoundscape from './audio/soundscapes.js';
@@ -28,6 +28,7 @@ import { initCustomPanorama } from './custom-panorama/index.js';
 import { createDelayEffect } from './items/shrooms.js';
 import { LIMBO_LNG_STEP } from './custom-panorama/limbo.js';
 import { checkSafari } from './safari.js';
+import { button as cruiseControlButton } from './cruise-control.js';
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
@@ -89,15 +90,7 @@ const initialize = async () => {
   }
 
   if (!dev && !debug) {
-    try {
-      if (document.body.webkitRequestFullscreen) {
-        await document.body.webkitRequestFullscreen();
-      } else {
-        await document.body.requestFullscreen();
-      }
-    } catch (err) {
-      console.warn('Fullscreen not available', err);
-    }
+    enterFullscreen();
   }
 
   const mapsLoader = new MapsAPILoader({
@@ -229,6 +222,7 @@ const revisitedSequence = (context) => {
   enableClickToGoCB(context);
   context.soundscapeGain.gain.setValueAtTime(0, context.audioContext.currentTime);
   context.soundscapeGain.gain.linearRampToValueAtTime(1, context.audioContext.currentTime + 2);
+  cruiseControlButton.hidden = false;
 };
 
 introCTAFromScratch.addEventListener('click', () => {

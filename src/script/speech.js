@@ -26,8 +26,8 @@ export const initSpeech = async (context) => {
     const extracted = await parseTarGzip(buffer);
 
     const entries = extracted.map(({ name, data }) => [
-      // strip the file extension (even if truncated)
-      name.replace(/\.[a-z0-9]+/, ''),
+      // strip the file extension (even if truncated or just the dot)
+      name.replace(/\.([a-z0-9]+)?/, ''),
       data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength),
     ]);
     const parts = Object.fromEntries(entries);

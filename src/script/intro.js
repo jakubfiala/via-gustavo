@@ -1,6 +1,7 @@
 import { journalMoment } from '../journal/index.js';
 import { setTask } from '../task.js';
 import { showHelpMessage, enableClickToGoCB, enableSFX } from './utils.js';
+import { button as cruiseControlButton } from '../cruise-control.js';
 
 export const intro1 = [
   { duration: 10 },
@@ -62,15 +63,16 @@ export const intro2 = [
   },
   { text: "I have been a reliable observer, and they've heeded my advice." },
   { text: "Perhaps because I meet them face-to-face, skin-to-skin." },
+  { duration: 0.75 },
   { text: "Other observers, well, they seem to be floating above it all," },
   { text: "peering at the lives in this desert through a sort of one-way mirror." },
   { text: "Don't take this personally, but I suspect many of you aren't even real." },
 ];
 
 export const intro3 = [
-  { duration: 5 },
-  { text: "Sorry, that wasn't too kind..." },
-  { duration: 2 },
+  { duration: 4 },
+  { text: "Sorry, that wasn't too kind... and I'm just rambling." },
+  { duration: 1 },
   { text: "What I meant to tell you is that I could use your help." },
   { text: "Thing is, from your vantage point, you see many things I don't," },
   { text: "and I've been looking for someone." },
@@ -86,3 +88,13 @@ export const intro3 = [
     },
   },
 ];
+
+export const tiredOfClicking = [
+  {
+    callback: (G) => {
+      showHelpMessage('Tired of clicking? Use the Cruise Control button in the top right corner')(G);
+      cruiseControlButton.hidden = false;
+      setTimeout(() => showHelpMessage('Or toggle it by pressing the space bar')(G), 5_000);
+    },
+  },
+]

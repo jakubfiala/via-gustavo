@@ -1,10 +1,9 @@
 const EARTH_RADIUS = 6378137;
-const KM_TO_MILES = 0.000621371192;
 
 const rad = x => (x * Math.PI) / 180;
 const deg = x => (x * 180) / Math.PI;
 
-const latLngDist = function(p1, p2, metric) {
+const latLngDist = function(p1, p2) {
   const dLat = rad(p2.lat() - p1.lat());
   const dLong = rad(p2.lng() - p1.lng());
 
@@ -17,16 +16,7 @@ const latLngDist = function(p1, p2, metric) {
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const distanceKm = EARTH_RADIUS * c;
 
-  if (metric == latLngDist.metrics.MILES) {
-    return distanceKm * KM_TO_MILES;
-  }
-
   return distanceKm;
-};
-
-latLngDist.metrics = {
-  MILES: 0,
-  KILOMETERS: 1
 };
 
 // taken from https://www.movable-type.co.uk/scripts/latlong.html
@@ -67,6 +57,7 @@ export const documentVisible = () => new Promise((resolve) => {
 
 export const scale = (value, smin, smax, tmin, tmax) => (value - smin) * (tmax - tmin) / (smax - smin) + tmin;
 
+export const choose = list => list[Math.floor(Math.random() * list.length)];
 
 export const openLink = (href) => {
   const link = document.createElement('a');
