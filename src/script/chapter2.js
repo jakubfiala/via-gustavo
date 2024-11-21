@@ -104,7 +104,11 @@ export const station3 = [
   { text: "It looks as if he suddenly realised something - something inevitable." },
   { text: "He looks up to the sky, and though all he sees is the dusty roof, he pierces it with his eyes." },
   { text: "The heavens are somewhere up there." },
-  { text: "He says nothing, but you and I both know he's asking «Why?»" },
+  { text: "He says nothing, but I suspect he's asking: «Why?»" },
+  { duration: 0.75 },
+  { text: "God, how I wish I could see what goes on in his head..." },
+  { text: "It's so easy for you to peer across a planet," },
+  { text: "but for me, the human mind stays impenetrable." },
 ];
 
 export const station4 = [
@@ -195,6 +199,12 @@ export const station8 = [
   { text: "The ground crunches under his feet as he sprints northwards." },
   { text: "He leaps over a pile of gravel, but as he lands, his feet sink too deep," },
   { text: "he loses balance and collapses onto the rough terrain." },
+  { duration: 1.5 },
+  { text: "It's not like I didn't try to warn him!" },
+  { text: "He's not the first man I've followed down the spiral..." },
+  { text: "In hindsight, I think he somewhat took me for granted." },
+  { text: "Can't blame him, really," },
+  { text: "but on that day, I still wish he'd listened." },
 ];
 
 // 9. Veronica wipes his face
