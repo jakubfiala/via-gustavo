@@ -49,10 +49,10 @@ export default async (G) => {
   const backpack = await getNodes(G, '/assets/audio/backpack.mp3');
   const droneFlyBy = await getNodes(G, '/assets/audio/drone-flyby.mp3', true);
   const explosion = await getNodes(G, '/assets/audio/explosion.mp3', true);
-  const bus = await getNodes(G, 'assets/audio/bus.mp3', true);
-  const donatingWater = await getNodes(G, 'assets/audio/donating-water.mp3', true);
-  const carApproach = await getNodes(G, 'assets/audio/car-approach.mp3', true);
-  const carCrash = await getNodes(G, 'assets/audio/crash.mp3', true);
+  const bus = await getNodes(G, '/assets/audio/bus.mp3', true);
+  const donatingWater = await getNodes(G, '/assets/audio/donating-water.mp3', true);
+  const carApproach = await getNodes(G, '/assets/audio/car-approach.mp3', true);
+  const carCrash = await getNodes(G, '/assets/audio/crash.mp3', true);
 
   const footstepsSounds = {
     normal: footstepsNormal,
