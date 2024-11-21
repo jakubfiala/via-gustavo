@@ -120,13 +120,14 @@ a {
   text-decoration: none;
 }
 
-a:visited {
-  color: rgb(143, 0, 0);
-}
-
 a:hover {
   text-decoration: underline;
   text-decoration-color: #f00a;
+}
+
+a:visited, a:visited:hover {
+  color: rgb(143, 0, 0);
+  text-decoration-color: rgb(143, 0, 0);
 }
 
 .map-container {
@@ -168,10 +169,6 @@ a:hover {
 .overlay--full {
   background: black;
   transition: opacity 2s linear;
-}
-
-.overlay p {
-  margin: 1.618rem auto 0;
 }
 
 #golden-ratio {
@@ -511,6 +508,7 @@ p.subtitle {
 }
 
 .hud__button {
+  justify-content: center;
   align-items: center;
   display: flex;
   gap: 0.5rem;
@@ -643,10 +641,13 @@ p.subtitle {
   background: white;
   border: solid 1px var(--color-blue);
   color: var(--color-blue);
-  padding: 2rem;
+  padding: 2rem 2rem 1.5rem;
   position: relative;
   z-index: 1;
   text-align: center;
+  max-height: 90vh;
+  max-width: 90vw;
+  overflow-y: auto;
 }
 
 .intro__disclaimer {
@@ -655,13 +656,13 @@ p.subtitle {
   max-width: 700px;
 }
 
-.intro__links {
-  margin: 0;
+p.intro__links {
+  margin: 1rem 0 0;
   font-size: 1rem;
 }
 
 .intro__links a:hover {
-  text-decoration: solid underline 2px red;
+  text-decoration: solid underline 2px;
 }
 
 .intro__ctas {
@@ -676,12 +677,17 @@ p.subtitle {
   cursor: pointer;
   font: inherit;
   padding: 1rem;
-  margin-top: 2rem;
+  flex-basis: 15ch;
+}
+
+.intro__cta:first-of-type,
+.intro__cta:first-of-type[hidden] + .intro__cta {
+  border-width: 3px;
 }
 
 .intro__tips {
   list-style-type: none;
-  margin: 2rem auto;
+  margin: 2rem auto 1rem;
   padding: 0;
   display: none;
   gap: 1rem;
@@ -696,6 +702,7 @@ p.subtitle {
   align-items: center;
   padding: 1rem 0;
   max-width: 300px;
+  text-wrap: balance;
 }
 
 .intro__tips li+li {
@@ -1312,5 +1319,14 @@ p.subtitle {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+}
+
+.promo {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
 }
 
