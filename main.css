@@ -512,6 +512,7 @@ p.subtitle {
   align-items: center;
   display: flex;
   gap: 0.5rem;
+  position: relative;
 }
 
 .hud__button[hidden] {
@@ -1178,6 +1179,7 @@ p.intro__links {
   display: flex;
   background: red;
   border-radius: 50%;
+  left: 0.25rem;
 }
 
 .about-frame {
