@@ -63,6 +63,7 @@ export const intro2 = [
   },
   { text: "I have been a reliable observer, and they've heeded my advice." },
   { text: "Perhaps because I meet them face-to-face, skin-to-skin." },
+  { duration: 0.75 },
   { text: "Other observers, well, they seem to be floating above it all," },
   { text: "peering at the lives in this desert through a sort of one-way mirror." },
   { text: "Don't take this personally, but I suspect many of you aren't even real." },
