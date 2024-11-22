@@ -1332,3 +1332,9 @@ p.intro__links {
   flex-flow: column wrap;
 }
 
+#intro-video {
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  height: auto;
+}
+
