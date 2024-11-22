@@ -57,9 +57,8 @@ export const finalSequence = async (G, checkpoints) => {
           continue;
         }
 
-        await approachLatLng(map, checkpoint, 3_000, 40);
+        await approachLatLng(map, checkpoint, 2_900, 40);
       };
-
       map.panTo(gustavo);
       map.setZoom(20);
       creditsMapContainer.animate([
