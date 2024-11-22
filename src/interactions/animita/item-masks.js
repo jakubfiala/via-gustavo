@@ -1,5 +1,5 @@
 const map = {
-  'Coca-Cola 1': 0b000000001,
+  'Coca-Cola': 0b000000001,
   'NASA baseball cap': 0b000000010,
   'NASA Backpack': 0b000000100,
   'a broken phone': 0b000001000,
@@ -16,7 +16,7 @@ export const getItemNamesForMask = (mask) => Object.entries(map)
 export const getMaskForItemNames = (names) => names.reduce((mask, name) => {
   let itemMask = map[name] ?? 0;
   if (name.startsWith('Coca-Cola')) {
-    itemMask = 0b00000001;
+    itemMask = map['Coca-Cola'];
   }
 
   return mask | itemMask;
