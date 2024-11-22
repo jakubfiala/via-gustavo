@@ -90,6 +90,8 @@ const initialize = async () => {
     return;
   }
 
+  initHUD(scriptContext);
+
   if (!dev && !debug) {
     enterFullscreen();
   }
@@ -185,7 +187,6 @@ const initialize = async () => {
     },
   );
 
-  initHUD(scriptContext);
   initTask();
   initSpeech(scriptContext);
 
