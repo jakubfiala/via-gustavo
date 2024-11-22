@@ -67,11 +67,22 @@ export const openLink = (href) => {
   link.click();
 };
 
+const getVelocity = (target, origin, maximum) => {
+  const forwards = target - origin;
+  const backwards = maximum + forwards;
+
+  if (Math.abs(forwards) < Math.abs(backwards)) {
+    return forwards;
+  }
+
+  return backwards;
+};
+
 export const approachPov = async (G, targetPov, durationMS, steps = 100) => {
   const initialPov = G.map.getPov();
 
-  const pitchStep = (targetPov.pitch - initialPov.pitch) / steps;
-  const headingStep = (targetPov.heading - initialPov.heading) / steps;
+  const pitchStep = getVelocity(targetPov.pitch, initialPov.pitch, 360) / steps;
+  const headingStep = getVelocity(targetPov.heading, initialPov.heading, 360) / steps;
   const zoomStep = (targetPov.zoom - initialPov.zoom) / steps;
 
   const stepMS = durationMS / steps;

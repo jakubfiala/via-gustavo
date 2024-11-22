@@ -18,7 +18,7 @@ export const saveAnimita = async (animita) => {
   const position = animita.position.lng() * LIMBO_LNG_STEP;
 
   const url = new URL(ANIMITAS_ENDPOINT);
-  url.searchParams.set('pos', position);
+  url.searchParams.set('pos', Math.round(position));
 
   const body = JSON.stringify({
     exVoto: animita.exVoto.slice(0, EX_VOTO_MAX),

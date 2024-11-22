@@ -22,7 +22,7 @@ export const hover = async (context, position) => {
   sound.panner.positionY.linearRampToValueAtTime(position.lng, context.audioContext.currentTime + MOVEMENT_DELAY_S);
   sound.updateMix(1);
 
-  document.getElementById('drone-hovering').classList.add(VISIBLE_CLASS);
+  document.getElementById('drone-hovering')?.classList.add(VISIBLE_CLASS);
 };
 
 export const hoverBehind = async (context) => {
