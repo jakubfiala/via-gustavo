@@ -1,3 +1,5 @@
+import { disableCruiseControl } from '../cruise-control.js';
+
 export const enableSFX = (context) => {
   console.info('[script]', 'enabling SFX', context.sfxGain);
   if (context.sfxGain) {
@@ -5,8 +7,9 @@ export const enableSFX = (context) => {
   }
 };
 
-export const disableClickToGoCB = context => {
-  context.map.setOptions({ clickToGo: false, showRoadLabels: false, linksControl: false });
+export const disableClickToGoCB = G => {
+  G.map.setOptions({ clickToGo: false, showRoadLabels: false, linksControl: false });
+  disableCruiseControl(G);
 };
 
 export const enableClickToGoCB = context => {

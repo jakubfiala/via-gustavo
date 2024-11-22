@@ -3,6 +3,7 @@ import { throttle } from './utils.js';
 import { calculateListenerOrientation } from './panner-utils.js';
 
 const ATTENUATION_TARGET = 60;
+const LISTENER_HEADING_OFFSET_DEG = 90;
 
 class Sharawadji {
 	constructor(sounds, panorama, options) {
@@ -58,7 +59,7 @@ class Sharawadji {
 			this.audioContext.listener.setPosition(userPosition.lat(), userPosition.lng(), 0);
 		}
 
-		const { forward, up } = calculateListenerOrientation(userPov.heading, userPov.pitch, 0);
+		const { forward, up } = calculateListenerOrientation(userPov.heading + LISTENER_HEADING_OFFSET_DEG, userPov.pitch, 0);
 
 		if (this.audioContext.listener.forwardX) {
 			this.audioContext.listener.forwardX.value = forward.x;

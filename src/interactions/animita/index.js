@@ -51,7 +51,7 @@ export const initAnimitaEditor = (G, handlers) => {
   itemsContainer.appendChild(renderItems(G));
 
   editButton.addEventListener('click', () => {
-    const position = G.map.getPosition().lng() * LIMBO_LNG_STEP;
+    const position = Math.round(G.map.getPosition().lng() * LIMBO_LNG_STEP);
     if (loadedAnimitas.has(position)) {
       onOccupied(G);
       return;
@@ -76,18 +76,20 @@ export const initAnimitaEditor = (G, handlers) => {
 
     try {
       const animita = { exVoto, items, position: G.map.getPosition() };
-      const actualPosition = await makeAnimita(G, animita);
-
       await saveAnimita(animita);
 
+      const actualPosition = await makeAnimita(G, animita);
+      const approachHeading = Math.abs(headingFromPoints(G.map.getPosition(), new G.google.LatLng(actualPosition)));
+
       approachPov(G,
-        { heading: headingFromPoints(G.map.getPosition(), new G.google.LatLng(actualPosition)), pitch: -15, zoom: 3 },
+        { heading: approachHeading, pitch: -15, zoom: 1 },
         3000,
         180,
       );
     } catch (error) {
       console.warn('[animitas]', 'error saving animita', error);
       onError(G);
+      return;
     }
 
     editButton.hidden = true;

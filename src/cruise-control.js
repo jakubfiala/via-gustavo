@@ -6,7 +6,9 @@ const BUTTON_ON_CLASS = 'hud__button--on';
 
 export const button = document.getElementById('cruise-control-button');
 
-let cruiseControl = null;
+let enabled = false;
+let timeout = null;
+let listener = null;
 
 const move = (G) => {
   if (G.map.getLinks()?.length > 2) {
@@ -27,28 +29,36 @@ const move = (G) => {
 
 export const enableCruiseControl = (G) => {
   console.info('[cruise-control]', 'enabling');
-  clearInterval(cruiseControl);
+  clearTimeout(timeout);
+
+  listener = G.map.addListener('pano_changed', () => {
+    timeout = setTimeout(() => move(G), MOVE_INTERVAL);
+  });
 
   move(G);
-  cruiseControl = setInterval(() => move(G), MOVE_INTERVAL);
 
   button.classList.add(BUTTON_ON_CLASS);
   button.title = 'Disable Cruise Control';
+  enabled = true;
 };
 
 export const disableCruiseControl = (G) => {
   console.info('[cruise-control]', 'disabling');
-  clearInterval(cruiseControl);
+  clearTimeout(timeout);
+  listener?.remove();
+
   button.classList.remove(BUTTON_ON_CLASS);
   button.title = 'Enable Cruise Control';
-  cruiseControl = null;
+  timeout = null;
+  enabled = false;
 };
 
 export const initCruiseControl = (G) => {
   console.info('[cruise-control]', 'initialising');
 
   const toggle = () => {
-    if (cruiseControl) {
+    console.info('[cruise-control]', 'toggling');
+    if (enabled) {
       disableCruiseControl(G);
     } else {
       enableCruiseControl(G);

@@ -24,7 +24,7 @@ export const embedMaker = (InfoWindow) => (url) => {
       });
     },
     povUpdate() {
-      if (!this.info.isOpen) {
+      if (!this.info?.isOpen) {
         return;
       }
 

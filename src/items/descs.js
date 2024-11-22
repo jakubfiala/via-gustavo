@@ -86,7 +86,7 @@ export default [
     },
   },
   {
-    name: 'Gustavo\'s truck',
+    name: 'A broken-down truck',
     canBeActivated: true,
     position: { lat: -20.33167, lng: -69.68165 },
     gltf: '/assets/items/truck/',

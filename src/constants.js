@@ -12,7 +12,7 @@ export const START_POV = { heading: 279.83396999258559, pitch:  -1.1848915828164
 export const MAPS_API_KEY = 'AIzaSyA1VOiLnJEwz3HzcDxEExa_tCTu5KKOoqQ';
 
 export const OBJECT_APPEAR_THRESHOLD = 10;
-export const OBJECT_LOAD_THRESHOLD = 100;
+export const OBJECT_LOAD_THRESHOLD = 40;
 
 export const DEFAULT_COLLECT_TEXT = 'Collected';
 

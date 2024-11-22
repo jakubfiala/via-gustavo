@@ -136,7 +136,7 @@ export const poem = [
   { text: "they don't hear the rustling bushes," },
   { text: "they have arrived a different way." },
   { text: "I lead them to your sanctuary to stand still for a while, my dear Gustavo," },
-  { text: "right here on my crumbling shoulder," },
+  { text: "here on my crumbling shoulder," },
   { text: "no sound of rustling bushes, no smell of burned rubber," },
   { text: "to honour you." },
   { duration: 1 },
