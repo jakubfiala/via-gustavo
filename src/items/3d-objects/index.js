@@ -263,17 +263,27 @@ export const THREEObjectMaker = (InfoWindow) => async (url, options = {}) => {
 
       this.dist = latLngDist(objectPosition, userPosition) * DISTANCE_FACTOR;
 
+      if (this.dist < OBJECT_LOAD_THRESHOLD && !object) {
+        if (this.dist < appearThreshold) {
+          await loadObject();
+        } else {
+          return loadObject();
+        }
+      } else if (this.dist >= OBJECT_LOAD_THRESHOLD) {
+        renderer?.dispose();
+        renderer = null;
+
+        return;
+      }
+
       if (!this.info.isOpen) {
         if (this.dist < appearThreshold) {
           this.info.open({ map: this.map });
-        } else if (this.dist < OBJECT_LOAD_THRESHOLD && !object) {
-          return loadObject();
         } else {
-          renderer?.dispose();
-          renderer = null;
-
           return;
         }
+      } else if (this.dist >= appearThreshold) {
+        return this.info.close();
       }
 
       if (!object) {

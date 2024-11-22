@@ -67,7 +67,7 @@ export const openLink = (href) => {
   link.click();
 };
 
-const getVelocity = (target, origin, maximum) => {
+export const getVelocity = (target, origin, maximum) => {
   const forwards = target - origin;
   const backwards = maximum + forwards;
 

@@ -29,6 +29,7 @@ import { createDelayEffect } from './items/shrooms.js';
 import { LIMBO_LNG_STEP } from './custom-panorama/limbo.js';
 import { checkSafari } from './safari.js';
 import { button as cruiseControlButton } from './cruise-control.js';
+import { initPanoRecovery } from './pano-recovery.js';
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
@@ -192,6 +193,7 @@ const initialize = async () => {
   setLatLngDisplay(initialPosition);
   setPovDisplay(map.getPov());
   initJournal();
+  initPanoRecovery(scriptContext);
 
   document.body.classList.add('game-on');
 };
