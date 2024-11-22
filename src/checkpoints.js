@@ -351,17 +351,17 @@ export const checkpoints = [
   {
     lat: -20.2812,
     lng: -69.78685,
-    async callback(context) {
-      context.droneHoveringBehindYou?.stopHovering(context);
-      context.droneHoveringBehindYou = null;
-      journalMoment('🛸', 'The drone finally left me alone')
+    async callback(G) {
+      G.droneHoveringBehindYou?.stopHovering(G);
+      G.droneHoveringBehindYou = null;
     },
   },
   {
     lat: -20.27938,
     lng: -69.78727,
-    async callback(context) {
-      context.score.dirtRoad4.play();
+    async callback(G) {
+      G.score.dirtRoad4.play();
+      journalMoment('🛸', 'The drone finally left me alone');
     },
   },
   {

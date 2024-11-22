@@ -244,7 +244,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, options = {}) => {
       this.render();
     },
     povUpdate() {
-      if (this.taken || !this.info.isOpen) {
+      if (this.taken || !this.info?.isOpen) {
         return;
       }
 
