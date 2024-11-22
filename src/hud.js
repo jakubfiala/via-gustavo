@@ -33,11 +33,6 @@ export const showHud = () => hud.animate([{ opacity: 0 }, { opacity: 1 }], { dur
 
 export const enterFullscreen = async () => {
   try {
-    fullscreenButton.title = 'Exit Fullscreen';
-    fullscreenButton.ariaLabel = 'Exit Fullscreen';
-    fullscreenIconEnter.setAttribute('hidden', 'true');
-    fullscreenIconExit.setAttribute('hidden', 'false');
-
     if (document.body.webkitRequestFullscreen) {
       await document.body.webkitRequestFullscreen();
     } else {
@@ -48,13 +43,7 @@ export const enterFullscreen = async () => {
   }
 };
 
-export const exitFullscreen = async () => {
-  fullscreenButton.title = 'Enter Fullscreen';
-  fullscreenButton.ariaLabel = 'Enter Fullscreen';
-  fullscreenIconEnter.setAttribute('hidden', 'false');
-  fullscreenIconExit.setAttribute('hidden', 'true');
-  await document.exitFullscreen?.();
-}
+export const exitFullscreen = () => document.exitFullscreen?.();
 
 export const initFullscreenButton = () => {
   fullscreenButton.addEventListener('click', () => {
@@ -62,6 +51,20 @@ export const initFullscreenButton = () => {
       exitFullscreen();
     } else {
       enterFullscreen();
+    }
+  });
+
+  document.addEventListener('fullscreenchange', () => {
+    if (document.fullscreenElement) {
+      fullscreenButton.title = 'Exit Fullscreen';
+      fullscreenButton.ariaLabel = 'Exit Fullscreen';
+      fullscreenIconEnter.setAttribute('hidden', 'true');
+      fullscreenIconExit.setAttribute('hidden', 'false');
+    } else {
+      fullscreenButton.title = 'Enter Fullscreen';
+      fullscreenButton.ariaLabel = 'Enter Fullscreen';
+      fullscreenIconEnter.setAttribute('hidden', 'false');
+      fullscreenIconExit.setAttribute('hidden', 'true');
     }
   });
 };
