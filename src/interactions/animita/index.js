@@ -88,6 +88,7 @@ export const initAnimitaEditor = (G, handlers) => {
     } catch (error) {
       console.warn('[animitas]', 'error saving animita', error);
       onError(G);
+      return;
     }
 
     editButton.hidden = true;
