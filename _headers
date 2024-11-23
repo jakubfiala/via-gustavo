@@ -1,2 +1,6 @@
 /*
   X-Frame-Options: SAMEORIGIN
+  ! Access-Control-Allow-Origin
+
+/assets/*
+  Access-Control-Allow-Origin: *
