@@ -270,11 +270,12 @@ export const geigerCounterReply = [
 // 13. He takes up his Cross
 export const station13 = [
   {
-    text: "He can already hear the traffic on the Panamericana.",
-    callback: (context) => {
-      context.score.viaCrucis4.preload = 'auto';
+    callback: (G) => {
+      G.score.viaCrucis4.preload = 'auto';
+      G.soundscape.set(G.soundscape.highwayFront);
     },
   },
+  { text: "He can already hear the traffic on the Panamericana." },
   { text: "The coastal mountain range towers over him." },
   { text: "He stops and takes a deep breath, tightens the straps on his backpack and sets off again." },
   { text: "The pilgrimage is nearing its end." },
