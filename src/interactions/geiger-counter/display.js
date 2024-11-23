@@ -1,5 +1,5 @@
 import { CanvasTexture, MeshStandardMaterial } from 'three';
-import { scale } from '../../../../src/utils.js';
+import { scale } from '../../utils.js';
 
 const GAUGE_NAME = 'moveable-gauge';
 

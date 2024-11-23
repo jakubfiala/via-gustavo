@@ -1,5 +1,5 @@
 import { itemDesc as busStop } from './bus.js';
-import { initGeigerCounterDetection } from '../../web/assets/items/geiger-counter/detection.js';
+import { initGeigerCounterDetection } from '../interactions/geiger-counter/detection.js';
 import { eatenShrooms, shrooms } from './shrooms.js';
 import { scheduleScript } from '../script/index.js';
 import { geigerCounterReply } from '../script/chapter2.js';
