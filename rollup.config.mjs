@@ -14,7 +14,7 @@ export default {
   input: 'src/main.js',
   output: [
     {
-      file: 'dist/index.js',
+      file: 'build/dist/index.js',
       sourcemap: true,
       plugins,
     },
