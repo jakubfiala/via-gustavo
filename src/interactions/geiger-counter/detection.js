@@ -1,4 +1,4 @@
-import { latLngDist } from '../../../src/utils.js';
+import { latLngDist } from '../../utils.js';
 import { startDisplay } from './display.js';
 
 const FREQ_DEFAULT = 300;
