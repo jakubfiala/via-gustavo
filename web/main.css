@@ -8,16 +8,6 @@
   }
 }
 
-@keyframes slide-in {
-  from {
-    translate: 0 5%;
-  }
-
-  to {
-    translate: 0 0;
-  }
-}
-
 @keyframes slide-in-full {
   from {
     translate: 0 100%;
@@ -171,10 +161,6 @@ a:visited, a:visited:hover {
   transition: opacity 2s linear;
 }
 
-#golden-ratio {
-  width: 50vw;
-}
-
 p.subtitle {
   margin-top: 0;
   font-size: 1.75rem;
@@ -252,10 +238,6 @@ p.subtitle {
   width: 2em;
   padding: 0.5rem;
   line-height: 1;
-}
-
-.crystal-ball-decor:before {
-  content: "\1f52e ";
 }
 
 .fake-captcha {
@@ -655,6 +637,7 @@ p.subtitle {
   display: none;
   font-size: 0.75rem;
   max-width: 700px;
+  margin: 0 auto;
 }
 
 p.intro__links {
