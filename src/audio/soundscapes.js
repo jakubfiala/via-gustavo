@@ -54,6 +54,7 @@ export default (context) => {
     town5: createSoundscape(context, 'assets/audio/soundscapes/town5.mp3', 'town5'),
     townBigRoad: createSoundscape(context, 'assets/audio/soundscapes/town-big-road.mp3', 'townBigRoad', 0.7),
     birdsWind: createSoundscape(context, 'assets/audio/soundscapes/birds_wind.mp3', 'birdsWind'),
+    highwayFront: createSoundscape(context, 'assets/audio/soundscapes/desert-highway-front.mp3', 'highwayFront', 0.7),
     highwayRight: createSoundscape(context, 'assets/audio/soundscapes/highway-right.mp3', 'highwayRight'),
     set(soundscape) {
       if (soundscape === currentSoundscape) {
