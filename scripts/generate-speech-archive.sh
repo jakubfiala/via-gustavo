@@ -5,7 +5,7 @@ set -o nounset
 echo "Generating speech archive"
 
 pushd ./speech
-tar -czf ../web/assets/audio/speech.tar.gz *.mp3
+tar -cvf - *.mp3 | gzip -n > ../web/assets/audio/speech.tar.gz
 popd
 
 echo "Generated speech archive"
