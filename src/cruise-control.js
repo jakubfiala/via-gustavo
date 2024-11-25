@@ -25,6 +25,11 @@ const move = (G) => {
   };
 
   G.map.setPosition(newPosition);
+
+  const pov = G.map.getPov();
+  // SV sometimes changes the heading after loading the new pano,
+  // it's not clear why. Let's make sure it sticks to the original heading.
+  G.map.setPov({ ...pov, heading });
 }
 
 export const enableCruiseControl = (G) => {
