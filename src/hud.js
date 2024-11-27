@@ -72,7 +72,12 @@ export const initFullscreenButton = () => {
 export default (G) => {
   hud.hidden = false;
 
-  initFullscreenButton();
+  if (!G.kiosk) {
+    initFullscreenButton();
+  } else {
+    fullscreenButton.hidden = true;
+  }
+
   initCruiseControl(G);
 
   [

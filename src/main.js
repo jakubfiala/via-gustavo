@@ -42,7 +42,14 @@ const helpContainer = document.getElementById("help-display");
 const fakeCaptchas = Array.from(document.getElementsByClassName("fake-captcha")).map(c => fakeCaptcha(c));
 const textDisplay = new TextDisplay(textContainer);
 
+const currentURL = new URL(location.href);
+const debug = currentURL.searchParams.get('debug') === 'true';
+const dev = currentURL.searchParams.get('dev') === 'true';
+const cinema = currentURL.searchParams.get('cinema') === 'true';
+const kiosk = currentURL.searchParams.get('kiosk') === 'true';
+
 const scriptContext = {
+  kiosk,
   container,
   statusContainer,
   helpContainer,
@@ -50,14 +57,10 @@ const scriptContext = {
   textDisplay,
 };
 
-const currentURL = new URL(location.href);
-const debug = currentURL.searchParams.get('debug') === 'true';
-const dev = currentURL.searchParams.get('dev') === 'true';
-const cinema = currentURL.searchParams.get('cinema') === 'true';
-
 document.body.classList.toggle('debug', debug);
 document.body.classList.toggle('dev', dev);
 document.body.classList.toggle('cinema', cinema);
+document.body.classList.toggle('kiosk', kiosk);
 
 const initialPosition = JSON.parse(localStorage.getItem(LOCALSTORAGE_POSITION_KEY)) || START_POSITION;
 const mapOptions = {
@@ -92,7 +95,7 @@ const initialize = async () => {
 
   initHUD(scriptContext);
 
-  if (!dev && !debug) {
+  if (!dev && !debug && !kiosk) {
     enterFullscreen();
   }
 

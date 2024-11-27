@@ -640,6 +640,12 @@ p.subtitle {
   margin: 0 auto;
 }
 
+.kiosk .intro__disclaimer,
+.kiosk .intro__links,
+.kiosk .intro__tips {
+  display: none;
+}
+
 p.intro__links {
   margin: 2rem 0 0;
   font-size: 1.15rem;
