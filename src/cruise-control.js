@@ -1,4 +1,4 @@
-import { rad } from './utils.js';
+import { rad, sleep } from './utils.js';
 
 const ACCEL_VELOCITY = 2e-4;
 const MOVE_INTERVAL = 1_000;
@@ -10,7 +10,7 @@ let enabled = false;
 let timeout = null;
 let listener = null;
 
-const move = (G) => {
+const move = async (G) => {
   if (G.map.getLinks()?.length > 2) {
     disableCruiseControl(G);
   }
@@ -29,6 +29,7 @@ const move = (G) => {
   const pov = G.map.getPov();
   // SV sometimes changes the heading after loading the new pano,
   // it's not clear why. Let's make sure it sticks to the original heading.
+  await sleep(100);
   G.map.setPov({ ...pov, heading });
 }
 
