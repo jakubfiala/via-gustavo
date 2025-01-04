@@ -1076,7 +1076,7 @@ p.intro__links {
 }
 
 #task::before {
-  content: "👉";
+  content: "\01f449";
   margin-right: 0.5ch;
 }
 
@@ -1118,7 +1118,7 @@ p.intro__links {
 }
 
 .journal__entry--moment::before {
-  content: '—';
+  content: '\002014';
   margin-right: 1ch;
   opacity: 0.4;
 }
