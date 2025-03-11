@@ -71,4 +71,13 @@ export const localisedSounds = [
     db: 30,
     loop: true
   },
+  {
+    name: "church-bell",
+    lat: -20.33692,
+    lng: -69.65623,
+    src: "assets/audio/church-bell.mp3",
+    db: 30,
+    loop: true,
+    rolloffFactor: 1.5,
+  },
 ];

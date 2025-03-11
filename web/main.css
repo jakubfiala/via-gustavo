@@ -349,6 +349,10 @@ p.subtitle {
   translate: -0.25rem 0.5rem;
 }
 
+.cinema .gm-compass {
+  display: none !important;
+}
+
 .gm-compass > img:first-of-type {
   filter: invert(100%) brightness(1.1);
 }
@@ -795,6 +799,10 @@ p.intro__links {
   cursor: pointer;
   scale: 1;
   user-select: none;
+}
+
+.vg-item {
+  cursor: default;
 }
 
 .gustavo-item--highlighted,
@@ -1326,4 +1334,3 @@ p.intro__links {
   max-width: 100%;
   height: auto;
 }
-

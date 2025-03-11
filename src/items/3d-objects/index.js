@@ -166,6 +166,7 @@ export const THREEObjectMaker = (InfoWindow) => async (url, options = {}) => {
       isBeingHovered = intersections > 0;
 
       container.classList.toggle('gustavo-item--highlighted', isBeingHovered);
+      canvas.style.cursor = isBeingHovered ? 'pointer' : 'default';
     };
 
     canvas.addEventListener('pointermove', onPointerMove);
