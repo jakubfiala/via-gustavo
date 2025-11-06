@@ -66509,7 +66509,7 @@ var initGamepad = (scriptContext) => {
 
       const [lx, ly, rx, ry] = gamepad.axes;
 
-      const rr = Math.sqrt(lx ** 2 + ly ** 2);
+      const rr = Math.sqrt(rx ** 2 + ry ** 2);
       console.log(lx, ly, rx, ry, rr);
 
       if (rr > 0.1) {
