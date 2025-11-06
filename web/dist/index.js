@@ -461,6 +461,8 @@ function* enumerate(iterable) {
   }
 }
 
+const clamp$1 = (x, min, max) => Math.min(Math.max(x, min), max);
+
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const documentVisible = () => new Promise((resolve) => {
@@ -66515,7 +66517,7 @@ var initGamepad = (scriptContext) => {
       if (rr > 0.1) {
         const pov = map.pov;
         pov.heading = (pov.heading + rx * TURN_VELOCITY) % 360;
-        pov.pitch = (pov.pitch - ry * TURN_VELOCITY) % 90;
+        pov.pitch = clamp$1(pov.pitch - ry * TURN_VELOCITY, -90, 90);
         scriptContext.map.setPov(pov);
       }
 

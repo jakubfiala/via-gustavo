@@ -1,4 +1,4 @@
-import { deg } from "./utils";
+import { clamp, deg } from "./utils";
 
 const MIN_MOVEMENT = 0.2;
 const OFFSET_X =  0; // 0.051000000000000004;
@@ -29,7 +29,7 @@ export default (scriptContext) => {
       if (rr > 0.1) {
         const pov = map.pov;
         pov.heading = (pov.heading + rx * TURN_VELOCITY) % 360;
-        pov.pitch = (pov.pitch - ry * TURN_VELOCITY) % 90;
+        pov.pitch = clamp(pov.pitch - ry * TURN_VELOCITY, -90, 90);
         scriptContext.map.setPov(pov);
       }
 
