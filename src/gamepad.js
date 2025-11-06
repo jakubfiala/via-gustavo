@@ -10,17 +10,18 @@ const roundFloat = (x, y) => Math.round (x / y) * y;
 
 export default (scriptContext) => {
   window.addEventListener("gamepadconnected", function(e) {
-    const gamepad = navigator.getGamepads()[e.gamepad.index];
+
     console.info('[gamepad]', 'connected at index %d: %s. %d buttons, %d axes.',
                 gamepad.index, gamepad.id,
                 gamepad.buttons.length, gamepad.axes.length);
 
-    if (gamepad.axes.length < 4) {
-      console.warn('[gamepad]', 'not enough joystick axes found');
-      return;
-    }
-
     const controlLoop = () => {
+      const gamepad = navigator.getGamepads()[e.gamepad.index];
+      if (gamepad.axes.length < 4) {
+        console.warn('[gamepad]', 'not enough joystick axes found');
+        return;
+      }
+
       const [lx, ly, rx, ry] = gamepad.axes;
       const lr = Math.sqrt(lx ** 2 + ly ** 2);
 
