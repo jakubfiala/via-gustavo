@@ -24,6 +24,8 @@ export default (scriptContext) => {
       const [lx, ly, rx, ry] = gamepad.axes;
       const lr = Math.sqrt(lx ** 2 + ly ** 2);
 
+      console.log(lx, ly, rx, ry, lr);
+
       if (lr > 0.1) {
         const pov= map.pov;
         pov.heading = deg(Math.atan2(ly, lx));
