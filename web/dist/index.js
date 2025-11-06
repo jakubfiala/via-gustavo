@@ -66500,8 +66500,8 @@ var initGamepad = (scriptContext) => {
                 gamepad.buttons.length, gamepad.axes.length);
 
     const controlLoop = () => {
-      const gamepad = navigator.getGamepads()[e.gamepad.index];
-      if (gamepad.axes.length < 4) {
+      const gamepad = navigator.getGamepads()[0];
+      if (gamepad?.axes.length < 4) {
         console.warn('[gamepad]', 'not enough joystick axes found');
         return;
       }
