@@ -1512,7 +1512,7 @@ const clearTask = () => {
   localStorage.removeItem(LOCALSTORAGE_TASK_KEY);
 };
 
-const ACCEL_VELOCITY = 2e-4;
+const ACCEL_VELOCITY$1 = 2e-4;
 const MOVE_INTERVAL = 1_000;
 const BUTTON_ON_CLASS = 'hud__button--on';
 
@@ -1532,8 +1532,8 @@ const move = async (G) => {
 
   const radians = rad$1(heading);
   const newPosition = {
-    lat: position.lat() + ACCEL_VELOCITY * Math.cos(radians),
-    lng: position.lng() + ACCEL_VELOCITY * Math.sin(radians),
+    lat: position.lat() + ACCEL_VELOCITY$1 * Math.cos(radians),
+    lng: position.lng() + ACCEL_VELOCITY$1 * Math.sin(radians),
   };
 
   G.map.setPosition(newPosition);
@@ -66494,6 +66494,7 @@ var loadItems = async (InfoWindow, context) => {
   return items;
 };
 
+const ACCEL_VELOCITY = 0.00001;
 const TURN_VELOCITY = 2.0;
 
 var initGamepad = (scriptContext) => {
@@ -66521,18 +66522,17 @@ var initGamepad = (scriptContext) => {
         scriptContext.map.setPov(pov);
       }
 
-      // const lr = Math.sqrt(lx ** 2 + ly ** 2);
-      // if (lr > 0.1) {
-      //   const heading = scriptContext.map.getPov().heading;
-      //   const position = scriptContext.map.getPosition();
+      if (Math.abs(ly) > 0.1) {
+        const heading = scriptContext.map.getPov().heading;
+        const position = scriptContext.map.getPosition();
 
-      //   const newPosition = {
-      //     lat: position.lat() - ACCEL_VELOCITY * y * Math.cos(heading/180*Math.PI),
-      //     lng: position.lng() - ACCEL_VELOCITY * y * Math.sin(heading/180*Math.PI),
-      //   };
+        const newPosition = {
+          lat: position.lat() - ACCEL_VELOCITY * ly * Math.cos(heading/180*Math.PI),
+          lng: position.lng() - ACCEL_VELOCITY * ly * Math.sin(heading/180*Math.PI),
+        };
 
-      //   scriptContext.map.setPosition(newPosition);
-      // }
+        scriptContext.map.setPosition(newPosition);
+      }
 
       window.requestAnimationFrame(controlLoop);
     };

@@ -33,18 +33,17 @@ export default (scriptContext) => {
         scriptContext.map.setPov(pov);
       }
 
-      // const lr = Math.sqrt(lx ** 2 + ly ** 2);
-      // if (lr > 0.1) {
-      //   const heading = scriptContext.map.getPov().heading;
-      //   const position = scriptContext.map.getPosition();
+      if (Math.abs(ly) > 0.1) {
+        const heading = scriptContext.map.getPov().heading;
+        const position = scriptContext.map.getPosition();
 
-      //   const newPosition = {
-      //     lat: position.lat() - ACCEL_VELOCITY * y * Math.cos(heading/180*Math.PI),
-      //     lng: position.lng() - ACCEL_VELOCITY * y * Math.sin(heading/180*Math.PI),
-      //   };
+        const newPosition = {
+          lat: position.lat() - ACCEL_VELOCITY * ly * Math.cos(heading/180*Math.PI),
+          lng: position.lng() - ACCEL_VELOCITY * ly * Math.sin(heading/180*Math.PI),
+        };
 
-      //   scriptContext.map.setPosition(newPosition);
-      // }
+        scriptContext.map.setPosition(newPosition);
+      }
 
       window.requestAnimationFrame(controlLoop);
     };
