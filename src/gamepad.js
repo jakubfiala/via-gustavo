@@ -1,3 +1,5 @@
+import { deg } from "./utils";
+
 const MIN_MOVEMENT = 0.2;
 const OFFSET_X =  0; // 0.051000000000000004;
 const OFFSET_Y =  0; // -0.045;
@@ -13,27 +15,32 @@ export default (scriptContext) => {
                 gamepad.index, gamepad.id,
                 gamepad.buttons.length, gamepad.axes.length);
 
-    const controlLoop = () => {
-      const x = roundFloat(gamepad.axes[0] + OFFSET_X, MIN_MOVEMENT);
-      const y = roundFloat(gamepad.axes[1] + OFFSET_Y, MIN_MOVEMENT);
+    if (gamepad.axes.length < 4) {
+      console.warn('[gamepad]', 'not enough joystick axes found');
+      return;
+    }
 
-      if (x) {
+    const controlLoop = () => {
+      const [lx, ly, rx, ry] = gamepad.axes;
+      const lr = Math.sqrt(lx ** 2 + ly ** 2);
+
+      if (lr > 0.1) {
         const pov= map.pov;
-        pov.heading = (pov.heading + x * TURN_VELOCITY) % 360;
+        pov.heading = deg(Math.atan2(ly, lx));
         scriptContext.map.setPov(pov);
       }
 
-      if (y) {
-        const heading = scriptContext.map.getPov().heading;
-        const position = scriptContext.map.getPosition();
+      // if (y) {
+      //   const heading = scriptContext.map.getPov().heading;
+      //   const position = scriptContext.map.getPosition();
 
-        const newPosition = {
-          lat: position.lat() - ACCEL_VELOCITY * y * Math.cos(heading/180*Math.PI),
-          lng: position.lng() - ACCEL_VELOCITY * y * Math.sin(heading/180*Math.PI),
-        };
+      //   const newPosition = {
+      //     lat: position.lat() - ACCEL_VELOCITY * y * Math.cos(heading/180*Math.PI),
+      //     lng: position.lng() - ACCEL_VELOCITY * y * Math.sin(heading/180*Math.PI),
+      //   };
 
-        scriptContext.map.setPosition(newPosition);
-      }
+      //   scriptContext.map.setPosition(newPosition);
+      // }
 
       window.requestAnimationFrame(controlLoop);
     };
