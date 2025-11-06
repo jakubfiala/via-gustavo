@@ -66508,18 +66508,19 @@ var initGamepad = (scriptContext) => {
       }
 
       const [lx, ly, rx, ry] = gamepad.axes;
-      const lr = Math.sqrt(lx ** 2 + ly ** 2);
 
-      console.log(lx, ly, rx, ry, lr);
+      const rr = Math.sqrt(lx ** 2 + ly ** 2);
+      console.log(lx, ly, rx, ry, rr);
 
-      if (lr > 0.1) {
+      if (rr > 0.1) {
         const pov = map.pov;
-        pov.heading = (pov.heading + lx * TURN_VELOCITY) % 360;
-        pov.pitch = (pov.pitch + ly * TURN_VELOCITY) % 90;
+        pov.heading = (pov.heading + rx * TURN_VELOCITY) % 360;
+        pov.pitch = (pov.pitch - ry * TURN_VELOCITY) % 90;
         scriptContext.map.setPov(pov);
       }
 
-      // if (y) {
+      // const lr = Math.sqrt(lx ** 2 + ly ** 2);
+      // if (lr > 0.1) {
       //   const heading = scriptContext.map.getPov().heading;
       //   const position = scriptContext.map.getPosition();
 
