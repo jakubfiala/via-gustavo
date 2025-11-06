@@ -66494,10 +66494,9 @@ var loadItems = async (InfoWindow, context) => {
 
 var initGamepad = (scriptContext) => {
   window.addEventListener("gamepadconnected", function(e) {
-
     console.info('[gamepad]', 'connected at index %d: %s. %d buttons, %d axes.',
-                gamepad.index, gamepad.id,
-                gamepad.buttons.length, gamepad.axes.length);
+                navigator.getGamepads()[0].index, navigator.getGamepads()[0].id,
+                navigator.getGamepads()[0].buttons.length, navigator.getGamepads()[0].axes.length);
 
     const controlLoop = () => {
       const gamepad = navigator.getGamepads()[0];
