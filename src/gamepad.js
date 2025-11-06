@@ -6,7 +6,7 @@ const TURN_VELOCITY = 2.0;
 
 const roundFloat = (x, y) => Math.round (x / y) * y;
 
-export default (map) => {
+export default (scriptContext) => {
   window.addEventListener("gamepadconnected", function(e) {
     const gamepad = navigator.getGamepads()[e.gamepad.index];
     console.info('[gamepad]', 'connected at index %d: %s. %d buttons, %d axes.',
@@ -20,19 +20,19 @@ export default (map) => {
       if (x) {
         const pov= map.pov;
         pov.heading = (pov.heading + x * TURN_VELOCITY) % 360;
-        map.setPov(pov);
+        scriptContext.map.setPov(pov);
       }
 
       if (y) {
-        const heading = map.getPov().heading;
-        const position = map.getPosition();
+        const heading = scriptContext.map.getPov().heading;
+        const position = scriptContext.map.getPosition();
 
         const newPosition = {
           lat: position.lat() - ACCEL_VELOCITY * y * Math.cos(heading/180*Math.PI),
           lng: position.lng() - ACCEL_VELOCITY * y * Math.sin(heading/180*Math.PI),
         };
 
-        map.setPosition(newPosition);
+        scriptContext.map.setPosition(newPosition);
       }
 
       window.requestAnimationFrame(controlLoop);
