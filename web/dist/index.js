@@ -66492,6 +66492,8 @@ var loadItems = async (InfoWindow, context) => {
   return items;
 };
 
+const TURN_VELOCITY = 2.0;
+
 var initGamepad = (scriptContext) => {
   window.addEventListener("gamepadconnected", function(e) {
     console.info('[gamepad]', 'connected at index %d: %s. %d buttons, %d axes.',
@@ -66511,8 +66513,9 @@ var initGamepad = (scriptContext) => {
       console.log(lx, ly, rx, ry, lr);
 
       if (lr > 0.1) {
-        const pov= map.pov;
-        pov.heading = deg(Math.atan2(ly, lx));
+        const pov = map.pov;
+        pov.heading = (pov.heading + lx * TURN_VELOCITY) % 360;
+        pov.pitch = (pov.pitch + ly * TURN_VELOCITY) % 90;
         scriptContext.map.setPov(pov);
       }
 
