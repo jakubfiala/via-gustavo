@@ -5,17 +5,27 @@ const MIN_MOVEMENT = 0.2;
 const OFFSET_X =  0; // 0.051000000000000004;
 const OFFSET_Y =  0; // -0.045;
 const ACCEL_VELOCITY = 5e-6;
+const FAST_ACCEL_VELOCITY = 1e-5;
 const TURN_VELOCITY = 2.0;
 
 const roundFloat = (x, y) => Math.round (x / y) * y;
 
 let gamepadMove = null;
+let b5pressed = false;
+let b8pressed = false;
+let b9pressed = false;
 
-export default (scriptContext) => {
+const journalDialog = document.getElementById('journal-dialog');
+const aboutDialog = document.getElementById('about-dialog');
+const ccButton = document.getElementById('cruise-control-button');
+
+export default (G) => {
   window.addEventListener("gamepadconnected", function(e) {
     console.info('[gamepad]', 'connected at index %d: %s. %d buttons, %d axes.',
                 navigator.getGamepads()[0].index, navigator.getGamepads()[0].id,
                 navigator.getGamepads()[0].buttons.length, navigator.getGamepads()[0].axes.length);
+
+    G.gamepad = navigator.getGamepads()[0];
 
     if (navigator.getGamepads()[0]?.axes.length < 4) {
       console.warn('[gamepad]', 'not enough joystick axes found');
@@ -38,19 +48,55 @@ export default (scriptContext) => {
         const pov = map.pov;
         pov.heading = (pov.heading + rx * TURN_VELOCITY) % 360;
         pov.pitch = clamp(pov.pitch - ry * TURN_VELOCITY, -90, 90);
-        scriptContext.map.setPov(pov);
+        G.map.setPov(pov);
+      }
+
+      if (!b5pressed && gamepad.buttons[5]?.value > 0) {
+        b5pressed = true;
+      }
+
+      if (b5pressed && gamepad.buttons[5]?.value === 0) {
+        b5pressed = false;
+        ccButton.click();
+      }
+
+      if (!b8pressed && gamepad.buttons[8]?.value > 0) {
+        b8pressed = true;
+      }
+
+      if (b8pressed && gamepad.buttons[8]?.value === 0) {
+        b8pressed = false;
+        if (aboutDialog.open) {
+          aboutDialog.close();
+        } else {
+          aboutDialog.show();
+        }
+      }
+
+      if (!b9pressed && gamepad.buttons[9]?.value > 0) {
+        b9pressed = true;
+      }
+
+      if (b9pressed && gamepad.buttons[9]?.value === 0) {
+        b9pressed = false;
+        if (journalDialog.open) {
+          journalDialog.close();
+        } else {
+          journalDialog.show();
+        }
       }
 
       if (Math.abs(ly) > 0.1) {
-        const heading = scriptContext.map.getPov().heading;
-        const position = { lat: scriptContext.map.getPosition().lat(), lng: scriptContext.map.getPosition().lng() };
+        const heading = G.map.getPov().heading;
+        const position = { lat: G.map.getPosition().lat(), lng: G.map.getPosition().lng() };
+        const acceleration = gamepad.buttons[7].value > 0 ? FAST_ACCEL_VELOCITY : ACCEL_VELOCITY
 
         gamepadMove = !gamepadMove ? position : {
-          lat: gamepadMove.lat - ACCEL_VELOCITY * ly * Math.cos(rad(heading)),
-          lng: gamepadMove.lng - ACCEL_VELOCITY * ly * Math.sin(rad(heading)),
+          lat: gamepadMove.lat - acceleration * ly * Math.cos(rad(heading)),
+          lng: gamepadMove.lng - acceleration * ly * Math.sin(rad(heading)),
         };
 
-        throttledPositionUpdate(scriptContext.map, gamepadMove);
+        throttledPositionUpdate(G.map, gamepadMove);
       } else {
         gamepadMove = null;
       }

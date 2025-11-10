@@ -29,10 +29,11 @@ export const intro = [
   {
     text: "",
     duration: 2,
-    callback: showFakeCaptcha((e, context) => {
+    callback: showFakeCaptcha((e, G) => {
+      showHelpMessage('', [], 5, 'Use the touchpad on the controller to interact with things and collect items')(G);
       setTimeout(() => {
-        hideFakeCaptcha(context);
-        scheduleScript(thanks, context);
+        hideFakeCaptcha(G);
+        scheduleScript(thanks, G);
       }, 3000);
     })
   },

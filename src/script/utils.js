@@ -35,10 +35,10 @@ export const flashStatus = (text, duration = 5) => context => {
 
 export const createKeyElement = key => `<span class="help-keys__key">${key}</span>`;
 
-export const showHelpMessage = (text, keys = [], duration = 5) => context => {
+export const showHelpMessage = (text, keys = [], duration = 5, gamepadText = "") => context => {
   context.helpContainer.innerHTML = `
     <div class="help-keys">${keys.map(createKeyElement).join('')}</div>
-    <div>${text}</div>
+    <div>${gamepadText && context.gamepad ? gamepadText : text}</div>
   `;
   context.helpContainer.classList.add('fade-in');
 

@@ -15,7 +15,7 @@ export const intro1 = [
   { text: "Look around, perhaps you'll notice them already." },
   {
     duration: 5,
-    callback: showHelpMessage('Click and drag to look around'),
+    callback: showHelpMessage('Click and drag to look around', [], 5, 'Use the right joystick to look around'),
   },
   { text: "Tiles delineated by glitches, smeared presences, the sky glimmering with copyright." },
   { duration: 2 },
@@ -30,7 +30,7 @@ export const intro1 = [
   },
   {
     duration: 5,
-    callback: showHelpMessage('Click or tap on the ground to move'),
+    callback: showHelpMessage('Click or tap on the ground to move', [], 5, 'Use the left joystick to move'),
   },
   { text: "You move your muscles, and the image around you changes; first smeared, then sharp again." },
   {
@@ -94,7 +94,7 @@ export const tiredOfClicking = [
     callback: (G) => {
       showHelpMessage('Tired of clicking? Use the Cruise Control button in the top right corner')(G);
       cruiseControlButton.hidden = false;
-      setTimeout(() => showHelpMessage('Or toggle it by pressing the space bar')(G), 5_000);
+      setTimeout(() => showHelpMessage('Or toggle it by pressing the space bar', [], 5, 'Or use the right shoulder button')(G), 5_000);
     },
   },
 ]
