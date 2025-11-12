@@ -67,3 +67,10 @@ export const replayChapter = (id) => {
   const { position } = chapters.find((chapter) => chapter.id === id);
   map.setPosition(position);
 };
+
+export const replayLastChapter = () => {
+  if (completed.size === 0) return;
+
+  const { position } = chapters.findLast((chapter) => completed.has(chapter.id))
+  map.setPosition(position);
+};
