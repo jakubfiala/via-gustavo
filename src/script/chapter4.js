@@ -10,7 +10,7 @@ export const aboutDrone = [
     callback: (context) => {
       context.score.bachPiano4.play();
       flashStatus(`Chapter ${context.chapter.id} - ${context.chapter.title}`)(context);
-      setTask('Continue straight ahead to the town center');
+      setTask('Continue north, straight ahead to the town center');
     }
   },
   { duration: 8 },
@@ -237,4 +237,3 @@ export const geoglyphs = [
     },
   },
 ];
-

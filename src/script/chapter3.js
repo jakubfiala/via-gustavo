@@ -6,7 +6,7 @@ export const intro = [
   {
     text: "",
     callback: (context) => {
-      setTask('Look for Gustavo along the dirt road');
+      setTask('Look for Gustavo along the dirt road to the north');
       context.score.bachPiano3.play();
       context.soundscape.set(context.soundscape.highwayRight);
       context.sfx.setFootsteps('gravel');
@@ -32,6 +32,6 @@ export const outro = [
   { text: "Gustavo, Gustavo, Gustavo... yes, he did come down here recently." },
   {
     text: "Right through the town center - if you keep going straight, you'll get there in no time.",
-    callback: () => setTask('Continue straight ahead to the town center'),
+    callback: () => setTask('Continue north, straight ahead to the town center'),
   },
 ];

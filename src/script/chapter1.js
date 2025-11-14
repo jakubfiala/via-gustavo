@@ -52,7 +52,7 @@ const thanks = [
     duration: 2,
     callback: (context) => {
       context.score.veniceMedium.preload = 'auto';
-      setTask('Continue down the road.');
+      setTask('Continue West down the road.');
       setTimeout(() => persistenceToast(), 2_000);
     },
   },
@@ -94,7 +94,7 @@ export const showYouSomething = [
     text: "- we can ride it from there.",
     callback: (context) => {
       context.score.veniceLong.preload = 'auto';
-      setTask('Continue into town.');
+      setTask('Continue West into town.');
     },
   },
 ];

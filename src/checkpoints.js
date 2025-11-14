@@ -624,6 +624,8 @@ export const checkpoints = [
   }
 ];
 
+window.checkpoints = checkpoints;
+
 export const checkForCheckpoints = G => () => {
   const position = G.map.getPosition();
 
