@@ -4,7 +4,7 @@ import { throttle } from "lodash";
 const MIN_MOVEMENT = 0.2;
 const OFFSET_X =  0; // 0.051000000000000004;
 const OFFSET_Y =  0; // -0.045;
-const ACCEL_VELOCITY = 5e-6;
+const ACCEL_VELOCITY = 6e-6;
 const FAST_ACCEL_VELOCITY = 1e-5;
 const TURN_VELOCITY = 2.0;
 

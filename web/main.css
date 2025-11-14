@@ -1335,3 +1335,7 @@ p.intro__links {
   max-width: 100%;
   height: auto;
 }
+
+#new-game-button {
+  align-self: stretch;
+}

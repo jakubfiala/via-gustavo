@@ -4,6 +4,7 @@ const latLngDisplay = document.getElementById('latlng-display');
 const povDisplay = document.getElementById('pov-display');
 const hud = document.getElementById('hud');
 
+const newGameButton = document.getElementById('new-game-button');
 const fullscreenButton = document.getElementById('fullscreen-button');
 const fullscreenIconEnter = document.getElementById('fullscreen-button-icon-enter');
 const fullscreenIconExit = document.getElementById('fullscreen-button-icon-exit');
@@ -69,12 +70,20 @@ export const initFullscreenButton = () => {
   });
 };
 
+const initNewGameButton = () => {
+  newGameButton.addEventListener('click', () => {
+    location.reload();
+  });
+}
+
 export default (G) => {
   hud.hidden = false;
 
   if (!G.kiosk) {
     initFullscreenButton();
+    newGameButton.hidden = true;
   } else {
+    initNewGameButton();
     fullscreenButton.hidden = true;
   }
 
