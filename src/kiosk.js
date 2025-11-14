@@ -3,7 +3,7 @@ import { checkpoints } from "./checkpoints";
 import { flashStatus } from "./script/utils";
 
 const MIN = 60_000;
-const KIOSK_IDLE_DELAY_MIN = 10;
+const KIOSK_IDLE_DELAY_MIN = 5;
 const CAMERA_WIGGLE_DELAY_MIN = 0.25;
 
 let resetTimeout = 0;
