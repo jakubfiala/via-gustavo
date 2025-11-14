@@ -22,7 +22,7 @@ export const intro = [
   { text: "Empty Coca-Cola cans falling out the trunk." },
   { text: "Follow them to find the square, in front of the large white church." },
   { text: "I'll tell you everything there." },
-  { callback: () => setTask('Find the plaza in front of the church in La Tirana.') },
+  { callback: () => setTask('Find the plaza in front of the church in La Tirana (follow the coke cans)') },
 ];
 
 export const station1 = [
@@ -56,7 +56,7 @@ export const station1 = [
   { text: "It's called Eleuterio Ramírez." },
   { text: "Let's go that way and turn right." },
   { text: "Then just follow the coke!" },
-  { callback: () => setTask('Turn right behind the church and follow Eleuterio Ramírez') },
+  { callback: () => setTask('Turn right behind the church and follow Eleuterio Ramírez (and the coke cans)') },
 ];
 
 export const mainRoad = [
@@ -65,7 +65,7 @@ export const mainRoad = [
   {
     text: "The next station is just a little further past it.",
     callback: (context) => {
-      setTask('Continue to the next station');
+      setTask('Continue to the next station to the north');
       context.score.viaCrucis3.preload = 'auto';
     },
   },
@@ -90,6 +90,7 @@ export const station2 = [
     callback: (context) => {
       context.score.viaCrucis2.preload = 'auto';
       journalMoment('✝️', "Found another Station of the Cross");
+      setTask('Continue to the next station to the west');
     },
   }
 ];
