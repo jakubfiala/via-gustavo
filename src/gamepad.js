@@ -57,11 +57,11 @@ export default (G) => {
         b5pressed = true;
       }
 
-      if (b5pressed && gamepad.buttons[5]?.value === 0) {
-        b5pressed = false;
-        G.resetIdleTimeout?.();
-        ccButton.click();
-      }
+      // if (b5pressed && gamepad.buttons[5]?.value === 0) {
+      //   b5pressed = false;
+      //   G.resetIdleTimeout?.();
+      //   ccButton.click();
+      // }
 
       if (!b8pressed && gamepad.buttons[8]?.value > 0) {
         b8pressed = true;

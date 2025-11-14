@@ -19,16 +19,16 @@ export const initKiosk = (G) => {
 };
 
 const createIdleTimeoutReset = (G) => () => {
-  clearTimeout(resetTimeout);
+  // clearTimeout(resetTimeout);
   clearInterval(cameraWiggleTimeout);
   clearInterval(cameraWiggleInterval);
 
-  resetTimeout = setTimeout(() => {
-    flashStatus('Looks like you\'ve been inactive for a while. Jumping to the last checkpoint.', 10)(G);
-    console.info('[kiosk]', 'replaying last chapter and flagging all checkpoints as not passed');
-    checkpoints.forEach((checkpoint) => checkpoint.passed = false);
-    replayLastChapter();
-  }, KIOSK_IDLE_DELAY_MIN * MIN);
+  // resetTimeout = setTimeout(() => {
+  //   flashStatus('Looks like you\'ve been inactive for a while. Jumping to the last checkpoint.', 10)(G);
+  //   console.info('[kiosk]', 'replaying last chapter and flagging all checkpoints as not passed');
+  //   checkpoints.forEach((checkpoint) => checkpoint.passed = false);
+  //   replayLastChapter();
+  // }, KIOSK_IDLE_DELAY_MIN * MIN);
 
   cameraWiggleTimeout = setTimeout(() => {
     console.info('[kiosk]', 'starting camera wiggle');
