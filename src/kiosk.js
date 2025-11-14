@@ -19,7 +19,6 @@ export const initKiosk = (G) => {
 };
 
 const createIdleTimeoutReset = (G) => () => {
-  console.info('[kiosk]', 'ending idle behaviour');
   clearTimeout(resetTimeout);
   clearInterval(cameraWiggleTimeout);
   clearInterval(cameraWiggleInterval);
