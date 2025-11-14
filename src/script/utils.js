@@ -49,6 +49,7 @@ export const showHelpMessage = (text, keys = [], duration = 5, gamepadText = "")
 };
 
 export const showFakeCaptcha = (callback = () => {}) => context => {
+  showHelpMessage('', [], 5, 'Use the touchpad on the controller to interact with things and collect items')(context);
   disableClickToGoCB(context);
 
   const captcha = context.fakeCaptchas[0];

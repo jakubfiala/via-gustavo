@@ -30,7 +30,6 @@ export const intro = [
     text: "",
     duration: 2,
     callback: showFakeCaptcha((e, G) => {
-      showHelpMessage('', [], 5, 'Use the touchpad on the controller to interact with things and collect items')(G);
       setTimeout(() => {
         hideFakeCaptcha(G);
         scheduleScript(thanks, G);
