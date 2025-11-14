@@ -37,5 +37,5 @@ const createIdleTimeoutReset = (G) => () => {
       const pitch = Math.sin(performance.now() / 1_000) * 1.5;
       G.map.setPov({ heading: pov.heading, pitch });
     }, 50);
-  }, 5_000); //CAMERA_WIGGLE_DELAY_MIN * MIN);
+  }, CAMERA_WIGGLE_DELAY_MIN * MIN);
 }
