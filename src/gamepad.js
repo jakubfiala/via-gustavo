@@ -32,8 +32,9 @@ export default (G) => {
       return;
     }
 
-    const throttledPositionUpdate = throttle((map, newPosition) => {
-      map.setPosition(newPosition);
+    const throttledPositionUpdate = throttle((G, newPosition) => {
+      G.map.setPosition(newPosition);
+      G.resetIdleTimeout?.();
     }, 500, { leading: true, trailing: true });
 
     const controlLoop = () => {
@@ -49,6 +50,7 @@ export default (G) => {
         pov.heading = (pov.heading + rx * TURN_VELOCITY) % 360;
         pov.pitch = clamp(pov.pitch - ry * TURN_VELOCITY, -90, 90);
         G.map.setPov(pov);
+        G.resetIdleTimeout?.();
       }
 
       if (!b5pressed && gamepad.buttons[5]?.value > 0) {
@@ -57,6 +59,7 @@ export default (G) => {
 
       if (b5pressed && gamepad.buttons[5]?.value === 0) {
         b5pressed = false;
+        G.resetIdleTimeout?.();
         ccButton.click();
       }
 
@@ -96,7 +99,7 @@ export default (G) => {
           lng: gamepadMove.lng - acceleration * ly * Math.sin(rad(heading)),
         };
 
-        throttledPositionUpdate(G.map, gamepadMove);
+        throttledPositionUpdate(G, gamepadMove);
       } else {
         gamepadMove = null;
       }
