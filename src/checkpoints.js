@@ -733,5 +733,7 @@ export const goToNextCheckpoint = (G) => {
   const nextUnpassed = checkpoints.find((c) => !c.passed);
   if (!nextUnpassed) return;
 
+  const pov = G.map.getPov();
   G.map.setPosition({ lat: nextUnpassed.lat, lng: nextUnpassed.lng });
+  G.map.setPov(pov);
 }
