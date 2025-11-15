@@ -62,13 +62,19 @@ export default (G) => {
 
       if (!b0pressed && gamepad.buttons[0]?.value > 0) {
         b0pressed = true;
+      }
 
+      if (b0pressed && gamepad.buttons[0]?.value === 0) {
+        b0pressed = false;
         location.reload();
       }
 
       if (!b1pressed && gamepad.buttons[1]?.value > 0) {
         b1pressed = true;
+      }
 
+      if (b1pressed && gamepad.buttons[1]?.value === 0) {
+        b1pressed = false;
         goToNextCheckpoint(G);
       }
 
