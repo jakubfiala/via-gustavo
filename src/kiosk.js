@@ -1,5 +1,4 @@
 import { replayLastChapter } from "./chapters";
-import { checkpoints } from "./checkpoints";
 import { flashStatus } from "./script/utils";
 
 const MIN = 60_000;
@@ -25,13 +24,6 @@ export const initKiosk = (G) => {
 
   G.map.addListener('position_changed', nonMovingHandler);
 };
-
-export const goToNextCheckpoint = (G) => {
-  const nextUnpassed = checkpoints.find((c) => !c.passed);
-  if (!nextUnpassed) return;
-
-  G.map.setPosition({ lat: nextUnpassed.lat, lng: nextUnpassed.lng });
-}
 
 export const createNonMovingTimeoutReset = (G) => () => {
   clearInterval(nextCheckpointButtonTimeout);

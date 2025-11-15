@@ -728,3 +728,10 @@ export const checkForCheckpoints = G => () => {
     }
   }
 };
+
+export const goToNextCheckpoint = (G) => {
+  const nextUnpassed = checkpoints.find((c) => !c.passed);
+  if (!nextUnpassed) return;
+
+  G.map.setPosition({ lat: nextUnpassed.lat, lng: nextUnpassed.lng });
+}

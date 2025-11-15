@@ -1,3 +1,4 @@
+import { goToNextCheckpoint } from "./checkpoints";
 import { clamp, deg, rad } from "./utils";
 import { throttle } from "lodash";
 
@@ -11,6 +12,8 @@ const TURN_VELOCITY = 2.0;
 const roundFloat = (x, y) => Math.round (x / y) * y;
 
 let gamepadMove = null;
+let b0pressed = false;
+let b1pressed = false;
 let b5pressed = false;
 let b8pressed = false;
 let b9pressed = false;
@@ -55,6 +58,18 @@ export default (G) => {
 
       if (!b5pressed && gamepad.buttons[5]?.value > 0) {
         b5pressed = true;
+      }
+
+      if (!b0pressed && gamepad.buttons[0]?.value > 0) {
+        b0pressed = true;
+
+        location.reload();
+      }
+
+      if (!b1pressed && gamepad.buttons[1]?.value > 0) {
+        b1pressed = true;
+
+        goToNextCheckpoint(G);
       }
 
       // if (b5pressed && gamepad.buttons[5]?.value === 0) {

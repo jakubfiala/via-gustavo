@@ -1,5 +1,5 @@
 import { initCruiseControl } from './cruise-control.js';
-import { goToNextCheckpoint } from './kiosk.js';
+import { goToNextCheckpoint } from './checkpoints.js';
 
 const latLngDisplay = document.getElementById('latlng-display');
 const povDisplay = document.getElementById('pov-display');
