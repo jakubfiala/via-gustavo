@@ -236,11 +236,33 @@ const revisitedSequence = (context) => {
   cruiseControlButton.hidden = false;
 };
 
-introCTAFromScratch.addEventListener('click', () => {
+let startGamepadPoll;
+
+const gamepadStarter = () => {
+  if (scriptContext.map) return;
+
+  startGamepadPoll = requestAnimationFrame(gamepadStarter);
+
+  const gamepad = navigator.getGamepads()[0];
+  if (!gamepad) {
+    return;
+  }
+
+  if (gamepad.buttons[1]?.value > 0) {
+    start();
+  }
+};
+
+gamepadStarter();
+
+const start = () => {
+  cancelAnimationFrame(startGamepadPoll);
   mapOptions.position = START_POSITION;
   mapOptions.pov = START_POV;
   resetGame();
   initialize();
-});
+};
 
+
+introCTAFromScratch.addEventListener('click', start);
 introCTAContinue.addEventListener('click', initialize);
