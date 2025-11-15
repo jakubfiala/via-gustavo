@@ -256,7 +256,7 @@ const revisitedSequence = (context) => {
 // gamepadStarter();
 
 const start = () => {
-  cancelAnimationFrame(startGamepadPoll);
+  // cancelAnimationFrame(startGamepadPoll);
   mapOptions.position = START_POSITION;
   mapOptions.pov = START_POV;
   resetGame();
