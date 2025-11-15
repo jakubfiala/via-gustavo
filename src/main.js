@@ -249,7 +249,6 @@ const gamepadStarter = () => {
   }
 
   if (gamepad.buttons[1]?.value > 0) {
-    cancelAnimationFrame(startGamepadPoll);
     start();
   }
 };
