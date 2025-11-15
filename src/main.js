@@ -236,24 +236,24 @@ const revisitedSequence = (context) => {
   cruiseControlButton.hidden = false;
 };
 
-let startGamepadPoll;
+// let startGamepadPoll;
 
-const gamepadStarter = () => {
-  if (scriptContext.map) return;
+// const gamepadStarter = () => {
+//   if (scriptContext.map) return;
 
-  startGamepadPoll = requestAnimationFrame(gamepadStarter);
+//   startGamepadPoll = requestAnimationFrame(gamepadStarter);
 
-  const gamepad = navigator.getGamepads()[0];
-  if (!gamepad) {
-    return;
-  }
+//   const gamepad = navigator.getGamepads()[0];
+//   if (!gamepad) {
+//     return;
+//   }
 
-  if (gamepad.buttons[1]?.value > 0) {
-    start();
-  }
-};
+//   if (gamepad.buttons[1]?.value > 0) {
+//     start();
+//   }
+// };
 
-gamepadStarter();
+// gamepadStarter();
 
 const start = () => {
   cancelAnimationFrame(startGamepadPoll);
