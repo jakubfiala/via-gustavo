@@ -1343,6 +1343,9 @@ p.intro__links {
 #next-checkpoint-button {
   animation: fade-in 1s both;
   position: fixed;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: 1.25rem;
+  background-color: var(--color-blue);
+  color: white;
 }
