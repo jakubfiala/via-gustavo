@@ -1339,3 +1339,10 @@ p.intro__links {
 #new-game-button {
   align-self: stretch;
 }
+
+#next-checkpoint-button {
+  animation: fade-in 1s both;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}

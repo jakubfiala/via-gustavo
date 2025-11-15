@@ -1,10 +1,12 @@
 import { initCruiseControl } from './cruise-control.js';
+import { goToNextCheckpoint } from './kiosk.js';
 
 const latLngDisplay = document.getElementById('latlng-display');
 const povDisplay = document.getElementById('pov-display');
 const hud = document.getElementById('hud');
 
 const newGameButton = document.getElementById('new-game-button');
+const nextCheckpointButton = document.getElementById('next-checkpoint-button');
 const fullscreenButton = document.getElementById('fullscreen-button');
 const fullscreenIconEnter = document.getElementById('fullscreen-button-icon-enter');
 const fullscreenIconExit = document.getElementById('fullscreen-button-icon-exit');
@@ -76,14 +78,22 @@ const initNewGameButton = () => {
   });
 }
 
+const initNextCheckpointButton = (G) => {
+  nextCheckpointButton.addEventListener('click', () => {
+    goToNextCheckpoint(G);
+  });
+}
+
 export default (G) => {
   hud.hidden = false;
 
   if (!G.kiosk) {
     initFullscreenButton();
     newGameButton.hidden = true;
+    nextCheckpointButton.hidden = true;
   } else {
     initNewGameButton();
+    initNextCheckpointButton(G);
     fullscreenButton.hidden = true;
   }
 
