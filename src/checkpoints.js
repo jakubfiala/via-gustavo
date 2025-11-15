@@ -25,7 +25,7 @@ export const checkpoints = [
   {
     lat: -20.448960415574838,
     lng: -69.508360649033690,
-    passed: completedChapters.size === 0,
+    passed: completedChapters.size > 0,
     async callback(context) {
       return scheduleScript(intro2, context);
     },
@@ -33,7 +33,7 @@ export const checkpoints = [
   {
     lat: -20.44615,
     lng: -69.516,
-    passed: completedChapters.size === 0,
+    passed: completedChapters.size > 0,
     async callback(context) {
       return scheduleScript(intro3, context);
     },
@@ -41,7 +41,7 @@ export const checkpoints = [
   {
     lat: -20.44321,
     lng: -69.523,
-    passed: completedChapters.size === 0,
+    passed: completedChapters.size > 0,
     async callback(G) {
       return scheduleScript(tiredOfClicking, G);
     },
@@ -52,7 +52,7 @@ export const checkpoints = [
     lat: -20.442087695890653,
     lng: -69.525976864376787,
     chapter: chapters[0],
-    passed: completedChapters.has(chapters[0].id),
+    passed: completedChapters.has(chapters[1].id),
     callback(context) {
       return scheduleScript(chapter1.intro, {
         ...context,
@@ -63,7 +63,7 @@ export const checkpoints = [
   {
     lat: -20.43945,
     lng: -69.53325,
-    passed: completedChapters.has(chapters[0].id),
+    passed: completedChapters.has(chapters[1].id),
     callback(context) {
       return scheduleScript(chapter1.searching, context);
     },
@@ -71,7 +71,7 @@ export const checkpoints = [
   {
     lat: -20.43771,
     lng: -69.53864,
-    passed: completedChapters.has(chapters[0].id),
+    passed: completedChapters.has(chapters[1].id),
     callback(context) {
       return scheduleScript(chapter1.hisLand, context);
     },
@@ -79,7 +79,7 @@ export const checkpoints = [
   {
     lat: -20.43524,
     lng: -69.54667,
-    passed: completedChapters.has(chapters[0].id),
+    passed: completedChapters.has(chapters[1].id),
     callback(context) {
       return scheduleScript(chapter1.showYouSomething, context);
     },
@@ -87,7 +87,7 @@ export const checkpoints = [
   {
     lat: -20.4341,
     lng: -69.55155,
-    passed: completedChapters.has(chapters[0].id),
+    passed: completedChapters.has(chapters[1].id),
     async callback(G) {
       G.soundscape.set(G.soundscape.trees);
     },
@@ -95,7 +95,7 @@ export const checkpoints = [
   {
     lat: -20.433129833628328,
     lng: -69.554247855052452,
-    passed: completedChapters.has(chapters[0].id),
+    passed: completedChapters.has(chapters[1].id),
     callback(context) {
       return scheduleScript(chapter1.animita, context);
     },
@@ -103,7 +103,7 @@ export const checkpoints = [
   {
     lat: -20.4323,
     lng: -69.55628,
-    passed: completedChapters.has(chapters[0].id),
+    passed: completedChapters.has(chapters[1].id),
     async callback(context) {
       context.soundscape.set(context.soundscape.town);
     },
@@ -111,7 +111,7 @@ export const checkpoints = [
   {
     lat: -20.43194,
     lng: -69.55711,
-    passed: completedChapters.has(chapters[0].id),
+    passed: completedChapters.has(chapters[1].id),
     callback(context) {
       return scheduleScript(chapter1.weMadeIt, context);
     },
@@ -119,7 +119,7 @@ export const checkpoints = [
   {
     lat: -20.43106,
     lng: -69.56009,
-    passed: completedChapters.has(chapters[0].id),
+    passed: completedChapters.has(chapters[1].id),
     callback(context) {
       return scheduleScript(chapter1.theresTheBus, context);
     },
@@ -129,7 +129,7 @@ export const checkpoints = [
   {
     lat: -20.34114,
     lng: -69.65651,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     chapter: chapters[1],
     callback(context) {
       return scheduleScript(chapter2.intro, {
@@ -141,7 +141,7 @@ export const checkpoints = [
   {
     lat: -20.34114,
     lng: -69.65651,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       context.soundscape.set(context.soundscape.town2);
     },
@@ -149,7 +149,7 @@ export const checkpoints = [
   {
     lat: -20.33629,
     lng: -69.65669,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     callback(context) {
       return scheduleScript(chapter2.station1, context);
     },
@@ -157,7 +157,7 @@ export const checkpoints = [
   {
     lat: -20.33705,
     lng: -69.65924,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     callback(context) {
       return scheduleScript(chapter2.mainRoad, context);
     },
@@ -165,7 +165,7 @@ export const checkpoints = [
   {
     lat: -20.335455499426374,
     lng: -69.659308859205751,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     callback(context) {
       return scheduleScript(chapter2.station2, context);
     },
@@ -173,7 +173,7 @@ export const checkpoints = [
   {
     lat: -20.33362,
     lng: -69.66595,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       context.soundscape.set(context.soundscape.trees);
     },
@@ -181,7 +181,7 @@ export const checkpoints = [
   {
     lat: -20.33353,
     lng: -69.66675,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     callback(context) {
       return scheduleScript(chapter2.station3, context);
     },
@@ -189,7 +189,7 @@ export const checkpoints = [
   {
     lat: -20.33274,
     lng: -69.67337,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       context.soundscape.set(context.soundscape.trees);
     },
@@ -197,7 +197,7 @@ export const checkpoints = [
   {
     lat: -20.33263,
     lng: -69.6745,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     callback(context) {
       return scheduleScript(chapter2.station4, context);
     },
@@ -205,7 +205,7 @@ export const checkpoints = [
   {
     lat: -20.3319,
     lng: -69.68088,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     callback(context) {
       return scheduleScript(chapter2.station5, context);
     },
@@ -213,7 +213,7 @@ export const checkpoints = [
   {
     lat: -20.33184,
     lng: -69.68141,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       context.soundscape.set(context.soundscape.birdsWind);
     },
@@ -221,7 +221,7 @@ export const checkpoints = [
   {
     lat: -20.33115,
     lng: -69.68778,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       context.soundscape.set(context.soundscape.base);
     },
@@ -229,7 +229,7 @@ export const checkpoints = [
   {
     lat: -20.33094,
     lng: -69.68898,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       return scheduleScript(chapter2.station6, context);
     },
@@ -237,7 +237,7 @@ export const checkpoints = [
   {
     lat: -20.33004,
     lng: -69.69689,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       return scheduleScript(chapter2.station7, context);
     },
@@ -245,7 +245,7 @@ export const checkpoints = [
   {
     lat: -20.32944,
     lng: -69.70198,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       context.soundscape.set(context.soundscape.plane);
     },
@@ -253,7 +253,7 @@ export const checkpoints = [
   {
     lat: -20.32901,
     lng: -69.70551,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       return scheduleScript(chapter2.station8, context);
     },
@@ -261,7 +261,7 @@ export const checkpoints = [
   {
     lat: -20.32843,
     lng: -69.71013,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       context.soundscape.set(context.soundscape.base);
     },
@@ -269,7 +269,7 @@ export const checkpoints = [
   {
     lat: -20.3279,
     lng: -69.71511,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       return scheduleScript(chapter2.station9, context);
     },
@@ -277,7 +277,7 @@ export const checkpoints = [
   {
     lat: -20.32696,
     lng: -69.72382,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       return scheduleScript(chapter2.station10, context);
     },
@@ -285,7 +285,7 @@ export const checkpoints = [
   {
     lat: -20.32612,
     lng: -69.73172,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       return scheduleScript(chapter2.station11, context);
     },
@@ -293,7 +293,7 @@ export const checkpoints = [
   {
     lat: -20.32535,
     lng: -69.73902,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       return scheduleScript(chapter2.station12, context);
     },
@@ -301,7 +301,7 @@ export const checkpoints = [
   {
     lat: -20.32471,
     lng: -69.74547,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       return scheduleScript(chapter2.station13, context);
     },
@@ -309,7 +309,7 @@ export const checkpoints = [
   {
     lat: -20.32416,
     lng: -69.75158,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       return scheduleScript(chapter2.station14, context);
     },
@@ -317,7 +317,7 @@ export const checkpoints = [
   {
     lat: -20.324071688546439,
     lng: -69.752710427462290,
-    passed: completedChapters.has(chapters[1].id),
+    passed: completedChapters.has(chapters[2].id),
     async callback(context) {
       return scheduleScript(chapter2.outro, context);
     },
@@ -328,7 +328,7 @@ export const checkpoints = [
     lat: -20.32047,
     lng: -69.75582,
     chapter: chapters[2],
-    passed: completedChapters.has(chapters[2].id),
+    passed: completedChapters.has(chapters[3].id),
     async callback(context) {
       return scheduleScript(chapter3.intro, {
         ...context,
@@ -339,7 +339,7 @@ export const checkpoints = [
   {
     lat: -20.311606127473066,
     lng: -69.764257554131845,
-    passed: completedChapters.has(chapters[2].id),
+    passed: completedChapters.has(chapters[3].id),
     async callback(context) {
       context.score.dirtRoad1.play();
     },
@@ -347,7 +347,7 @@ export const checkpoints = [
   {
     lat: -20.305932332865950,
     lng: -69.769828449520617,
-    passed: completedChapters.has(chapters[2].id),
+    passed: completedChapters.has(chapters[3].id),
     async callback(context) {
       drone.flyBy(context);
       context.score.dirtRoad2.preload = 'auto';
@@ -356,7 +356,7 @@ export const checkpoints = [
   {
     lat: -20.304420012943268,
     lng: -69.771311857793776,
-    passed: completedChapters.has(chapters[2].id),
+    passed: completedChapters.has(chapters[3].id),
     async callback(context) {
       journalMoment('🛩️', 'A drone flew past');
       context.score.dirtRoad2.play();
@@ -366,7 +366,7 @@ export const checkpoints = [
   {
     lat: -20.28908,
     lng: -69.78266,
-    passed: completedChapters.has(chapters[2].id),
+    passed: completedChapters.has(chapters[3].id),
     async callback(context) {
       context.score.dirtRoad3.play();
     },
@@ -374,7 +374,7 @@ export const checkpoints = [
   {
     lat: -20.28805,
     lng: -69.78323,
-    passed: completedChapters.has(chapters[2].id),
+    passed: completedChapters.has(chapters[3].id),
     async callback(context) {
       context.droneHoveringBehindYou = await drone.hoverBehind(context, {
         lat: -20.28815,
@@ -385,7 +385,7 @@ export const checkpoints = [
   {
     lat: -20.28189,
     lng: -69.78645,
-    passed: completedChapters.has(chapters[2].id),
+    passed: completedChapters.has(chapters[3].id),
     async callback(G) {
       G.soundscape.set(G.soundscape.trees);
       G.score.dirtRoad4.preload = 'auto';
@@ -394,7 +394,7 @@ export const checkpoints = [
   {
     lat: -20.2812,
     lng: -69.78685,
-    passed: completedChapters.has(chapters[2].id),
+    passed: completedChapters.has(chapters[3].id),
     async callback(G) {
       G.droneHoveringBehindYou?.stopHovering(G);
       G.droneHoveringBehindYou = null;
@@ -403,7 +403,7 @@ export const checkpoints = [
   {
     lat: -20.27938,
     lng: -69.78727,
-    passed: completedChapters.has(chapters[2].id),
+    passed: completedChapters.has(chapters[3].id),
     async callback(G) {
       G.score.dirtRoad4.play();
       journalMoment('🛸', 'The drone finally left me alone');
@@ -412,7 +412,7 @@ export const checkpoints = [
   {
     lat: -20.27244,
     lng: -69.78621,
-    passed: completedChapters.has(chapters[2].id),
+    passed: completedChapters.has(chapters[3].id),
     async callback(context) {
       context.score.bachPiano4.preload = 'auto';
       return scheduleScript(chapter3.outro, context);
@@ -423,7 +423,7 @@ export const checkpoints = [
   {
     lat: -20.27143,
     lng: -69.78607,
-    passed: completedChapters.has(chapters[3].id),
+    passed: completedChapters.has(chapters[4].id),
     async callback(context) {
       context.soundscape.set(context.soundscape.town3);
     },
@@ -431,7 +431,7 @@ export const checkpoints = [
   {
     lat: -20.27109,
     lng: -69.78599,
-    passed: completedChapters.has(chapters[3].id),
+    passed: completedChapters.has(chapters[4].id),
     chapter: chapters[3],
     async callback(context) {
       return scheduleScript(chapter4.aboutDrone, {
@@ -443,7 +443,7 @@ export const checkpoints = [
   {
     lat: -20.26845,
     lng: -69.78555,
-    passed: completedChapters.has(chapters[3].id),
+    passed: completedChapters.has(chapters[4].id),
     async callback(context) {
       if (inventory.hasItem('NASA Backpack')) {
         return scheduleScript(chapter4.niceBackpack, context);
@@ -453,7 +453,7 @@ export const checkpoints = [
   {
     lat: -20.26465,
     lng: -69.78524,
-    passed: completedChapters.has(chapters[3].id),
+    passed: completedChapters.has(chapters[4].id),
     async callback(context) {
       context.sfx.setFootsteps('normal');
       context.soundscape.set(context.soundscape.town5);
@@ -463,7 +463,7 @@ export const checkpoints = [
   {
     lat: -20.26119,
     lng: -69.78575,
-    passed: completedChapters.has(chapters[3].id),
+    passed: completedChapters.has(chapters[4].id),
     async callback(context) {
       return scheduleScript(chapter4.pozoAlmonteMF, context);
     },
@@ -471,7 +471,7 @@ export const checkpoints = [
   {
     lat: -20.25056,
     lng: -69.78606,
-    passed: completedChapters.has(chapters[3].id),
+    passed: completedChapters.has(chapters[4].id),
     async callback(context) {
       context.soundscape.set(context.soundscape.townBigRoad);
       return scheduleScript(chapter4.difunta1, context);
@@ -480,7 +480,7 @@ export const checkpoints = [
   {
     lat: -20.24185,
     lng: -69.78692,
-    passed: completedChapters.has(chapters[3].id),
+    passed: completedChapters.has(chapters[4].id),
     async callback(context) {
       return scheduleScript(chapter4.difunta2, context);
     },
@@ -488,7 +488,7 @@ export const checkpoints = [
   {
     lat: -20.23327,
     lng: -69.78749,
-    passed: completedChapters.has(chapters[3].id),
+    passed: completedChapters.has(chapters[4].id),
     async callback(context) {
       return scheduleScript(chapter4.difunta3, context);
     },
@@ -496,7 +496,7 @@ export const checkpoints = [
   {
     lat: -20.22341,
     lng: -69.78831,
-    passed: completedChapters.has(chapters[3].id),
+    passed: completedChapters.has(chapters[4].id),
     async callback(context) {
       return scheduleScript(chapter4.difunta4, context);
     },
@@ -504,7 +504,7 @@ export const checkpoints = [
   {
     lat: -20.22184,
     lng: -69.78845,
-    passed: completedChapters.has(chapters[3].id),
+    passed: completedChapters.has(chapters[4].id),
     async callback(context) {
       return scheduleScript(chapter4.afterDifunta, context);
     },
@@ -512,7 +512,7 @@ export const checkpoints = [
   {
     lat: -20.21883,
     lng: -69.78868,
-    passed: completedChapters.has(chapters[3].id),
+    passed: completedChapters.has(chapters[4].id),
     async callback(context) {
       return scheduleScript(chapter4.lithium, context);
     },
@@ -520,7 +520,7 @@ export const checkpoints = [
   {
     lat: -20.21254,
     lng: -69.78886,
-    passed: completedChapters.has(chapters[3].id),
+    passed: completedChapters.has(chapters[4].id),
     async callback(context) {
       return scheduleScript(chapter4.geoglyphs, context);
     },
@@ -531,7 +531,7 @@ export const checkpoints = [
     lat: -20.21034,
     lng: -69.79625,
     chapter: chapters[4],
-    passed: completedChapters.has(chapters[4].id),
+    passed: completedChapters.has(chapters[5].id),
     async callback(context) {
       return scheduleScript(chapter5.intro, {
         ...context,
@@ -542,7 +542,7 @@ export const checkpoints = [
   {
     lat: -20.20953,
     lng: -69.79687,
-    passed: completedChapters.has(chapters[4].id),
+    passed: completedChapters.has(chapters[5].id),
     async callback(context) {
       context.sfx.setFootsteps('gravel');
       context.soundscape.set(context.soundscape.town4);
@@ -551,7 +551,7 @@ export const checkpoints = [
   {
     lat: -20.20931,
     lng: -69.79683,
-    passed: completedChapters.has(chapters[4].id),
+    passed: completedChapters.has(chapters[5].id),
     async callback(context) {
       setTask('Climb up the hill behind the town');
       journalMoment('🏭', 'Discovered the old town of Humberstone');
@@ -561,7 +561,7 @@ export const checkpoints = [
   {
     lat: -20.2073,
     lng: -69.79675,
-    passed: completedChapters.has(chapters[4].id),
+    passed: completedChapters.has(chapters[5].id),
     async callback(G) {
       G.soundscape.set(G.soundscape.town4);
     },
@@ -569,7 +569,7 @@ export const checkpoints = [
   {
     lat: -20.20519,
     lng: -69.7955,
-    passed: completedChapters.has(chapters[4].id),
+    passed: completedChapters.has(chapters[5].id),
     async callback(context) {
       context.soundscape.set(context.soundscape.base);
       context.score.circuitoFull.play();
@@ -578,7 +578,7 @@ export const checkpoints = [
   {
     lat: -20.20556,
     lng: -69.79509,
-    passed: completedChapters.has(chapters[4].id),
+    passed: completedChapters.has(chapters[5].id),
     async callback(context) {
       removeTask();
 
@@ -605,7 +605,7 @@ export const checkpoints = [
     lat: -20.37992,
     lng: -69.72742,
     chapter: chapters[5],
-    passed: completedChapters.has(chapters[5].id),
+    passed: false,
     async callback(context) {
       context.chapter = this.chapter;
       return scheduleScript(chapter6.intro, context);
@@ -614,7 +614,7 @@ export const checkpoints = [
   {
     lat: -20.38045,
     lng: -69.72716,
-    passed: completedChapters.has(chapters[5].id),
+    passed: false,
     async callback(context) {
       return scheduleScript(chapter6.growingUp, context);
     }
@@ -622,7 +622,7 @@ export const checkpoints = [
   {
     lat: -20.39206,
     lng: -69.72192,
-    passed: completedChapters.has(chapters[5].id),
+    passed: false,
     async callback(context) {
       return scheduleScript(chapter6.touchTheSky, context);
     }
@@ -630,7 +630,7 @@ export const checkpoints = [
   {
     lat: -20.40215,
     lng: -69.71733,
-    passed: completedChapters.has(chapters[5].id),
+    passed: false,
     async callback(context) {
       return scheduleScript(chapter6.evening, context);
     }
@@ -638,7 +638,7 @@ export const checkpoints = [
   {
     lat: -20.41443,
     lng: -69.71181,
-    passed: completedChapters.has(chapters[5].id),
+    passed: false,
     async callback(context) {
       return scheduleScript(chapter6.night, context);
     }
@@ -646,7 +646,7 @@ export const checkpoints = [
   {
     lat: -20.42717,
     lng: -69.7061,
-    passed: completedChapters.has(chapters[5].id),
+    passed: false,
     async callback(context) {
       return scheduleScript(chapter6.pause, context);
     }
@@ -654,7 +654,7 @@ export const checkpoints = [
   {
     lat: -20.42815,
     lng: -69.70565,
-    passed: completedChapters.has(chapters[5].id),
+    passed: false,
     async callback(context) {
       return scheduleScript(chapter6.end, context);
     }
@@ -662,7 +662,7 @@ export const checkpoints = [
   {
     lat: -20.43765,
     lng: -69.70143,
-    passed: completedChapters.has(chapters[5].id),
+    passed: false,
     async callback(context) {
       return gustavoSequence(context);
     },
