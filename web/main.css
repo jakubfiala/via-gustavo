@@ -517,7 +517,7 @@ p.subtitle {
 .hud__button,
 .hud__dialog-close {
   cursor: pointer;
-  color: inherit;
+  color: var(--color-blue);
   background: white;
   border: solid 1px var(--color-blue);
   font-family: inherit;
@@ -525,6 +525,10 @@ p.subtitle {
   font-weight: bold;
   padding: 0.5rem;
   line-height: 1;
+}
+
+.hud__button--small {
+  padding: 0.1rem 0.25rem;
 }
 
 .hud__button:hover,
@@ -1348,4 +1352,31 @@ p.intro__links {
   font-size: 1.25rem;
   background-color: var(--color-blue);
   color: white;
+}
+
+.demo #next-checkpoint-button {
+  bottom: 3rem;
+}
+
+#demo-view {
+  animation: fade-in 1s 3s both;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  width: 100vw;
+  color: white;
+  padding: 0.5rem 0.25rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  background: #0003;
+  backdrop-filter: blur(20px);
+}
+
+#demo-view[hidden] {
+  display: none;
+}
+
+#demo-part {
+  font-weight: bold;
 }

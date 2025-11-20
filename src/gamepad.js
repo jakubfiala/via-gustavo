@@ -1,15 +1,11 @@
 import { goToNextCheckpoint } from "./checkpoints";
-import { clamp, deg, rad } from "./utils";
+import { nextPart, previousPart } from "./demo";
+import { clamp, rad } from "./utils";
 import { throttle } from "lodash";
 
-const MIN_MOVEMENT = 0.2;
-const OFFSET_X =  0; // 0.051000000000000004;
-const OFFSET_Y =  0; // -0.045;
 const ACCEL_VELOCITY = 6e-6;
 const FAST_ACCEL_VELOCITY = 1e-5;
 const TURN_VELOCITY = 2.0;
-
-const roundFloat = (x, y) => Math.round (x / y) * y;
 
 let gamepadMove = null;
 let b0pressed = false;
@@ -17,10 +13,11 @@ let b1pressed = false;
 let b5pressed = false;
 let b8pressed = false;
 let b9pressed = false;
+let b14pressed = false;
+let b15pressed = false;
 
 const journalDialog = document.getElementById('journal-dialog');
 const aboutDialog = document.getElementById('about-dialog');
-const ccButton = document.getElementById('cruise-control-button');
 
 export default (G) => {
   window.addEventListener("gamepadconnected", function(e) {
@@ -78,12 +75,6 @@ export default (G) => {
         goToNextCheckpoint(G);
       }
 
-      // if (b5pressed && gamepad.buttons[5]?.value === 0) {
-      //   b5pressed = false;
-      //   G.resetIdleTimeout?.();
-      //   ccButton.click();
-      // }
-
       if (!b8pressed && gamepad.buttons[8]?.value > 0) {
         b8pressed = true;
       }
@@ -108,6 +99,24 @@ export default (G) => {
         } else {
           journalDialog.show();
         }
+      }
+
+      if (!b14pressed && gamepad.buttons[14]?.value > 0) {
+        b14pressed = true;
+      }
+
+      if (b14pressed && gamepad.buttons[14]?.value === 0) {
+        b14pressed = false;
+        previousPart(G);
+      }
+
+      if (!b15pressed && gamepad.buttons[15]?.value > 0) {
+        b15pressed = true;
+      }
+
+      if (b15pressed && gamepad.buttons[15]?.value === 0) {
+        b15pressed = false;
+        nextPart(G);
       }
 
       if (Math.abs(ly) > 0.1) {

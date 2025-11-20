@@ -31,6 +31,7 @@ import { checkSafari } from './safari.js';
 import { button as cruiseControlButton } from './cruise-control.js';
 import { initPanoRecovery } from './pano-recovery.js';
 import { initKiosk } from "./kiosk.js";
+import { initDemo } from "./demo.js";
 
 const container = document.getElementById("container");
 const intro = document.getElementById("intro");
@@ -48,9 +49,11 @@ const debug = currentURL.searchParams.get('debug') === 'true';
 const dev = currentURL.searchParams.get('dev') === 'true';
 const cinema = currentURL.searchParams.get('cinema') === 'true';
 const kiosk = currentURL.searchParams.get('kiosk') === 'true';
+const demo = currentURL.searchParams.get('demo') === 'true';
 
 const scriptContext = {
   kiosk,
+  demo,
   container,
   statusContainer,
   helpContainer,
@@ -62,6 +65,7 @@ document.body.classList.toggle('debug', debug);
 document.body.classList.toggle('dev', dev);
 document.body.classList.toggle('cinema', cinema);
 document.body.classList.toggle('kiosk', kiosk);
+document.body.classList.toggle('demo', demo);
 
 const initialPosition = JSON.parse(localStorage.getItem(LOCALSTORAGE_POSITION_KEY)) || START_POSITION;
 const mapOptions = {
@@ -204,7 +208,12 @@ const initialize = async () => {
     initKiosk(scriptContext);
   }
 
+  if (demo) {
+    initDemo(scriptContext);
+  }
+
   document.body.classList.add('game-on');
+
 };
 
 const initialSequence = (context) => {
