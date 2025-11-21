@@ -80,4 +80,20 @@ export const localisedSounds = [
     loop: true,
     rolloffFactor: 1.5,
   },
+  {
+    name: "humberstone-wind",
+    lat: -20.206147746865163,
+    lng: -69.79750517944157,
+    src: "assets/audio/humberstone-wind.mp3",
+    db: 30,
+    loop: true,
+  },
+  {
+    name: "humberstone-inside",
+    lat: -20.204887688706446,
+    lng: -69.79400234067319,
+    src: "assets/audio/humberstone-inside.mp3",
+    db: 30,
+    loop: true,
+  },
 ];
