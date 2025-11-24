@@ -19,22 +19,20 @@ const loadFromSpeechServer = async (context, text) => {
 };
 
 export const initSpeech = async (context) => {
-  if (process.env.NODE_ENV !== 'dev') {
-    console.info('[speech]', 'loadin speech parts archive', ARCHIVE_URL);
-    const response = await fetch(ARCHIVE_URL);
-    const buffer = await response.arrayBuffer();
-    const extracted = await parseTarGzip(buffer);
+  console.info('[speech]', 'loading speech parts archive', ARCHIVE_URL);
+  const response = await fetch(ARCHIVE_URL);
+  const buffer = await response.arrayBuffer();
+  const extracted = await parseTarGzip(buffer);
 
-    const entries = extracted.map(({ name, data }) => [
-      // strip the file extension (even if truncated or just the dot)
-      name.replace(/\.([a-z0-9]+)?/, ''),
-      data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength),
-    ]);
-    const parts = Object.fromEntries(entries);
+  const entries = extracted.map(({ name, data }) => [
+    // strip the file extension (even if truncated or just the dot)
+    name.replace(/\.([a-z0-9]+)?/, ''),
+    data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength),
+  ]);
+  const parts = Object.fromEntries(entries);
 
-    context.speech = { parts };
-    console.info('[speech]', 'loaded speech parts archive', context.speech);
-  }
+  context.speech = { parts };
+  console.info('[speech]', 'loaded speech parts archive', context.speech);
 };
 
 const loadFromArchive = async (context, text) => {
@@ -65,7 +63,11 @@ export const playSpeech = (context, text, maxDuration) => new Promise(async (res
   }, maxDuration);
 
   if (process.env.NODE_ENV === 'dev') {
-    source = await loadFromSpeechServer(context, text);
+    try {
+      source = await loadFromSpeechServer(context, text);
+    } catch (err) {
+      source = await loadFromArchive(context, text);
+    }
   } else {
     if (!context.speech) {
       // Wait a bit to see if the archive just needs more time to load.
